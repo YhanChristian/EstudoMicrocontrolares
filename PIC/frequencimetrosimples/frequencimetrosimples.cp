@@ -7,7 +7,7 @@ void readFrequency();
 
 
 
-char myFrequency[8];
+char myFrequency[4];
 unsigned short auxT1;
 
 
@@ -76,7 +76,6 @@ void readFrequency() {
  lcd_chr_cp('e');
  lcd_chr_cp('q');
  lcd_chr_cp('u');
- lcd_chr_cp('e');
  lcd_chr_cp('e');
  lcd_chr_cp('n');
  lcd_chr_cp('c');

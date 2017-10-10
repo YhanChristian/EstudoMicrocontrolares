@@ -16,7 +16,7 @@ void readFrequency();
 
 // -- Variáveis
 
-char myFrequency[8];
+char myFrequency[4];
 unsigned short auxT1;
 
 // Conexões display LCD 16 x 2 utilizando 4bits MSB
@@ -90,7 +90,6 @@ void readFrequency() {
      lcd_chr_cp('q');
      lcd_chr_cp('u');
      lcd_chr_cp('e');
-     lcd_chr_cp('e');
      lcd_chr_cp('n');
      lcd_chr_cp('c');
      lcd_chr_cp('i');
@@ -99,8 +98,7 @@ void readFrequency() {
      lcd_chr_cp (myFrequency[1]);                     //Imprime no LCD posição 1 da string txt
      lcd_chr_cp (myFrequency[2]);                     //Imprime no LCD posição 2 da string txt
      lcd_chr_cp (myFrequency[3]);                     //Imprime no LCD posição 3 da string txt
-     lcd_chr_cp (myFrequency[4]);                     //Imprime no LCD posição 4 da string txt
+     lcd_chr_cp (myFrequency[4]);                     //Imprime no LCD posição 3 da string txt
      lcd_chr(2,12, 'H');
      lcd_chr_cp ('z');
 }
-

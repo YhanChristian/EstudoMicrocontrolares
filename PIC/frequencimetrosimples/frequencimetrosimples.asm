@@ -146,27 +146,23 @@ _readFrequency:
 	MOVLW       101
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,93 :: 		lcd_chr_cp('e');
-	MOVLW       101
-	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
-	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,94 :: 		lcd_chr_cp('n');
+;frequencimetrosimples.c,93 :: 		lcd_chr_cp('n');
 	MOVLW       110
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,95 :: 		lcd_chr_cp('c');
+;frequencimetrosimples.c,94 :: 		lcd_chr_cp('c');
 	MOVLW       99
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,96 :: 		lcd_chr_cp('i');
+;frequencimetrosimples.c,95 :: 		lcd_chr_cp('i');
 	MOVLW       105
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,97 :: 		lcd_chr_cp('a');
+;frequencimetrosimples.c,96 :: 		lcd_chr_cp('a');
 	MOVLW       97
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,98 :: 		lcd_chr(2,6,myFrequency[0]);                     //Imprime no LCD posição 0 da string txt
+;frequencimetrosimples.c,97 :: 		lcd_chr(2,6,myFrequency[0]);                     //Imprime no LCD posição 0 da string txt
 	MOVLW       2
 	MOVWF       FARG_Lcd_Chr_row+0 
 	MOVLW       6
@@ -174,23 +170,23 @@ _readFrequency:
 	MOVF        _myFrequency+0, 0 
 	MOVWF       FARG_Lcd_Chr_out_char+0 
 	CALL        _Lcd_Chr+0, 0
-;frequencimetrosimples.c,99 :: 		lcd_chr_cp (myFrequency[1]);                     //Imprime no LCD posição 1 da string txt
+;frequencimetrosimples.c,98 :: 		lcd_chr_cp (myFrequency[1]);                     //Imprime no LCD posição 1 da string txt
 	MOVF        _myFrequency+1, 0 
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,100 :: 		lcd_chr_cp (myFrequency[2]);                     //Imprime no LCD posição 2 da string txt
+;frequencimetrosimples.c,99 :: 		lcd_chr_cp (myFrequency[2]);                     //Imprime no LCD posição 2 da string txt
 	MOVF        _myFrequency+2, 0 
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,101 :: 		lcd_chr_cp (myFrequency[3]);                     //Imprime no LCD posição 3 da string txt
+;frequencimetrosimples.c,100 :: 		lcd_chr_cp (myFrequency[3]);                     //Imprime no LCD posição 3 da string txt
 	MOVF        _myFrequency+3, 0 
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,102 :: 		lcd_chr_cp (myFrequency[4]);                     //Imprime no LCD posição 4 da string txt
+;frequencimetrosimples.c,101 :: 		lcd_chr_cp (myFrequency[4]);                     //Imprime no LCD posição 3 da string txt
 	MOVF        _myFrequency+4, 0 
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,103 :: 		lcd_chr(2,12, 'H');
+;frequencimetrosimples.c,102 :: 		lcd_chr(2,12, 'H');
 	MOVLW       2
 	MOVWF       FARG_Lcd_Chr_row+0 
 	MOVLW       12
@@ -198,11 +194,11 @@ _readFrequency:
 	MOVLW       72
 	MOVWF       FARG_Lcd_Chr_out_char+0 
 	CALL        _Lcd_Chr+0, 0
-;frequencimetrosimples.c,104 :: 		lcd_chr_cp ('z');
+;frequencimetrosimples.c,103 :: 		lcd_chr_cp ('z');
 	MOVLW       122
 	MOVWF       FARG_Lcd_Chr_CP_out_char+0 
 	CALL        _Lcd_Chr_CP+0, 0
-;frequencimetrosimples.c,105 :: 		}
+;frequencimetrosimples.c,104 :: 		}
 L_end_readFrequency:
 	RETURN      0
 ; end of _readFrequency

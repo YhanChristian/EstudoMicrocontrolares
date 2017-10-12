@@ -1,6 +1,6 @@
 [DEVICE]
 Name=P16F628A
-Clock=4000000
+Clock=8000000
 [MEMORY_MODEL]
 Value=-1
 [BUILD_TYPE]
@@ -16,9 +16,10 @@ Value=2000
 [EEPROM_DEFINITION]
 Value=
 [FILES]
-Count=2
+Count=3
 File0=termostatoprogramavel.c
 File1=displaybcd.c
+File2=dht11.c
 [BINARIES]
 Count=0
 [IMAGES]

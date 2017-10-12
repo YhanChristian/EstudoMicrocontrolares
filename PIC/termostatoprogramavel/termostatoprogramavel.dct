@@ -172,6 +172,9 @@ delay_5ms
 delay_80us
 delay_8ms
 delay_cyc
+dht11
+dhtdata
+dhtdata_direction
 div
 div_16x16_s
 div_16x16_s_l
@@ -253,6 +256,7 @@ halfbits
 ics_auto
 ics_off
 indf
+initdht11
 int2double
 intcon
 inte
@@ -332,6 +336,7 @@ mul_32x32_s
 mul_32x32_u
 mul_8x8_s
 mul_8x8_u
+mydata1
 not_bo
 not_bo_bit
 not_bod
@@ -445,6 +450,7 @@ rcreg
 rcsta
 rd
 rd_bit
+readtemperature
 res032
 rp0
 rp0_bit
@@ -528,6 +534,7 @@ s1d13700_write_text
 s1d13700_write_text_adv
 s1d13700_write_text_return_pos
 sdiv3232l
+senddhtdata
 setfdz32
 setfov32
 setfun32
@@ -567,6 +574,7 @@ sqrt
 srand
 sren
 sren_bit
+startdht11
 status
 strcat
 strchr

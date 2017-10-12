@@ -10,19 +10,36 @@ sbit SoftSpi_SDO_Direction at TRISA2_bit;
 
 
 extern unsigned short bcdData(unsigned short digit);
-
+extern int dht11(unsigned short type);
+extern void initDht11();
 
 
 void configureMcu();
+void readTemperature();
 
 void main() {
- unsigned short counter, digit01, digit02;
  configureMcu();
  while(1) {
- for(counter = 0; counter < 100; counter ++) {
+ readTemperature();
+ delay_ms(200);
+ }
+}
 
- digit02 = counter / 10;
- digit01 = counter % 10;
+void configureMcu() {
+ CMCON = 0x07;
+ TRISB0_bit = 0;
+ TRISB1_bit = 0;
+ Soft_SPI_Init();
+ initDht11();
+}
+
+void readTemperature() {
+ unsigned short digit01, digit02;
+ int temp;
+ temp = dht11(2);
+ temp = temp / 100;
+ digit02 = temp / 10;
+ digit01 = temp % 10;
  digit02 = bcdData(digit02);
  digit01 = bcdData(digit01);
 
@@ -31,19 +48,7 @@ void main() {
  Soft_SPI_Write(digit02);
   PORTB.F0  = 1;
 
-
   PORTB.F1  = 0;
  Soft_SPI_Write(digit01);
   PORTB.F1  = 1;
-
- delay_ms(200);
- }
- counter = 0;
- }
-}
-
-void configureMcu() {
- CMCON = 0x07;
- TRISB = 0x0D;
- Soft_SPI_Init();
 }

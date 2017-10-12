@@ -1,14 +1,17 @@
-0	1	mikroCPIC1618.exe -MSF -DBG -pP16F628A -DL -O11111114 -fo4 -N"C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\termostatoprogramavel\termostatoprogramavel.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\termostatoprogramavel\" "termostatoprogramavel.c" "displaybcd.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_MemManager.mcl" "__Lib_Conversions.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Keypad4x4.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_EEPROM.mcl" "__Lib_PWM_b3.mcl" "__Lib_UART_b21.mcl" "__Lib_CF.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl" "__Lib_RS485.mcl" "__Lib_S1D13700.mcl" "__Lib_T6963C.mcl"	 
+0	1	mikroCPIC1618.exe -MSF -DBG -pP16F628A -DL -O11111114 -fo8 -N"C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\termostatoprogramavel\termostatoprogramavel.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Uses\P16\" -SP"C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\termostatoprogramavel\" "termostatoprogramavel.c" "displaybcd.c" "dht11.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl" "__Lib_CType.mcl" "__Lib_CString.mcl" "__Lib_CStdlib.mcl" "__Lib_CMath.mcl" "__Lib_MemManager.mcl" "__Lib_Conversions.mcl" "__Lib_Sprinti.mcl" "__Lib_Sprintl.mcl" "__Lib_Time.mcl" "__Lib_Trigonometry.mcl" "__Lib_Button.mcl" "__Lib_Keypad4x4.mcl" "__Lib_Manchester.mcl" "__Lib_OneWire.mcl" "__Lib_PS2.mcl" "__Lib_Sound.mcl" "__Lib_SoftI2C.mcl" "__Lib_SoftSPI.mcl" "__Lib_SoftUART.mcl" "__Lib_EEPROM.mcl" "__Lib_PWM_b3.mcl" "__Lib_UART_b21.mcl" "__Lib_CF.mcl" "__Lib_GlcdFonts.mcl" "__Lib_Glcd.mcl" "__Lib_LcdConsts.mcl" "__Lib_Lcd.mcl" "__Lib_RS485.mcl" "__Lib_S1D13700.mcl" "__Lib_T6963C.mcl"	 
 hint: 0	1139	Available RAM: 208 [bytes], Available ROM: 2048 [bytes]	 
-diagnostics: 0	126	All files Preprocessed in 78 ms	 
+diagnostics: 0	126	All files Preprocessed in 312 ms	 
 diagnostics: 0	122	Compilation Started	termostatoprogramavel.c
-diagnostics: 58	123	Compiled Successfully	termostatoprogramavel.c
+diagnostics: 63	123	Compiled Successfully	termostatoprogramavel.c
 diagnostics: 0	122	Compilation Started	displaybcd.c
 diagnostics: 49	123	Compiled Successfully	displaybcd.c
-diagnostics: 0	127	All files Compiled in 140 ms	 
-hint: 0	1144	Used RAM (bytes): 8 (4%)  Free RAM (bytes): 200 (96%)	Used RAM (bytes): 8 (4%)  Free RAM (bytes): 200 (96%)
-hint: 0	1144	Used ROM (program words): 237 (12%)  Free ROM (program words): 1811 (88%)	Used ROM (program words): 237 (12%)  Free ROM (program words): 1811 (88%)
+diagnostics: 0	122	Compilation Started	dht11.c
+warning: 51	1503	Result is not defined in function: 'startDht11'	dht11.c
+diagnostics: 111	123	Compiled Successfully	dht11.c
+diagnostics: 0	127	All files Compiled in 280 ms	 
+hint: 0	1144	Used RAM (bytes): 23 (11%)  Free RAM (bytes): 185 (89%)	Used RAM (bytes): 23 (11%)  Free RAM (bytes): 185 (89%)
+hint: 0	1144	Used ROM (program words): 697 (34%)  Free ROM (program words): 1351 (66%)	Used ROM (program words): 697 (34%)  Free ROM (program words): 1351 (66%)
 diagnostics: 0	125	Project Linked Successfully	termostatoprogramavel.mcppi
-diagnostics: 0	128	Linked in 156 ms	 
-diagnostics: 0	129	Project 'termostatoprogramavel.mcppi' completed: 468 ms	 
-diagnostics: 0	103	Finished successfully: 10 out 2017, 20:37:55	termostatoprogramavel.mcppi
+diagnostics: 0	128	Linked in 125 ms	 
+diagnostics: 0	129	Project 'termostatoprogramavel.mcppi' completed: 795 ms	 
+diagnostics: 0	103	Finished successfully: 12 out 2017, 18:47:29	termostatoprogramavel.mcppi

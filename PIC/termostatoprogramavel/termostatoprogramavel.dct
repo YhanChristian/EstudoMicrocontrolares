@@ -206,6 +206,7 @@ fabs
 ferr
 ferr_bit
 fixsign32
+flagbutton
 floattostr
 floor
 font_glcd_5x7
@@ -263,6 +264,7 @@ inte
 inte_bit
 intedg
 intedg_bit
+interrupt
 intf
 intf_bit
 inttohex
@@ -336,6 +338,7 @@ mul_32x32_s
 mul_32x32_u
 mul_8x8_s
 mul_8x8_u
+mycounter01
 mydata1
 not_bo
 not_bo_bit
@@ -450,6 +453,7 @@ rcreg
 rcsta
 rd
 rd_bit
+readbuttons
 readtemperature
 res032
 rp0
@@ -539,6 +543,7 @@ setfdz32
 setfov32
 setfun32
 setiov3224
+setuptemperature
 shorttohex
 shorttostr
 sin
@@ -745,6 +750,7 @@ uart1_tx_idle
 uart1_write
 uart1_write_text
 uldiv
+value
 vdelay_advanced_ms
 vdelay_ms
 vr0

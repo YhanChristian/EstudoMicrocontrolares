@@ -3,6 +3,11 @@ main
 		Soft_SPI_Init
 		initDht11
 	readTemperature
+		setupTemperature
+			Soft_SPI_Write
+				Delay_1us
+				Delay_22us
+			Mul_8x8_U
 		dht11
 			startDht11
 			Mul_16x16_U
@@ -12,3 +17,4 @@ main
 		Soft_SPI_Write
 			Delay_1us
 			Delay_22us
+interrupt

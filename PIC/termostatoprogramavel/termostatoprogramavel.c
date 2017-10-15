@@ -5,10 +5,14 @@
   Referências: https://www.youtube.com/watch?v=66T8XE1tf_s&list=PLZ8dBTV2_5HS_YaI8C4hsTzehRSgPjuxQ
 */
 
+// -- Definição de hardware --
 #define enable7seg01 PORTB.F0
 #define enable7seg02 PORTB.F1
+#define button01 PORTB.F3
+#define button02 PORTB.F4
+#define testInterrupt PORTB.F5
 
-// -- Conexão SPI via software
+// -- Conexão SPI via software --
 sbit SoftSpi_CLK at RA0_bit;
 sbit SoftSpi_SDI at RA1_bit;
 sbit SoftSpi_SDO at RA2_bit;
@@ -25,7 +29,28 @@ extern void initDht11();
 // -- Protótipo de funções Auxiliares --
 void configureMcu();
 void readTemperature();
+void readButtons();
+void setupTemperature();
 
+// -- Variáveis globais --
+unsigned short flagButton;
+#define flagButton01 flagButton.F0
+#define flagButton02 flagButton.F1
+#define myButton01 flagButton.F2
+#define myButton02 flagButton.F3
+#define setEnable flagButton.F4
+int myCounter01, value;
+
+//-- Interrupção --
+void interrupt() {
+     if(TMR2IF_bit) {
+          TMR2IF_bit = 0x00;
+          myCounter01++;
+          testInterrupt =! testInterrupt;
+     }
+}
+
+// -- Função Principal --
 void main() {
     configureMcu();
     while(1) {
@@ -33,22 +58,32 @@ void main() {
       delay_ms(200);
     }
 }
-
+// -- Funções Auxiliares --
 void configureMcu() {
-     CMCON = 0x07; // Desabilita-se comparadores
-     TRISB0_bit = 0;  // Configura RB0 como saída
-     TRISB1_bit = 0;  // Configura RB1 como saída
-     Soft_SPI_Init(); // Inicia-se software SPI
-     initDht11();
+    CMCON = 0x07; // Desabilita-se comparadores
+    TRISB0_bit = 0x00;  // Configura RB0 como saída
+    TRISB1_bit = 0x00;  // Configura RB1 como saída
+    TRISB3_bit = 0x01;  //Configura RB3 como entrada
+    TRISB4_bit = 0x01;  // Configura RB4 como entrada
+    TRISB5_bit = 0x00; //Configura RB5 como saída (testes da interrupção)
+    Soft_SPI_Init(); // Inicia-se software SPI
+    INTCON.GIE = 0x01; // Habilita-se interrupção global
+    INTCON.PEIE = 0x01; // Interrupção dos periféricos
+    TMR2IE_bit = 0x01; // Habilita interrupção no Timer 02
+    T2CON = 0x78; // Timer 2 inicia desligado, postscaler 1:16, prescaler 1:1 (página 55 do datasheet PIC16F628A)
+    setEnable = 0x00;
+    initDht11();
 }
 
 void readTemperature() {
     unsigned short digit01, digit02;
     int temp;
+    setupTemperature();
     temp = dht11(2);
-    temp = temp / 100;
-    digit02 = temp / 10;
-    digit01 = temp % 10;
+    value = temp;
+    value = value / 100;
+    digit02 = value / 10;
+    digit01 = value % 10;
     digit02 = bcdData(digit02);
     digit01 = bcdData(digit01);
     
@@ -60,4 +95,65 @@ void readTemperature() {
     enable7seg02 = 0;
     Soft_SPI_Write(digit01);
     enable7seg02 = 1;
+}
+
+
+void setupTemperature() {
+    unsigned short i ,setTemperature;
+    if (myButton01 || myButton02 ||  setEnable) {
+       if(!setEnable) {
+            setEnable = 0x01;
+            myCounter01 = 0x00;
+            TMR2ON_bit = 0x01;
+       }
+
+       if(myCounter01 < 500) setEnable = 0x01;
+       else {
+            setEnable = 0x00;
+            TMR2ON_bit = 0x00;
+       }
+
+       for (i = 0; i < 3; i++) {
+            enable7seg01 = 0x00;
+            enable7seg02 = 0x00;
+            Soft_SPI_Write(0);
+            enable7seg01 = 0x01;
+            enable7seg02 = 0x01;
+            delay_ms(500);
+            enable7seg01 = 0x00;
+            enable7seg02 = 0x00;
+            Soft_SPI_Write(255);
+            enable7seg01 = 0x01;
+            enable7seg02 = 0x01;
+            delay_ms(500);
+       }
+    }
+    if(myButton01) {
+        myCounter01 = 0x00;
+        if(setTemperature > 40) setTemperature = 40;
+        else setTemperature++;
+    }
+    
+    if(myButton02) {
+        myCounter01 = 0x00;
+        if(setTemperature < 1) setTemperature = 1;
+        else setTemperature--;
+    }
+    
+    value = setTemperature * 100;
+}
+
+
+void readButtons() {
+     if(button01) flagButton01 = 0x01;
+     if(!button01 && flagButton01) {
+          myButton01 = 0x01;
+          flagButton01 = 0x00;
+     }
+     
+     if(button02) flagButton02 = 0x01;
+     if(!button02 && flagButton02) {
+          myButton02 = 0x01;
+          flagButton02 = 0x00;
+     }
 }

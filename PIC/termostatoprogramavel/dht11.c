@@ -42,7 +42,7 @@ unsigned short startDht11(){
    while (!dhtData && time <= 80){
           time++;
           delay_us(1);
-   };
+   }
    time = 0;
    while (dhtData && time <= 80){
           time++;

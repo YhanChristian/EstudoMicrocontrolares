@@ -85,7 +85,7 @@ L__startDht1140:
 ;dht11.c,44 :: 		delay_us(1);
 	NOP
 	NOP
-;dht11.c,45 :: 		};
+;dht11.c,45 :: 		}
 	GOTO       L_startDht116
 L_startDht117:
 ;dht11.c,46 :: 		time = 0;

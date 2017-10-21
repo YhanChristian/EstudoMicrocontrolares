@@ -543,7 +543,7 @@ setfdz32
 setfov32
 setfun32
 setiov3224
-setuptemperature
+settemperature
 shorttohex
 shorttostr
 sin
@@ -750,7 +750,6 @@ uart1_tx_idle
 uart1_write
 uart1_write_text
 uldiv
-value
 vdelay_advanced_ms
 vdelay_ms
 vr0

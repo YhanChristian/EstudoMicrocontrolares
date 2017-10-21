@@ -2,19 +2,16 @@ main
 	configureMcu
 		Soft_SPI_Init
 		initDht11
+	readButtons
 	readTemperature
-		setupTemperature
-			Soft_SPI_Write
-				Delay_1us
-				Delay_22us
-			Mul_8x8_U
+		Soft_SPI_Write
+			Delay_1us
+			Delay_22us
+		Mul_8x8_U
 		dht11
 			startDht11
 			Mul_16x16_U
 		Div_16x16_S
 			Div_16x16_S_L
 		bcdData
-		Soft_SPI_Write
-			Delay_1us
-			Delay_22us
 interrupt

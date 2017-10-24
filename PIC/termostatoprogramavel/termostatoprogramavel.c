@@ -10,7 +10,7 @@
 #define enable7seg02 PORTB.F1
 #define button01 PORTB.F3
 #define button02 PORTB.F4
-#define testInterrupt PORTB.F5
+#define output PORTB.F5
 
 // -- Conexão SPI via software --
 sbit SoftSpi_CLK at RA0_bit;
@@ -29,16 +29,20 @@ extern void initDht11();
 // -- Protótipo de funções Auxiliares --
 void configureMcu();
 void readTemperature();
+void adjustTemperature(int set, int temperature, unsigned short type);
 void readButtons();
 
+
 // -- Variáveis globais --
-unsigned short flagButton, setTemperature;
-#define flagButton01 flagButton.F0
-#define flagButton02 flagButton.F1
-#define myButton01 flagButton.F2
-#define myButton02 flagButton.F3
-#define setEnable flagButton.F4
+unsigned short flags, setTemperature;
+#define flagButton01 flags.F0
+#define flagButton02 flags.F1
+#define myButton01 flags.F2
+#define myButton02 flags.F3
+#define setEnable flags.F4
+#define adjustMode flags.F5
 int myCounter01;
+
 
 // -- Constantes --
 #define maxTemp 40
@@ -49,7 +53,6 @@ void interrupt() {
      if(TMR2IF_bit) {
           TMR2IF_bit = 0x00;
           myCounter01++;
-          testInterrupt =! testInterrupt;
      }
 }
 
@@ -68,13 +71,14 @@ void configureMcu() {
     TRISB1_bit = 0x00;  // Configura RB1 como saída
     TRISB3_bit = 0x01;  //Configura RB3 como entrada
     TRISB4_bit = 0x01;  // Configura RB4 como entrada
-    TRISB5_bit = 0x00; //Configura RB5 como saída (testes da interrupção)
+    TRISB5_bit = 0x00; //Configura RB5 como saída
     Soft_SPI_Init(); // Inicia-se software SPI
     INTCON.GIE = 0x01; // Habilita-se interrupção global
     INTCON.PEIE = 0x01; // Interrupção dos periféricos
     TMR2IE_bit = 0x01; // Habilita interrupção no Timer 02
     T2CON = 0x78; // Timer 2 inicia desligado, postscaler 1:16, prescaler 1:1 (página 55 do datasheet PIC16F628A)
     setEnable = 0x00;
+    output = 0x00;
     initDht11();
 }
 
@@ -124,6 +128,9 @@ void readTemperature() {
     else {
         temp = dht11(2);
         value = temp;
+        // -- Sitema para aquecimento --
+        adjustMode = 0x00;
+        adjustTemperature(setTemperature * 100, temp, adjustMode);
     }
     value = value / 100;
     digit02 = value / 10;
@@ -142,6 +149,21 @@ void readTemperature() {
     myButton01 = 0x00;
     myButton02 = 0x00;
     delay_ms(100);
+}
+
+void adjustTemperature(int set, int temperature, unsigned short type) {
+     if(!type) {
+     // -- Se temperature > set + 5ºC desliga aquecedor --
+         if(temperature > (set + 500)) output = 0x00;
+         else output = 0x01;
+     }
+     
+     // -- Por enquanto n utilizado modo de resfriamento --
+    /*
+     else {
+          if(temperature > set) output = 0x00;
+          else output = 0x01;
+     }  */
 }
 
 void readButtons() {

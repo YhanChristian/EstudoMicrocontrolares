@@ -64,6 +64,7 @@ adden
 adden_bit
 aden
 aden_bit
+adjusttemperature
 asin
 atan
 atan2
@@ -206,7 +207,7 @@ fabs
 ferr
 ferr_bit
 fixsign32
-flagbutton
+flags
 floattostr
 floor
 font_glcd_5x7

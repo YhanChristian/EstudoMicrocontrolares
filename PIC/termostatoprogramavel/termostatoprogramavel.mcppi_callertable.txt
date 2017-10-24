@@ -11,6 +11,7 @@ main
 		dht11
 			startDht11
 			Mul_16x16_U
+		adjustTemperature
 		Div_16x16_S
 			Div_16x16_S_L
 		bcdData

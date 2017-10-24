@@ -16,10 +16,13 @@ extern void initDht11();
 
 void configureMcu();
 void readTemperature();
+void adjustTemperature(int set, int temperature, unsigned short type);
 void readButtons();
 
 
-unsigned short flagButton, setTemperature;
+
+unsigned short flags, setTemperature;
+
 
 
 
@@ -32,11 +35,11 @@ int myCounter01;
 
 
 
+
 void interrupt() {
  if(TMR2IF_bit) {
  TMR2IF_bit = 0x00;
  myCounter01++;
-  PORTB.F5  =!  PORTB.F5 ;
  }
 }
 
@@ -61,7 +64,8 @@ void configureMcu() {
  INTCON.PEIE = 0x01;
  TMR2IE_bit = 0x01;
  T2CON = 0x78;
-  flagButton.F4  = 0x00;
+  flags.F4  = 0x00;
+  PORTB.F5  = 0x00;
  initDht11();
 }
 
@@ -69,15 +73,15 @@ void readTemperature() {
  unsigned short digit01, digit02, i;
  int temp, value;
 
- if( flagButton.F2  ||  flagButton.F3  ||  flagButton.F4 ) {
- if(! flagButton.F4 ) {
-  flagButton.F4  = 0x01;
+ if( flags.F2  ||  flags.F3  ||  flags.F4 ) {
+ if(! flags.F4 ) {
+  flags.F4  = 0x01;
  myCounter01 = 0x00;
  TMR2ON_bit = 0x01;
  }
- if(myCounter01 < 500) flagButton.F4  = 0x01;
+ if(myCounter01 < 500) flags.F4  = 0x01;
  else {
-  flagButton.F4  = 0x00;
+  flags.F4  = 0x00;
  TMR2ON_bit = 0x00;
  for(i = 0; i < 3; i++) {
   PORTB.F0  = 0x00;
@@ -94,13 +98,13 @@ void readTemperature() {
  delay_ms(400);
  }
  }
- if( flagButton.F2 ) {
+ if( flags.F2 ) {
  myCounter01 = 0x00;
  if(setTemperature >=  40 ) setTemperature = 40;
  else setTemperature++;
  }
 
- if( flagButton.F3 ) {
+ if( flags.F3 ) {
  myCounter01 = 0x00;
  if(setTemperature <=  1 ) setTemperature = 1;
  else setTemperature--;
@@ -111,6 +115,9 @@ void readTemperature() {
  else {
  temp = dht11(2);
  value = temp;
+
+  flags.F5  = 0x00;
+ adjustTemperature(setTemperature * 100, temp,  flags.F5 );
  }
  value = value / 100;
  digit02 = value / 10;
@@ -126,21 +133,30 @@ void readTemperature() {
   PORTB.F1  = 0;
  Soft_SPI_Write(digit01);
   PORTB.F1  = 1;
-  flagButton.F2  = 0x00;
-  flagButton.F3  = 0x00;
+  flags.F2  = 0x00;
+  flags.F3  = 0x00;
  delay_ms(100);
 }
 
+void adjustTemperature(int set, int temperature, unsigned short type) {
+ if(!type) {
+
+ if(temperature > (set + 500))  PORTB.F5  = 0x00;
+ else  PORTB.F5  = 0x01;
+ }
+#line 167 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/termostatoprogramavel/termostatoprogramavel.c"
+}
+
 void readButtons() {
- if( PORTB.F3 )  flagButton.F0  = 0x01;
- if(! PORTB.F3  &&  flagButton.F0 ) {
-  flagButton.F2  = 0x01;
-  flagButton.F0  = 0x00;
+ if( PORTB.F3 )  flags.F0  = 0x01;
+ if(! PORTB.F3  &&  flags.F0 ) {
+  flags.F2  = 0x01;
+  flags.F0  = 0x00;
  }
 
- if( PORTB.F4 )  flagButton.F1  = 0x01;
- if(! PORTB.F4  &&  flagButton.F1 ) {
-  flagButton.F3  = 0x01;
-  flagButton.F1  = 0x00;
+ if( PORTB.F4 )  flags.F1  = 0x01;
+ if(! PORTB.F4  &&  flags.F1 ) {
+  flags.F3  = 0x01;
+  flags.F1  = 0x00;
  }
 }

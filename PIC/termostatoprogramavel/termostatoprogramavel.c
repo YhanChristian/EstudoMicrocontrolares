@@ -34,6 +34,7 @@ void readButtons();
 
 
 // -- Variáveis globais --
+int myCounter01;
 unsigned short flags, setTemperature;
 #define flagButton01 flags.F0
 #define flagButton02 flags.F1
@@ -41,8 +42,6 @@ unsigned short flags, setTemperature;
 #define myButton02 flags.F3
 #define setEnable flags.F4
 #define adjustMode flags.F5
-int myCounter01;
-
 
 // -- Constantes --
 #define maxTemp 40
@@ -113,13 +112,13 @@ void readTemperature() {
         }
         if(myButton01) {
             myCounter01 = 0x00;
-            if(setTemperature >= maxTemp) setTemperature = 40;
+            if(setTemperature >= maxTemp) setTemperature = maxTemp;
             else setTemperature++;
         }
 
         if(myButton02) {
             myCounter01 = 0x00;
-            if(setTemperature <= minTemp) setTemperature = 1;
+            if(setTemperature <= minTemp) setTemperature = minTemp;
             else setTemperature--;
         }
         value = setTemperature * 100;
@@ -128,7 +127,7 @@ void readTemperature() {
     else {
         temp = dht11(2);
         value = temp;
-        // -- Sitema para aquecimento --
+        // -- Sistema para aquecimento --
         adjustMode = 0x00;
         adjustTemperature(setTemperature * 100, temp, adjustMode);
     }

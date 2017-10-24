@@ -21,21 +21,9 @@ void readButtons();
 
 
 
-unsigned short flags, setTemperature;
-
-
-
-
-
-
 int myCounter01;
-
-
-
-
-
-
-
+unsigned short flags, setTemperature;
+#line 51 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/termostatoprogramavel/termostatoprogramavel.c"
 void interrupt() {
  if(TMR2IF_bit) {
  TMR2IF_bit = 0x00;
@@ -100,13 +88,13 @@ void readTemperature() {
  }
  if( flags.F2 ) {
  myCounter01 = 0x00;
- if(setTemperature >=  40 ) setTemperature = 40;
+ if(setTemperature >=  40 ) setTemperature =  40 ;
  else setTemperature++;
  }
 
  if( flags.F3 ) {
  myCounter01 = 0x00;
- if(setTemperature <=  1 ) setTemperature = 1;
+ if(setTemperature <=  1 ) setTemperature =  1 ;
  else setTemperature--;
  }
  value = setTemperature * 100;
@@ -144,7 +132,7 @@ void adjustTemperature(int set, int temperature, unsigned short type) {
  if(temperature > (set + 500))  PORTB.F5  = 0x00;
  else  PORTB.F5  = 0x01;
  }
-#line 167 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/termostatoprogramavel/termostatoprogramavel.c"
+#line 166 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/termostatoprogramavel/termostatoprogramavel.c"
 }
 
 void readButtons() {

@@ -79,8 +79,8 @@ void checkT1() {
 }
 
 void readButton() {
- if(! LATB5_bit ) flagButton = 0x01;
- if( LATB5_bit  && flagButton) {
+ if(! RB5_bit ) flagButton = 0x01;
+ if( RB5_bit  && flagButton) {
  flagButton = 0x00;
   LATB3_bit  = 0x01;
  motorControl = 0x00;

@@ -10,7 +10,7 @@
 #define output01 LATB0_bit
 #define output02 LATB1_bit
 #define motor LATB3_bit
-#define button LATB5_bit
+#define button RB5_bit
 
 // -- Prototipo com funções auxiliares --
 

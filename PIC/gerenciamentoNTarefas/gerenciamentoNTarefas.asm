@@ -192,12 +192,12 @@ _readButton:
 
 ;gerenciamentoNTarefas.c,95 :: 		void readButton() {
 ;gerenciamentoNTarefas.c,96 :: 		if(!button) flagButton = 0x01;
-	BTFSC       LATB5_bit+0, 5 
+	BTFSC       RB5_bit+0, 5 
 	GOTO        L_readButton8
 	BSF         _flagButton+0, BitPos(_flagButton+0) 
 L_readButton8:
 ;gerenciamentoNTarefas.c,97 :: 		if(button && flagButton) {
-	BTFSS       LATB5_bit+0, 5 
+	BTFSS       RB5_bit+0, 5 
 	GOTO        L_readButton11
 	BTFSS       _flagButton+0, BitPos(_flagButton+0) 
 	GOTO        L_readButton11

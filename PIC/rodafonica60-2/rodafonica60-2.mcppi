@@ -6,18 +6,18 @@ Value=-1
 [BUILD_TYPE]
 Value=0
 [ACTIVE_TAB]
-Value=gerenciamentoNTarefas.c
+Value=rodafonica60-2.c
 [USE_EEPROM]
 Value=0
 [USE_HEAP]
 Value=0
 [HEAP_SIZE]
-Value=2000
+Value=0
 [EEPROM_DEFINITION]
 Value=
 [FILES]
 Count=1
-File0=gerenciamentoNTarefas.c
+File0=rodafonica60-2.c
 [BINARIES]
 Count=0
 [IMAGES]
@@ -25,7 +25,7 @@ Count=0
 ActiveImageIndex=-1
 [OPENED_FILES]
 Count=1
-File0=gerenciamentoNTarefas.c
+File0=rodafonica60-2.c
 [EEPROM]
 Count=0
 [ACTIVE_COMMENTS_FILES]
@@ -36,7 +36,7 @@ Count=0
 Count=3
 Path0=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\defs\
 Path1=C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\
-Path2=C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\gerenciamentoNTarefas\
+Path2=C:\Users\Yhan Christian\Documents\EstudoMicrocontrolares\PIC\rodafonica60-2\
 [HEADER_PATH]
 Count=0
 [HEADERS]

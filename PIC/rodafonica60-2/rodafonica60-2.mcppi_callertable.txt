@@ -1,0 +1,8 @@
+main
+	__CC2DW
+	configureMcu
+	checkT0
+		baseTime
+	checkT1
+	checkT2
+	readButton

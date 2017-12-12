@@ -171,6 +171,7 @@ delay_5ms
 delay_80us
 delay_8ms
 delay_cyc
+display
 div
 div_16x16_s
 div_16x16_s_l
@@ -253,6 +254,7 @@ halfbits
 ics_auto
 ics_off
 indf
+initdisplay
 int2double
 intcon
 inte
@@ -284,9 +286,21 @@ labs
 lcd_chr
 lcd_chr_cp
 lcd_cmd
+lcd_d4
+lcd_d4_direction
+lcd_d5
+lcd_d5_direction
+lcd_d6
+lcd_d6_direction
+lcd_d7
+lcd_d7_direction
+lcd_en
+lcd_en_direction
 lcd_init
 lcd_out
 lcd_out_cp
+lcd_rs
+lcd_rs_direction
 ldexp
 ldiv
 log
@@ -333,6 +347,7 @@ mul_32x32_s
 mul_32x32_u
 mul_8x8_s
 mul_8x8_u
+mytimer
 not_bo
 not_bo_bit
 not_bod

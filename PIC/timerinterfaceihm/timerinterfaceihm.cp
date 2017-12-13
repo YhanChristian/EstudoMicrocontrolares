@@ -52,15 +52,14 @@ void interrupt() {
  }
  }
  }
-
 }
 
 void main() {
  configureMcu();
+ initDisplay();
  while(1) {
  TMR2ON_bit = 0x01;
  display();
-
  if( flags.B1 ) {
  myTimer++;
   flags.B1  = 0;
@@ -86,11 +85,11 @@ void initDisplay() {
 
 void display() {
  unsigned short time[6], second, minute, hour;
-#line 101 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/timerinterfaceihm/timerinterfaceihm.c"
+#line 100 "C:/Users/Yhan Christian/Documents/EstudoMicrocontrolares/PIC/timerinterfaceihm/timerinterfaceihm.c"
  hour = (myTimer / 60) / 60;
  minute = (myTimer - (hour * 3600)) / 60;
 
- if(myTimer < 59) second = myTimer - (minute * 60 + hour * 3600);
+ if(myTimer > 59) second = myTimer - (minute * 60 + hour * 3600);
  else {
  second = myTimer;
  minute = 0;

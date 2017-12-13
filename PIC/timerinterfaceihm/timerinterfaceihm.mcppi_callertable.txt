@@ -2,6 +2,14 @@ main
 	__CC2DW
 		____DoICP
 	configureMcu
+	initDisplay
+		Lcd_Init
+			Delay_5500us
+			Delay_1us
+		Lcd_Cmd
+			Delay_1us
+			Delay_5500us
+			Delay_50us
 	display
 		Div_16x16_U
 		Mul_16x16_U

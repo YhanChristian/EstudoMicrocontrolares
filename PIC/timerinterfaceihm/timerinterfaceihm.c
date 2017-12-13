@@ -58,15 +58,14 @@ void interrupt() {
                }
           }
      }
-
 }
 
 void main() {
      configureMcu();
+     initDisplay();
      while(1) {
          TMR2ON_bit = 0x01;
          display();
-         
          if(oneSecond) {
               myTimer++;
               oneSecond = 0;
@@ -94,14 +93,14 @@ void display() {
      unsigned short time[6], second, minute, hour;     // Cria-se vetor timer, e variaveis second, minute, hour
  
  /*  1 min = 60s
-     1 hora = 3600s
+     1 hora = 3600s ( 60 *60)
      Para conversões e para obter o resto é necessário realizar alguns calculos pois
      utiliza-se uma variável int
  */
      hour = (myTimer / 60) / 60;    // Obtem valor hora
      minute = (myTimer - (hour * 3600)) / 60; // Resto da hora minutos
      
-     if(myTimer < 59) second = myTimer - (minute * 60 + hour * 3600); // Resto de minutos segundos
+     if(myTimer > 59) second = myTimer - (minute * 60 + hour * 3600); // Resto de minutos segundos
      else {
           second = myTimer;
           minute = 0;

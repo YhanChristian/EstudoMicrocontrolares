@@ -203,7 +203,8 @@ fabs
 ferr
 ferr_bit
 fixsign32
-flags
+flaga
+flagb
 floattostr
 floor
 font_glcd_5x7
@@ -257,6 +258,7 @@ indf
 initdisplay
 int2double
 intcon
+intcounter
 inte
 inte_bit
 intedg
@@ -462,6 +464,7 @@ rcreg
 rcsta
 rd
 rd_bit
+readbuttons
 res032
 rp0
 rp0_bit
@@ -660,6 +663,7 @@ tanh
 time_datetoepoch
 time_epochtodate
 time_jd1970
+timeset
 tmr0
 tmr02counter
 tmr0ie

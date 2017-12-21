@@ -26,23 +26,35 @@ sbit LCD_D7_Direction at TRISB7_bit;
 
 
 // -- Definição de hardware --
+#define encoderSW PORTA.F0
+#define encoderCLK PORTA.F1
+#define encoderDT PORTA.F2
 #define output PORTB.F0
 
 // -- Protótipo de funções Auxiliares --
 void configureMcu();
 void initDisplay();
-void display();
+void display(unsigned short line, unsigned int value);
+void readButtons();
 
 // -- Variáveis globais --
-unsigned short flags;
-#define tmr02Trigger flags.B0
-#define oneSecond flags.B1
+unsigned short flagA, flagB;
+#define tmr02Trigger flagA.B0
+#define oneSecond flagA.B1
+#define encoderInc flagA.B2
+#define encoderDec flagA.B3
+#define encoderFlag flagA.B4
+#define encoderSWFlag flagA.B5
+#define encoderPushButton flagA.B6
+#define active flagA.B7
+#define activeFlag flagB.B0
+#define configureMode flagB.B1
+#define updateDisplay flagB.B2
+#define oneSecondActive flagB.B3
 
-short pr2Value = 255;
-int tmr02Counter = 0;
-unsigned int myTimer = 0;
-
-
+unsigned short pr2Value = 255, intCounter = 0;
+int tmr02Counter[2] = {(0,0)};
+unsigned int myTimer = 0, timeSet =0;
 
 //-- Interrupção p/ geração de tempo de 1s --
 
@@ -51,10 +63,17 @@ void interrupt() {
           TMR2IF_bit = 0x00;
           tmr02Trigger = ~tmr02Trigger;
           if(tmr02Trigger) {
-               tmr02Counter++;
-               if(tmr02Counter == 490) {
+               tmr02Counter[0]++;
+               tmr02Counter[1]++;
+               if(tmr02Counter[0] == 490) {
                     oneSecond = ~oneSecond;
-                    tmr02Counter = 0;
+                    oneSecondActive = ~oneSecondActive;
+                    tmr02Counter[0] = 0;
+               }
+               if(tmr02Counter[1] == 30) {
+                    oneSecond = ~oneSecond;
+                    updateDisplay = ~updateDisplay;
+                    tmr02Counter[1] = 0;
                }
           }
      }
@@ -63,33 +82,63 @@ void interrupt() {
 void main() {
      configureMcu();
      initDisplay();
+
      while(1) {
          TMR2ON_bit = 0x01;
-         display();
-         if(oneSecond) {
-              myTimer++;
-              oneSecond = 0;
+         readButtons();
+         
+         if(updateDisplay) display(2, timeSet);
+         
+         if(active) {
+              if(oneSecond) {
+                    display(1, myTimer);
+                    myTimer++;
+                    oneSecond = 0x00;
+              }
          }
+         else {
+              myTimer = 0x00;
+              if(encoderInc) {
+                   if(timeSet < 86399) timeSet++;
+              }
+              if(encoderDec) {
+                   if(timeSet > 0) timeSet--;
+              }
+         }
+
+        encoderDec = 0x00;
+        encoderInc = 0x00;
+        encoderPushButton = 0x00;
+
      }
 }
 
 void configureMcu() {
      CMCON = 0x07;       // Desabilita comparadores
      TRISB0_bit = 0x00;  // RB0 como saída
+     TRISA = 0x07;       // Defino pinos RA0, RA1 e RA2 como entrada
      INTCON.GIE = 0x01;  // Habilita interrupção global
      INTCON.PEIE = 0x01; // Habilita interrupção de periféricos
      TMR2IE_bit = 0X01;  // Habilita interrupção do TMR2
      T2CON = 0x01;       // Config TMR2 Postscaler 1 Prescaler 4, timer desabilitado
      PR2 =  pr2Value;    // Atribui a PR2 o valor da variavel pr2Value
+     
+     // -- Iniciando com variáveis zeradas --
+     active = 0x00;
+     encoderInc = 0x00;
+     encoderDec = 0x00;
+     encoderPushButton = 0x00;
 }
 
 void initDisplay() {
      Lcd_Init();
      Lcd_CMD(_LCD_CLEAR);
      Lcd_CMD(_LCD_CURSOR_OFF);
+     display(1, myTimer);
+     display(2, timeSet);
 }
 
-void display() {
+void display(unsigned short line, unsigned int value) {
      unsigned short time[6], second, minute, hour;     // Cria-se vetor timer, e variaveis second, minute, hour
  
  /*  1 min = 60s
@@ -97,12 +146,12 @@ void display() {
      Para conversões e para obter o resto é necessário realizar alguns calculos pois
      utiliza-se uma variável int
  */
-     hour = (myTimer / 60) / 60;    // Obtem valor hora
-     minute = (myTimer - (hour * 3600)) / 60; // Resto da hora minutos
+     hour = (value / 60) / 60;    // Obtem valor hora
+     minute = (value - (hour * 3600)) / 60; // Resto da hora minutos
      
-     if(myTimer > 59) second = myTimer - (minute * 60 + hour * 3600); // Resto de minutos segundos
+     if(myTimer > 59) second = value - (minute * 60 + hour * 3600); // Resto de minutos segundos
      else {
-          second = myTimer;
+          second = value;
           minute = 0;
           hour = 0;
      }
@@ -117,7 +166,7 @@ void display() {
      
   // -- Imprime dezenas e unidaddes de hora, minuto e segundo --
 
-     lcd_chr(1, 5, time[0] + 48);
+     lcd_chr(line, 5, time[0] + 48);
      lcd_chr_cp(time[1] + 48);
      lcd_chr_cp(':');
      lcd_chr_cp(time[2] + 48);
@@ -125,4 +174,51 @@ void display() {
      lcd_chr_cp(':');
      lcd_chr_cp(time[4] + 48);
      lcd_chr_cp(time[5] + 48);
+}
+
+void readButtons() {
+
+//  -- Rotativo --
+
+     if(!encoderCLK) {
+          encoderFlag = 0x01;
+          encoderInc = 0x01;
+     }
+     else {
+          if(!encoderDT) {
+                if(!encoderFlag) {
+                     encoderFlag = 0x01;
+                     encoderDec = 0x01;
+                }
+          }
+     }
+     if(encoderCLK) {
+          if(encoderDT) encoderFlag = 0x00;
+     }
+     
+     if(!encoderSW) {
+          if(oneSecondActive) {
+               intCounter++;
+               oneSecondActive = 0x00;
+          }
+          if(intCounter > 2) activeFlag = 0x01;
+          else encoderSWFlag = 0x01;
+          
+     }
+     
+     if(encoderSWFlag && encoderSW) {
+          encoderPushButton = 0x01;
+          encoderSWFlag = 0x00;
+          intCounter = 0x00;
+     }
+     
+     if(activeFlag && encoderSW) {
+          active = ~active;
+          activeFlag = 0x00;
+          intCounter = 0x00;
+     }
+     
+// -- Trata botões --
+
+     if(encoderPushButton) configureMode = ~configureMode;
 }

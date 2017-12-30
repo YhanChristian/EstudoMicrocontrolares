@@ -1,0 +1,52 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Sat Oct 21 12:22:26 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x00007e
+                   .cinit    romdata   0x00003f    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/PISCA-P       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000040      
+                            0x002007    0x002007      
+            66 out of 2182 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+               DECREMENTA   0x000029    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                    DELAY   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                   DELAY1   0x000002    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                   DELAY2   0x000004    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+               INCREMENTA   0x000034    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                     MAIN   0x00001c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                    MAIN1   0x00001e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                    SETUP   0x00000b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+             _.org_0_0032   0x000032    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+             _.org_0_003D   0x00003d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    DELAY   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                   DELAY1   0x000002    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                   DELAY2   0x000004    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                    SETUP   0x00000b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                     MAIN   0x00001c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+                    MAIN1   0x00001e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+               DECREMENTA   0x000029    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+             _.org_0_0032   0x000032    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+               INCREMENTA   0x000034    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+             _.org_0_003D   0x00003d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Pisca-Pisca\Pisca-Pisca.X\Pisca-Pisca.asm
+
+

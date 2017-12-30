@@ -1,0 +1,48 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Oct 19 17:35:47 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x00005a
+                   .cinit    romdata   0x00002d    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/CONTADO       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00002e      
+                            0x002007    0x002007      
+            48 out of 2182 program addresses used, program memory utilization is 2%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                 ATUALIZA   0x000028    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+              CHECA_BOTAO   0x000013    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                     MAIN   0x000011    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                    SETUP   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                     SOMA   0x000021    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                SUBTRACAO   0x000019    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+              TRATA_BOTAO   0x000017    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+             _.org_0_002B   0x00002b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    SETUP   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                     MAIN   0x000011    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+              CHECA_BOTAO   0x000013    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+              TRATA_BOTAO   0x000017    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                SUBTRACAO   0x000019    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                     SOMA   0x000021    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+                 ATUALIZA   0x000028    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+             _.org_0_002B   0x00002b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador01\Contador01.X\Contador01.asm
+
+

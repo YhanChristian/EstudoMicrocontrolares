@@ -1,0 +1,52 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Thu Nov 09 19:05:30 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000096
+                   .cinit    romdata   0x00004b    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/CONTADO       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00004c      
+                            0x002007    0x002007      
+            78 out of 2182 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+         ATUALIZA_DISPLAY   0x000048    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+          BOTAO1_LIBERADO   0x000030    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+          BOTAO2_LIBERADO   0x000038    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+             CHECA_BOTAO1   0x000029    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+             CHECA_BOTAO2   0x000031    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+                CONVERTER   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+              DECREMENTAR   0x00003a    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+              INCREMENTAR   0x000041    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+                     MAIN   0x000026    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+                    SETUP   0x000014    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                CONVERTER   0x000001    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+                    SETUP   0x000014    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+                     MAIN   0x000026    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+             CHECA_BOTAO1   0x000029    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+          BOTAO1_LIBERADO   0x000030    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+             CHECA_BOTAO2   0x000031    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+          BOTAO2_LIBERADO   0x000038    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+              DECREMENTAR   0x00003a    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+              INCREMENTAR   0x000041    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+         ATUALIZA_DISPLAY   0x000048    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\Contador02\Contador02.X\Contador02.asm
+
+

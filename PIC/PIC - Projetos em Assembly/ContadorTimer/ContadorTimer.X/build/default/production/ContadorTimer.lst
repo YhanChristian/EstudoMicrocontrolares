@@ -1,0 +1,559 @@
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;==============================================================================
+                      00002 ; EXEMPLO 05 - CONTADOR COM TIMER TMR0 DE 0 A F
+                      00003 ; BASEADO EM ESTUDOS COM O PIC16F628A
+                      00004 ; AUTOR: YHAN CHRISTIAN SOUZA SILVA 
+                      00005 ;==============================================================================
+                      00006 
+                      00007 ;==============================================================================
+                      00008 ; DEFINIÇÕES INICIAIS DO HARDWARE
+                      00009 ;==============================================================================
+                      00010 #INCLUDE <P16F628.INC> ; ARQUIVO PADRÃO MICROCHIP PARA O MODELO DE PIC
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : May 17 2017
+                      00005 ;  MPASM PIC16F628 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2017 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00382         LIST
+                      00011     
+2007   3F61           00012     __CONFIG _BOREN_ON & _CP_OFF & _PWRTE_ON & _WDT_OFF & _LVP_OFF & _MCLRE_ON & _XT_OSC
+                      00013 ;==============================================================================
+                      00014 ; DEFINES PARA FACILITAR COMANDOS DE MUDANÇA DE BANCOS
+                      00015 ;==============================================================================     
+                      00016 #DEFINE BANK0 BCF STATUS, RP0
+                      00017 #DEFINE BANK1 BSF STATUS, RP0
+                      00018 
+                      00019 ;==============================================================================
+                      00020 ; DEFINIÇÃO DE ENDEREÇO DE VARIAVEIS
+                      00021 ;==============================================================================         
+                      00022     CBLOCK 0x20
+  00000020            00023         W_TEMP          ;REGISTRADORES TEMPORÁRIOS PARA INTERRUPÇÕES
+  00000021            00024         STATUS_TEMP
+  00000022            00025         TEMPO           ;ARMAZENA O VALOR DE TEMPO
+  00000023            00026         FLAGS
+  00000024            00027         TEMPO1
+  00000025            00028         TEMPO2  
+  00000026            00029         FILTRO1         ;FILTRO DOS BOTÕES
+  00000027            00030         FILTRO2
+                      00031     ENDC
+                      00032 
+                      00033 ;==============================================================================
+                      00034 ; DEFINIÇÃO DE FLAGS UTILIZADOS 
+                      00035 ;============================================================================== 
+                      00036 #DEFINE FIM FLAGS, 0 ;FIM DE TEMPO
+                      00037 #DEFINE STATUS_BOTAO1 FLAGS, 1 ; STATUS DO BOTÃO 1
+                      00038 #DEFINE STATUS_BOTAO2 FLAGS, 2 ; STATUS DO BOTÃO 2
+                      00039     
+                      00040 ;==============================================================================
+                      00041 ; CONSTANTES
+                      00042 ;==============================================================================
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+  0000000F            00043 VALOR_INICIO EQU .15        ;VALOR INICIO
+  000000FF            00044 T_FILTRO EQU .255           ; FILTRO BOTÃO
+                      00045     
+                      00046 ;==============================================================================
+                      00047 ; ENTRADAS E SAÍDAS 
+                      00048 ;==============================================================================
+                      00049 #DEFINE BOTAO1 PORTA, 1 ;RA1 BOTAO1 0 -> PRESSIONADO 1 -> LIBERADO
+                      00050 #DEFINE BOTAO2 PORTA, 2 ;RA2 BOTAO2 0 -> PRESSIONADO 1 -> LIBERADO
+                      00051 #DEFINE LED PORTA, 3 ;RA3 LED 0 -> DESLIGADO 1 - > LIGADO
+                      00052     
+                      00053 ;==============================================================================
+                      00054 ; VETOR DE RESET
+                      00055 ;============================================================================== 
+                      00056     ORG 0x00
+0000   2???           00057     GOTO SETUP
+                      00058     
+                      00059 ;==============================================================================
+                      00060 ; ROTINA DE INTERRUPÇÃO
+                      00061 ;==============================================================================
+                      00062     ORG 0x04
+0004   00A0           00063     MOVWF W_TEMP
+0005   0E03           00064     SWAPF STATUS, W
+0006   00A1           00065     MOVWF STATUS_TEMP
+0007   1D0B           00066     BTFSS INTCON, T0IF ; VERIFICA INTERRUPÇÃO TMR0
+0008   2???           00067     GOTO SAIR_INTERRUPCAO
+                      00068     
+                      00069 ; INTERRUPÇÃO 1s = 64us(PRESCALER) x 125 (TMR0) x 125 (TEMPO1)
+0009   110B           00070    BCF INTCON, T0IF
+000A   3083           00071    MOVLW .256 - .125
+000B   0081           00072    MOVWF TMR0
+000C   0BA4           00073    DECFSZ TEMPO1, F
+000D   2???           00074    GOTO SAIR_INTERRUPCAO 
+000E   307D           00075    MOVLW .125
+000F   00A4           00076    MOVWF TEMPO1
+0010   1823           00077    BTFSC FIM
+0011   2???           00078    GOTO SAIR_INTERRUPCAO
+0012   0BA2           00079    DECFSZ TEMPO, F
+0013   2???           00080    GOTO SAIR_INTERRUPCAO
+0014   1423           00081    BSF FIM
+0015   2???           00082    GOTO SAIR_INTERRUPCAO
+                      00083    
+                      00084 ; TERMINO DA INTERRUPCAO  - RECUPERA-SE VALOR DE W E STATUS E SAI DA ROTINA
+                      00085 
+0016                  00086 SAIR_INTERRUPCAO
+0016   0E21           00087    SWAPF STATUS_TEMP, W
+0017   0083           00088    MOVWF STATUS
+0018   0EA0           00089    SWAPF W_TEMP, F
+0019   0E20           00090    SWAPF W_TEMP, W
+001A   0009           00091    RETFIE
+                      00092    
+                      00093 
+                      00094 ;==============================================================================
+                      00095 ; ROTINA DE CONVERSÃO BINÁRIO DISPLAY 7SEG
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00096 ; ROTINA IRÁ RETORNA EM W O SIMBOLO CORRETO QUE DEVERÁ SER EXIBIDO NO DISPLAY
+                      00097 ; UTILIZAR ESTE PADRÃO DISPLAY CATODO COMUM
+                      00098 ;==============================================================================
+001B                  00099 CONVERTER
+001B   0822           00100     MOVF TEMPO, W
+001C   390F           00101     ANDLW B'00001111' ; MASCARA PARA CONT / LIMITA VALOR EM 15
+001D   0782           00102     ADDWF PCL, F
+                      00103     
+001E   343F           00104     RETLW B'00111111' ;0
+001F   3406           00105     RETLW B'00000110' ;1
+0020   345B           00106     RETLW B'01011011' ;2
+0021   344F           00107     RETLW B'01001111' ;3
+0022   3466           00108     RETLW B'01100110' ;4
+0023   346D           00109     RETLW B'01101101' ;5
+0024   347D           00110     RETLW B'01111101' ;6
+0025   3407           00111     RETLW B'00000111' ;7
+0026   347F           00112     RETLW B'01111111' ;8
+0027   346F           00113     RETLW B'01101111' ;9
+0028   3477           00114     RETLW B'01110111' ;A
+0029   347C           00115     RETLW B'01111100' ;B
+002A   3439           00116     RETLW B'00111001' ;C
+002B   345E           00117     RETLW B'01011110' ;D
+002C   3479           00118     RETLW B'01111001' ;E
+002D   3471           00119     RETLW B'01110001' ;F
+                      00120     
+                      00121 ;==============================================================================
+                      00122 ; ROTINA DE ATUALIZAÇÃO DO DISPLAY 7SEG
+                      00123 ;==============================================================================
+002E                  00124 ATUALIZAR
+002E   2???           00125     CALL CONVERTER
+002F   0086           00126     MOVWF PORTB
+0030   0008           00127     RETURN
+                      00128     
+                      00129 ;==============================================================================
+                      00130 ; ROTINA PARA DESLIGAR TIMER
+                      00131 ;==============================================================================
+0031                  00132 DESLIGAR_TIMER
+0031   138B           00133     BCF INTCON, GIE
+0032   1185           00134     BCF LED
+0033   0008           00135     RETURN
+                      00136     
+                      00137 ;==============================================================================
+                      00138 ; ROTINA PARA LIGAR TIMER
+                      00139 ;==============================================================================    
+0034                  00140 LIGAR_TIMER
+0034   1B8B           00141     BTFSC INTCON, GIE
+0035   0008           00142     RETURN
+0036   110B           00143     BCF INTCON, T0IF
+0037   3083           00144     MOVLW .256 - .125
+0038   0081           00145     MOVWF TMR0
+0039   307D           00146     MOVLW .125
+003A   00A4           00147     MOVWF TEMPO1
+003B   178B           00148     BSF INTCON, GIE
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+003C   1023           00149     BCF FIM
+003D   1585           00150     BSF LED
+003E   0008           00151     RETURN
+                      00152     
+                      00153 ;==============================================================================
+                      00154 ; INICIO DO PROGRAMA - SETUP 
+                      00155 ; LIMPA PORTA A E PORTB, MOVE PARA BANK 1 CARREGANDO TRISA (RA1 E RA2 ENTRADA,
+                      00156 ; RA3 COMO SAÍDA E TRISB, CONFIGURA PRESCALER 1:64 NO TMR0 DESABILITA PULL-UPS
+                      00157 ; INTERNOS, CHAVE GERAL INTERRUPÇÕES DESLIGADA, POR FIM VOLTO AO BANK 0 E 
+                      00158 ; DESABILITO COMPARADORES E INICIALIZO AS VARIAVEIS.
+                      00159 ;==============================================================================    
+003F                  00160 SETUP
+003F   1683           00161     BANK1
+0040   3006           00162     MOVLW B'00000110'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0041   0085           00163     MOVWF TRISA
+0042   3000           00164     MOVLW B'00000000'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0043   0086           00165     MOVWF TRISB
+0044   3085           00166     MOVLW B'10000101'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0045   0081           00167     MOVWF OPTION_REG
+0046   3020           00168     MOVLW B'00100000'
+0047   008B           00169     MOVWF INTCON
+0048   1283           00170     BANK0
+0049   3007           00171     MOVLW B'00000111'
+004A   009F           00172     MOVWF CMCON
+004B   0185           00173     CLRF PORTA
+004C   0186           00174     CLRF PORTB
+004D   01A3           00175     CLRF FLAGS
+004E   300F           00176     MOVLW VALOR_INICIO
+004F   00A2           00177     MOVWF TEMPO
+0050   2???           00178     CALL ATUALIZAR
+                      00179     
+                      00180     
+                      00181 ;==============================================================================
+                      00182 ; ROTINA PRINCIPAL 
+                      00183 ; CHECA BOTÕES PARA HABILITAR (BOTAO 01) OU DESABILITAR (BOTAO 02) O TIMER
+                      00184 ; AO HABILITAR TIMER, CHAMA ROTINA DE INTERRUPÇÃO E LED FICA LIGADO SINALIZANDO
+                      00185 ; AO DESABILITAR TIMER, DESLIGA CHAVE GERAL INTERRUPÇÃO E LIGA FICA DESLIGADO.
+                      00186 ;==============================================================================
+0051                  00187 MAIN
+0051   1823           00188     BTFSC FIM
+0052   2???           00189     CALL DESLIGAR_TIMER
+0053   2???           00190     CALL ATUALIZAR
+0054   30FF           00191     MOVLW T_FILTRO
+0055   00A6           00192     MOVWF FILTRO1
+0056   00A7           00193     MOVWF FILTRO2
+                      00194     
+0057                  00195 CHECA_BOTAO1
+0057   1885           00196     BTFSC BOTAO1
+0058   2???           00197     GOTO BOTAO1_LIBERADO
+0059   0BA6           00198     DECFSZ FILTRO1, F
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+005A   2???           00199     GOTO CHECA_BOTAO1
+005B   1CA3           00200     BTFSS STATUS_BOTAO1
+005C   2???           00201     GOTO ACAO_BOTAO1
+005D   2???           00202     GOTO CHECA_BOTAO2
+                      00203 
+005E                  00204 BOTAO1_LIBERADO
+005E   10A3           00205     BCF STATUS_BOTAO1
+                      00206 
+005F                  00207 CHECA_BOTAO2
+005F   1905           00208     BTFSC BOTAO2
+0060   2???           00209     GOTO BOTAO2_LIBERADO
+0061   0BA7           00210     DECFSZ FILTRO2, F
+0062   2???           00211     GOTO CHECA_BOTAO2
+0063   1D23           00212     BTFSS STATUS_BOTAO2
+0064   2???           00213     GOTO ACAO_BOTAO2
+0065   2???           00214     GOTO MAIN
+                      00215 
+0066                  00216 BOTAO2_LIBERADO
+0066   1123           00217     BCF STATUS_BOTAO2
+0067   2???           00218     GOTO MAIN
+                      00219     
+0068                  00220 ACAO_BOTAO1
+0068   14A3           00221     BSF STATUS_BOTAO1
+0069   2???           00222     CALL LIGAR_TIMER
+006A   2???           00223     GOTO MAIN
+                      00224     
+006B                  00225 ACAO_BOTAO2
+006B   1523           00226     BSF STATUS_BOTAO2
+006C   2???           00227     CALL DESLIGAR_TIMER
+006D   2???           00228     GOTO MAIN
+                      00229     
+                      00230 ;==============================================================================
+                      00231 ; TERMINO DE PROGRAMA
+                      00232 ;==============================================================================
+3F61                  00233     END
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACAO_BOTAO1                       00000068
+ACAO_BOTAO2                       0000006B
+ADDEN                             00000003
+ADEN                              00000003
+ATUALIZAR                         0000002E
+BANK0                             BCF STATUS, RP0
+BANK1                             BSF STATUS, RP0
+BOTAO1                            PORTA, 1
+BOTAO1_LIBERADO                   0000005E
+BOTAO2                            PORTA, 2
+BOTAO2_LIBERADO                   00000066
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CHECA_BOTAO1                      00000057
+CHECA_BOTAO2                      0000005F
+CIS                               00000003
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000001F
+CMIE                              00000006
+CMIF                              00000006
+CONVERTER                         0000001B
+CREN                              00000004
+CSRC                              00000007
+DATA_CP_OFF                       00003FFF
+DATA_CP_ON                        00003EFF
+DC                                00000001
+DESLIGAR_TIMER                    00000031
+EEADR                             0000009B
+EECON1                            0000009C
+EECON2                            0000009D
+EEDATA                            0000009A
+EEIE                              00000007
+EEIF                              00000007
+F                                 00000001
+FERR                              00000002
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+FILTRO1                           00000026
+FILTRO2                           00000027
+FIM                               FLAGS, 0
+FLAGS                             00000023
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED                               PORTA, 3
+LIGAR_TIMER                       00000034
+MAIN                              00000051
+NOT_BO                            00000000
+NOT_BOD                           00000000
+NOT_BOR                           00000000
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+OERR                              00000001
+OPTION_REG                        00000081
+OSCF                              00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PIE1                              0000008C
+PIR1                              0000000C
+PORTA                             00000005
+PORTB                             00000006
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RX9                               00000006
+RX9D                              00000000
+SAIR_INTERRUPCAO                  00000016
+SETUP                             0000003F
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+STATUS                            00000003
+STATUS_BOTAO1                     FLAGS, 1
+STATUS_BOTAO2                     FLAGS, 2
+STATUS_TEMP                       00000021
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1OSCEN                           00000003
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TEMPO                             00000022
+TEMPO1                            00000024
+TEMPO2                            00000025
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRMT                              00000001
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+T_FILTRO                          000000FF
+VALOR_INICIO                      0000000F
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             0000009F
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+W_TEMP                            00000020
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_50                            00002BFF
+_CP_75                            000017FF
+MPASM 5.74                 CONTADORTIMER.ASM   11-15-2017  18:52:28         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CP_ALL                           000003FF
+_CP_OFF                           00003FFF
+_DEVID1                           00002006
+_ER_OSC_CLKOUT                    00003FFF
+_ER_OSC_NOCLKOUT                  00003FFE
+_EXTCLK_OSC                       00003FEF
+_FOSC_ECIO                        00003FEF
+_FOSC_ERCLK                       00003FFF
+_FOSC_ERIO                        00003FFE
+_FOSC_HS                          00003FEE
+_FOSC_INTOSCCLK                   00003FFD
+_FOSC_INTOSCIO                    00003FFC
+_FOSC_LP                          00003FEC
+_FOSC_XT                          00003FED
+_HS_OSC                           00003FEE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FEC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FED
+__16F628A                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
+
+

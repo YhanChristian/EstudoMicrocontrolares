@@ -1,0 +1,4 @@
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPLABX\V3.65\MPASMX\P16F628.INC 34 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Message[302] C:\USERS\YHAN CHRISTIAN\DESKTOP\ACENDELED\ACENDLED.X\ACENDELED.ASM 49 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\YHAN CHRISTIAN\DESKTOP\ACENDELED\ACENDLED.X\ACENDELED.ASM 51 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\YHAN CHRISTIAN\DESKTOP\ACENDELED\ACENDLED.X\ACENDELED.ASM 53 : Register in operand not in bank 0.  Ensure that bank bits are correct.

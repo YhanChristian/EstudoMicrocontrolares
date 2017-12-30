@@ -1,0 +1,66 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Sat Nov 18 11:58:02 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_1       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_2       code   0x000004    program   0x0000d8
+.config_2007_BUILD/DEFAULT/PRODUCTION/CONTADO       code   0x002007    program   0x000002
+                   .org_0       code   0x002100    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x00006f      
+                            0x002007    0x002007      
+                            0x002100    0x002100      
+            113 out of 2182 program addresses used, program memory utilization is 5%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+        ATUALIZAR_DISPLAY   0x00006d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          BOTAO1_LIBERADO   0x000054    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          BOTAO2_LIBERADO   0x00005c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             CHECA_BOTAO1   0x00004d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             CHECA_BOTAO2   0x000055    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                CONVERTER   0x000005    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+              DECREMENTAR   0x00005e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+            ESCREVER_CONT   0x000032    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          ESCREVER_E2PROM   0x00001d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+              INCREMENTAR   0x000066    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                 LER_CONT   0x00002c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+               LER_E2PROM   0x000018    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                     MAIN   0x00004a    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                    SETUP   0x000039    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             _.org_2_0028   0x000028    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                CONVERTER   0x000005    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+               LER_E2PROM   0x000018    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          ESCREVER_E2PROM   0x00001d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             _.org_2_0028   0x000028    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                 LER_CONT   0x00002c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+            ESCREVER_CONT   0x000032    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                    SETUP   0x000039    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+                     MAIN   0x00004a    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             CHECA_BOTAO1   0x00004d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          BOTAO1_LIBERADO   0x000054    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+             CHECA_BOTAO2   0x000055    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+          BOTAO2_LIBERADO   0x00005c    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+              DECREMENTAR   0x00005e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+              INCREMENTAR   0x000066    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+        ATUALIZAR_DISPLAY   0x00006d    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorFinal\ContadorFinal.X\ContadorFinal.asm
+
+

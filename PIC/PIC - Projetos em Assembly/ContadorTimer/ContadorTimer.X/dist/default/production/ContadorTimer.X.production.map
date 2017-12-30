@@ -1,0 +1,60 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Wed Nov 15 18:52:29 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000004    program   0x0000d4
+.config_2007_BUILD/DEFAULT/PRODUCTION/CONTADO       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x00006d      
+                            0x002007    0x002007      
+            110 out of 2182 program addresses used, program memory utilization is 5%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              ACAO_BOTAO1   0x000068    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+              ACAO_BOTAO2   0x00006b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                ATUALIZAR   0x00002e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+          BOTAO1_LIBERADO   0x00005e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+          BOTAO2_LIBERADO   0x000066    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+             CHECA_BOTAO1   0x000057    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+             CHECA_BOTAO2   0x00005f    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                CONVERTER   0x00001b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+           DESLIGAR_TIMER   0x000031    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+              LIGAR_TIMER   0x000034    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                     MAIN   0x000051    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+         SAIR_INTERRUPCAO   0x000016    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                    SETUP   0x00003f    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+         SAIR_INTERRUPCAO   0x000016    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                CONVERTER   0x00001b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                ATUALIZAR   0x00002e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+           DESLIGAR_TIMER   0x000031    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+              LIGAR_TIMER   0x000034    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                    SETUP   0x00003f    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+                     MAIN   0x000051    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+             CHECA_BOTAO1   0x000057    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+          BOTAO1_LIBERADO   0x00005e    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+             CHECA_BOTAO2   0x00005f    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+          BOTAO2_LIBERADO   0x000066    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+              ACAO_BOTAO1   0x000068    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+              ACAO_BOTAO2   0x00006b    program     static C:\Users\Yhan Christian\Documents\PIC - Projetos em Assembly\ContadorTimer\ContadorTimer.X\ContadorTimer.asm
+
+

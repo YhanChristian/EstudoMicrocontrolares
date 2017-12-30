@@ -1,0 +1,464 @@
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;==============================================================================
+                      00002 ; EXEMPLO 03 - PISCA PISCA 
+                      00003 ; BASEADO EM ESTUDOS COM O PIC16F628A
+                      00004 ; AUTOR: YHAN CHRISTIAN SOUZA SILVA 
+                      00005 ;==============================================================================
+                      00006 
+                      00007 ;==============================================================================
+                      00008 ; DEFINIÇÕES INICIAIS DO HARDWARE
+                      00009 ;==============================================================================
+                      00010 #INCLUDE <P16F628.INC> ; ARQUIVO PADRÃO MICROCHIP PARA O MODELO DE PIC
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : May 17 2017
+                      00005 ;  MPASM PIC16F628 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2017 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00382         LIST
+                      00011     
+2007   3F61           00012     __CONFIG _BOREN_ON & _CP_OFF & _PWRTE_ON & _WDT_OFF & _LVP_OFF & _MCLRE_ON & _XT_OSC
+                      00013 ;==============================================================================
+                      00014 ; DEFINES PARA FACILITAR COMANDOS DE MUDANÇA DE BANCOS
+                      00015 ;==============================================================================     
+                      00016 #DEFINE BANK0 BCF STATUS, RP0
+                      00017 #DEFINE BANK1 BSF STATUS, RP0
+                      00018 
+                      00019 ;==============================================================================
+                      00020 ; DEFINIÇÃO DE ENDEREÇO DE VARIAVEIS
+                      00021 ;==============================================================================         
+                      00022     CBLOCK 0X20
+  00000020            00023         CONT
+  00000021            00024         FILTRO_BOTAO
+  00000022            00025         TEMPO1
+  00000023            00026         TEMPO2
+  00000024            00027         TEMPO3
+                      00028     ENDC
+                      00029 
+                      00030 ;==============================================================================
+                      00031 ; CONSTANTES
+                      00032 ;==============================================================================
+  0000000A            00033 MINIMO EQU .10
+  000000F0            00034 MAXIMO EQU .240
+  00000005            00035 STEP EQU .5
+  00000005            00036 MULTIPLO EQU .5
+  000000FF            00037 DISPLAY EQU B'11111111' ;SERÁ EXIBIDO TODOS OS DIGITOS NO DISPLAY 7 SEG   
+                      00038     
+                      00039 ;==============================================================================
+                      00040 ; ENTRADAS E SAÍDAS 
+                      00041 ;==============================================================================
+                      00042     #DEFINE BOTAO_INCREMENTO PORTA, 1 ; 0 -> PRESSIONADO 1 - > LIBERADO
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00043     #DEFINE BOTAO_DECREMENTO PORTA, 2 ; 0 -> PRESSIONADO 1 - > LIBERADO
+                      00044     
+                      00045 ;==============================================================================
+                      00046 ; VETOR DE RESET
+                      00047 ;==============================================================================    
+                      00048     ORG 0X00
+0000   2???           00049     GOTO SETUP
+                      00050     
+                      00051 ;==============================================================================
+                      00052 ; ROTINA DE DELAY
+                      00053 ; O DELAY PRINCIPAL DURA 1ms SENDO MULTIPLICADO N VEZES, VALOR PASSADO POR W 
+                      00054 ; PARA A ROTINA DURAR n MILISEGUNDOS. EXEMPLO W = 200, ROTINA AGUARDA 200ms.
+                      00055 ;==============================================================================    
+0001                  00056 DELAY
+0001   00A3           00057     MOVWF TEMPO2
+                      00058  
+0002                  00059 DELAY1
+0002   30C8           00060     MOVLW .200
+0003   00A2           00061     MOVWF TEMPO1
+                      00062 
+0004                  00063 DELAY2
+0004   0000           00064     NOP
+0005   0000           00065     NOP
+0006   0BA2           00066     DECFSZ TEMPO1, F
+0007   2???           00067     GOTO DELAY2
+0008   0BA3           00068     DECFSZ TEMPO2, F
+0009   2???           00069     GOTO DELAY1
+000A   0008           00070     RETURN
+                      00071 ;==============================================================================
+                      00072 ; INICIO DO PROGRAMA - SETUP 
+                      00073 ; LIMPA PORTA A E PORTB, MOVE PARA BANK 1 CARREGANDO TRISA (RA1 E RA2 ENTRADA)
+                      00074 ; E TRISB, CONFIGURAPRESCALER 1:2 NO TMR0 DESABILITANDO PULL UPS INTERNOS, 
+                      00075 ; DESLIGA INTERRUPÇÕES, POR FIM VOLTO AO BANK 0 E DESABILITO COMPARADORES 
+                      00076 ; E INICIALIZO AS VARIAVEIS.
+                      00077 ;==============================================================================    
+000B                  00078 SETUP
+000B   1683           00079     BANK1
+000C   3006           00080     MOVLW B'00000110'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000D   0085           00081     MOVWF TRISA
+000E   3000           00082     MOVLW B'00000000'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000F   0086           00083     MOVWF TRISB
+0010   3080           00084     MOVLW B'10000000'
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0011   0081           00085     MOVWF OPTION_REG
+0012   3000           00086     MOVLW B'00000000'
+0013   008B           00087     MOVWF INTCON
+0014   1283           00088     BANK0
+0015   3007           00089     MOVLW B'00000111'
+0016   009F           00090     MOVWF CMCON
+0017   0185           00091     CLRF PORTA
+0018   30FF           00092     MOVLW DISPLAY
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0019   0086           00093     MOVWF PORTB
+001A   300A           00094     MOVLW MINIMO
+001B   00A0           00095     MOVWF CONT
+                      00096     
+                      00097     
+                      00098 ;==============================================================================
+                      00099 ; ROTINA PRINCIPAL 
+                      00100 ; MOVE VALOR MULTIPLO PARA A CONSTANTE DE TEMPO3, ROTINA (MAIN1) VERIFICA SE 
+                      00101 ; 1 DOS BOTÕES FORAM ACIONADOS, FAZ DECREMENTO DE TEMPO 3 ENVIA INFORMAÇÃO PARA
+                      00102 ; O PORTB, ROTINA (DECREMENTA) FAZ DECREMENTO DO VALOR E ROTINA (INCREMENTA) FAZ
+                      00103 ; INCREMENTO DO VALOR.
+                      00104 ;==============================================================================
+001C                  00105 MAIN
+001C   3005           00106     MOVLW MULTIPLO
+001D   00A4           00107     MOVWF TEMPO3
+                      00108 
+001E                  00109 MAIN1
+001E   0820           00110     MOVF CONT, W
+001F   2???           00111     CALL DELAY
+0020   1C85           00112     BTFSS BOTAO_INCREMENTO
+0021   2???           00113     GOTO INCREMENTA
+0022   1D05           00114     BTFSS BOTAO_DECREMENTO
+0023   2???           00115     GOTO DECREMENTA
+0024   0BA4           00116     DECFSZ TEMPO3, F
+0025   2???           00117     GOTO MAIN1
+0026   30FF           00118     MOVLW DISPLAY
+0027   0686           00119     XORWF PORTB, F
+0028   2???           00120     GOTO MAIN
+                      00121 
+0029                  00122 DECREMENTA
+0029   3005           00123     MOVLW STEP
+002A   02A0           00124     SUBWF CONT, F
+002B   300A           00125     MOVLW MINIMO
+002C   0220           00126     SUBWF CONT, W
+002D   1803           00127     BTFSC STATUS, C
+002E   2???           00128     GOTO MAIN
+002F   300A           00129     MOVLW MINIMO
+0030   00A0           00130     MOVWF CONT
+0031   1D05           00131     BTFSS BOTAO_DECREMENTO
+0032   2???           00132     GOTO $-1
+0033   2???           00133     GOTO MAIN
+                      00134 
+0034                  00135 INCREMENTA
+0034   3005           00136     MOVLW STEP
+0035   02A0           00137     SUBWF CONT, F
+0036   30F0           00138     MOVLW MAXIMO
+0037   0220           00139     SUBWF CONT, W
+0038   1C03           00140     BTFSS STATUS, C
+0039   2???           00141     GOTO MAIN
+003A   30F0           00142     MOVLW MAXIMO
+003B   00A0           00143     MOVWF CONT
+003C   1C85           00144     BTFSS BOTAO_INCREMENTO
+003D   2???           00145     GOTO $-1
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+003E   2???           00146     GOTO MAIN
+                      00147 
+                      00148 ;==============================================================================
+                      00149 ; TERMINO DE PROGRAMA
+                      00150 ;==============================================================================
+3F61                  00151     END
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ADDEN                             00000003
+ADEN                              00000003
+BANK0                             BCF STATUS, RP0
+BANK1                             BSF STATUS, RP0
+BOTAO_DECREMENTO                  PORTA, 2
+BOTAO_INCREMENTO                  PORTA, 1
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CIS                               00000003
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000001F
+CMIE                              00000006
+CMIF                              00000006
+CONT                              00000020
+CREN                              00000004
+CSRC                              00000007
+DATA_CP_OFF                       00003FFF
+DATA_CP_ON                        00003EFF
+DC                                00000001
+DECREMENTA                        00000029
+DELAY                             00000001
+DELAY1                            00000002
+DELAY2                            00000004
+DISPLAY                           000000FF
+EEADR                             0000009B
+EECON1                            0000009C
+EECON2                            0000009D
+EEDATA                            0000009A
+EEIE                              00000007
+EEIF                              00000007
+F                                 00000001
+FERR                              00000002
+FILTRO_BOTAO                      00000021
+FSR                               00000004
+GIE                               00000007
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INCREMENTA                        00000034
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+MAIN                              0000001C
+MAIN1                             0000001E
+MAXIMO                            000000F0
+MINIMO                            0000000A
+MULTIPLO                          00000005
+NOT_BO                            00000000
+NOT_BOD                           00000000
+NOT_BOR                           00000000
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+OERR                              00000001
+OPTION_REG                        00000081
+OSCF                              00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PIE1                              0000008C
+PIR1                              0000000C
+PORTA                             00000005
+PORTB                             00000006
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RBIF                              00000000
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RX9                               00000006
+RX9D                              00000000
+SETUP                             0000000B
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+STATUS                            00000003
+STEP                              00000005
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1OSCEN                           00000003
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TEMPO1                            00000022
+TEMPO2                            00000023
+TEMPO3                            00000024
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRMT                              00000001
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+VR0                               00000000
+VR1                               00000001
+VR2                               00000002
+VR3                               00000003
+VRCON                             0000009F
+VREN                              00000007
+VROE                              00000006
+VRR                               00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_.org_0_0032                      00000032
+_.org_0_003D                      0000003D
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_50                            00002BFF
+_CP_75                            000017FF
+_CP_ALL                           000003FF
+_CP_OFF                           00003FFF
+_DEVID1                           00002006
+_ER_OSC_CLKOUT                    00003FFF
+_ER_OSC_NOCLKOUT                  00003FFE
+_EXTCLK_OSC                       00003FEF
+_FOSC_ECIO                        00003FEF
+MPASM 5.74                   PISCA-PISCA.ASM   10-21-2017  12:22:25         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_FOSC_ERCLK                       00003FFF
+_FOSC_ERIO                        00003FFE
+_FOSC_HS                          00003FEE
+_FOSC_INTOSCCLK                   00003FFD
+_FOSC_INTOSCIO                    00003FFC
+_FOSC_LP                          00003FEC
+_FOSC_XT                          00003FED
+_HS_OSC                           00003FEE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_INTRC_OSC_CLKOUT                 00003FFD
+_INTRC_OSC_NOCLKOUT               00003FFC
+_LP_OSC                           00003FEC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FDF
+_MCLRE_ON                         00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FED
+__16F628A                         00000001
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
+
+

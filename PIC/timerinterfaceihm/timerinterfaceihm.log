@@ -3,11 +3,11 @@ warning: 0	1501	Specified search path does not exist: 'C:\Users\Yhan Christian\D
 hint: 0	1139	Available RAM: 208 [bytes], Available ROM: 2048 [bytes]	 
 diagnostics: 0	126	All files Preprocessed in 78 ms	 
 diagnostics: 0	122	Compilation Started	timerinterfaceihm.c
-diagnostics: 224	123	Compiled Successfully	timerinterfaceihm.c
-diagnostics: 0	127	All files Compiled in 234 ms	 
-hint: 0	1144	Used RAM (bytes): 34 (16%)  Free RAM (bytes): 174 (84%)	Used RAM (bytes): 34 (16%)  Free RAM (bytes): 174 (84%)
-hint: 0	1144	Used ROM (program words): 752 (37%)  Free ROM (program words): 1296 (63%)	Used ROM (program words): 752 (37%)  Free ROM (program words): 1296 (63%)
+diagnostics: 230	123	Compiled Successfully	timerinterfaceihm.c
+diagnostics: 0	127	All files Compiled in 156 ms	 
+hint: 0	1144	Used RAM (bytes): 42 (20%)  Free RAM (bytes): 166 (80%)	Used RAM (bytes): 42 (20%)  Free RAM (bytes): 166 (80%)
+hint: 0	1144	Used ROM (program words): 798 (39%)  Free ROM (program words): 1250 (61%)	Used ROM (program words): 798 (39%)  Free ROM (program words): 1250 (61%)
 diagnostics: 0	125	Project Linked Successfully	timerinterfaceihm.mcppi
-diagnostics: 0	128	Linked in 156 ms	 
-diagnostics: 0	129	Project 'timerinterfaceihm.mcppi' completed: 577 ms	 
-diagnostics: 0	103	Finished successfully: 21 dez 2017, 20:58:49	timerinterfaceihm.mcppi
+diagnostics: 0	128	Linked in 515 ms	 
+diagnostics: 0	129	Project 'timerinterfaceihm.mcppi' completed: 842 ms	 
+diagnostics: 0	103	Finished successfully: 30 dez 2017, 14:53:24	timerinterfaceihm.mcppi

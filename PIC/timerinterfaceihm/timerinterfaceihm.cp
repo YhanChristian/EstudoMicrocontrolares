@@ -15,15 +15,23 @@ sbit LCD_D4_Direction at TRISB4_bit;
 sbit LCD_D5_Direction at TRISB5_bit;
 sbit LCD_D6_Direction at TRISB6_bit;
 sbit LCD_D7_Direction at TRISB7_bit;
-#line 35 "C:/Users/Yhan Christian/Documents/EstudoMicrocontroladores/PIC/timerinterfaceihm/timerinterfaceihm.c"
+
+
+
+
+
+
+
+
 void configureMcu();
 void initDisplay();
 void display(unsigned short line, unsigned int value);
 void readButtons();
+unsigned short controlCharge(unsigned long long value01, unsigned long long value02);
 
 
-unsigned short flagA, flagB;
-#line 55 "C:/Users/Yhan Christian/Documents/EstudoMicrocontroladores/PIC/timerinterfaceihm/timerinterfaceihm.c"
+unsigned short flagA = 0, flagB = 0;
+#line 53 "C:/Users/Yhan Christian/Documents/EstudoMicrocontroladores/PIC/timerinterfaceihm/timerinterfaceihm.c"
 unsigned short pr2Value = 255, intCounter = 0;
 int tmr02Counter[2] = {(0,0)};
 unsigned int myTimer = 0, timeSet =0;
@@ -66,6 +74,7 @@ void main() {
  display(1, myTimer);
  myTimer++;
   flagA.B1  = 0x00;
+  flagA.B7  = ControlCharge(myTimer, timeSet);
  }
  }
  else {
@@ -112,7 +121,7 @@ void initDisplay() {
 
 void display(unsigned short line, unsigned int value) {
  unsigned short time[6], second, minute, hour;
-#line 149 "C:/Users/Yhan Christian/Documents/EstudoMicrocontroladores/PIC/timerinterfaceihm/timerinterfaceihm.c"
+#line 148 "C:/Users/Yhan Christian/Documents/EstudoMicrocontroladores/PIC/timerinterfaceihm/timerinterfaceihm.c"
  hour = (value / 60) / 60;
  minute = (value - (hour * 3600)) / 60;
 
@@ -188,4 +197,11 @@ void readButtons() {
 
 
  if( flagA.B6 )  flagB.B1  = ~ flagB.B1 ;
+}
+
+
+unsigned short controlCharge(unsigned long long value01, unsigned long long value02) {
+ if(value01 > value02)  PORTB.F0  = 0x00;
+ else  PORTB.F0  = 0x01;
+ return  PORTB.F0 ;
 }

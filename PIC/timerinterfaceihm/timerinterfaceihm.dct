@@ -146,6 +146,7 @@ cmif_bit
 comfrem
 compare_double
 configuremcu
+controlcharge
 cos
 cose3
 cosh

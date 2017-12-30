@@ -22,9 +22,6 @@ sbit LCD_D5_Direction at TRISB5_bit;
 sbit LCD_D6_Direction at TRISB6_bit;
 sbit LCD_D7_Direction at TRISB7_bit;
 
-
-
-
 // -- Definição de hardware --
 #define encoderSW PORTA.F0
 #define encoderCLK PORTA.F1
@@ -36,9 +33,10 @@ void configureMcu();
 void initDisplay();
 void display(unsigned short line, unsigned int value);
 void readButtons();
+unsigned short controlCharge(unsigned long long value01, unsigned long long value02);
 
 // -- Variáveis globais --
-unsigned short flagA, flagB;
+unsigned short flagA = 0, flagB = 0;
 #define tmr02Trigger flagA.B0
 #define oneSecond flagA.B1
 #define encoderInc flagA.B2
@@ -94,6 +92,7 @@ void main() {
                     display(1, myTimer);
                     myTimer++;
                     oneSecond = 0x00;
+                    active = ControlCharge(myTimer, timeSet);
               }
          }
          else {
@@ -221,4 +220,11 @@ void readButtons() {
 // -- Trata botões --
 
      if(encoderPushButton) configureMode = ~configureMode;
+}
+
+// -- Controle acionamento carga, fica ligado enquanto timer n atinge tempo setado --
+unsigned short controlCharge(unsigned long long value01, unsigned long long value02) {
+     if(value01 > value02) output = 0x00;
+     else output = 0x01;
+     return output;
 }

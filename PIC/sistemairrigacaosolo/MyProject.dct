@@ -275,7 +275,6 @@ atan2
 atof
 atoi
 atol
-auxt1
 awhuffacsymstart
 awhuffdcsymstart
 awquanttable
@@ -901,7 +900,6 @@ imagefileasarray
 indf0
 indf1
 indf2
-initlcd
 int0
 int0_bit
 int0e
@@ -1057,21 +1055,9 @@ late2_bit
 lcd_chr
 lcd_chr_cp
 lcd_cmd
-lcd_d4
-lcd_d4_direction
-lcd_d5
-lcd_d5_direction
-lcd_d6
-lcd_d6_direction
-lcd_d7
-lcd_d7_direction
-lcd_en
-lcd_en_direction
 lcd_init
 lcd_out
 lcd_out_cp
-lcd_rs
-lcd_rs_direction
 ldexp
 ldiv
 left_to_right
@@ -1184,7 +1170,6 @@ mul_32x32_fp
 mul_32x32_s
 mul_32x32_u
 mul_8x8_s
-myfrequency
 n
 n_bit
 not_a
@@ -1497,7 +1482,6 @@ re3
 re3_bit
 read_write
 read_write_bit
-readfrequency
 res032
 resume_
 resume__bit

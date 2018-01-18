@@ -9,7 +9,7 @@
 
 #define output LATD0_bit
 
-// -- Prototipo funcoes auxiliares --
+// -- Prototipo funçoes auxiliares --
 
 void configureMcu();
 
@@ -18,12 +18,13 @@ void main() {
      
      while(1) {
           output = ~output;
+          delay_ms(1000);
      }
 }
 
 void configureMcu() {
      CMCON = 0x07; //Desabilita comparadores
      ADCON1 = 0x0F; //Desabilita portas analogicas
-     LATD0_bit = 0x00; //Define pino D0 como saida digital
+     TRISD0_bit = 0x00; // Configura D0 como saida
+     LATD0_bit = 0x00;
 }
-

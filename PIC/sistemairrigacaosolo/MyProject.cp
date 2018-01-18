@@ -7,11 +7,13 @@ void main() {
 
  while(1) {
   LATD0_bit  = ~ LATD0_bit ;
+ delay_ms(1000);
  }
 }
 
 void configureMcu() {
  CMCON = 0x07;
  ADCON1 = 0x0F;
+ TRISD0_bit = 0x00;
  LATD0_bit = 0x00;
 }

@@ -1,7 +1,7 @@
 /*
   Biblioteca DHT11 Desenvolvida por Josias Martins Bobsien P&D
   Utilizado: PIC16F628A - 8MHz
-  Alterações realizads por Yhan Christian Souza Silva
+  Alterações realizadas por Yhan Christian Souza Silva
 */
 
 sbit dhtData at RB2_bit;

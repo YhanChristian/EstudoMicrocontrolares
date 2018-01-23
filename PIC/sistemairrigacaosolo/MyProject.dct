@@ -569,6 +569,9 @@ dfn8ee
 dfn8ee_bit
 dfn8ef
 dfn8ef_bit
+dht11
+dhtdata
+dhtdata_direction
 dir_
 dir__bit
 div
@@ -732,6 +735,7 @@ fast
 ferr
 ferr_bit
 fixsign32
+flaga
 flash_erase_64
 flash_erase_write_64
 flash_read
@@ -900,6 +904,7 @@ imagefileasarray
 indf0
 indf1
 indf2
+initdht11
 int0
 int0_bit
 int0e
@@ -1055,9 +1060,21 @@ late2_bit
 lcd_chr
 lcd_chr_cp
 lcd_cmd
+lcd_d4
+lcd_d4_direction
+lcd_d5
+lcd_d5_direction
+lcd_d6
+lcd_d6_direction
+lcd_d7
+lcd_d7_direction
+lcd_en
+lcd_en_direction
 lcd_init
 lcd_out
 lcd_out_cp
+lcd_rs
+lcd_rs_direction
 ldexp
 ldiv
 left_to_right
@@ -1170,6 +1187,7 @@ mul_32x32_fp
 mul_32x32_s
 mul_32x32_u
 mul_8x8_s
+mydata1
 n
 n_bit
 not_a
@@ -1592,6 +1610,7 @@ sen
 sen_bit
 sendb
 sendb_bit
+senddhtdata
 setfdz32
 setfov32
 setfun32
@@ -1920,6 +1939,7 @@ stallie
 stallie_bit
 stallif
 stallif_bit
+startdht11
 status
 stkful
 stkful_bit
@@ -2171,6 +2191,7 @@ tft_write_text_return_pos
 time_datetoepoch
 time_epochtodate
 time_jd1970
+timercounteraux
 tmr0h
 tmr0ie
 tmr0ie_bit

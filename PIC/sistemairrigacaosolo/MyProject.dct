@@ -572,6 +572,9 @@ dfn8ef_bit
 dht11
 dhtdata
 dhtdata_direction
+digit01
+digit02
+digit03
 dir_
 dir__bit
 div
@@ -853,6 +856,7 @@ go_done
 go_done_bit
 go_not_done
 go_not_done_bit
+groundhumidity
 halfbits
 hid_disable
 hid_enable
@@ -905,6 +909,7 @@ indf0
 indf1
 indf2
 initdht11
+initdisplay
 int0
 int0_bit
 int0e
@@ -953,6 +958,7 @@ intedg1
 intedg1_bit
 intedg2
 intedg2_bit
+interrupt
 intsrc
 intsrc_bit
 inttohex
@@ -1500,6 +1506,8 @@ re3
 re3_bit
 read_write
 read_write_bit
+readhumidity
+readtemperature
 res032
 resume_
 resume__bit

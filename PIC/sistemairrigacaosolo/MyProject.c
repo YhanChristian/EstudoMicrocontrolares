@@ -8,18 +8,18 @@
 // -- Configuracao pinos LCD --
 sbit LCD_RS at RB2_bit;
 sbit LCD_EN at RB3_bit;
-sbit LCD_D7 at RB4_bit;
-sbit LCD_D6 at RB5_bit;
-sbit LCD_D5 at RB6_bit;
-sbit LCD_D4 at RB7_bit;
+sbit LCD_D4 at RB4_bit;
+sbit LCD_D5 at RB5_bit;
+sbit LCD_D6 at RB6_bit;
+sbit LCD_D7 at RB7_bit;
 
 // -- Direçao IOs
 sbit LCD_RS_Direction at TRISB2_bit;
 sbit LCD_EN_Direction at TRISB3_bit;
-sbit LCD_D7_Direction at TRISB4_bit;
-sbit LCD_D6_Direction at TRISB5_bit;
-sbit LCD_D5_Direction at TRISB6_bit;
-sbit LCD_D4_Direction at TRISB7_bit;
+sbit LCD_D4_Direction at TRISB4_bit;
+sbit LCD_D5_Direction at TRISB5_bit;
+sbit LCD_D6_Direction at TRISB6_bit;
+sbit LCD_D7_Direction at TRISB7_bit;
 
 // -- Definicao de Hardware --
 #define output LATD0_bit
@@ -34,6 +34,7 @@ void initDisplay();
 int groundHumidity();
 void readTemperature();
 void readHumidity();
+
 
 // -- Variaveis globais --
 unsigned short flagA;
@@ -52,7 +53,7 @@ void interrupt() {
           TMR0H = 0x7F;
           timerCounterAux++;
           
-          if(timerCounterAux = 180) {
+          if(timerCounterAux == 180) {
                 timerCounterAux = 0;
                 switchInfo = ~switchInfo;
                 output = ~output;
@@ -64,7 +65,7 @@ void main() {
      configureMcu();
      initDisplay();
      initDht11();
-     
+
      while(1) {
           readTemperature();
           delay_ms(150);
@@ -105,12 +106,12 @@ int groundHumidity() {
 void readTemperature() {
     int temp;
     temp = dht11(2);
-    
+
     // -- Separa digitos --
     temp = temp / 100;
     digit01 = temp / 10;
     digit02 = temp % 10;
-    
+
     // -- Plota no Display LCD --
     lcd_out(1, 1, "Temperatura:");
     lcd_chr(1, 14, digit01 + 48);
@@ -121,7 +122,7 @@ void readHumidity() {
      int hum01, hum02;
      hum01 = dht11(1);
      hum02 = groundHumidity();
-     
+
      // -- Plota na tela e separa digitos --
      if(switchInfo) {
           hum01 = hum01 / 100;
@@ -131,7 +132,7 @@ void readHumidity() {
           lcd_chr(2, 14, digit01 + 48);
           lcd_chr_cp(digit02 + 48);
      }
-     
+
      else {
           digit01 = hum02 / 100;
           digit02 = hum02 / 10 - digit01 * 10;

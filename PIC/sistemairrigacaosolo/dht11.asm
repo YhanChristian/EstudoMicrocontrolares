@@ -6,12 +6,12 @@ _initDht11:
 	BCF         TRISD7_bit+0, 7 
 ;dht11.c,25 :: 		dhtData = 1;
 	BSF         RD7_bit+0, 7 
-;dht11.c,26 :: 		delay_ms(100);
-	MOVLW       3
+;dht11.c,26 :: 		delay_ms(150);
+	MOVLW       4
 	MOVWF       R11, 0
-	MOVLW       8
+	MOVLW       12
 	MOVWF       R12, 0
-	MOVLW       119
+	MOVLW       51
 	MOVWF       R13, 0
 L_initDht110:
 	DECFSZ      R13, 1, 1
@@ -20,6 +20,8 @@ L_initDht110:
 	BRA         L_initDht110
 	DECFSZ      R11, 1, 1
 	BRA         L_initDht110
+	NOP
+	NOP
 ;dht11.c,28 :: 		}
 L_end_initDht11:
 	RETURN      0

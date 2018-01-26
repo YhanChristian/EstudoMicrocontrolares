@@ -19,7 +19,7 @@ int sendDhtData[4];
 void initDht11(){
  dhtData_Direction = 0;
  dhtData = 1;
- delay_ms(100);
+ delay_ms(150);
 
 }
 

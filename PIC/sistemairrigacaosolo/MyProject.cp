@@ -28,6 +28,7 @@ void initDisplay();
 int groundHumidity();
 void readTemperature();
 void readHumidity();
+void turnOnWaterPump(unsigned short status);
 
 
 
@@ -35,7 +36,7 @@ unsigned short flagA;
 
 
 unsigned int timerCounterAux = 0;
-unsigned short digit01, digit02, digit03;
+unsigned short digit01, digit02, digit03, pwmDuty = 10;
 
 
 
@@ -50,7 +51,6 @@ void interrupt() {
  if(timerCounterAux == 180) {
  timerCounterAux = 0;
   flagA.B0  = ~ flagA.B0 ;
-  LATD0_bit  = ~ LATD0_bit ;
  }
  }
 }
@@ -75,12 +75,14 @@ void configureMcu() {
  ADC_Init();
  INTCON = 0xE0;
  OSCCON = 0x72;
+ TRISC2_bit = 0x00;
  TRISD0_bit = 0x00;
  LATD0_bit = 0x00;
  TMR1IE_bit = 0x01;
  T0CON = 0x80;
  TMR0L = 0xFF;
  TMR0H = 0x7F;
+ PWM1_Init(5000);
 }
 
 
@@ -94,6 +96,7 @@ int groundHumidity() {
  int value;
  value = ADC_Read(0);
  value = value * 0.09765625;
+ value = 100 - value;
  return value;
 }
 
@@ -116,6 +119,13 @@ void readHumidity() {
  int hum01, hum02;
  hum01 = dht11(1);
  hum02 = groundHumidity();
+#line 142 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+ if(hum02 <= 40) turnOnWaterPump(1);
+ else {
+ if(hum02 >= 65) turnOnWaterPump(0);
+ }
+
+
 
 
  if( flagA.B0 ) {
@@ -136,4 +146,12 @@ void readHumidity() {
  lcd_chr_cp(digit02 + 48);
  lcd_chr_cp(digit03 + 48);
  }
+}
+
+void turnOnWaterPump(unsigned short status) {
+ if(status == 1) {
+ PWM1_Start();
+ PWM1_Set_Duty(80);
+ }
+ else PWM1_Stop();
 }

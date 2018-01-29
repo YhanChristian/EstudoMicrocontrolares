@@ -2,6 +2,7 @@ main
 	__CC2DW
 	configureMcu
 		ADC_Init
+		PWM1_Init
 	initDisplay
 		Lcd_Init
 			Delay_5500us
@@ -55,6 +56,11 @@ main
 				SETFUN32
 			Double2Int
 				SETIOV3224
+		turnOnWaterPump
+			PWM1_Start
+			PWM1_Set_Duty
+				Mul_16x16_U
+			PWM1_Stop
 		Div_16x16_S
 			Div_16x16_S_L
 		Lcd_Out

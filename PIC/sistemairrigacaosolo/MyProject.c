@@ -34,6 +34,7 @@ void initDisplay();
 int groundHumidity();
 void readTemperature();
 void readHumidity();
+void turnOnWaterPump(unsigned short status);
 
 
 // -- Variaveis globais --
@@ -41,7 +42,7 @@ unsigned short flagA;
 #define switchInfo flagA.B0
 
 unsigned int timerCounterAux = 0;
-unsigned short digit01, digit02, digit03;
+unsigned short digit01, digit02, digit03, pwmDuty = 10;
 
 
 // -- Interrupçao p/ gerar 1 segundo --
@@ -56,7 +57,6 @@ void interrupt() {
           if(timerCounterAux == 180) {
                 timerCounterAux = 0;
                 switchInfo = ~switchInfo;
-                output = ~output;
           }
      }
 }
@@ -81,12 +81,14 @@ void configureMcu() {
      ADC_Init(); // Inicia ADC
      INTCON = 0xE0; // Habilita interrupçoes externa, habilita TMR0
      OSCCON = 0x72; //Configura OSC interno 8MHz
+     TRISC2_bit = 0x00; //Configura C2 como saida
      TRISD0_bit = 0x00; // Configura D0 como saida
      LATD0_bit = 0x00;
      TMR1IE_bit = 0x01; // Habilita TMR1
      T0CON = 0x80; // TMR0, 16bits, inc ciclo maquina, prescaler 1:2 (pg. 127)
      TMR0L = 0xFF; //byte menos significativo
      TMR0H = 0x7F; //byte mais significativo
+     PWM1_Init(5000); //Inicia pwm com f = 5kHz (Funcao mikroC)
 }
 
 // -- Funcao para inicializar display --
@@ -100,6 +102,7 @@ int groundHumidity() {
     int value;
     value = ADC_Read(0);
     value = value * 0.09765625; //Valor retornado em % (100/1024)
+    value = 100 - value; // Explicado relacao solo molhado/seco por isso subtrai 100.
     return value;
 }
 
@@ -122,6 +125,26 @@ void readHumidity() {
      int hum01, hum02;
      hum01 = dht11(1);
      hum02 = groundHumidity();
+     
+     /* Ao atingir um valor critico de umidade, liga-se a bomba
+       Solo seco 4,5V / Solo molhado 1,5V
+       Proporcionalidade --> 4,5/5 = 90%  / 1,5/5 = 30%
+       Calculando inversamente..
+       100 - 90 = 10% (Solo Seco)
+       100 - 30 = 70% (Solo Molhado)
+       Abaixo de 40% e interessante ja molhar o solo a fim de garantir a saude
+       da planta
+
+     */
+     
+     // -- Condicao ligar bomba --
+     
+     if(hum02 <= 40) turnOnWaterPump(1);
+     else {
+          if(hum02 >= 65) turnOnWaterPump(0);
+     }
+     
+     
 
      // -- Plota na tela e separa digitos --
      if(switchInfo) {
@@ -142,4 +165,12 @@ void readHumidity() {
           lcd_chr_cp(digit02 + 48);
           lcd_chr_cp(digit03 + 48);
      }
+}
+
+void turnOnWaterPump(unsigned short status) {
+     if(status == 1) {
+          PWM1_Start();      // Liga bomba c/ controle PWM
+          PWM1_Set_Duty(80);
+     }
+     else PWM1_Stop();
 }

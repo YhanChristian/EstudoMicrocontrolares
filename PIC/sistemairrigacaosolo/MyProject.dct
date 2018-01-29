@@ -1375,6 +1375,7 @@ pwm2_init
 pwm2_set_duty
 pwm2_start
 pwm2_stop
+pwmduty
 r
 r_bit
 r_not_w
@@ -2361,6 +2362,7 @@ tun3
 tun3_bit
 tun4
 tun4_bit
+turnonwaterpump
 tx
 tx_bit
 tx9

@@ -81,7 +81,7 @@ void configureMcu() {
      ADC_Init(); // Inicia ADC
      INTCON = 0xE0; // Habilita interrupçoes externa, habilita TMR0
      OSCCON = 0x72; //Configura OSC interno 8MHz
-     TRISC2_bit = 0x00; //Configura C2 como saida
+     //TRISC2_bit = 0x00; //Configura C2 como saida
      TRISD0_bit = 0x00; // Configura D0 como saida
      LATD0_bit = 0x00;
      TMR1IE_bit = 0x01; // Habilita TMR1
@@ -171,6 +171,11 @@ void turnOnWaterPump(unsigned short status) {
      if(status == 1) {
           PWM1_Start();      // Liga bomba c/ controle PWM
           PWM1_Set_Duty(80);
+          output = 0x01;
      }
-     else PWM1_Stop();
+     else {
+          PWM1_Stop();
+          output = 0x00;
+     }
+
 }

@@ -75,7 +75,7 @@ void configureMcu() {
  ADC_Init();
  INTCON = 0xE0;
  OSCCON = 0x72;
- TRISC2_bit = 0x00;
+
  TRISD0_bit = 0x00;
  LATD0_bit = 0x00;
  TMR1IE_bit = 0x01;
@@ -152,6 +152,11 @@ void turnOnWaterPump(unsigned short status) {
  if(status == 1) {
  PWM1_Start();
  PWM1_Set_Duty(80);
+  LATD0_bit  = 0x01;
  }
- else PWM1_Stop();
+ else {
+ PWM1_Stop();
+  LATD0_bit  = 0x00;
+ }
+
 }

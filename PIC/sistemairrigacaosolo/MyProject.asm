@@ -114,8 +114,6 @@ _configureMcu:
 ;MyProject.c,83 :: 		OSCCON = 0x72; //Configura OSC interno 8MHz
 	MOVLW       114
 	MOVWF       OSCCON+0 
-;MyProject.c,84 :: 		TRISC2_bit = 0x00; //Configura C2 como saida
-	BCF         TRISC2_bit+0, 2 
 ;MyProject.c,85 :: 		TRISD0_bit = 0x00; // Configura D0 como saida
 	BCF         TRISD0_bit+0, 0 
 ;MyProject.c,86 :: 		LATD0_bit = 0x00;
@@ -482,13 +480,18 @@ _turnOnWaterPump:
 	MOVLW       80
 	MOVWF       FARG_PWM1_Set_Duty_new_duty+0 
 	CALL        _PWM1_Set_Duty+0, 0
-;MyProject.c,174 :: 		}
+;MyProject.c,174 :: 		output = 0x01;
+	BSF         LATD0_bit+0, 0 
+;MyProject.c,175 :: 		}
 	GOTO        L_turnOnWaterPump12
 L_turnOnWaterPump11:
-;MyProject.c,175 :: 		else PWM1_Stop();
+;MyProject.c,177 :: 		PWM1_Stop();
 	CALL        _PWM1_Stop+0, 0
+;MyProject.c,178 :: 		output = 0x00;
+	BCF         LATD0_bit+0, 0 
+;MyProject.c,179 :: 		}
 L_turnOnWaterPump12:
-;MyProject.c,176 :: 		}
+;MyProject.c,181 :: 		}
 L_end_turnOnWaterPump:
 	RETURN      0
 ; end of _turnOnWaterPump

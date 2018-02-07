@@ -23,6 +23,7 @@ sbit LCD_D7_Direction at TRISB7_bit;
 
 // -- Definicao de Hardware --
 #define output LATD0_bit
+#define waterLevel LATD1_bit
 
 // -- Pototipo funçoes externas --
 extern int dht11(unsigned short type);
@@ -82,8 +83,9 @@ void configureMcu() {
      INTCON = 0xE0; // Habilita interrupçoes externa, habilita TMR0
      OSCCON = 0x72; //Configura OSC interno 8MHz
      //TRISC2_bit = 0x00; //Configura C2 como saida
-     TRISD0_bit = 0x00; // Configura D0 como saida
-     LATD0_bit = 0x00;
+     TRISD = 0x02; // Configura pino D1 como entrada e demais como saidas
+     LATD0_bit = 0x00;  // Inicializa em nivel zero RD0
+     LATD1_bit = 0x00; // Inicializa em nivel zero RD1
      TMR1IE_bit = 0x01; // Habilita TMR1
      T0CON = 0x80; // TMR0, 16bits, inc ciclo maquina, prescaler 1:2 (pg. 127)
      TMR0L = 0xFF; //byte menos significativo
@@ -137,13 +139,17 @@ void readHumidity() {
 
      */
      
-     // -- Condicao ligar bomba --
-     
-     if(hum02 <= 40) turnOnWaterPump(1);
-     else {
-          if(hum02 >= 65) turnOnWaterPump(0);
+     /* Condicao ligar bomba
+        Sensor deve identificar que ha agua no reservatorio
+     */
+
+     if(waterLevel) {
+            if(hum02 <= 40) turnOnWaterPump(1);
+            else {
+               if(hum02 >= 65) turnOnWaterPump(0);
+            }
      }
-     
+     else turnOnWaterPump(0);
      
 
      // -- Plota na tela e separa digitos --
@@ -170,7 +176,7 @@ void readHumidity() {
 void turnOnWaterPump(unsigned short status) {
      if(status == 1) {
           PWM1_Start();      // Liga bomba c/ controle PWM
-          PWM1_Set_Duty(80);
+          PWM1_Set_Duty(100);
           output = 0x01;
      }
      else {

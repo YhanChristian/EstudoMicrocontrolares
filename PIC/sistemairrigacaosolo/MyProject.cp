@@ -19,6 +19,7 @@ sbit LCD_D7_Direction at TRISB7_bit;
 
 
 
+
 extern int dht11(unsigned short type);
 extern void initDht11();
 
@@ -76,8 +77,9 @@ void configureMcu() {
  INTCON = 0xE0;
  OSCCON = 0x72;
 
- TRISD0_bit = 0x00;
+ TRISD = 0x02;
  LATD0_bit = 0x00;
+ LATD1_bit = 0x00;
  TMR1IE_bit = 0x01;
  T0CON = 0x80;
  TMR0L = 0xFF;
@@ -119,12 +121,14 @@ void readHumidity() {
  int hum01, hum02;
  hum01 = dht11(1);
  hum02 = groundHumidity();
-#line 142 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+#line 146 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+ if( LATD1_bit ) {
  if(hum02 <= 40) turnOnWaterPump(1);
  else {
  if(hum02 >= 65) turnOnWaterPump(0);
  }
-
+ }
+ else turnOnWaterPump(0);
 
 
 
@@ -151,7 +155,7 @@ void readHumidity() {
 void turnOnWaterPump(unsigned short status) {
  if(status == 1) {
  PWM1_Start();
- PWM1_Set_Duty(80);
+ PWM1_Set_Duty(100);
   LATD0_bit  = 0x01;
  }
  else {

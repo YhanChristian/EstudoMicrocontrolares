@@ -1,5 +1,5 @@
-#line 1 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/dht11.c"
-#line 7 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/dht11.c"
+#line 1 "Z:/home/yhanchristian/Documentos/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/dht11.c"
+#line 7 "Z:/home/yhanchristian/Documentos/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/dht11.c"
 sbit dhtData at RD7_bit;
 sbit dhtData_Direction at TRISD7_bit;
 

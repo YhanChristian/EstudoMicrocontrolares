@@ -1,5 +1,5 @@
-#line 1 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
-#line 9 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+#line 1 "Z:/home/yhanchristian/Documentos/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+#line 9 "Z:/home/yhanchristian/Documentos/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
 sbit LCD_RS at RB2_bit;
 sbit LCD_EN at RB3_bit;
 sbit LCD_D4 at RB4_bit;
@@ -30,6 +30,7 @@ int groundHumidity();
 void readTemperature();
 void readHumidity();
 void turnOnWaterPump(unsigned short status);
+void exhaustFan(unsigned int temperature, float threshold);
 
 
 
@@ -38,6 +39,7 @@ unsigned short flagA;
 
 unsigned int timerCounterAux = 0;
 unsigned short digit01, digit02, digit03, pwmDuty = 10;
+unsigned short pwm2Duty = 80;
 
 
 
@@ -85,6 +87,7 @@ void configureMcu() {
  TMR0L = 0xFF;
  TMR0H = 0x7F;
  PWM1_Init(5000);
+ PWM2_Init(5000);
 }
 
 
@@ -107,6 +110,9 @@ void readTemperature() {
  temp = dht11(2);
 
 
+ exhaustFan(temp, 25.4);
+
+
  temp = temp / 100;
  digit01 = temp / 10;
  digit02 = temp % 10;
@@ -121,7 +127,7 @@ void readHumidity() {
  int hum01, hum02;
  hum01 = dht11(1);
  hum02 = groundHumidity();
-#line 146 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
+#line 152 "Z:/home/yhanchristian/Documentos/EstudoMicrocontrolares/PIC/sistemairrigacaosolo/MyProject.c"
  if( LATD1_bit ) {
  if(hum02 <= 40) turnOnWaterPump(1);
  else {
@@ -129,7 +135,6 @@ void readHumidity() {
  }
  }
  else turnOnWaterPump(0);
-
 
 
  if( flagA.B0 ) {
@@ -162,5 +167,19 @@ void turnOnWaterPump(unsigned short status) {
  PWM1_Stop();
   LATD0_bit  = 0x00;
  }
+}
 
+
+
+void exhaustFan(unsigned int temperature, float threshold) {
+ if(temperature > threshold * 100) {
+ if(pwm2Duty < 254) pwm2Duty++;
+ PWM2_Start();
+ PWM2_Set_Duty(pwm2Duty);
+ }
+ else {
+ if (pwm2Duty > 80)pwm2Duty--;
+ PWM2_Set_Duty(pwm2Duty);
+ if(pwm2Duty <= 80) PWM2_Stop();
+ }
 }

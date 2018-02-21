@@ -36,6 +36,7 @@ int groundHumidity();
 void readTemperature();
 void readHumidity();
 void turnOnWaterPump(unsigned short status);
+void exhaustFan(unsigned int temperature, float threshold);
 
 
 // -- Variaveis globais --
@@ -44,6 +45,7 @@ unsigned short flagA;
 
 unsigned int timerCounterAux = 0;
 unsigned short digit01, digit02, digit03, pwmDuty = 10;
+unsigned short pwm2Duty = 80;
 
 
 // -- Interrupçao p/ gerar 1 segundo --
@@ -90,7 +92,8 @@ void configureMcu() {
      T0CON = 0x80; // TMR0, 16bits, inc ciclo maquina, prescaler 1:2 (pg. 127)
      TMR0L = 0xFF; //byte menos significativo
      TMR0H = 0x7F; //byte mais significativo
-     PWM1_Init(5000); //Inicia pwm com f = 5kHz (Funcao mikroC)
+     PWM1_Init(5000); //Inicia pwm com f = 5kHz (Funcao mikroC) RC2
+     PWM2_Init(5000); // Iniciar pwm com f = 5kHz (Funcao mikroC) RC1
 }
 
 // -- Funcao para inicializar display --
@@ -111,7 +114,10 @@ int groundHumidity() {
 void readTemperature() {
     int temp;
     temp = dht11(2);
-
+    
+    // -- Chamada da função para ligar ou n exaustor com ajuste pwm limiar = 25.4ºC
+     exhaustFan(temp, 25.4);
+     
     // -- Separa digitos --
     temp = temp / 100;
     digit01 = temp / 10;
@@ -150,7 +156,6 @@ void readHumidity() {
             }
      }
      else turnOnWaterPump(0);
-     
 
      // -- Plota na tela e separa digitos --
      if(switchInfo) {
@@ -183,5 +188,19 @@ void turnOnWaterPump(unsigned short status) {
           PWM1_Stop();
           output = 0x00;
      }
+}
 
+// -- Função para acionamento de exaustor para ventilação de estufa --
+
+void exhaustFan(unsigned int temperature, float threshold) {
+     if(temperature > threshold * 100) {
+          if(pwm2Duty < 254) pwm2Duty++;
+          PWM2_Start();
+          PWM2_Set_Duty(pwm2Duty);
+     }
+     else {
+          if (pwm2Duty > 80)pwm2Duty--;
+          PWM2_Set_Duty(pwm2Duty);
+          if(pwm2Duty <= 80) PWM2_Stop();
+     }
 }

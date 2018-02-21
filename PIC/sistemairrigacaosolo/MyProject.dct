@@ -712,6 +712,7 @@ epstall_uep7_bit
 epstall_uep8_bit
 epstall_uep9_bit
 equals_double
+exhaustfan
 exp
 expander_init
 expander_init_advanced
@@ -1375,6 +1376,7 @@ pwm2_init
 pwm2_set_duty
 pwm2_start
 pwm2_stop
+pwm2duty
 pwmduty
 r
 r_bit

@@ -9,7 +9,7 @@ main
 			Delay_5500us
 			Delay_50us
 	readFrequency
-		Word2Double
+		word2double
 			NRM3232
 				RES032
 				SETFUN32
@@ -21,7 +21,7 @@ main
 				RES032
 				SETFOV32
 				SETFUN32
-			Div_8x8_U
+			Div_8X8_S
 		Lcd_Chr
 			Lcd_Cmd
 				Delay_1us

@@ -1,0 +1,7 @@
+0	1	mikroCPIC1618.exe -MSF -DBG -pP18F4550 -DL -O11111114 -fo16 -N"C:\Users\yhanc\Documents\EstudoMicrocontrolares\PIC\monitordeenergia\monitordeenergia.mcppi" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\Defs\" -SP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -SP"C:\Users\yhanc\Documents\EstudoMicrocontrolares\PIC\monitordeenergia\" -IP"C:\Users\Public\Documents\Mikroelektronika\mikroC PRO for PIC\uses\P18\" -IP"C:\Users\yhanc\Documents\EstudoMicrocontrolares\PIC\monitordeenergia\" "monitordeenergia.c" "__Lib_Math.mcl" "__Lib_MathDouble.mcl" "__Lib_System.mcl" "__Lib_Delays.mcl"	 
+hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
+diagnostics: 0	122	Compilation Started	monitordeenergia.c
+error: 41	324	Undeclared identifier 'Lcd_Init' in expression	monitordeenergia.c
+error: 42	324	Undeclared identifier 'Lcd_Cmd' in expression	monitordeenergia.c
+error: 43	324	Undeclared identifier 'Lcd_Cmd' in expression	monitordeenergia.c
+error: 0	102	Finished (with errors): 13 abr 2019, 21:09:14	monitordeenergia.mcppi

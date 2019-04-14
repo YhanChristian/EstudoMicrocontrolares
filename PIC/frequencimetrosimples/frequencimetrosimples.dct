@@ -935,19 +935,13 @@ i2c_dat_bit
 i2c_is_idle
 i2c_is_idle_ptr
 i2c_read
-i2c_read
-i2c_read_bit
 i2c_read_ptr
 i2c_restart
 i2c_restart_ptr
 i2c_set_active
 i2c_start
-i2c_start_
-i2c_start__bit
 i2c_start_ptr
 i2c_stop
-i2c_stop_
-i2c_stop__bit
 i2c_stop_ptr
 i2c_write
 i2c_write_ptr
@@ -1393,6 +1387,7 @@ plusw1
 plusw2
 por
 por_bit
+port_to_tris_offset
 porta
 portb
 portc

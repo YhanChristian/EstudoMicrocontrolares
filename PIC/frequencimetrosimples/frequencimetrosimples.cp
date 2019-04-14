@@ -1,5 +1,5 @@
-#line 1 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
-#line 12 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
+#line 1 "C:/Users/yhanc/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
+#line 12 "C:/Users/yhanc/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
 void configureMcu();
 void initLcd();
 void readFrequency();
@@ -31,7 +31,7 @@ sbit LCD_D7_Direction at TRISD7_bit;
 void main() {
  configureMcu();
  initLcd();
-#line 48 "Z:/home/yhanchristian/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
+#line 48 "C:/Users/yhanc/Documents/EstudoMicrocontrolares/PIC/frequencimetrosimples/frequencimetrosimples.c"
  while(1) {
  if(TMR1IF_bit) {
  TMR1IF_bit = 0x00;

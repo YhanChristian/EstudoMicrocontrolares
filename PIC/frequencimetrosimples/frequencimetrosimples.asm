@@ -9,10 +9,10 @@ _main:
 ;frequencimetrosimples.c,48 :: 		while(1) {
 L_main0:
 ;frequencimetrosimples.c,49 :: 		if(TMR1IF_bit) {
-	BTFSS       TMR1IF_bit+0, 0 
+	BTFSS       TMR1IF_bit+0, BitPos(TMR1IF_bit+0) 
 	GOTO        L_main2
 ;frequencimetrosimples.c,50 :: 		TMR1IF_bit = 0x00;
-	BCF         TMR1IF_bit+0, 0 
+	BCF         TMR1IF_bit+0, BitPos(TMR1IF_bit+0) 
 ;frequencimetrosimples.c,51 :: 		TMR1H = 0x3C;
 	MOVLW       60
 	MOVWF       TMR1H+0 
@@ -29,7 +29,7 @@ L_main0:
 ;frequencimetrosimples.c,55 :: 		readFrequency();
 	CALL        _readFrequency+0, 0
 ;frequencimetrosimples.c,56 :: 		output = ~output;
-	BTG         LATB0_bit+0, 0 
+	BTG         LATB0_bit+0, BitPos(LATB0_bit+0) 
 ;frequencimetrosimples.c,57 :: 		auxT1 = 0x00;
 	CLRF        _auxT1+0 
 ;frequencimetrosimples.c,58 :: 		}
@@ -104,7 +104,7 @@ _readFrequency:
 	MOVWF       R0 
 	MOVF        readFrequency_frequency_L0+1, 0 
 	MOVWF       R1 
-	CALL        _Word2Double+0, 0
+	CALL        _word2double+0, 0
 	MOVF        R0, 0 
 	MOVWF       FARG_FloatToStr_fnum+0 
 	MOVF        R1, 0 

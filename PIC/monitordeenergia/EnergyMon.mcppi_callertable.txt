@@ -1,0 +1,22 @@
+main
+	configureMcu
+	initDisplay
+		Lcd_Init
+			Delay_5500us
+			Delay_1us
+		Lcd_Cmd
+			Delay_1us
+			Delay_5500us
+			Delay_50us
+	calcPower
+		Mul_16X16_U
+	showDisplay
+		Lcd_Chr
+			Lcd_Cmd
+				Delay_1us
+				Delay_5500us
+				Delay_50us
+		Div_16x16_S
+			Div_16x16_S_L
+		Div_8X8_U
+		Div_16X16_U

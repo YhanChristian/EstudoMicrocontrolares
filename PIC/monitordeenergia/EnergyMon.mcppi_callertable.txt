@@ -8,6 +8,20 @@ main
 			Delay_1us
 			Delay_5500us
 			Delay_50us
+	readCurrent
+		ADC_Read
+			Delay_22us
+		int2double
+			NRM3232
+				RES032
+				SETFUN32
+				FIXSIGN32
+		Mul_32x32_FP
+			RES032
+			SETFOV32
+			SETFUN32
+		double2int
+			SETIOV3224
 	calcPower
 		Mul_16X16_U
 	showDisplay

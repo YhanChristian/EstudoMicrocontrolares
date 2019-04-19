@@ -20,7 +20,7 @@ void configureMcu();
 void initDisplay();
 void showDisplay(unsigned short current[4], int voltage[4], unsigned int activePower[4]);
 unsigned int calcPower(unsigned short current, int voltage);
-int readCurrent(unsigned short value);
+int readCurrent(unsigned short sensor);
 
 
 
@@ -37,20 +37,20 @@ void configureMcu() {
 void main(){
 
 
- unsigned short current[4] = {123,210,132,213}, i;
- int voltage[4] = {220,220,220,220};
- unsigned int activePower[4] = {0,0,0,0};
+ unsigned short current[4] = {0, 0, 0, 0}, i;
+ int voltage[4] = {220, 220, 220, 220};
+ unsigned int activePower[4] = {0, 0, 0, 0};
  configureMcu();
  initDisplay();
  while(1){
-#line 56 "C:/Users/yhanc/Documents/EstudoMicrocontrolares/PIC/monitordeenergia/main.c"
- for (i=0; i<4; i++) activePower[i] = calcPower(current[i],voltage[i]);
+ current[0] = readCurrent(1);
+ current[1] = readCurrent(2);
+ current[2] = readCurrent(3);
+ current[3] = readCurrent(4);
+ for (i = 0; i < 4; i++) activePower[i] = calcPower(current[i], voltage[i]);
  showDisplay(current, voltage, activePower);
  }
 }
-
-
-
 
 
 
@@ -89,7 +89,7 @@ void showDisplay(unsigned short current[4], int voltage[4], unsigned int activeP
  LCD_chr(i + 1, 9,digit[0] + 48);
  LCD_chr(i + 1, 10,digit[1] + 48);
  LCD_chr(i + 1, 11,digit[2] + 48);
- LCD_chr(i + 1, 12,'V');
+ LCD_chr(i + 1, 12,'A');
  }
 
 
@@ -116,4 +116,25 @@ unsigned int calcPower(unsigned short current, int voltage){
  unsigned int activePower;
  activePower = current * voltage;
  return activePower;
+}
+
+
+
+int readCurrent(unsigned short sensor) {
+ int time[2] = {0, 1024};
+ int value = 0, relativeVoltage, readCurrentAmp;
+ unsigned int i;
+ for(i = 0; i < 254; i++) {
+ value = ADC_Read(sensor - 1);
+ if(time[0] < value) time[0] = value;
+ if(time[1] > value) time[1] = value;
+ }
+ relativeVoltage = (time[0] - time[1]) * 0.13808;
+ readCurrentAmp = relativeVoltage * 0.707;
+ readCurrentAmp = readCurrentAmp * 2;
+
+ if(readCurrentAmp < 0) readCurrentAmp = -readCurrentAmp;
+ if(readCurrentAmp > 100) readCurrentAmp = 100;
+
+ return readCurrentAmp;
 }

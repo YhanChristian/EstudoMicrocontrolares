@@ -4704,6 +4704,7 @@ re3
 re3_bit
 read_write
 read_write_bit
+readcurrent
 readptr
 readptr
 readptr

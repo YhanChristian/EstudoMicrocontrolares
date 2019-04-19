@@ -26,7 +26,7 @@ void configureMcu();
 void initDisplay();
 void showDisplay(unsigned short current[4], int voltage[4], unsigned int activePower[4]);
 unsigned int calcPower(unsigned short current, int voltage);
-int readCurrent(unsigned short value);
+int readCurrent(unsigned short sensor);
 
 
 // -- Setup MCU --
@@ -43,23 +43,20 @@ void configureMcu() {
 void main(){
 // - Variáveis Locais --
 
-    unsigned short current[4] = {123,210,132,213}, i;
-    int voltage[4] = {220,220,220,220};
-    unsigned int activePower[4] = {0,0,0,0};
+    unsigned short current[4] = {0, 0, 0, 0}, i;
+    int voltage[4] = {220, 220, 220, 220};
+    unsigned int activePower[4] = {0, 0, 0, 0};
     configureMcu();
     initDisplay();
     while(1){
-            /* corrente[0] = LeCorrente(1);
-             corrente[1] = LeCorrente(2);
-             corrente[2] = LeCorrente(3);
-             corrente[3] = LeCorrente(4);         */
-             for (i=0; i<4; i++) activePower[i] = calcPower(current[i],voltage[i]);
-             showDisplay(current, voltage, activePower);
+        current[0] = readCurrent(1);
+        current[1] = readCurrent(2);
+        current[2] = readCurrent(3);
+        current[3] = readCurrent(4);
+        for (i = 0; i < 4; i++) activePower[i] = calcPower(current[i], voltage[i]);
+        showDisplay(current, voltage, activePower);
     }
 }
-
-
-
 
 // -- Inicializa o Display
 
@@ -98,7 +95,7 @@ void showDisplay(unsigned short current[4], int voltage[4], unsigned int activeP
           LCD_chr(i + 1, 9,digit[0] + 48);
           LCD_chr(i + 1, 10,digit[1] + 48);
           LCD_chr(i + 1, 11,digit[2] + 48);
-          LCD_chr(i + 1, 12,'V');
+          LCD_chr(i + 1, 12,'A');
      }
 
      // -- Potência --
@@ -127,47 +124,24 @@ unsigned int calcPower(unsigned short current, int voltage){
     return activePower;
 }
 
-/* int LeCorrente(unsigned short nIn){
-     int TEMP[2] = {0,0};
-     int PCMVal = 0,
-         RelVolt = 0,
-         Ampere = 0;
-     unsigned short iterations = 254,
-                    i;
+// -- Leitura da corrente dos sensores TC --
 
-  //Leitura de corrente da entrada
-  //TRISC.B2 = 0;
-
-                             //nout+InSelectADJ1
-          TEMP[0] =0;
-          TEMP[1] = 1024;
-          for ( i = 0; i < iterations; i++ ){
-              //PORTC.B2=!PORTC.B2;
-              PCMVal = ADC_Read(nIn-1);              //numero da saida começa em 1 - primeira saida ANA utilizada é 5
-                if ( TEMP[0] < PCMVal ){
-                   //Obtem maximo (para sinal senoidal/AC)
-                    TEMP[0] = PCMVal;
-                }
-                if ( TEMP[1] > PCMVal ){
-                   //Obtem maximo (para sinal senoidal/AC)
-                    TEMP[1] = PCMVal;
-                }
-          }
-                   //Calcula a amplitude e converte para corrente (de pico - 141,4 A)
-          RelVolt =  (TEMP[0]-TEMP[1])*0.13808;           // Converte PCM para mV
-
-         Ampere = RelVolt*0.707; //COnverte para valor RMS
-         Ampere = Ampere*2;
-
-          if (Ampere < 0 ){
-               Ampere = -Ampere;
-          }
-
-          if (Ampere > 100){
-             Ampere = 100;
-          }
-
-          return Ampere;
+int readCurrent(unsigned short sensor) {
+    int time[2] = {0, 1024};
+    int value = 0, relativeVoltage, readCurrentAmp;
+    unsigned int i;
+    for(i = 0; i < 254; i++) {
+        value = ADC_Read(sensor - 1);
+        if(time[0] < value) time[0] = value; // Obtem onda senoidal valores máximos
+        if(time[1] > value) time[1] = value;
+    }
+    relativeVoltage = (time[0] - time[1]) * 0.13808; // Converte valor lido em mV
+    readCurrentAmp = relativeVoltage * 0.707; // converte valor para RMS
+    readCurrentAmp = readCurrentAmp * 2; //multipla valor para obter corrente lida
+    
+    if(readCurrentAmp < 0) readCurrentAmp = -readCurrentAmp;
+    if(readCurrentAmp > 100) readCurrentAmp = 100;
+    
+    return readCurrentAmp;
 }
-*/
 

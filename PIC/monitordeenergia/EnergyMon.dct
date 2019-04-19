@@ -4708,6 +4708,7 @@ readcurrent
 readptr
 readptr
 readptr
+readvoltage
 renderreadscanline
 renderreadscanline
 renderreadscanline

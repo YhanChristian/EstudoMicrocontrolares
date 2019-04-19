@@ -21,13 +21,14 @@ void initDisplay();
 void showDisplay(unsigned short current[4], int voltage[4], unsigned int activePower[4]);
 unsigned int calcPower(unsigned short current, int voltage);
 int readCurrent(unsigned short sensor);
+int readVoltage(unsigned short circuit);
 
 
 
 
 void configureMcu() {
  CMCON = 0x07;
- ADCON1 = 0x0B;
+ ADCON1 = 0x07;
  ADCON2 = 0x38;
 }
 
@@ -38,7 +39,7 @@ void main(){
 
 
  unsigned short current[4] = {0, 0, 0, 0}, i;
- int voltage[4] = {220, 220, 220, 220};
+ int voltage[4] = {0, 0, 0, 0};
  unsigned int activePower[4] = {0, 0, 0, 0};
  configureMcu();
  initDisplay();
@@ -47,6 +48,10 @@ void main(){
  current[1] = readCurrent(2);
  current[2] = readCurrent(3);
  current[3] = readCurrent(4);
+ voltage[0] = readVoltage(1);
+ voltage[1] = readVoltage(2);
+ voltage[2] = readVoltage(3);
+ voltage[3] = readVoltage(4);
  for (i = 0; i < 4; i++) activePower[i] = calcPower(current[i], voltage[i]);
  showDisplay(current, voltage, activePower);
  }
@@ -137,4 +142,20 @@ int readCurrent(unsigned short sensor) {
  if(readCurrentAmp > 100) readCurrentAmp = 100;
 
  return readCurrentAmp;
+}
+
+int readVoltage(unsigned short circuit) {
+ int tempValue = 0, pcm = 254;
+ unsigned short i;
+ float voltageAC = 0, conversion[2] = { 2.48, 220 };
+
+ for(i = 0; i < 254; i++) {
+ pcm = ADC_Read(circuit + 3);
+ if(pcm > tempValue) pcm = tempValue;
+ }
+
+ voltageAC = tempValue * 0.0048828125;
+ voltageAC = voltageAC *(conversion[1] / conversion[0]);
+
+ return voltageAC;
 }

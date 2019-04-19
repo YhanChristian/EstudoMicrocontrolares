@@ -10,13 +10,15 @@ warning: 0	1502	Specified include path does not exist: 'D:\Program Files (x86)\M
 warning: 0	1502	Specified include path does not exist: 'D:\Program Files (x86)\Mikroeletronica\mikroC PRO for PIC 7\Packages\FT812\Uses'	 
 hint: 0	1139	Available RAM: 2027 [bytes], Available ROM: 32768 [bytes]	 
 diagnostics: 0	122	Compilation Started	main.c
-diagnostics: 146	123	Compiled Successfully	main.c
-hint: 122	1164	Variable 'activePower' has been eliminated by optimizer	main.c
-hint: 131	1164	Variable 'relativeVoltage' has been eliminated by optimizer	main.c
-diagnostics: 0	127	All files Compiled in 188 ms	 
+diagnostics: 167	123	Compiled Successfully	main.c
+hint: 127	1164	Variable 'activePower' has been eliminated by optimizer	main.c
+hint: 136	1164	Variable 'relativeVoltage' has been eliminated by optimizer	main.c
+hint: 154	1164	Variable 'pcm' has been eliminated by optimizer	main.c
+hint: 156	1164	Variable 'voltageAC' has been eliminated by optimizer	main.c
+diagnostics: 0	127	All files Compiled in 172 ms	 
 hint: 0	1144	Used RAM (bytes): 92 (5%)  Free RAM (bytes): 1935 (95%)	Used RAM (bytes): 92 (5%)  Free RAM (bytes): 1935 (95%)
-hint: 0	1144	Used ROM (bytes): 3273 (10%)  Free ROM (bytes): 29495 (90%)	Used ROM (bytes): 3273 (10%)  Free ROM (bytes): 29495 (90%)
+hint: 0	1144	Used ROM (bytes): 3867 (12%)  Free ROM (bytes): 28901 (88%)	Used ROM (bytes): 3867 (12%)  Free ROM (bytes): 28901 (88%)
 diagnostics: 0	125	Project Linked Successfully	EnergyMon.mcppi
-diagnostics: 0	128	Linked in 218 ms	 
-diagnostics: 0	129	Project 'EnergyMon.mcppi' completed: 515 ms	 
-diagnostics: 0	103	Finished successfully: 19 abr 2019, 13:15:25	EnergyMon.mcppi
+diagnostics: 0	128	Linked in 484 ms	 
+diagnostics: 0	129	Project 'EnergyMon.mcppi' completed: 813 ms	 
+diagnostics: 0	103	Finished successfully: 19 abr 2019, 16:16:14	EnergyMon.mcppi

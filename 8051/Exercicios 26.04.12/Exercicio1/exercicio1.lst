@@ -1,0 +1,192 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	G:\Silvio Pasta\Exercicios 26.04.12\Exercicio1\exercicio1.asm
+	Object File:	G:\Silvio Pasta\Exercicios 26.04.12\Exercicio1\exercicio1.hex
+	List File:	G:\Silvio Pasta\Exercicios 26.04.12\Exercicio1\exercicio1.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  exercicio1.asm  ver. 0.0 data: 27/04/13.   ========
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;Um painel com três botões para controlar duas esteiras de alimentação de uma máquina
+    9:				;, dependendo do tipo de peça a ser produzida ligamos manualmente uma das duas esteiras de matéria p
+				rima ou as duas juntas
+   10:				;, além disso, existe um botão único para o desligamento das duas esteiras,
+   11:				; no painel também existem dois led’s para sinalização de qual esteira está acionada.
+   12:
+   13:
+   14:		N      0000			ORG 0000H		;Inicio de Programa
+   15:	  0000	75 80 00			MOV P0,#00H		;Limpo P0
+   16:	  0003	75 A0 FF			MOV P2,#0FFH		;Preparo P2 para leitura
+   17:
+   18:
+   19:	  0006			LOOP:
+   20:
+   21:	  0006	20 A0 FD			 JB P2.0,LOOP 		;Verifico o acionamento do botão P2.0
+   22:	  0009	D2 80		LED_01:		 SETB P0.0		;Coloco em nível lógico 1 P0.0
+   23:
+   24:	  000B	20 A1 FB			JB P2.1, LED_01		 ;Verifico o acionamento do botão P2.1
+   25:	  000E	D2 81		LED_02:		SETB P0.1		;Coloco em nivel lógico 1 PO.
+   26:	  0010	20 A2 FB			JB P2.2, LED_02		;Verifico o acionamento do botão P2.2
+   27:	  0013	C2 80		LED_03:		CLR P0.0		;Limpo P0.0
+   28:	  0015	C2 81				CLR P0.1		;Limpo P0.1
+   29:	  0017	75 80 00			MOV P0,#00H		;Limpo o port
+   30:	  001A	12 00 1F			LCALL TEMPO		;Chamo subrotina de tempo para atraso "Debounce"
+   31:	  001D	80 E7				SJMP LOOP		;Volto ao Loop
+   32:
+   33:
+   34:
+   35:					;SUBROTINA TEMPO=(250X250X2X2)uS= 250000uS=250ms
+   36:	  001F	78 08		TEMPO:  MOV R0, #8                              ;CARREGA RO COM 2
+   37:	  0021	79 FA		VOLTA2: MOV R1, #250      	                   ;CARREGA R1 COM 250
+   38:	  0023	7A FA		VOLTA1: MOV R2, #250	                         ;CARREGA R2 COM 250
+   39:	  0025	DA FE		        DJNZ R2, $                              ;DECREMENTA R2 ATÉ ZERAR
+   40:	  0027	D9 FA		        DJNZ R1, VOLTA1                         ;DECREMENTA R1 E SALTA ATÉ ZERAR
+   41:	  0029	D8 F6		        DJNZ R0, VOLTA2                         ;DECREMENTA RO E SALTA ATÉ ZERAR
+   42:	  002B	22		        RET                                     ;RETORNO DE SUBROTINA
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   43:				        END                                     ;FIM DO PROGRAMA
+   44:
+   45:
+   46:
+   47:
+   48:
+   49:
+   50:
+   51:
+   52:
+   53:
+   54:
+   55:
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LED_01				  CODE	    0009	  22
+LED_02				  CODE	    000E	  25
+LED_03				  CODE	    0013	  27
+LOOP				  CODE	    0006	  19
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    001F	  36
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    0023	  38
+VOLTA2				  CODE	    0021	  37
+WR				  BIT	      B6

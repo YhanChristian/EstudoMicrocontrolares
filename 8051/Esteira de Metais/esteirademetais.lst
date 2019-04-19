@@ -1,0 +1,201 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	C:\Users\Familia Souza Lopes\Dropbox\Eletrônica\Silvio Pasta\Esteira de Metais\esteirademetais.asm
+	Object File:	C:\Users\Familia Souza Lopes\Dropbox\Eletrônica\Silvio Pasta\Esteira de Metais\esteirademetais.hex
+	List File:	C:\Users\Familia Souza Lopes\Dropbox\Eletrônica\Silvio Pasta\Esteira de Metais\esteirademetais.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  esteirademetais.asm  ver. 0.0 data: 28/02/14.   ======
+
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;PROGRAMA DA ESTEIRA EM DESENVOLVIMENTO
+    9:
+   10:
+   11:		N      0000			ORG 0000H			;Inicio de Programa
+   12:	  0000	75 80 00			MOV P0,#00 			;Limpo P0
+   13:	  0003	75 A0 FF			MOV P2,#0FFH			;Preparo P2 para leitura
+   14:	  0006	02 00 50			LJMP INICIO
+   15:		N      0003			ORG 0003H
+   16:	  0003	75 80 00	 INT_0:		MOV P0,#0000H
+   17:	  0006	75 80 08	  		MOV P0, #08			;MOVO PARA P1 08H
+   18:	  0009	12 00 7A	                LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   19:	  000C	75 80 04	                MOV P0, #04			;MOVO PARA P1 04H
+   20:	  000F	12 00 7A	               LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   21:	  0012	75 80 02	               MOV P0, #02			;MOVO PARA P1 02H
+   22:	  0015	12 00 7A	               LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   23:	  0018	75 80 01	               MOV P0, #01			;MOVO PARA P1 01H
+   24:	  001B	12 00 7A	               LCALL TEMPO
+   25:	  001E	75 80 00	               MOV P0,#00H
+   26:	  0021	32			       RETI
+   27:
+   28:
+   29:
+   30:		N      0050			ORG 0050H
+   31:	  0050	75 81 30	INICIO:		MOV SP,#030H			;Carrega SP com 30, evitar problema com pilha
+   32:	  0053	75 A8 81			MOV IE,#10000001B
+   33:	  0056	20 B2 04			JB P3.2,LOOP
+   34:	  0059	C2 88				CLR IT0
+   35:	  005B	80 00				SJMP LOOP
+   36:
+   37:
+   38:
+   39:
+   40:	  005D	75 80 F8	LOOP:          MOV P0, #0F8H			;MOVO PARA P1 08H
+   41:	  0060	12 00 7A	               LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   42:	  0063	75 80 F4	               MOV P0, #0F4H			;MOVO PARA P1 04H
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   43:	  0066	12 00 7A	               LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   44:	  0069	75 80 F2	               MOV P0, #0F2H			;MOVO PARA P1 02H
+   45:	  006C	12 00 7A	               LCALL TEMPO			;SUB-ROTINA DE TEMPO
+   46:	  006F	75 80 F1	               MOV P0, #0F1H			;MOVO PARA P1 01H
+   47:	  0072	12 00 7A	               LCALL TEMPO
+   48:	  0075	75 80 F0	               MOV P0,#0F0H
+   49:	  0078	80 E3		               SJMP LOOP			;SALTO PARA INICIO
+   50:
+   51:
+   52:
+   53:
+   54:
+   55:
+   56:
+   57:					;SUB-ROTINA TEMPO=(250X250X2X2)uS= 250000uS=250ms
+   58:	  007A	78 04		TEMPO:  MOV R0, #4                              ;CARREGA RO COM 2
+   59:	  007C	79 FA		VOLTA2: MOV R1, #250      	                   ;CARREGA R1 COM 250
+   60:	  007E	7A FA		VOLTA1: MOV R2, #250	                         ;CARREGA R2 COM 250
+   61:	  0080	DA FE		        DJNZ R2, $                              ;DECREMENTA R2 ATÉ ZERAR
+   62:	  0082	D9 FA		        DJNZ R1, VOLTA1                         ;DECREMENTA R1 E SALTA ATÉ ZERAR
+   63:	  0084	D8 F6		        DJNZ R0, VOLTA2                         ;DECREMENTA RO E SALTA ATÉ ZERAR
+   64:	  0086	22		        RET                                     ;RETORNO DE SUBROTINA
+   65:				        END                                     ;FIM DO PROGRAMA
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INICIO				  CODE	    0050	  31
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+INT_0				  CODE	    0003	  16
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LOOP				  CODE	    005D	  40
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    007A	  58
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    007E	  60
+VOLTA2				  CODE	    007C	  59
+WR				  BIT	      B6

@@ -1,0 +1,250 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Projetos do livro de treino 8051\PiscaLed\piscaled.asm
+	Object File:	H:\Silvio Pasta\Projetos do livro de treino 8051\PiscaLed\piscaled.hex
+	List File:	H:\Silvio Pasta\Projetos do livro de treino 8051\PiscaLed\piscaled.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ==================================================================================
+    2:				; =================      ETEC Aristóteles Ferreira   ==================
+    3:				; ================     Yhan Christian Souza Silva        ================
+    4:				; =====            Programa_01  piscaled.asm  ver. 0.0 data: 29/03/13       ========
+
+    5:				; ===================================================================================
+    6:
+    7:		N      3CAF	TEMPO			EQU	(65535-50000)			;define atraso de 50.000 us
+    8:		N      0014	VEZES			EQU	14h				;define o número de vezes que o TEMP
+				O será
+    9:												;multiplicado - para cristal de 12 M
+				Hz
+   10:												;14h corresponde a 20 decimal: produ
+				zirá
+   11:												;TEMPO=1s, pois 50.000usx20=1s
+   12:		N      0000				ORG	0000h				;define endereço inicial
+   13:	  0000	75 89 01				MOV	TMOD,#01H			;programa timer 0 no modo 1 (16 bits
+				)
+   14:	  0003	02 00 40				LJMP	PRINC				;pula para a rotina de início de pro
+				grama
+   15:
+   16:				;Colocamos o endereço inicial do programa na posição 0040h apenas
+   17:				;para preservar os endereços de INTERRUPÇÃO que são fixos dentro desta faixa de endereços
+   18:
+   19:					;ROTINA DE PISCA-PISCA
+   20:					;Os quatro primeiros LEDs acendem, depois só os últimos quatro LEDS acendem
+   21:					;Vamos admitir que as teclas s1 e s2 estejam nos pinos PX.0 E PX.1 em que X pode
+   22:					;ser qualquer Port disponível, neste caso, escolhemos o port P1.
+   23:		N      0040				ORG	0040H				;define inicio do programa
+   24:	  0040	78 FF		PRINC:			MOV	R0,#0FFH			;carrega o R0 com FFh
+   25:	  0042	74 F0		SEQUENCIA0:		MOV	A,#0F0H				;carrega 11110000 no acumulador
+   26:	  0044	F5 B0		PISCA:			MOV	P3,A				;escreve no port 3
+   27:	  0046	12 00 66				LCALL	ATRASO				;chama a rotina de atraso
+   28:	  0049	C4					SWAP	A				;troca os 4bits +sig, pelos 4 -sig
+   29:	  004A	A8 90					MOV	R0,P1				;lê teclado
+   30:	  004C	B8 FE F5				CJNE	R0,#0FEH,PISCA			;verifica se tecla S1 foi pressionad
+				a
+   31:												;se não continua sequencia pisca(vid
+				e esquema)
+   32:	  004F	12 00 86				LCALL	SOLTATECLA			;se S1 foi pressionada,vá para solta
+				tecla
+   33:
+   34:							;ROTINA DA SEQUÊNCIA DE LEDS
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   35:							;Faz com que um LED acenda de cada vez em sequência
+   36:
+   37:	  0052	7B 80		SEQUENCIA1:		MOV	R3,#80H				;VALOR (10000000)b para R3
+   38:	  0054	8B B0		LOOP2:			MOV	P3,R3				;move R3 para P3, isto fará com
+   39:												;que acenda o LED que receberá o bit
+				 1
+   40:												;os três comandos abaixo farão com q
+				ue no
+   41:												;registrador R3, que é nosso registr
+				ador de
+   42:												;saida, vá deslocando para a direita
+				 o único bit 1
+   43:												;inserido nele
+   44:	  0056	EB					MOV	A,R3
+   45:	  0057	03					RR	A				;desloca o acumulador à direita
+   46:	  0058	FB					MOV	R3,A				;carrega R3 com o conteudo de A
+   47:	  0059	12 00 66				LCALL	ATRASO				;chama a rotina de atraso
+   48:	  005C	A8 90					MOV	R0,P1				;lê teclado
+   49:	  005E	B8 FD F3				CJNE	R0,#0FDH,LOOP2			;fica em "loop" se não foi pressiona
+				da a tecla S2
+   50:	  0061	12 00 86				LCALL	SOLTATECLA			;se foi vá para "soltatecla"
+   51:	  0064	80 DC					SJMP	SEQUENCIA0			;retorne a sequencia "pisca"
+   52:
+   53:							;SUB-ROTINAS
+   54:	  0066	C0 E0		ATRASO:			PUSH	ACC				;salva o valor do acumulador na pilh
+				a
+   55:	  0068	C0 01					PUSH	01h				;salva valor R1 na pilha
+   56:	  006A	79 00					MOV	R1,#0h				;zera o conteúdo de R1
+   57:	  006C	75 8C 3C	LOOP:			MOV	TH0,#HIGH(TEMPO)		;carrega THight e TLow do Timer 0 co
+				m 50.000, já
+   58:												;separado em High e Low
+   59:	  006F	75 8A AF				MOV	TL0,#LOW(TEMPO)
+   60:	  0072	D2 8C					SETB	TR0				;liga timer
+   61:	  0074	30 8D FD				JNB	TF0,$				;Enquanto TF0=0 permanece aqui em "l
+				oop".
+   62:	  0077	E9					MOV	A,R1				;lê R1
+   63:	  0078	24 01					ADD	A,#01H				;soma 1 ao acc
+   64:	  007A	F9					MOV	R1,A				;escreve em R1
+   65:	  007B	C2 8C					CLR	TR0				;desliga timer
+   66:	  007D	C2 8D					CLR	TF0				;reseta FLAG do timer 0
+   67:	  007F	B9 14 EA				CJNE	R1,#VEZES,LOOP			;faz com que o timer conte 20 vezes
+   68:	  0082	D0 01					POP	01H				;volta o valor armazenado para R1
+   69:	  0084	D0 E0					POP	ACC				;volta valor armazenado para acc
+   70:
+   71:	  0086	A8 90		SOLTATECLA:		MOV	R0,P1				;lê teclado
+   72:	  0088	75 8C FD				MOV	TH0,#HIGH(65000)		;perde tempo para ler último estado
+				da tecla
+   73:												;antes de soltar, para evitar proble
+				mas de
+   74:												;"bouncing" da tecla.
+   75:	  008B	75 8A E8				MOV	TL0,#LOW(65000)
+   76:	  008E	D2 8C					SETB	TR0				;liga timer
+   77:	  0090	30 8D FD				JNB	TF0,$				;Enquanto TF0=0 permanece aqui.
+   78:	  0093	C2 8C					CLR	TR0				;desliga timer
+   79:	  0095	C2 8D					CLR	TF0				;reseta FLAG do timer 0
+   80:	  0097	A8 90					MOV	R0,P1				;lê teclado
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+   81:	  0099	B8 FF EA				CJNE	R0,#0FFH,SOLTATECLA		;enquanto tecla estiver apertada esp
+				era soltar.
+   82:	  009C	22					RET
+   83:
+   84:							END					;fim de programa
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+ATRASO				  CODE	    0066	  54
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LOOP				  CODE	    006C	  57
+LOOP2				  CODE	    0054	  38
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PISCA				  CODE	    0044	  26
+PRINC				  CODE	    0040	  24
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SEQUENCIA0			  CODE	    0042	  25
+SEQUENCIA1			  CODE	    0052	  37
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SOLTATECLA			  CODE	    0086	  71
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  NUMBER    3CAF	   7
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VEZES				  NUMBER    0014	   8
+WR				  BIT	      B6

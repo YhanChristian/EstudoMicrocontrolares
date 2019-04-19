@@ -1,0 +1,206 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Motor de passo\Motor de passo 5\halfindex.asm
+	Object File:	H:\Silvio Pasta\Motor de passo\Motor de passo 5\halfindex.hex
+	List File:	H:\Silvio Pasta\Motor de passo\Motor de passo 5\halfindex.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  halfindex.asm  ver. 0.0 data: 16/06/13.   =========
+    5:				; ========================================================================
+    6:
+    7:				;PROGRAMA INDEXADOR COM DPTR HALF-STEP
+    8:
+    9:
+   10:				;--------------------------------------------------------------------------------
+   11:						;EQUIVALENCIAS
+   12:
+   13:		N      0003		INDEX  	EQU 03H			;INDEX EQUIVALE A 03H, INDEXADOR DA TABELA
+   14:		D      0090		SAIDA  	EQU P1			;SAIDA EQUIVALE A P1
+   15:		D      0080		MOSTRA  EQU P0			;MOSTRA EQUIVALE A P2
+   16:		B      00A0		SH  	EQU P2.0		;SH EQUIVALE A P2.0
+   17:		B      00A7		SAH 	EQU P2.7		;SAH EQUIVALE A P2.7
+   18:
+   19:
+   20:
+   21:		N      0000		ORG 0000H			;INICIO DE PROGRAMA.
+   22:	  0000	75 81 30		MOV SP, #30H			;REALOCA STACK POINTER.
+   23:	  0003	90 00 35		MOV DPTR, #HALF_STEP		;BUSCA ENDEREÇO INICIAL DA TABELA.
+   24:	  0006	75 03 07		MOV INDEX, #07			;INICIALIZA INDEXADOR DA TABELA.
+   25:				;--------------------------------------------------------------------------------
+   26:						;CONTROLE MOTOR
+   27:
+   28:	  0009	20 A0 08	DIREITA:JB SH, ESQUERDA			;VERIFICO ACIONAMENTO DE SH, PULO PARA ESQUERDA
+   29:	  000C	05 03			INC INDEX			;INCREMENTA INDEX
+   30:	  000E	53 03 07		ANL INDEX, #07			;LOGICA AND ENTRE INDEX E 07
+   31:	  0011	12 00 21		LCALL STEP_SUB			;SUB-ROTINA STEP_SUB, EXECUTA UM PASSO
+   32:
+   33:
+   34:	  0014	20 A7 F2	ESQUERDA:JB SAH, DIREITA		;VERIFICO ACIONAMENTO DE SAH, PULO PARA DIREITA
+   35:	  0017	15 03			DEC INDEX			;DECREMENTA INDEX
+   36:	  0019	53 03 07		ANL INDEX, #07			;LOGICA AND ENTRE INDEX E 07
+   37:	  001C	12 00 21		LCALL STEP_SUB			;SUB-ROTINA STEP_SUB, EXECUTA UM PASSO
+   38:	  001F	80 E8			SJMP DIREITA			;VOLTO PARA DIREITA
+   39:				;--------------------------------------------------------------------------------
+   40:						;ACIONAMENTO MOTOR
+   41:
+   42:	  0021	E5 03		STEP_SUB:	MOV A, INDEX		;MOVO PARA ACC O VALOR DE INDEX
+   43:	  0023	93			MOVC A, @A+DPTR			;BUSCO O DADO APONTADO POR A+DPTR E MOVO PARA A
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  0024	F5 90			MOV SAIDA, A			;MOVO O DADO DE ACC PARA SAIDA
+   45:	  0026	F5 80			MOV MOSTRA, A			;MOVO O DADO DE ACC PARA MOSTRA
+   46:	  0028	12 00 2C		LCALL TEMPO			;SUB-ROTINA TEMPO
+   47:	  002B	22			RET 				;RETORNO DE SUB-ROTINA
+   48:
+   49:				;--------------------------------------------------------------------------------
+   50:						;SUB-ROTINA TEMPO
+   51:
+   52:	  002C	78 01		TEMPO:	MOV R0, #1			;MOVO PARA R0 1
+   53:	  002E	79 04			MOV R1, #4			;MOVO PARA R1 4
+   54:	  0030	D8 FE		VOLTA:	DJNZ R0, $			;DECREMENTO R0, TRAVO AQUI
+   55:	  0032	D9 FC			DJNZ R1, VOLTA			;DECREMENTO R1 PULO PARA VOLTA
+   56:	  0034	22			RET				;RETORNO DE SUB-ROTINA
+   57:
+   58:
+   59:				; ÁREA DE CONSTANTES ARMAZENADAS NA MEMÓRIA DE PROGRAMA
+   60:
+   61:	  0035			HALF_STEP:
+   62:	  0035	08 0C 04 06	DB  08H,0CH,04H,06H,02H,03H,01H,09H
+	  0039	02 03 01 09
+   63:
+   64:					END				;FIM DE PROGRAMA
+   65:
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DIREITA				  CODE	    0009	  28
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ESQUERDA			  CODE	    0014	  34
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+HALF_STEP			  CODE	    0035	  61
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INDEX				  NUMBER    0003	  13
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+MOSTRA				  NUMBER    0080	  15
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+RXD				  BIT	      B0
+SAH				  NUMBER    00A7	  17
+SAIDA				  NUMBER    0090	  14
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SH				  NUMBER    00A0	  16
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+STEP_SUB			  CODE	    0021	  42
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    002C	  52
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA				  CODE	    0030	  54
+WR				  BIT	      B6

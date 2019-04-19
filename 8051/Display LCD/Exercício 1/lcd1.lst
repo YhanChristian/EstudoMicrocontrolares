@@ -1,0 +1,253 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Display LCD\Exercício 1\lcd1.asm
+	Object File:	H:\Silvio Pasta\Display LCD\Exercício 1\lcd1.hex
+	List File:	H:\Silvio Pasta\Display LCD\Exercício 1\lcd1.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  lcd1.asm  ver. 0.0 data: 07/07/13.   ==============
+    5:				; ========================================================================
+    6:
+    7:
+    8:				; EXEMPLO DE ESCRITA NO LCD, NELE ESCREVEMOS UM NOME CARACTER POR CARACTER
+    9:
+   10:				; DADOS/INSTRUÇÕES -> 8 BIT PORT P1
+   11:				; R/W -> TERRA
+   12:				; E -> P3.0
+   13:				; RS -> P3.1
+   14:
+   15:				;--------------------------------------------------------------------------------
+   16:						; DEFINIÇÕES
+   17:
+   18:
+   19:		B      00B0	           E 	EQU 	P3.0                	; E = PINO P3.7
+   20:		B      00B1	           RS 	EQU 	P3.1               	; RS = PINO P3.6
+   21:
+   22:
+   23:		N      0000	           ORG 0000H                 		; END. DE INÍCIO DE ESCRITA NA ROM
+   24:
+   25:				;--------------------------------------------------------------------------------
+   26:						; ROTINA INICIAL
+   27:
+   28:	  0000	E4		           CLR A                     		; LIMPO ACC
+   29:	  0001	75 81 30	           MOV SP, #30H               		; APONTO A PILHA P/ O ENDEREÇO 30H
+   30:	  0004	75 90 00	           MOV P1, #00H               		; ZERO P1
+   31:
+   32:
+   33:				;--------------------------------------------------------------------------------
+   34:						; ROTINA DE INICIALIZAÇÃO DO LCD
+   35:
+   36:	  0007	C2 B1		           	CLR RS                    	; RS EM 0 - PARA ENVIO DE INSTRUÇÃO
+   37:	  0009	74 38		           	MOV A, #38H                	; CONFIGURO DISPLAY 2 LINHAS MATRIZ 5X7
+   38:	  000B	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   39:	  000E	74 06		           	MOV A, #06H                	; ESCREVE DESLOCANDO O CURSOR P/ DIREITA.
+   40:	  0010	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   41:	  0013	74 0C		           	MOV A, #0CH                	; DISPLAY ACESO SEM CURSOR
+   42:	  0015	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   43:	  0018	74 01		           	MOV A, #01H                	; LIMPA O DISPLAY
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  001A	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   45:
+   46:				;--------------------------------------------------------------------------------
+   47:						; ROTINA PARA A ESCRITA DE CADA CARACTER DE UM NOME
+   48:
+   49:	  001D	D2 B1		    		SETB RS                   	; RS EM 1 - PARA ENVIO DE DADOS
+   50:	  001F	74 59		           	MOV A, #'Y'                	; MOVO O DADO Y EM ASCII PARA ACC
+   51:	  0021	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   52:	  0024	74 48		           	MOV A, #'H'                	; MOVO O DADO H EM ASCII PARA ACC
+   53:	  0026	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   54:	  0029	74 41		           	MOV A, #'A'                	; MOVO O DADO A EM ASCII PARA ACC
+   55:	  002B	12 00 6B	           	LCALL ESCREVE     		; CHAMA ROTINA DE ESCRITA
+   56:	  002E	74 4E		           	MOV A, #'N'        		; MOVO O DADO N EM ASCII PARA ACC
+   57:	  0030	12 00 6B			LCALL ESCREVE			; CHAMA ROTINA DE ESCRITA
+   58:
+   59:				;--------------------------------------------------------------------------------
+   60:						; ESPAÇO
+   61:
+   62:	  0033	C2 B1				CLR RS                    	; ENVIO DE INSTRUÇÃO
+   63:	  0035	74 14		           	MOV A, #14H                	; DESLOCA SOMENTE O CURSOR PARA A DIREITA
+   64:	  0037	12 00 6B	           	LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   65:
+   66:				;--------------------------------------------------------------------------------
+   67:				; CONTINUA ESCREVENDO OS CARACTERES
+   68:
+   69:	  003A	D2 B1		           SETB RS                   	; RS EM 1 - PARA ENVIO DE DADOS
+   70:	  003C	74 43		           MOV A, #'C'                	; MOVO O DADO C EM ASCII PARA ACC
+   71:	  003E	12 00 6B	           LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   72:	  0041	74 48		           MOV A, #'H'                	; MOVO O DADO H EM ASCII PARA ACC
+   73:	  0043	12 00 6B	           LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   74:	  0046	74 52		           MOV A, #'R'                	; MOVO O DADO R EM ASCII PARA ACC
+   75:	  0048	12 00 6B	           LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   76:	  004B	74 49		           MOV A, #'I'                	; MOVO O DADO I EM ASCII PARA ACC
+   77:	  004D	12 00 6B	           LCALL ESCREVE		; CHAMA ROTINA DE ESCRITA
+   78:	  0050	74 53		           MOV A, #'S'			; MOVO O DADO S EM ASCII PARA ACC
+   79:	  0052	12 00 6B	           LCALL ESCREVE		; CHAMA ROTINA DE ESCRITA
+   80:	  0055	74 54		           MOV A, #'T'			; MOVO O DADO T EM ASCII PARA ACC
+   81:	  0057	12 00 6B	           LCALL ESCREVE		; CHAMA ROTINA DE ESCRITA
+   82:	  005A	74 49		           MOV A, #'I'			; MOVO O DADO I EM ASCII PARA ACC
+   83:	  005C	12 00 6B	           LCALL ESCREVE		; CHAMA ROTINA DE ESCRITA
+   84:	  005F	74 41		           MOV A, #'A'			; MOVO O DADO A EM ASCII PARA ACC
+   85:	  0061	12 00 6B	           LCALL ESCREVE		; CHAMA ROTINA DE ESCRITA
+   86:	  0064	74 4E		           MOV A, #'N'			; MOVO O DADO N EM ASCII PARA ACC
+   87:	  0066	12 00 6B	           LCALL ESCREVE             	; CHAMA ROTINA DE ESCRITA
+   88:	  0069	80 FE		           SJMP $                    	; TRAVO AQUI
+   89:
+   90:				;--------------------------------------------------------------------------------
+   91:						; ROTINA PARA A ESCRITA
+   92:
+   93:	  006B	F5 90		ESCREVE: 	MOV P1, A                  	; COLOCA O CARACTER NO PORT 1
+   94:	  006D	D2 B0		           	SETB E                    	; E=1
+   95:	  006F	12 00 75	           	LCALL ATRASO              	; CHAMA ATRASO DE 10MS
+   96:	  0072	C2 B0		           	CLR E                     	; E=0 (DADOS/INSTRUÇÕES SÃO LIDOS NA TRANSIÇÃO DE 0
+				P/ 1.
+   97:	  0074	22		           	RET                       	; RETORNA DA SUBROTINA
+   98:
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+   99:
+  100:				;--------------------------------------------------------------------------------
+  101:						; ROTINA PARA TEMPO DE ATRASO, APROXIMADAMENTE 10MS
+  102:
+  103:	  0075	78 02		ATRASO:		MOV R0, #2                   	;MOVO PARA R0 2
+  104:	  0077	79 0A		VOLTA2: 	MOV R1, #10                 	;MOVO PARA R1 1O
+  105:	  0079	7A FA		VOLTA1:        	MOV R2, #250			;MOVO PARA R2 250
+  106:	  007B	DA FE		           	DJNZ R2, $			;DECREMENTO R2 E TRAVO AQUI
+  107:	  007D	D9 FA				DJNZ R1, VOLTA1			;DECREMENTO R1 ATÉ ZERO E PULO PARA VOLTA1
+  108:	  007F	D8 F6				DJNZ R0, VOLTA2			;DECREMENTO R0 ATÉ ZERO E PULO PARA VOLTA2
+  109:	  0081	22				RET                       	; RETORNA DA SUBOTINA
+  110:				           	END                       	; FIM DE COMPILAÇÃO
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+ATRASO				  CODE	    0075	 103
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+E				  NUMBER    00B0	  19
+EA				  BIT	      AF
+ES				  BIT	      AC
+ESCREVE				  CODE	    006B	  93
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS				  NUMBER    00B1	  20
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    0079	 105
+VOLTA2				  CODE	    0077	 104
+WR				  BIT	      B6

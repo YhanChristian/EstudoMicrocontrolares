@@ -1,0 +1,157 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	G:\Silvio Pasta\Efeitos Luminosos Exercicios\4leds\4leds.asm
+	Object File:	G:\Silvio Pasta\Efeitos Luminosos Exercicios\4leds\4leds.hex
+	List File:	G:\Silvio Pasta\Efeitos Luminosos Exercicios\4leds\4leds.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===========
+    4:				; =====   Programa_01  piscaled.asm  ver. 0.0 data: 09/04/13.   =========
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;Programa para acender os leGds pares e impares alternadamente
+    9:
+   10:		N      0000		ORG 0000H                               ;INÍCIO DO PROGRAMA
+   11:	  0000	75 80 00		MOV P0, #00H                            ;LIMPO P0
+   12:	  0003	75 80 81	LOOP: 	MOV P0, #81H				;MANDO O DADO 81H PARA P0
+   13:	  0006	12 00 1D		LCALL TEMPO
+   14:	  0009	75 80 42	 	MOV P0,	#42H				;MANDO O DADO 42H PARA P0
+   15:	  000C	12 00 1D	 	LCALL TEMPO
+   16:	  000F	75 80 24	 	MOV P0, #24H				;MANDO O DADO 24H PARA P0
+   17:	  0012	12 00 1D	 	LCALL TEMPO
+   18:	  0015	75 80 18	 	MOV P0,#18H				;MANDO O DADO 18H PARA P0
+   19:	  0018	12 00 1D	        LCALL TEMPO
+   20:	  001B	80 E6		        SJMP LOOP
+   21:
+   22:
+   23:				;SUBROTINA TEMPO=(250X250X2X8)uS= 1000000uS=1s
+   24:	  001D	78 02		TEMPO:  MOV R0, #2                              ;CARREGA RO COM 8
+   25:	  001F	79 FA		VOLTA2: MOV R1, #250                          ;CAREGA R1 COM 125
+   26:	  0021	7A FA		VOLTA1: MOV R2, #250                           ;CAREGA R2 COM 125
+   27:	  0023	DA FE		        DJNZ R2, $                              ;DECREMENTA R2 ATÉ ZERAR
+   28:	  0025	D9 FA		        DJNZ R1, VOLTA1                         ;DECREMENTA R1 E SALTA ATÉ ZERAR
+   29:	  0027	D8 F6		        DJNZ R0, VOLTA2                         ;DECREMENTA RO E SALTA ATÉ ZERAR
+   30:	  0029	22		        RET                                     ;RETORNO DE SUBROTINA
+   31:				        END                                     ;FIM DO PROGRAMA
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LOOP				  CODE	    0003	  12
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    001D	  24
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    0021	  26
+VOLTA2				  CODE	    001F	  25
+WR				  BIT	      B6

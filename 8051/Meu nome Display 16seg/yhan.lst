@@ -1,0 +1,209 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Meu nome Display 16seg\yhan.asm
+	Object File:	H:\Silvio Pasta\Meu nome Display 16seg\yhan.hex
+	List File:	H:\Silvio Pasta\Meu nome Display 16seg\yhan.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  yhan.asm  ver. 0.0 data: 18/05/13.   ==============
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;Programa display 16 segmentos, meu nome
+    9:
+   10:
+   11:		N      0000			ORG 0000H			;Inicio de programa
+   12:
+   13:
+   14:	  0000	75 B0 FF	START: 		MOV P3, #11111111B		;Movo o dado em binário para P3
+   15:	  0003	75 90 77	      		MOV P1, #01110111B		;Movo o dado em binário para P1
+   16:	  0006	75 A0 01	      		MOV P2, #01H        		;Movo o dado 01h para P2
+   17:	  0009	12 00 7A	       		LCALL TEMPO            		;Sub-rotina de tempo
+   18:	  000C	75 A0 00	       		MOV P2, #00H 			;Limpo P2
+   19:
+   20:	  000F	75 B0 FF	       		MOV P3, #11111111B		;Movo o dado em binário para P3
+   21:	  0012	75 90 77	      		MOV P1, #01110111B		;Movo o dado em binário para P1
+   22:	  0015	75 A0 02	      		MOV P2, #02H        		;Movo o dado 02h para P2
+   23:	  0018	12 00 7A	       		LCALL TEMPO            		;Sub-rotina de tempo
+   24:	  001B	75 A0 00	       		MOV P2, #00H 			;Limpo P2
+   25:
+   26:	  001E	75 B0 FF	       		MOV P3, #11111111B		;Movo o dado em binário para P3
+   27:	  0021	75 90 DA	        	MOV P1, #11011010B		;Movo o dado em binário para P1
+   28:	  0024	75 A0 04	        	MOV P2, #04H         		;Movo o dado 04h para P2
+   29:	  0027	12 00 7A	       		LCALL TEMPO           		;Sub-rotina de tempo
+   30:	  002A	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   31:
+   32:	  002D	75 B0 33	       		MOV P3, #00110011B		;Movo o dado em binário para P3
+   33:	  0030	75 90 77	        	MOV P1, #01110111B		;Movo o dado em binário para P1
+   34:	  0033	75 A0 08	        	MOV P2, #08H         		;Movo o dado 08h para P2
+   35:	  0036	12 00 7A	       		LCALL TEMPO            		;Sub-rotina de tempo
+   36:	  0039	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   37:
+   38:	  003C	75 B0 30	       		MOV P3, #00110000B		;Movo o dado em binário para P3
+   39:	  003F	75 90 77	        	MOV P1, #01110111B		;Movo o dado em binário para P1
+   40:	  0042	75 A0 10	        	MOV P2, #10H         		;Movo o dado 10h PARA P2
+   41:	  0045	12 00 7A	       		LCALL TEMPO           		;Sub-rotina de tempo
+   42:	  0048	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   43:
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  004B	75 B0 33	       		MOV P3, #00110011B		;Movo o dado em binário para P3
+   45:	  004E	75 90 EE	        	MOV P1, #11101110B		;Movo o dado em binário para P1
+   46:	  0051	75 A0 20	        	MOV P2, #20H         		;Movo o dado 20h para P2
+   47:	  0054	12 00 7A	       		LCALL TEMPO            		;Sub-rotina de tempo
+   48:	  0057	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   49:
+   50:	  005A	75 B0 FF	        	MOV P3, #11111111B		;Movo o dado em binário para P3
+   51:	  005D	75 90 77	        	MOV P1, #01110111B		;Movo o dado em binário para P1
+   52:	  0060	75 A0 40	        	MOV P2, #40H         		;Movo o dado 40h para P2
+   53:	  0063	12 00 7A	       		LCALL TEMPO      		;Sub-rotina de tempo
+   54:	  0066	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   55:
+   56:	  0069	75 B0 FF	        	MOV P3, #11111111B		;Movo o dado em binário para P3
+   57:	  006C	75 90 77	        	MOV P1, #01110111B		;Movo o dado em binário para P1
+   58:	  006F	75 A0 80	        	MOV P2, #80H         		;Movo o dado 80h para P2
+   59:	  0072	12 00 7A	       		LCALL TEMPO      		;Sub-rotina de tempo
+   60:	  0075	75 A0 00	        	MOV P2, #00H 			;Limpo P2
+   61:
+   62:
+   63:	  0078	80 86		       		SJMP START     			;Volto para START
+   64:
+   65:				;---------------------------------------------------------------------------------------------------
+				--------------------
+   66:				;Sub-rotina de tempo
+   67:
+   68:	  007A	78 01		TEMPO: 	  	MOV R0,#1  			;Move para R0 01
+   69:	  007C	79 19		VOLTA2: 	MOV R1,#25 			;Move para R1 25
+   70:	  007E	7A 32		VOLTA1: 	MOV R2,#50       		;Move para R2 50
+   71:	  0080	DA FE		          	DJNZ R2,$         		;Decremento e trava na linha R2
+   72:	  0082	D9 FA		          	DJNZ R1,VOLTA1    		;Decremento R1 e VOLTA1
+   73:	  0084	D8 F6		          	DJNZ R0,VOLTA2    		;Decremento R0 e VOLTA2
+   74:	  0086	22		          	RET          			;Retorno de Sub-rotina
+   75:				          	END				;Fim de programa
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+START				  CODE	    0000	  14
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    007A	  68
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    007E	  70
+VOLTA2				  CODE	    007C	  69
+WR				  BIT	      B6

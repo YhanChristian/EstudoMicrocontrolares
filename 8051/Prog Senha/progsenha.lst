@@ -1,0 +1,446 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Prog Senha\progsenha.asm
+	Object File:	H:\Silvio Pasta\Prog Senha\progsenha.hex
+	List File:	H:\Silvio Pasta\Prog Senha\progsenha.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  progsenha.asm  ver. 0.1 data: 27/05/13.   =========
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;Fazer um programa para acionar uma fechadura eletrônica
+    9:				;Deverá possuir:
+   10:				;Senha de 9 digitos qualquer
+   11:				;Display para contar o número de teclas pressionadas
+   12:				; * Limpa todos os digitos e volta para inicio
+   13:				; # Para confirmação ENTER
+   14:				;Digitar os 6 números depois digitar ENTER
+   15:				;Se correta libera a fechadura
+   16:				;Se incorreta toca o BUZZER
+   17:				; para calar o BUZZER pressionar e soltar # 3 vezes
+   18:
+   19:
+   20:		N      0000			ORG 0000H
+   21:	  0000	75 A0 00			MOV P2,#00H
+   22:	  0003	75 90 FF			MOV P1,#0FFH
+   23:	  0006	75 81 60			MOV SP,#60H
+   24:	  0009	78 30				MOV R0,#30H
+   25:	  000B	12 01 66			LCALL TEMPO
+   26:				;------------------------------------------------------------------------------
+   27:					  		   ;EQUIVALENCIA
+   28:
+   29:		B      00A7	             LIN_0 EQU P2.7		;LINHA 1 EQUIVALE A P2.7
+   30:		B      00A6	             LIN_1 EQU P2.6		;LINHA 2 EQUIVALE A P2.6
+   31:		B      00A5	             LIN_2 EQU P2.5		;LINHA 3 EQUIVALE A P2.5
+   32:		B      00A4	             LIN_3 EQU P2.4 		;LINHA 4 EQUIVALE A P2.4
+   33:
+   34:		B      00A3	             COL_3 EQU P2.3     	;COLUNA 0 EQUIVALE A P2.3
+   35:		B      00A2	             COL_2 EQU P2.2		;COLUNA 1 EQUIVALE A P2.2
+   36:		B      00A1	             COL_1 EQU P2.1		;COLUNA 2 EQUIVALE A P2.1
+   37:		B      00A0	             COL_0 EQU P2.0     	;COLUNA 3 EQUIVALE A P2.0
+   38:
+   39:				;------------------------------------------------------------------------------
+   40:							;VARREDURA TECLADO
+   41:
+   42:
+   43:	  000E	C2 A0		COLUNA0:     CLR COL_0		;LIMPO COLUNA 0
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  0010	30 A7 11	             JNB LIN_0, S0	;VERIFICO ACIONAMENTO DO BOTÃO S0 DA LINHA 0
+   45:	  0013	30 A6 1E	LINHA1:      JNB LIN_1, S1      ;VERIFICO ACIONAMENTO DO BOTÃO S1 DA LINHA 1
+   46:	  0016	30 A5 2B	LINHA2:      JNB LIN_2, S2	;VERIFICO ACIONAMENTO DO BOTÃO S2 DA LINHA 2
+   47:	  0019	30 A4 38	LINHA3:      JNB LIN_3, S3	;VERIFICO ACIONAMENTO DO BOTÃO S3 DA LINHA 3
+   48:	  001C	D2 A0		LINHA0:      SETB COL_0		;SETO COLUNA 0
+   49:	  001E	12 01 66	             LCALL TEMPO	;SUB-ROTINA DE TEMPO
+   50:	  0021	02 00 64	             LJMP COLUNA1       ;SALTO PARA COLUNA 1
+   51:
+   52:	  0024	74 01		S0:          MOV A, #01H
+   53:	  0026	F6		             MOV @R0,A
+   54:	  0027	08		             INC R0
+   55:	  0028	F5 90		             MOV P1, A
+   56:	  002A	C2 B7		             CLR P3.7
+   57:	  002C	30 A0 FD	             JNB P2.0, $
+   58:	  002F	D2 B7		             SETB P3.7
+   59:	  0031	02 00 13	             LJMP LINHA1
+   60:
+   61:	  0034	74 04		S1:	     MOV A, #04H
+   62:	  0036	F6			     MOV @R0,A
+   63:	  0037	08		             INC R0
+   64:	  0038	F5 90		             MOV P1, A
+   65:	  003A	C2 B7		             CLR P3.7
+   66:	  003C	30 A1 FD	             JNB P2.1, $
+   67:	  003F	D2 B7		             SETB P3.7
+   68:	  0041	02 00 16	             LJMP LINHA2
+   69:
+   70:	  0044	74 07		S2:	    MOV A, #07H
+   71:	  0046	F6		            MOV @R0,A
+   72:	  0047	08		            INC R0
+   73:	  0048	F5 90		            MOV P1, A
+   74:	  004A	C2 B7		            CLR P3.7
+   75:	  004C	30 A2 FD	            JNB P2.2, $
+   76:	  004F	D2 B7		            SETB P3.7
+   77:	  0051	02 00 19	            LJMP LINHA3
+   78:
+   79:	  0054	74 0A		S3:	   MOV A, #0AH
+   80:	  0056	F6			   MOV @R0,A
+   81:	  0057	08			   INC R0
+   82:	  0058	F5 90			   MOV P1, A
+   83:	  005A	C2 B7			   CLR P3.7
+   84:	  005C	30 A3 FD		   JNB P2.3, $
+   85:	  005F	D2 B7			   SETB P3.7
+   86:	  0061	02 00 1C		   LJMP LINHA0
+   87:
+   88:
+   89:	  0064	C2 A1		COLUNA1:     CLR COL_1		;LIMPO COLUNA 1
+   90:	  0066	30 A7 11	             JNB LIN_0, S4	;VERIFICO ACIONAMENTO DO BOTÃO S4 DA LINHA 0
+   91:	  0069	30 A6 1E	LINHA1_1:    JNB LIN_1, S5      ;VERIFICO ACIONAMENTO DO BOTÃO S5 DA LINHA 1
+   92:	  006C	30 A5 2B	LINHA2_1:    JNB LIN_2, S6	;VERIFICO ACIONAMENTO DO BOTÃO S6 DA LINHA 2
+   93:	  006F	30 A4 38	LINHA3_1:    JNB LIN_3, S7	;VERIFICO ACIONAMENTO DO BOTÃO S7 DA LINHA 3
+   94:	  0072	D2 A1		LINHA0_1:    SETB COL_1		;SETO COLUNA 1
+   95:	  0074	12 01 66	             LCALL TEMPO	;SUB-ROTINA DE TEMPO
+   96:	  0077	02 00 BA	             LJMP COLUNA2	;SALTO PARA COLUNA 2
+   97:
+   98:
+   99:	  007A	74 02		S4:          MOV A, #02H
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+  100:	  007C	F6		             MOV @R0,A
+  101:	  007D	08		             INC R0
+  102:	  007E	F5 90		             MOV P1, A
+  103:	  0080	C2 B7		             CLR P3.7
+  104:	  0082	30 A0 FD	             JNB P2.0, $
+  105:	  0085	D2 B7		             SETB P3.7
+  106:	  0087	02 00 69	             LJMP LINHA1_1
+  107:
+  108:	  008A	74 05		S5:	     MOV A, #05H
+  109:	  008C	F6			     MOV @R0,A
+  110:	  008D	08		             INC R0
+  111:	  008E	F5 90		             MOV P1, A
+  112:	  0090	C2 B7		             CLR P3.7
+  113:	  0092	30 A1 FD	             JNB P2.1, $
+  114:	  0095	D2 B7		             SETB P3.7
+  115:	  0097	02 00 6C	             LJMP LINHA2_1
+  116:
+  117:	  009A	74 08		S6:	    MOV A, #08H
+  118:	  009C	F6		            MOV @R0,A
+  119:	  009D	08		            INC R0
+  120:	  009E	F5 90		            MOV P1, A
+  121:	  00A0	C2 B7		            CLR P3.7
+  122:	  00A2	30 A2 FD	            JNB P2.2, $
+  123:	  00A5	D2 B7		            SETB P3.7
+  124:	  00A7	02 00 6F	            LJMP LINHA3_1
+  125:
+  126:	  00AA	74 00		S7:	   MOV A, #00H
+  127:	  00AC	F6			   MOV @R0,A
+  128:	  00AD	08			   INC R0
+  129:	  00AE	F5 90			   MOV P1, A
+  130:	  00B0	C2 B7			   CLR P3.7
+  131:	  00B2	30 A3 FD		   JNB P2.3, $
+  132:	  00B5	D2 B7			   SETB P3.7
+  133:	  00B7	02 00 72		   LJMP LINHA0_1
+  134:
+  135:	  00BA	C2 A2		COLUNA2:     CLR COL_2		;LIMPO COLUNA 2
+  136:	  00BC	30 A7 11	             JNB LIN_0, S8	;VERIFICO ACIONAMENTO DO BOTÃO S8 DA LINHA 0
+  137:	  00BF	30 A6 1E	LINHA1_2:    JNB LIN_1, S9      ;VERIFICO ACIONAMENTO DO BOTÃO S9 DA LINHA 1
+  138:	  00C2	30 A5 2B	LINHA2_2:    JNB LIN_2, S10	;VERIFICO ACIONAMENTO DO BOTÃO S10 DA LINHA 2
+  139:	  00C5	30 A4 38	LINHA3_2:    JNB LIN_3, S11	;VERIFICO ACIONAMENTO DO BOTÃO S11 DA LINHA 3
+  140:	  00C8	D2 A2		LINHA0_2:    SETB COL_2		;SETO COLUNA 2
+  141:	  00CA	12 01 66	             LCALL TEMPO	;SUB-ROTINA DE TEMPO
+  142:	  00CD	02 01 10	             LJMP COLUNA3	;SALTO PARA COLUNA 3
+  143:
+  144:
+  145:	  00D0	74 03		S8:          MOV A, #03H
+  146:	  00D2	F6		             MOV @R0,A
+  147:	  00D3	08		             INC R0
+  148:	  00D4	F5 90		             MOV P1, A
+  149:	  00D6	C2 B7		             CLR P3.7
+  150:	  00D8	30 A0 FD	             JNB P2.0, $
+  151:	  00DB	D2 B7		             SETB P3.7
+  152:	  00DD	02 00 BF	             LJMP LINHA1_2
+  153:
+  154:	  00E0	74 06		S9:	     MOV A, #06H
+  155:	  00E2	F6			     MOV @R0,A
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+ Line  I  Addr  Code            Source
+
+  156:	  00E3	08		             INC R0
+  157:	  00E4	F5 90		             MOV P1, A
+  158:	  00E6	C2 B7		             CLR P3.7
+  159:	  00E8	30 A1 FD	             JNB P2.1, $
+  160:	  00EB	D2 B7		             SETB P3.7
+  161:	  00ED	02 00 C2	             LJMP LINHA2_2
+  162:
+  163:	  00F0	74 09		S10:	    MOV A, #09H
+  164:	  00F2	F6		            MOV @R0,A
+  165:	  00F3	08		            INC R0
+  166:	  00F4	F5 90		            MOV P1, A
+  167:	  00F6	C2 B7		            CLR P3.7
+  168:	  00F8	30 A2 FD	            JNB P2.2, $
+  169:	  00FB	D2 B7		            SETB P3.7
+  170:	  00FD	02 00 C5	            LJMP LINHA3_2
+  171:
+  172:	  0100	74 0B		S11:	   MOV A, #0BH
+  173:	  0102	F6			   MOV @R0,A
+  174:	  0103	08			   INC R0
+  175:	  0104	F5 90			   MOV P1, A
+  176:	  0106	C2 B7			   CLR P3.7
+  177:	  0108	30 A3 FD		   JNB P2.3, $
+  178:	  010B	D2 B7			   SETB P3.7
+  179:	  010D	02 00 C8		   LJMP LINHA0_2
+  180:
+  181:	  0110	C2 A3		COLUNA3:     CLR COL_3		;LIMPO COLUNA 3
+  182:	  0112	30 A7 11	             JNB LIN_0, S12	;VERIFICO ACIONAMENTO DO BOTÃO S12 DA LINHA 1
+  183:	  0115	30 A6 1E	LINHA1_3:    JNB LIN_1, S13    	;VERIFICO ACIONAMENTO DO BOTÃO S13 DA LINHA 2
+  184:	  0118	30 A5 2B	LINHA2_3:    JNB LIN_2, S14	;VERIFICO ACIONAMENTO DO BOTÃO S14 DA LINHA 3
+  185:	  011B	30 A4 38	LINHA3_3:    JNB LIN_3, S15	;VERIFICO ACIONAMENTO DO BOTÃO S15 DA LINHA 0
+  186:	  011E	D2 A3		LINHA0_3:    SETB COL_3		;SETO COLUNA 3
+  187:	  0120	12 01 66	             LCALL TEMPO	;SUB-ROTINA DE TEMPO
+  188:	  0123	02 00 0E	             LJMP COLUNA0	;SALTO PARA COLUNA 0
+  189:
+  190:
+  191:	  0126	74 0D		S12:         MOV A, #0DH
+  192:	  0128	F6		             MOV @R0,A
+  193:	  0129	08		             INC R0
+  194:	  012A	F5 90		             MOV P1, A
+  195:	  012C	C2 B7		             CLR P3.7
+  196:	  012E	30 A0 FD	             JNB P2.0, $
+  197:	  0131	D2 B7		             SETB P3.7
+  198:	  0133	02 01 15	             LJMP LINHA1_3
+  199:
+  200:	  0136	74 0C		S13:	     MOV A, #0CH
+  201:	  0138	F6			     MOV @R0,A
+  202:	  0139	08		             INC R0
+  203:	  013A	F5 90		             MOV P1, A
+  204:	  013C	C2 B7		             CLR P3.7
+  205:	  013E	30 A1 FD	             JNB P2.1, $
+  206:	  0141	D2 B7		             SETB P3.7
+  207:	  0143	02 01 18	             LJMP LINHA2_3
+  208:
+  209:	  0146	74 0E		S14:	    MOV A, #0EH
+  210:	  0148	F6		            MOV @R0,A
+  211:	  0149	08		            INC R0
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+ Line  I  Addr  Code            Source
+
+  212:	  014A	F5 90		            MOV P1, A
+  213:	  014C	C2 B7		            CLR P3.7
+  214:	  014E	30 A2 FD	            JNB P2.2, $
+  215:	  0151	D2 B7		            SETB P3.7
+  216:	  0153	02 01 1B	            LJMP LINHA3_3
+  217:
+  218:	  0156	74 0F		S15:	   MOV A, #0FH
+  219:	  0158	F6			   MOV @R0,A
+  220:	  0159	08			   INC R0
+  221:	  015A	F5 90			   MOV P1, A
+  222:	  015C	C2 B7			   CLR P3.7
+  223:	  015E	30 A3 FD		   JNB P2.3, $
+  224:	  0161	D2 B7			   SETB P3.7
+  225:	  0163	02 01 1E		   LJMP LINHA0_3
+  226:
+  227:
+  228:
+  229:
+  230:				;------------------------------------------------------------------------------
+  231:						;SUBROTINA TEMPO
+  232:
+  233:	  0166	78 02		TEMPO:  MOV R0, #2                    	        ;CARREGA RO COM 2
+  234:	  0168	79 19		VOLTA2: MOV R1, #25		                ;CARREGA R1 COM 25
+  235:	  016A	7A 32		VOLTA1: MOV R2, #50	                        ;CARREGA R2 COM 50
+  236:	  016C	DA FE		        DJNZ R2, $                              ;DECREMENTA R2 ATÉ ZERAR
+  237:	  016E	D9 FA		        DJNZ R1, VOLTA1                         ;DECREMENTA R1 E SALTA ATÉ ZERAR
+  238:	  0170	D8 F6		        DJNZ R0, VOLTA2                         ;DECREMENTA RO E SALTA ATÉ ZERA
+  239:	  0172	22		        RET                                     ;RETORNO DE SUBROTINA
+  240:					END					;FIM DE PROGRAMA
+  241:
+  242:
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 6
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+COLUNA0				  CODE	    000E	  43
+COLUNA1				  CODE	    0064	  89
+COLUNA2				  CODE	    00BA	 135
+COLUNA3				  CODE	    0110	 181
+COL_0				  NUMBER    00A0	  37
+COL_1				  NUMBER    00A1	  36
+COL_2				  NUMBER    00A2	  35
+COL_3				  NUMBER    00A3	  34
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LINHA0				  CODE	    001C	  48
+LINHA0_1			  CODE	    0072	  94
+LINHA0_2			  CODE	    00C8	 140
+LINHA0_3			  CODE	    011E	 186
+LINHA1				  CODE	    0013	  45
+LINHA1_1			  CODE	    0069	  91
+LINHA1_2			  CODE	    00BF	 137
+LINHA1_3			  CODE	    0115	 183
+LINHA2				  CODE	    0016	  46
+LINHA2_1			  CODE	    006C	  92
+LINHA2_2			  CODE	    00C2	 138
+LINHA2_3			  CODE	    0118	 184
+LINHA3				  CODE	    0019	  47
+LINHA3_1			  CODE	    006F	  93
+LINHA3_2			  CODE	    00C5	 139
+LINHA3_3			  CODE	    011B	 185
+LIN_0				  NUMBER    00A7	  29
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 7
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+LIN_1				  NUMBER    00A6	  30
+LIN_2				  NUMBER    00A5	  31
+LIN_3				  NUMBER    00A4	  32
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+S0				  CODE	    0024	  52
+S1				  CODE	    0034	  61
+S10				  CODE	    00F0	 163
+S11				  CODE	    0100	 172
+S12				  CODE	    0126	 191
+S13				  CODE	    0136	 200
+S14				  CODE	    0146	 209
+S15				  CODE	    0156	 218
+S2				  CODE	    0044	  70
+S3				  CODE	    0054	  79
+S4				  CODE	    007A	  99
+S5				  CODE	    008A	 108
+S6				  CODE	    009A	 117
+S7				  CODE	    00AA	 126
+S8				  CODE	    00D0	 145
+S9				  CODE	    00E0	 154
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    0166	 233
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 8
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    016A	 235
+VOLTA2				  CODE	    0168	 234
+WR				  BIT	      B6

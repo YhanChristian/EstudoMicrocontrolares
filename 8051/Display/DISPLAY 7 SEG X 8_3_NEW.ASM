@@ -1,0 +1,57 @@
+ 		ORG 0000H
+
+
+INICIO:		MOV P0,#11111001B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+      		MOV P2, #80H        	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+       		MOV P2, #00H 		; LIMPA P2
+      
+       		MOV P0,#10100100B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+       		MOV P2, #40H        	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+       
+       		MOV P0,#10110000B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #20H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+       	
+       		MOV P0,#10011001B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #10H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+       	
+       		MOV P0,#10010010B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #08H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+        
+        	MOV P0,#10000010B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #04H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+        
+        	MOV P0,#11111000B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #02H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+        	MOV P2, #00H 		; LIMPA P2
+         	
+        	MOV P0,#10000000B	; ENVIA NÍVEL LÓGICO PARA OS SEGMENTOS
+        	MOV P2, #01H         	; ENVIA CORRENTE PARA O DISPLAY SELECIONADO
+       		LCALL TEMPO       	; ESPERA TEMPO (2,5 MS)
+       	 	MOV P2, #00H 		; LIMPA P2
+         	 	
+       		SJMP INICIO       	; SANTA PARA O INICIO
+       
+;========================================================================================
+;SUBROTINA TEMPO DE ESPERA DE 2,5 MS
+;========================================================================================
+
+TEMPO: 	  	MOV R0,#1       	;CARREGA 1 EM R0
+VOLTA2: 	MOV R1,#25     		;CARREGA 25 EM R1
+VOLTA1: 	MOV R2,#50      	;CARREGA 50 EM R1
+          	DJNZ R2,$       	;ESPERA ZERAR R2 PARA CONTINUAR
+          	DJNZ R1,VOLTA1  	;ESPERA ZERAR R1 PARA CONTINUAR
+          	DJNZ R0,VOLTA2  	;ESPERA ZERAR R0 PARA CONTINUAR
+          	RET             	;RETORNA AO PROGRAMA PRINCIPAL
+          	END			;FIM DO PROGRAMA

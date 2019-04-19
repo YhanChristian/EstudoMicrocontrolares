@@ -1,0 +1,266 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Exercicios 26.04.12\Exercicio4\sirene.asm
+	Object File:	H:\Silvio Pasta\Exercicios 26.04.12\Exercicio4\sirene.hex
+	List File:	H:\Silvio Pasta\Exercicios 26.04.12\Exercicio4\sirene.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; ==================     ETEC Aristóteles Ferreira.     ==================
+    3:				; ========           Yhan Christian Souza Silva          =================
+    4:				; ======     Exercicio_04  alarme.asm  ver. 0.0 data: 07/05/13.    =======
+    5:				; ========================================================================
+    6:
+    7:
+    8:
+    9:		N      0000	          ORG 0000			;Inicio de Programa
+   10:
+   11:	  0000	75 80 00	          MOV P0, #00H			;Limpo P0
+   12:	  0003	75 A0 FF	          MOV P2, #0FFH			;Preparo P2.0 para leitu
+   13:	  0006	D2 B7		          SETB P3.7			;Setar P3.7
+   14:
+   15:	  0008	20 B2 FD	ACIONAR00:JB P3.2, ACIONAR00		;Verificar acionamento de P3.2, pular para Acionar00
+   16:	  000B	20 A0 FA	          JB P2.0, ACIONAR00		;Verificar acionamento de P2.0, pular para Acionar00
+   17:	  000E	D2 80		          SETB P0.0			;Setar P0.0
+   18:	  0010	12 00 8F	          LCALL TEMPOV			;Subrotina TempoV
+   19:	  0013	C2 B7		          CLR P3.7			;Limpar P3.7
+   20:
+   21:	  0015	20 B2 FD	DESLIGAR: JB P3.2, DESLIGAR		;Verificar acionamento de P3.2, pular para Desligar
+   22:	  0018	D2 B7		          SETB P3.7			;Setar P3.7
+   23:	  001A	80 0C		          SJMP ACIONAR0			;Pulo para Acionar0
+   24:	  001C	75 80 00	DESLIGA1: MOV P0, #00H			;Movo para P0 o dado 00H
+   25:	  001F	D2 B7		          SETB P3.7			;Setar P3.7
+   26:	  0021	80 E5		          SJMP ACIONAR00		;Pulo para Acionar00
+   27:
+   28:	  0023	20 A0 04	FECHARP:  JB P2.0, ACIONAR1		;Verificar acionamento de P2.0, pular para Acionar1
+   29:	  0026	80 FB		          SJMP FECHARP			;Pulo para Fecharp
+   30:
+   31:	  0028	C2 80		ACIONAR0: CLR P0.0			;Limpo P0.0
+   32:	  002A	30 A0 17	ACIONAR1: JNB P2.0, LED0		;Verifico se está em nível lógico 0 P2.0, pulo Led0
+   33:	  002D	30 A1 20	ACIONAR2: JNB P2.1, LED1		;Verifico se está em nível lógico 0 P2.1, pulo Led1
+   34:	  0030	30 A2 26	ACIONAR3: JNB P2.2, LED2		;Verifico se está em nível lógico 0 P2.2, pulo Led2
+   35:	  0033	30 A3 2C	ACIONAR4: JNB P2.3, LED3		;Verifico se está em nível lógico 0 P2.3, pulo Led3
+   36:	  0036	30 A4 32	ACIONAR5: JNB P2.4, LED4		;Verifico se está em nível lógico 0 P2.4, pulo Led4
+   37:	  0039	30 A5 38	ACIONAR6: JNB P2.5, LED5		;Verifico se está em nível lógico 0 P2.5, pulo Led5
+   38:	  003C	30 A6 3E	ACIONAR7: JNB P2.6, LED6		;Verifico se está em nível lógico 0 P2.6, pulo Led6
+   39:	  003F	30 A7 44	ACIONAR8: JNB P2.7, LED7		;Verifico se está em nível lógico 0 P2.7, pulo Led7
+   40:	  0042	80 E6		          SJMP ACIONAR1			;Pulo para Acionar1
+   41:
+   42:	  0044	D2 80		LED0:     SETB P0.0			;Seto P0.0
+   43:	  0046	12 00 8F	          LCALL TEMPOV			;Subrotina de tempo
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   44:	  0049	C2 B7		          CLR P3.7			;Limpo P3.7
+   45:	  004B	20 B2 DF	          JB P3.2, ACIONAR2		;Verificar acionamento de P3.2, pular para Acionar2
+   46:	  004E	80 CC		DESLIGA2: SJMP DESLIGA1			;Pulo para Desliga1
+   47:	  0050	D2 81		LED1:     SETB P0.1			;Seto P0.1
+   48:	  0052	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   49:	  0055	C2 B7		          CLR P3.7			;Limpo P3.7
+   50:	  0057	80 D7		          SJMP ACIONAR3			;Pulo para Acionar3
+   51:	  0059	D2 82		LED2:     SETB P0.2			;Seto P0.2
+   52:	  005B	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   53:	  005E	C2 B7		          CLR P3.7			;Limpo P3.7
+   54:	  0060	80 D1		          SJMP ACIONAR4			;Pulo para Acionar4
+   55:	  0062	D2 83		LED3:     SETB P0.3			;Seto P0.3
+   56:	  0064	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   57:	  0067	C2 B7		          CLR P3.7			;Limpo P3.7
+   58:	  0069	80 CB		          SJMP ACIONAR5			;Pulo para Acionar5
+   59:	  006B	D2 84		LED4:     SETB P0.4			;Seto P0.4
+   60:	  006D	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   61:	  0070	C2 B7		          CLR P3.7			;Limpo P3.7
+   62:	  0072	80 C5		          SJMP ACIONAR6			;Pulo para Acionar6
+   63:	  0074	D2 85		LED5:     SETB P0.5			;Seto P0.5
+   64:	  0076	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   65:	  0079	C2 B7		          CLR P3.7			;Limpo P3.7
+   66:	  007B	80 BF		          SJMP ACIONAR7			;Pulo para Acionar7
+   67:	  007D	D2 86		LED6:     SETB P0.6			;Seto P0.6
+   68:	  007F	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   69:	  0082	C2 B7		          CLR P3.7			;Limpo P3.7
+   70:	  0084	80 A4		          SJMP ACIONAR1			;Pulo para Acionar1
+   71:	  0086	D2 87		LED7:     SETB P0.7			;Seto P0.7
+   72:	  0088	12 00 AB	          LCALL TEMPON			;Subrotina de tempo
+   73:	  008B	C2 B7		          CLR P3.7			;Limpo P3.7
+   74:	  008D	80 9E		          SJMP ACIONAR2			;Pulo para Acionar2
+   75:
+   76:				;SUBROTINA TEMPO=(250X250X240X2)uS= 30000000uS= 30s.
+   77:	  008F	30 B2 BC	TEMPOV:    JNB P3.2, DESLIGA2	     ;Verifico se está em nível lógico 0 P3.2, pulo Desliga2
+   78:	  0092	78 F0		           MOV R0, #240              ;Carrega R0 com 240.
+   79:	  0094	30 B2 B7	VOLTA2:    JNB P3.2, DESLIGA2	     ;Verifico se está em nível lógico 0 P3.2, pulo Desliga2
+   80:	  0097	20 A0 8E	           JB P2.0, ACIONAR0         ;Verificar acionamento de P2.0, pular para Acionar0
+   81:	  009A	79 FA		           MOV R1, #250      	     ;Carrega R1 com 250.
+   82:	  009C	30 B2 AF	VOLTA1:    JNB P3.2, DESLIGA2	     ;Verifico se está em nível lógico 0 P3.2, pulo Desliga2
+   83:	  009F	20 A0 86	           JB P2.0, ACIONAR0         ;Verificar acionamento de P2.0, pular para Acionar0
+   84:	  00A2	7A FA		           MOV R2, #250	             ;Carrega R2 com 250.
+   85:	  00A4	DA FE		           DJNZ R2, $                ;Decrementa R2 até zerar.
+   86:	  00A6	D9 F4		           DJNZ R1, VOLTA1           ;Decrementa R1 e salta até zerar.
+   87:	  00A8	D8 EA		           DJNZ R0, VOLTA2           ;Decrementa R0 e salta até zerar.
+   88:	  00AA	22		           RET                       ;Retorno de subrotina.
+   89:
+   90:				;SUBROTINA TEMPO=(250X250X240X2)uS= 30000000uS= 30s.
+   91:	  00AB	7B F0		TEMPON:    MOV R3, #240              ;Carrega R3 com 240.
+   92:	  00AD	7C FA		VOLTA4:    MOV R4, #250      	     ;Carrega R4 com 250.
+   93:	  00AF	7D FA		VOLTA3:    MOV R5, #250	             ;Carrega R5 com 250.
+   94:	  00B1	DD FE		           DJNZ R5, $                ;Decrementa R5 até zerar.
+   95:	  00B3	DC FA		           DJNZ R4, VOLTA3           ;Decrementa R4 e salta até zerar.
+   96:	  00B5	DB F6		           DJNZ R3, VOLTA4           ;Decrementa R3 e salta até zerar.
+   97:	  00B7	22		           RET                       ;Retorno de subrotina.
+   98:
+   99:				           END			     ;Fim de programa
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+ Line  I  Addr  Code            Source
+
+  100:
+  101:
+  102:
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+ACIONAR0			  CODE	    0028	  31
+ACIONAR00			  CODE	    0008	  15
+ACIONAR1			  CODE	    002A	  32
+ACIONAR2			  CODE	    002D	  33
+ACIONAR3			  CODE	    0030	  34
+ACIONAR4			  CODE	    0033	  35
+ACIONAR5			  CODE	    0036	  36
+ACIONAR6			  CODE	    0039	  37
+ACIONAR7			  CODE	    003C	  38
+ACIONAR8			  CODE	    003F	  39
+B				  DATA	      F0
+CY				  BIT	      D7
+DESLIGA1			  CODE	    001C	  24
+DESLIGA2			  CODE	    004E	  46
+DESLIGAR			  CODE	    0015	  21
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+FECHARP				  CODE	    0023	  28
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+LED0				  CODE	    0044	  42
+LED1				  CODE	    0050	  47
+LED2				  CODE	    0059	  51
+LED3				  CODE	    0062	  55
+LED4				  CODE	    006B	  59
+LED5				  CODE	    0074	  63
+LED6				  CODE	    007D	  67
+LED7				  CODE	    0086	  71
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPON				  CODE	    00AB	  91
+TEMPOV				  CODE	    008F	  77
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VOLTA1				  CODE	    009C	  82
+VOLTA2				  CODE	    0094	  79
+VOLTA3				  CODE	    00AF	  93
+VOLTA4				  CODE	    00AD	  92
+WR				  BIT	      B6

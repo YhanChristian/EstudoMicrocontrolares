@@ -1,0 +1,211 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	H:\Silvio Pasta\Teclado 12 teclas 3x4\teclado.asm
+	Object File:	H:\Silvio Pasta\Teclado 12 teclas 3x4\teclado.hex
+	List File:	H:\Silvio Pasta\Teclado 12 teclas 3x4\teclado.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				; ========================================================================
+    2:				; =================      ETEC Aristóteles Ferreira.     ==================
+    3:				; ========          Yhan Christian Souza Silva         ===================
+    4:				; =====   Programa_01  teclado.asm  ver. 0.0 data: 21/05/13.   ==========
+    5:				; ========================================================================
+    6:
+    7:
+    8:				;Programa para varredura matricial de 12 teclas 3x4
+    9:
+   10:
+   11:		N      0000		ORG 0000H
+   12:	  0000	75 A0 FF		MOV P2,#0FFH
+   13:	  0003	75 80 00		MOV P0,#00H
+   14:
+   15:
+   16:				;---------------------------------------------------------------------------------------------------
+				----------
+   17:					;EQUIVALENCIAS
+   18:		B      00A0		L0 EQU P2.0
+   19:		B      00A1		L1 EQU P2.1
+   20:		B      00A2		L2 EQU P2.2
+   21:		B      00A3		L3 EQU P2.3
+   22:		B      00A4		C0 EQU P2.4
+   23:
+   24:		B      00A5		C1 EQU P2.5
+   25:		B      00A6		C2 EQU P2.6
+   26:				;---------------------------------------------------------------------------------------------------
+				----------
+   27:					;HABILITAR COLUNAS
+   28:
+   29:	  0006	C2 A4		LOOP:	CLR C0
+   30:	  0008	12 00 2E		LCALL TEMPO
+   31:	  000B	D2 A4			SETB C0
+   32:	  000D	12 00 2E		LCALL TEMPO
+   33:	  0010	C2 A5			CLR C1
+   34:	  0012	12 00 2E		LCALL TEMPO
+   35:	  0015	D2 A5			SETB C1
+   36:	  0017	12 00 2E		LCALL TEMPO
+   37:	  001A	C2 A6			CLR C2
+   38:	  001C	12 00 2E		LCALL TEMPO
+   39:	  001F	D2 A6			SETB C2
+   40:	  0021	80 00			SJMP VARREDURA
+   41:
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+ Line  I  Addr  Code            Source
+
+   42:				;---------------------------------------------------------------------------------------------------
+				---------
+   43:						;VARREDURA BOTÕES
+   44:	  0023			VARREDURA:
+   45:
+   46:	  0023	20 A0 E0	S0:	JB L0, LOOP
+   47:	  0026	75 80 0A		MOV P0,#0AH
+   48:	  0029	12 00 2E		LCALL TEMPO
+   49:	  002C	80 D8			SJMP LOOP
+   50:
+   51:
+   52:				;---------------------------------------------------------------------------------------------------
+				----------
+   53:
+   54:
+   55:					;SUBROTINA TEMPO
+   56:	  002E	78 02		TEMPO:  MOV R0, #2                     	        ;CARREGA RO COM 1
+   57:	  0030	79 32		VOLTA2: MOV R1, #50    		                ;CARREGA R1 COM 50
+   58:	  0032	7A 32		VOLTA1: MOV R2, #50	                        ;CARREGA R2 COM 50
+   59:	  0034	DA FE		        DJNZ R2, $                              ;DECREMENTA R2 ATÉ ZERAR
+   60:	  0036	D9 FA		        DJNZ R1, VOLTA1                         ;DECREMENTA R1 E SALTA ATÉ ZERAR
+   61:	  0038	D8 F6		        DJNZ R0, VOLTA2                         ;DECREMENTA RO E SALTA ATÉ ZERAR
+   62:	  003A	22		        RET                                     ;RETORNO DE SUBROTINA
+   63:					END					;FIM DE PROGRAMA
+   64:
+   65:
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6
+ACC				  DATA	      E0
+B				  DATA	      F0
+C0				  NUMBER    00A4	  22
+C1				  NUMBER    00A5	  24
+C2				  NUMBER    00A6	  25
+CY				  BIT	      D7
+DPH				  DATA	      83
+DPL				  DATA	      82
+EA				  BIT	      AF
+ES				  BIT	      AC
+ET0				  BIT	      A9
+ET1				  BIT	      AB
+EX0				  BIT	      A8
+EX1				  BIT	      AA
+EXTI0				  CODE	    0003
+EXTI1				  CODE	    0013
+F0				  BIT	      D5
+IE				  DATA	      A8
+IE0				  BIT	      89
+IE1				  BIT	      8B
+INT0				  BIT	      B2
+INT1				  BIT	      B3
+IP				  DATA	      B8
+IT0				  BIT	      88
+IT1				  BIT	      8A
+L0				  NUMBER    00A0	  18
+L1				  NUMBER    00A1	  19
+L2				  NUMBER    00A2	  20
+L3				  NUMBER    00A3	  21
+LOOP				  CODE	    0006	  29
+OV				  BIT	      D2
+P				  BIT	      D0
+P0				  DATA	      80
+P1				  DATA	      90
+P2				  DATA	      A0
+P3				  DATA	      B0
+PCON				  DATA	      87
+PS				  BIT	      BC
+PSW				  DATA	      D0
+PT0				  BIT	      B9
+PT1				  BIT	      BB
+PX0				  BIT	      B8
+PX1				  BIT	      BA
+RB8				  BIT	      9A
+RD				  BIT	      B7
+REN				  BIT	      9C
+RESET				  CODE	    0000
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+RI				  BIT	      98
+RS0				  BIT	      D3
+RS1				  BIT	      D4
+RXD				  BIT	      B0
+S0				  CODE	    0023	  46
+SBUF				  DATA	      99
+SCON				  DATA	      98
+SINT				  CODE	    0023
+SM0				  BIT	      9F
+SM1				  BIT	      9E
+SM2				  BIT	      9D
+SP				  DATA	      81
+T0				  BIT	      B4
+T1				  BIT	      B5
+TB8				  BIT	      9B
+TCON				  DATA	      88
+TEMPO				  CODE	    002E	  56
+TF0				  BIT	      8D
+TF1				  BIT	      8F
+TH0				  DATA	      8C
+TH1				  DATA	      8D
+TI				  BIT	      99
+TIMER0				  CODE	    000B
+TIMER1				  CODE	    001B
+TL0				  DATA	      8A
+TL1				  DATA	      8B
+TMOD				  DATA	      89
+TR0				  BIT	      8C
+TR1				  BIT	      8E
+TXD				  BIT	      B1
+VARREDURA			  CODE	    0023	  44
+VOLTA1				  CODE	    0032	  58
+VOLTA2				  CODE	    0030	  57
+WR				  BIT	      B6

@@ -4257,6 +4257,8 @@ mm_largestfreememblock
 mm_nrfreeblocksused
 mm_possiblyfragmented
 mm_totalfreememsize
+mmc_chip_select
+mmc_chip_select_direction
 mmc_fat_activate
 mmc_fat_append
 mmc_fat_assign
@@ -4876,6 +4878,7 @@ scs0
 scs0_bit
 scs1
 scs1_bit
+sdcardok
 sdiv3232l
 se0
 se0_bit

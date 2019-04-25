@@ -16,6 +16,11 @@ sbit LCD_D6_Direction at TRISB6_bit;
 sbit LCD_D7_Direction at TRISB7_bit;
 
 
+
+sfr sbit Mmc_Chip_Select at RC6_bit;
+sfr sbit Mmc_Chip_Select_Direction at TRISC6_bit;
+
+
 void configureMcu();
 void initDisplay();
 void showDisplay(unsigned short current[4], int voltage[4], unsigned int activePower[4]);
@@ -23,6 +28,9 @@ unsigned int calcPower(unsigned short current, int voltage);
 int readCurrent(unsigned short sensor);
 int readVoltage(unsigned short circuit);
 
+
+
+unsigned short SDCardOK = 0;
 
 
 

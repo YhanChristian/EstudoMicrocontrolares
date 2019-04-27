@@ -2642,6 +2642,7 @@ fabs
 fast
 ferr
 ferr_bit
+filename
 firstchar
 firstchar
 firstchar
@@ -5234,6 +5235,7 @@ stallif_bit
 startaddress
 startaddress
 startaddress
+startsdcard
 status
 stencil
 stencil
@@ -6119,6 +6121,7 @@ wrerr
 wrerr_bit
 wrestartinterval
 wrestartinterval
+writefilesdcard
 wrspp
 wrspp_bit
 ws0

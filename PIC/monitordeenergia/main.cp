@@ -29,6 +29,10 @@ int readCurrent(unsigned short sensor);
 int readVoltage(unsigned short circuit);
 
 
+extern void startSDCard();
+extern void writeFileSDCard(unsigned short current[4], int voltage[4], unsigned int activePower[4]);
+
+
 
 unsigned short SDCardOK = 0;
 
@@ -51,6 +55,7 @@ void main(){
  unsigned int activePower[4] = {0, 0, 0, 0};
  configureMcu();
  initDisplay();
+ startSDCard();
  while(1){
  current[0] = readCurrent(1);
  current[1] = readCurrent(2);
@@ -62,6 +67,8 @@ void main(){
  voltage[3] = readVoltage(4);
  for (i = 0; i < 4; i++) activePower[i] = calcPower(current[i], voltage[i]);
  showDisplay(current, voltage, activePower);
+ delay_ms(1000);
+ writeFileSDCard(current, voltage, activePower);
  }
 }
 

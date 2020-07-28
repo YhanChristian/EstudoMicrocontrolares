@@ -14,7 +14,7 @@
 
 #define PINO_ADC 34
 
-/* Cria o objeto semaforo */
+/* Armazena handle semaforo */
 
 SemaphoreHandle_t xSemaphoreBinary;
 

@@ -14,7 +14,7 @@
 
 #define BOTAO 12
 
-/* Cria o objeto semaforo */
+/* Armazena handle semaforo */
 
 SemaphoreHandle_t xSemaphoreBinary;
 

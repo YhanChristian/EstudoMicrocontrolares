@@ -3,8 +3,10 @@
 
 /* Functions Prototype */
 
-void initMQTT();
+void connectToWiFi();
+void verifyWifiConnect();
 void connectToMQTT();
-void sendMessageMQTT(char msg[]);
+void verifyMQTTConnect();
+void publishDataToMQTT(float value);
 
 #endif

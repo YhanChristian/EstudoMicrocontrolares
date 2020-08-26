@@ -5,7 +5,7 @@
 
 /* Config pin INPUT_PULLUP, parameter pin */ 
 
-void initKeyboard(uint8_t pin)
+void initKeyboard(int pin)
 {
     pinMode(pin, INPUT_PULLUP);
 }

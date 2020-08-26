@@ -9,12 +9,12 @@
 
 #define BUTTON 12
 
-#define BTN_PRESSED LOW
-#define BTN_LOOSE HIGH
+#define PRESSED LOW
+#define LOOSE HIGH
 
 /* Functions Prototype */
 
-void keyboardInit(uint8_t pin);
+void keyboardInit(int pin);
 bool readKeyboard(unsigned char key);
 
 #endif

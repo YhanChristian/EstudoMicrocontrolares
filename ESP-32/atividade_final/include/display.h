@@ -14,6 +14,6 @@
 /* Functions Prototype */
 
 void initDisplay();
-void showDisplay();
+void showDisplay(float value);
 
 #endif

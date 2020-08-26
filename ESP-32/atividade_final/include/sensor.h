@@ -7,7 +7,7 @@
 
 /* Defines */
 
-#define SENSOR_PIN 32
+#define SENSOR_PIN 32 /* ADC1_4 (Heltec LoRa v2 board)*/
 
 /* Functions Prototype */
 

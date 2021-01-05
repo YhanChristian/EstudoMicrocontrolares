@@ -192,7 +192,7 @@ void vPrintStringAndNumber(const char *pcString, uint32_t ulValue)
     sprintf(buffer, "%s %lu\r\n", pcString, ulValue);
     Serial.println((char *)buffer);
   }
-  taskEXIT_CRITICAL(&myMutex);
+  portEXIT_CRITICAL(&myMutex);
 }
 
 void vPrintTwoStrings(const char *pcString1, const char *pcString2)
@@ -203,5 +203,5 @@ void vPrintTwoStrings(const char *pcString1, const char *pcString2)
     sprintf(buffer, "%s %s\r\n", pcString1, pcString2);
     Serial.println((char *)buffer);
   }
-  taskEXIT_CRITICAL(&myMutex);
+  portEXIT_CRITICAL(&myMutex);
 }

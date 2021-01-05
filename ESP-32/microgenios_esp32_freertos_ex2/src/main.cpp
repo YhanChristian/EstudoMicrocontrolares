@@ -186,7 +186,7 @@ void vPrintString(const char *pcString)
 
 void vPrintStringAndNumber(const char *pcString, uint32_t ulValue)
 {
-  taskENTER_CRITICAL(&myMutex);
+  portEXIT_CRITICAL(&myMutex);
   {
     char buffer[50];
     sprintf(buffer, "%s %lu\r\n", pcString, ulValue);
@@ -197,7 +197,7 @@ void vPrintStringAndNumber(const char *pcString, uint32_t ulValue)
 
 void vPrintTwoStrings(const char *pcString1, const char *pcString2)
 {
-  taskENTER_CRITICAL(&myMutex);
+  portEXIT_CRITICAL(&myMutex);
   {
     char buffer[50];
     sprintf(buffer, "%s %s\r\n", pcString1, pcString2);

@@ -76,7 +76,6 @@ static void read(void);
  * Função Main
 */
 
-
 void app_main(void) 
 {
    char messagem[50];
@@ -176,7 +175,10 @@ static void task_tx( void *pvParameter )
            */
 
           if( DEBUG )
-              ESP_LOGI( TAG, "Pacote Enviado para node = %d ", i ); 
+          {
+               ESP_LOGI(TAG, "Pacote Enviado para node = %d ", i); 
+          }
+              
       
           /**
            * Chama a função que irá receber o valor de Count, enviado pelo receptor;

@@ -43,7 +43,7 @@
  */
 
 #define MASTER_NODE_ADDRESS 0
-#define LORA_RECEIVER_TIMEOUT_MS 500
+#define LORA_RECEIVER_TIMEOUT_MS 5000
 
 /**
  * Comandos;
@@ -79,7 +79,53 @@ static void read(void);
 
 void app_main(void) 
 {
+   char messagem[50];
+   
+   /**
+    * Inicializa display Oled 128x64 SSD1306;
+    * As configurações de pinagens do Oled são encontradas
+    * em "lib_heltec.h";
+    */
+   ssd1306_start();
 
+   /**
+    * Imprime usando fonte8x8;
+    * Sintaxe: ssd1306_out8( linha, coluna, string , fonte_color );
+    */
+
+   snprintf( messagem, sizeof(messagem), "Address=%d", MASTER_NODE_ADDRESS );
+   ssd1306_out8( 0, 0, (char*) "Transmissor", WHITE );
+   ssd1306_out8( 1, 0, (char*) messagem, WHITE );
+
+   /**
+    * Inicializa LoRa utilizando as configurações
+    * definidas via menuconfig -> componentes -> lora;
+    * Por padrão, a Api LoRa inicializa o rádio em modo de recepção;
+    */
+
+   lora_init();
+
+   /**
+    * A frequência licenciada no Brasil é a 915Mhz; 
+    * Verifique a frequência do seu dispositivo LoRa; 
+    * conforme: 433E6 para Asia; 866E6 para Europa e 915E6 para EUA;
+    */
+   lora_set_frequency( 915e6 );
+
+   /**
+    * Deseja habilitar o CRC no Payload da mensagem?
+    */
+   lora_enable_crc();
+
+   /**
+    * Cria a task de transmissão LoRa;
+    */
+   if( xTaskCreate( task_tx, "task_tx", 1024*5, NULL, 2, NULL ) != pdTRUE )
+   {
+      if( DEBUG )
+         ESP_LOGI( TAG, "error - Nao foi possivel alocar task_tx.\r\n" );  
+      return;   
+   }
 }
 
 /**
@@ -112,10 +158,44 @@ static void task_tx( void *pvParameter )
           protocolo[2] = CMD_READ_COUNT;       //comando de leitura da variável Count do receptor;
           protocolo[3] = 0;                    //neste exemplo não há dados a serem enviados no payload;
           
+
+           /**
+           * Calcula o CRC do pacote;
+           */
+          USHORT usCRC = usLORACRC16( protocolo, 4 );
+          protocolo[4] = (UCHAR)(usCRC & 0xFF); 
+          protocolo[5] = (UCHAR)((usCRC >> 8) & 0xFF);
+
+           /**
+           * Transmite protocol via LoRa;
+           */
+          lora_send_packet( protocolo, 6 );
+
+          /**
+           * Após a transmissão a API configura o LoRa em modo de recepção;
+           */
+
+          if( DEBUG )
+              ESP_LOGI( TAG, "Pacote Enviado para node = %d ", i ); 
+      
+          /**
+           * Chama a função que irá receber o valor de Count, enviado pelo receptor;
+           */
+          read();
+
+          /**
+           * Delay;
+           */
+          vTaskDelay(10/portTICK_PERIOD_MS);
+
       }
 
   }
 
+   /**
+    * Esta linha não deveria ser executada...
+    */
+   vTaskDelete( NULL );
 }
 
 
@@ -125,5 +205,63 @@ static void task_tx( void *pvParameter )
 
 static void read(void)
 {
+    int x;
+    uint8_t protocolo[100];
 
+        /**
+      * Aguarda durante LORA_RECEIVER_TIMEOUT_MS o recebimento de algum dado;
+      */
+     for(int i = 0; i < LORA_RECEIVER_TIMEOUT_MS; i++)
+     {
+         /**
+         * Algum byte foi recebido?
+         * Realiza a leitura dos registradores de status do LoRa com o 
+         * objetivo de verificar se algum byte recebido foi armazenado
+         * na FIFO do rádio;
+         */
+
+        while(lora_received())
+        {
+              /**
+              * Sim, existe bytes na FIFO do rádio LoRa, portanto precisamos ler
+              * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
+              * x -> armazena a quantidade de bytes que foram populados em buf;
+              */
+
+             x = lora_receive_packet(protocolo, sizeof(protocolo));
+
+             /**
+             * Protocolo;
+             * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+             */
+
+            if(x >= 6 && protocolo[1] == MASTER_NODE_ADDRESS)
+            {
+                  /**
+                   * Verifica CRC;
+                   */
+                  USHORT usCRC = usLORACRC16( protocolo, 3 + protocolo[3] + 1);
+                  UCHAR ucLow =  (UCHAR)(usCRC & 0xFF);
+                  UCHAR ucHigh = (UCHAR)((usCRC >> 8) & 0xFF);
+
+                  if(ucLow == protocolo[3 + protocolo[3] + 1] && ucHigh == protocolo[3 + protocolo[3] + 2])
+                  {
+                     switch(protocolo[2])
+                     {
+                        case CMD_READ_COUNT:
+                                  /**
+                                 * Imprime o valor de "Count" que foi incrementado pelo receptor a cada pacote
+                                 * recebido;
+                                 */
+                                 ESP_LOGI( TAG, "Address = %d; Value = %d\n", protocolo[0], ((protocolo[5] << 8) | protocolo[4]));
+                                vTaskDelay( 30/portTICK_PERIOD_MS  );
+                                return; 
+                     
+                     }
+                  }               
+            }
+         
+        }
+        vTaskDelay( 1/portTICK_PERIOD_MS  );
+     }
 }

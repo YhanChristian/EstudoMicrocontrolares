@@ -1,19 +1,17 @@
-
 /**
   ******************************************************************************
-  * @Company    : Yhan Christian Souza Silva MEI
-  * @file       : yc_drv_gpio.c
-  * @author     : Name of author
-  * @version	: version of driver, API or application files 
-  * @date       : Data of the file was created
-  * @brief      : What this file does
-  ******************************************************************************
-*/ 
+  * @Company: Yhan Christian Souza Silva MEI
+  * @file	: yc_drv_gpio.c
+  * @author : Yhan Christian Souza Silva
+  * @version: V0.0
+  * @date   : 22/02/2021
+  * @brief  : Source file of driver that controls GPIO perfipheral 
+   *****************************************************************************
+*/
 #ifdef GPIO_ENABLED
 
 /* Includes ------------------------------------------------------------------*/ 
 // C language standard library
-// Eder Andrade driver library
 #include "yc_drv_gpio.h"
 // Application
 

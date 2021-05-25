@@ -1,14 +1,14 @@
 
 /**
   ******************************************************************************
-  * @Company    : Yhan Christian Souza Silva MEI
-  * @file       : yc_drv_gpio.h
-  * @author     : Name of author
-  * @version	  : version of driver, API or application files 
-  * @date       : Data of the file was created
-  * @brief      : What this file does
-  ******************************************************************************
-*/ 
+  * @Company: Yhan Christian Souza Silva MEI
+  * @file  : yc_drv_gpio.h
+  * @author : Yhan Christian Souza Silva
+  * @version: V0.0
+  * @date   : 22/05/2021
+  * @brief  : Header file of GPIO driver
+   *****************************************************************************
+*/
 #ifdef GPIO_ENABLED
 
 /* Define to prevent recursive inclusion -------------------------------------*/

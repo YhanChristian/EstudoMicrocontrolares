@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>5</fileVersion>
-    <fileChecksum>658924174</fileChecksum>
+    <fileChecksum>1396875571</fileChecksum>
     <configuration>
         <name>ArcSw</name>
         <outputs>
@@ -96,6 +96,9 @@
             <file>$PROJ_DIR$\ArcSw\Obj\HAL\STMicroeletronics\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal.o</file>
             <file>$PROJ_DIR$\ArcSw\Obj\HAL\STMicroeletronics\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_dma.o</file>
             <file>$PROJ_DIR$\ArcSw\Obj\HAL\STMicroeletronics\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_msp.o</file>
+            <file>$PROJ_DIR$\ArcSw\Obj\Driver\Src\yc_drv_adc.o</file>
+            <file>$PROJ_DIR$\..\..\Driver\Src\yc_drv_adc.c</file>
+            <file>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_adc.h</file>
         </outputs>
         <file>
             <name>$PROJ_DIR$\..\..\HAL\STM32F1xx_HAL_Driver\Src\stm32f1xx_hal_flash.c</name>
@@ -454,5 +457,18 @@
                 </tool>
             </inputs>
         </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_adc.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 91</file>
+                </tool>
+            </outputs>
+        </file>
+        <forcedrebuild>
+            <name>[MULTI_TOOL]</name>
+            <tool>ILINK</tool>
+        </forcedrebuild>
     </configuration>
 </project>

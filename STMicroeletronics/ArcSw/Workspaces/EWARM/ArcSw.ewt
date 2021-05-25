@@ -1456,11 +1456,17 @@
         <group>
             <name>Inc</name>
             <file>
+                <name>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_adc.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_gpio.h</name>
             </file>
         </group>
         <group>
             <name>Src</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_adc.c</name>
+            </file>
             <file>
                 <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_gpio.c</name>
             </file>

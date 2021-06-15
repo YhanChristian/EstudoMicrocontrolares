@@ -200,37 +200,37 @@ void SysTick_Handler(void)
 /* please refer to the startup file (startup_stm32f1xx.s).                    */
 /******************************************************************************/
 
-/**
-  * @brief This function handles ADC1 and ADC2 global interrupts.
-  */
-void ADC1_2_IRQHandler(void)
-{
-  /* USER CODE BEGIN ADC1_2_IRQn 0 */
+///**
+//  * @brief This function handles ADC1 and ADC2 global interrupts.
+//  */
+//void ADC1_2_IRQHandler(void)
+//{
+//  /* USER CODE BEGIN ADC1_2_IRQn 0 */
+//
+//  /* USER CODE END ADC1_2_IRQn 0 */
+//  HAL_ADC_IRQHandler(&hadc1);
+//  /* USER CODE BEGIN ADC1_2_IRQn 1 */
+//
+//  /* USER CODE END ADC1_2_IRQn 1 */
+//}
 
-  /* USER CODE END ADC1_2_IRQn 0 */
-  HAL_ADC_IRQHandler(&hadc1);
-  /* USER CODE BEGIN ADC1_2_IRQn 1 */
+//**
+//  * @brief This function handles USART1 global interrupt.
+//  */
+//void USART1_IRQHandler(void)
+//{
+//  /* USER CODE BEGIN USART1_IRQn 0 */
+//
+//  /* USER CODE END USART1_IRQn 0 */
+//  HAL_UART_IRQHandler(&huart1);
+//  /* USER CODE BEGIN USART1_IRQn 1 */
+//
+//  /* USER CODE END USART1_IRQn 1 */
+//}
 
-  /* USER CODE END ADC1_2_IRQn 1 */
-}
-
-/**
-  * @brief This function handles USART1 global interrupt.
-  */
-void USART1_IRQHandler(void)
-{
-  /* USER CODE BEGIN USART1_IRQn 0 */
-
-  /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
-  /* USER CODE BEGIN USART1_IRQn 1 */
-
-  /* USER CODE END USART1_IRQn 1 */
-}
-
-/**
-  * @brief This function handles EXTI line[15:10] interrupts.
-  */
+//**
+//  * @brief This function handles EXTI line[15:10] interrupts.
+//  */
 //void EXTI15_10_IRQHandler(void)
 //{
 //  /* USER CODE BEGIN EXTI15_10_IRQn 0 */

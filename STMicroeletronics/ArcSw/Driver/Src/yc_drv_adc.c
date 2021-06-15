@@ -4,7 +4,7 @@
   * @file	: yc_drv_gpio.c
   * @author : Yhan Christian Souza Silva
   * @version: V0.0
-  * @date   : 22/02/2021
+  * @date   : 22/05/2021
   * @brief  : Source file of driver that controls ADC perfipheral 
    *****************************************************************************
 */

@@ -1090,6 +1090,12 @@
             <file>
                 <name>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_gpio.h</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_system_clock.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Driver\Inc\yc_drv_uart.h</name>
+            </file>
         </group>
         <group>
             <name>Src</name>
@@ -1099,12 +1105,18 @@
             <file>
                 <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_gpio.c</name>
             </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_system_clock.c</name>
+            </file>
         </group>
     </group>
     <group>
         <name>EWARM</name>
         <file>
             <name>$PROJ_DIR$\startup_stm32f103xb.s</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\Driver\Src\yc_drv_uart.c</name>
         </file>
     </group>
     <group>

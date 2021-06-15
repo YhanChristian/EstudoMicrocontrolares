@@ -327,6 +327,10 @@ C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Driver\In
 -D__EDG_INT128_EXTENSIONS_ALLOWED=0
 -DUSE_HAL_DRIVER=1
 -DSTM32F103xB=1
+-DGPIO_ENABLED=1
+-DADC_ENABLED=1
+-DSYSTEM_CLOCK_ENABLED=1
+-DUART_ENABLED=1
 -D_DLIB_CONFIG_FILE_HEADER_NAME="C:\Program Files\IAR Systems\Embedded Workbench 9.0\arm\inc\c\DLib_Config_Full.h"
 -D_DLIB_CONFIG_FILE_STRING="C:\\Program Files\\IAR Systems\\Embedded Workbench 9.0\\arm\\inc\\c\\DLib_Config_Full.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V9.10.1.308/W64 for ARM"

@@ -13,8 +13,8 @@
 
 /* Includes ------------------------------------------------------------------*/ 
 // C language standard library
-// Eder Andrade driver library
-#include "ea_drv_system_clock.h"
+// Yhan Christian driver library
+#include "yc_drv_system_clock.h"
 
 /*******************************************************************************
 							HOW TO USE THIS DRIVER

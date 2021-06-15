@@ -1,2 +1,37 @@
 C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\ArcSw\BrowseInfo\Driver\Src\yc_drv_gpio.pbi: \
-  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Driver\Src\yc_drv_gpio.c
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Driver\Src\yc_drv_gpio.c \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\Driver\Inc\yc_drv_gpio.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc\stm32f1xx_hal.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_conf.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_rcc.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_def.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Device\ST\STM32F1xx\Include\stm32f1xx.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Device\ST\STM32F1xx\Include/stm32f103xb.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Include\core_cm3.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\stdint.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\ycheck.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\yvals.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Defaults.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Config_Full.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\DLib_Product.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Include/cmsis_version.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Include/cmsis_compiler.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Include\cmsis_iccarm.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\aarch32\iccarm_builtin.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\CMSIS\Device\ST\STM32F1xx\Include/system_stm32f1xx.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/Legacy/stm32_hal_legacy.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\stddef.h \
+  C:\Program\ Files\IAR\ Systems\Embedded\ Workbench\ 9.0\arm\inc\c\ysizet.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_rcc_ex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_gpio.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_gpio_ex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_exti.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_dma.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_dma_ex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_cortex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_adc.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_adc_ex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_flash.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_flash_ex.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_pwr.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_uart.h

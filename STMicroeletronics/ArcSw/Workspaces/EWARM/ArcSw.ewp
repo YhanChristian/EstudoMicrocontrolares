@@ -216,6 +216,10 @@
                     <name>CCDefines</name>
                     <state>USE_HAL_DRIVER</state>
                     <state>STM32F103xB</state>
+                    <state>GPIO_ENABLED</state>
+                    <state>ADC_ENABLED</state>
+                    <state>SYSTEM_CLOCK_ENABLED</state>
+                    <state>UART_ENABLED</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1054,9 +1058,33 @@
         <name>API</name>
         <group>
             <name>Inc</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Inc\yc_api_battery.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Inc\yc_api_led.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Inc\yc_api_log.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Inc\yc_api_sys.h</name>
+            </file>
         </group>
         <group>
             <name>Src</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Src\yc_api_battery.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Src\yc_api_led.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Src\yc_api_log.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\API\Src\yc_api_sys.c</name>
+            </file>
         </group>
     </group>
     <group>

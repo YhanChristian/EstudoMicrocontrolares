@@ -34,4 +34,8 @@ C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspace
   C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_flash.h \
   C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_flash_ex.h \
   C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_pwr.h \
-  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_uart.h
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\HAL\STM32F1xx_HAL_Driver\Inc/stm32f1xx_hal_uart.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\API\Inc\yc_api_battery.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\API\Inc\yc_api_sys.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\API\Inc\yc_api_led.h \
+  C:\Users\yhan\Documents\EstudoMicrocontrolares\STMicroeletronics\ArcSw\Workspaces\EWARM\..\..\API\Inc\yc_api_log.h

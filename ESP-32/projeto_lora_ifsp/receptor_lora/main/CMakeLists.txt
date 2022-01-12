@@ -1,8 +1,4 @@
-# Edit following two lines to set component requirements (see docs)
-set(COMPONENT_REQUIRES )
-set(COMPONENT_PRIV_REQUIRES )
-
-set(COMPONENT_SRCS "main.c")
-set(COMPONENT_ADD_INCLUDEDIRS "")
-
-register_component()
+idf_component_register(
+    SRCS "main.c" "../components/ssd1306/ssd1306.c" "../components/lora/lora.c"  "../components/mpu6050/mpu6050.c" 
+    INCLUDE_DIRS ""
+)

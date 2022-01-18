@@ -3,7 +3,7 @@
   * @Company    : Yhan Christian Souza Silva 
   * @file       : main.c
   * @author     : Yhan Christian Souza Silva
-  * @date       : 17/01/2021
+  * @date       : 17/01/2022
   * @brief      : Arquivo fonte main.c com o projeto do receptor (SLAVE) que 
   *               aguarda comando do MASTER para envio dos dados lidos por um
   *               acelerômetro via LoRA em uma comunicação PaP.

@@ -31,7 +31,7 @@
 
 /* Private define & constants ------------------------------------------------*/
 
-static const char *TAG = "MPU6050";
+static const char *TAG = "LoRa_Receiver";
 
 /**
  * LoRa device Address;
@@ -48,26 +48,28 @@ const int SLAVE_NODE_ADDRESS = 1;
 /* I2C Interface inicialization ----------------------------------------------*/
 
 /*!< Config I²C Display OLED */
-
-#define I2C_SDA_PIN CONFIG_I2C_SDA_PIN       //default 4
-#define I2C_SCL_PIN CONFIG_I2C_SCL_PIN       //default 15
-#define I2C_CHANNEL CONFIG_I2C_CHANNEL       //default 0
-#define OLED_PIN_RESET CONFIG_OLED_PIN_RESET //default 16
+#define I2C_SDA_PIN CONFIG_I2C_SDA_PIN       /*!< default 4 */
+#define I2C_SCL_PIN CONFIG_I2C_SCL_PIN       /*!< default 15 */
+#define I2C_CHANNEL CONFIG_I2C_CHANNEL       /*!< default 0 */
+#define OLED_PIN_RESET CONFIG_OLED_PIN_RESET /*!< default 16 */
 
 /*!< Config I²C MPU6050 */
-
 #define I2C_MASTER_SCL_IO 22      /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO 21      /*!< gpio number for I2C master data  */
 #define I2C_MASTER_NUM I2C_NUM_1  /*!< I2C port number for master dev */
 #define I2C_MASTER_FREQ_HZ 100000 /*!< I2C master clock frequency */
 
+mpu6050_handle_t mpu6050 = NULL;
+
 /* Private typedef -----------------------------------------------------------*/
 
+mpu6050_acce_gyro_value_t MPU6050_Data;
+
+/* Private variables ---------------------------------------------------------*/
 
 /* Private tasks prototypes --------------------------------------------------*/
 
-mpu6050_handle_t mpu6050 = NULL; 
-
+static void vLoRaRxTask(void *pvParameter);
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -75,6 +77,8 @@ static void esp32_start(void);
 static void ssd1306_start(void);
 static void i2c_bus_init(void);
 static void i2c_sensor_mpu6050_init(void);
+static void mpu6050_read(void);
+static void lora_data_send(uint8_t *protocol, char *message);
 
 void app_main(void)
 {
@@ -90,7 +94,55 @@ void app_main(void)
     /*!< Inicia LoRa e seta frequência 915MHz*/
     lora_init();
     lora_set_frequency(915E6);
-    
+
+    /*!< Habilita CRC*/
+    lora_enable_crc();
+    /*!< Habilita a recepção LoRa via Interrupção Externa;*/
+    lora_enable_irq();
+
+    /*!< Cria a task de recepção LoRa*/
+    if (xTaskCreate(vLoRaRxTask, "vLoRaRxTask", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
+    {
+        ESP_LOGE("ERROR", "*** vLoRaRxTask error ***\n");
+    }
+}
+
+/* Bodies of private tasks ---------------------------------------------------*/
+
+static void vLoRaRxTask(void *pvParameter)
+{
+    int x;
+    char buf[50];
+    uint8_t protocol[100];
+    int count = 0;
+    while (true)
+    {
+        /*!< Recebe dado fila e verifica se bytes foram recebidos*/
+
+        xQueueReceive(xQueue_LoRa, &count, portMAX_DELAY);
+
+        /**
+       * Algum byte foi recebido?
+       * Realiza a leitura dos registradores de status do LoRa com o 
+       * objetivo de verificar se algum byte recebido foi armazenado
+       * na FIFO do rádio;
+       */
+
+        while (lora_received())
+        {
+
+            /**
+          * Sim, existe bytes na FIFO do rádio LoRa, portanto precisamos ler
+          * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
+          * x -> armazena a quantidade de bytes que foram populados em buf;
+          */
+
+        }
+        x = lora_receive_packet( protocol, sizeof(protocol) );
+
+        /*!< Delay entre cada leitura dos registradores de status do LoRa*/
+        vTaskDelay(10 / portTICK_RATE_MS);
+    }
 }
 
 /* Bodies of private functions -----------------------------------------------*/
@@ -156,4 +208,18 @@ static void i2c_sensor_mpu6050_init(void)
     ESP_ERROR_CHECK(mpu6050_wake_up(mpu6050));
 }
 
-/* Bodies of private tasks ---------------------------------------------------*/
+static void mpu6050_read(void)
+{
+    mpu6050_acce_value_t acce;
+    mpu6050_gyro_value_t gyro;
+
+    mpu6050_get_acce(mpu6050, &acce);
+    mpu6050_get_gyro(mpu6050, &gyro);
+
+    MPU6050_Data.acce_data = acce;
+    MPU6050_Data.gyro_data = gyro;
+}
+
+static void lora_data_send(uint8_t *protocol, char *message)
+{
+}

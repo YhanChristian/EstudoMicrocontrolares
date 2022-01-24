@@ -6,5 +6,9 @@
     "idf.espIdfPathWin": "D:\\Users\\YhanChristian\\esp-idf",
     "idf.openOcdConfigs": "interface/ftdi/esp32_devkitj_v1.cfg,target/esp32.cfg",
     "idf.pythonBinPathWin": "D:\\Users\\YhanChristian\\.espressif\\python_env\\idf4.3_py3.8_env\\Scripts\\python.exe",
-    "idf.toolsPathWin": "D:\\Users\\YhanChristian\\.espressif"
+    "idf.toolsPathWin": "D:\\Users\\YhanChristian\\.espressif",
+    "files.associations": {
+        "ssd1306.h": "c"
+    },
+    "idf.portWin": "COM4"
 }

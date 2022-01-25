@@ -26,6 +26,7 @@
 #include "esp_log.h"
 
 #include "lora.h"
+#include "lora_crc.h"
 #include "mpu6050.h"
 #include "ssd1306.h"
 
@@ -44,6 +45,8 @@ const int MASTER_NODE_ADDRESS = 0;
  * Cada dispositivo SLAVE precisa ter endereço diferente;
  */
 const int SLAVE_NODE_ADDRESS = 1;
+
+#define CMD_READ_MPU6050 1
 
 /* I2C Interface inicialization ----------------------------------------------*/
 
@@ -136,9 +139,37 @@ static void vLoRaRxTask(void *pvParameter)
           * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
           * x -> armazena a quantidade de bytes que foram populados em buf;
           */
+            x = lora_receive_packet(protocol, sizeof(protocol));
 
+            /**
+           * Protocolo;
+           * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+           */
+            if (x >= 6 && protocol[0] == MASTER_NODE_ADDRESS && protocol[1] == SLAVE_NODE_ADDRESS)
+            {
+                /**
+                 * Verifica CRC;
+                 */
+                USHORT usCRC = usLORACRC16(protocol, 3 + protocol[3] + 1);
+                UCHAR ucLow = (UCHAR)(usCRC & 0xFF);
+                UCHAR ucHigh = (UCHAR)((usCRC >> 8) & 0xFF);
+
+                if (ucLow == protocol[4] && ucHigh == protocol[5])
+                {
+                    switch (protocol[2])
+                    {
+                    case CMD_READ_MPU6050:
+                        ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
+                        /**
+                        * Leitura do acelerômetro e envio de pacote para  o transmissor;
+                        */
+                        mpu6050_read();
+
+                        break;
+                    }
+                }
+            }
         }
-        x = lora_receive_packet( protocol, sizeof(protocol) );
 
         /*!< Delay entre cada leitura dos registradores de status do LoRa*/
         vTaskDelay(10 / portTICK_RATE_MS);
@@ -218,6 +249,12 @@ static void mpu6050_read(void)
 
     MPU6050_Data.acce_data = acce;
     MPU6050_Data.gyro_data = gyro;
+    ESP_LOGI(TAG, "accX:%.2f\n", MPU6050_Data.acce_data.acce_x);
+    ESP_LOGI(TAG, "accY:%.2f\n", MPU6050_Data.acce_data.acce_y);
+    ESP_LOGI(TAG, "accZ:%.2f\n", MPU6050_Data.acce_data.acce_z);
+    ESP_LOGI(TAG, "gyroX:%.2f\n", MPU6050_Data.gyro_data.gyro_x);
+    ESP_LOGI(TAG, "gyroY:%.2f\n", MPU6050_Data.gyro_data.gyro_y);
+    ESP_LOGI(TAG, "gyroZ:%.2f\n", MPU6050_Data.gyro_data.gyro_z);
 }
 
 static void lora_data_send(uint8_t *protocol, char *message)

@@ -26,6 +26,7 @@
 #include "esp_log.h"
 
 #include "lora.h"
+#include "lora_crc.h"
 #include "ssd1306.h"
 
 /* Private define & constants ------------------------------------------------*/
@@ -37,7 +38,15 @@ static const char *TAG = "LoRa_Transmitter";
  */
 const int MASTER_NODE_ADDRESS = 0;
 
+/**
+ * LoRa devices (qtde de Slaves = no caso estou utilizando 1 dispositivo 
+ * slave no END 1  e o master no END 0);
+ */
+#define LORA_TOTAL_NODES 1
+
 #define LORA_RECEIVER_TIMEOUT_MS 5000
+
+#define CMD_READ_MPU6050 1
 
 /* I2C Interface inicialization ----------------------------------------------*/
 
@@ -50,11 +59,13 @@ const int MASTER_NODE_ADDRESS = 0;
 /* Private variables ---------------------------------------------------------*/
 
 /* Private tasks prototypes --------------------------------------------------*/
+static void vLoRaTxTask(void *pvParameter);
 
 /* Private function prototypes -----------------------------------------------*/
 
 static void esp32_start(void);
 static void ssd1306_start(void);
+static void read_package(void);
 
 void app_main(void)
 {
@@ -72,9 +83,53 @@ void app_main(void)
     lora_enable_crc();
     /*!< Habilita a recepção LoRa via Interrupção Externa;*/
     lora_enable_irq();
+
+    /*!< Cria a task de transmissão LoRa*/
+    if (xTaskCreate(vLoRaTxTask, "vLoRaTxTask", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
+    {
+        ESP_LOGE("ERROR", "*** vLoRaTxTask error ***\n");
+    }
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/
+
+static void vLoRaTxTask(void *pvParameter)
+{
+    uint8_t protocol[100];
+    while (true)
+    {
+        /**
+         * Protocolo;
+         * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+         */
+
+        protocol[0] = MASTER_NODE_ADDRESS;
+        protocol[1] = LORA_TOTAL_NODES;
+        protocol[2] = CMD_READ_MPU6050;
+        protocol[3] = 0;
+
+        /**
+        * Calcula o CRC do pacote;
+        */
+        USHORT usCRC = usLORACRC16(protocol, 4);
+        protocol[4] = (UCHAR)(usCRC & 0xFF);
+        protocol[5] = (UCHAR)((usCRC >> 8) & 0xFF);
+
+        /**
+        * Transmite protocol via LoRa;
+        */
+        lora_send_packet(protocol, 6);
+
+        ESP_LOGI(TAG, "Pacote Enviado para node = %d ", LORA_TOTAL_NODES);
+
+        /**
+        * Chama a função que irá receber os dados do acelerômetro, enviado pelo receptor;
+        */
+        read_package();
+
+        vTaskDelay(5000 / portTICK_RATE_MS);
+    }
+}
 
 /* Bodies of private functions -----------------------------------------------*/
 
@@ -111,4 +166,24 @@ static void ssd1306_start(void)
     ssd1306_out16(0, 0, "Transmitter", WHITE);
     ssd1306_out8(2, 0, "Node Add:", WHITE);
     ssd1306_chr8(2, 9, MASTER_NODE_ADDRESS + '0', WHITE);
+}
+
+static void read_package(void)
+{
+    int x;
+    int count = 0;
+    uint8_t protocol[100];
+
+    if (xQueueReceive(xQueue_LoRa, &count, LORA_RECEIVER_TIMEOUT_MS / portTICK_PERIOD_MS) == pdTRUE)
+    {
+        while (lora_received())
+        {
+            x = lora_receive_packet(protocol, sizeof(protocol));
+            /**
+             * Protocolo;
+             * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+             */
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
 }

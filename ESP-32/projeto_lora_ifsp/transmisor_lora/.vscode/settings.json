@@ -8,7 +8,9 @@
     "idf.pythonBinPathWin": "D:\\Users\\YhanChristian\\.espressif\\python_env\\idf4.3_py3.8_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "D:\\Users\\YhanChristian\\.espressif",
     "files.associations": {
-        "ssd1306.h": "c"
+        "ssd1306.h": "c",
+        "chrono": "c",
+        "algorithm": "c"
     },
     "idf.portWin": "COM4"
 }

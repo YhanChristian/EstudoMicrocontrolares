@@ -163,9 +163,9 @@ static void esp32_start(void)
 static void ssd1306_start(void)
 {
     ssd1306_config(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CHANNEL, OLED_PIN_RESET);
-    ssd1306_out16(0, 0, "Transmitter", WHITE);
-    ssd1306_out8(2, 0, "Node Add:", WHITE);
-    ssd1306_chr8(2, 9, MASTER_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
+    //ssd1306_out8(2, 0, "Node Add:", WHITE);
+    ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
 }
 
 static void read_package(void)

@@ -213,9 +213,9 @@ static void ssd1306_start(void)
     * Imprime usando fonte8x16;
     * Sintaxe: ssd1306_out16( linha, coluna, ftring , fonte_color );
     */
-    ssd1306_out16(0, 0, "Receiver", WHITE);
-    ssd1306_out8(2, 0, "Node Add:", WHITE);
-    ssd1306_chr8(2, 9, SLAVE_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out16(0, 0, "Rec. Addr: ", WHITE);
+    //ssd1306_out8(2, 0, "Node Add:", WHITE);
+    ssd1306_chr16(0, 12, SLAVE_NODE_ADDRESS + '0', WHITE);
 }
 static void i2c_bus_init(void)
 {
@@ -249,6 +249,16 @@ static void mpu6050_read(void)
 
     MPU6050_Data.acce_data = acce;
     MPU6050_Data.gyro_data = gyro;
+    char printXData[50];
+    snprintf(printXData, sizeof(printXData), "aX:%.1f gX:%.1f", MPU6050_Data.acce_data.acce_x, MPU6050_Data.gyro_data.gyro_x);
+    char printYData[50];
+    snprintf(printYData, sizeof(printYData), "aY:%.1f gY:%.1f", MPU6050_Data.acce_data.acce_y, MPU6050_Data.gyro_data.gyro_y);
+    char printZData[50];
+    snprintf(printZData, sizeof(printZData), "aZ:%.1f gZ:%.1f", MPU6050_Data.acce_data.acce_z, MPU6050_Data.gyro_data.gyro_z);
+    ssd1306_out8(3, 0, (char *)printXData, WHITE);
+    ssd1306_out8(5, 0, (char *)printYData, WHITE);
+    ssd1306_out8(7, 0, (char *)printZData, WHITE);
+
     ESP_LOGI(TAG, "accX:%.2f\n", MPU6050_Data.acce_data.acce_x);
     ESP_LOGI(TAG, "accY:%.2f\n", MPU6050_Data.acce_data.acce_y);
     ESP_LOGI(TAG, "accZ:%.2f\n", MPU6050_Data.acce_data.acce_z);

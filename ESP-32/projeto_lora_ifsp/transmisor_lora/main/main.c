@@ -65,7 +65,7 @@ static void vLoRaTxTask(void *pvParameter);
 
 static void esp32_start(void);
 static void ssd1306_start(void);
-static void read_package(void);
+static void lora_received_data(void);
 
 void app_main(void)
 {
@@ -125,7 +125,7 @@ static void vLoRaTxTask(void *pvParameter)
         /**
         * Chama a função que irá receber os dados do acelerômetro, enviado pelo receptor;
         */
-        read_package();
+        lora_received_data();
 
         vTaskDelay(5000 / portTICK_RATE_MS);
     }
@@ -168,11 +168,11 @@ static void ssd1306_start(void)
     ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
 }
 
-static void read_package(void)
+static void lora_received_data(void)
 {
     int x;
     int count = 0;
-    uint8_t protocol[100];
+    uint8_t protocol[150];
 
     if (xQueueReceive(xQueue_LoRa, &count, LORA_RECEIVER_TIMEOUT_MS / portTICK_PERIOD_MS) == pdTRUE)
     {
@@ -183,7 +183,36 @@ static void read_package(void)
              * Protocolo;
              * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
              */
+            if (x >= 6 && protocol[1] == MASTER_NODE_ADDRESS)
+            {
+                /**
+                   * Verifica CRC;
+                   */
+                USHORT usCRC = usLORACRC16(protocol, 3 + protocol[3] + 1);
+                UCHAR ucLow = (UCHAR)(usCRC & 0xFF);
+                UCHAR ucHigh = (UCHAR)((usCRC >> 8) & 0xFF);
+
+                if (ucLow == protocol[3 + protocol[3] + 1] && ucHigh == protocol[3 + protocol[3] + 2])
+                {
+                    ESP_LOGI(TAG, "CRC OK!");
+                    switch (protocol[2])
+                    {
+                    case CMD_READ_MPU6050:
+                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d, Data: %s", LORA_TOTAL_NODES, (char*)&protocol[4]);
+                        break;
+                    }
+                }
+
+                else
+                {
+                    ESP_LOGI(TAG, "CRC ERROR!");
+                }
+            }
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+    else
+    {
+        ESP_LOGI(TAG, "timeout!");
     }
 }

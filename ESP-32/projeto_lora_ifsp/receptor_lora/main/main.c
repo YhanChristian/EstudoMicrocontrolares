@@ -13,6 +13,11 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stddef.h>
+#include <string.h>
+
 #include "nvs_flash.h"
 #include "esp_spi_flash.h"
 
@@ -81,7 +86,7 @@ static void ssd1306_start(void);
 static void i2c_bus_init(void);
 static void i2c_sensor_mpu6050_init(void);
 static void mpu6050_read(void);
-static void lora_data_send(uint8_t *protocol, char *message);
+static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command);
 
 void app_main(void)
 {
@@ -115,8 +120,8 @@ void app_main(void)
 static void vLoRaRxTask(void *pvParameter)
 {
     int x;
-    char buf[50];
-    uint8_t protocol[100];
+    char buf[100];
+    uint8_t protocol[150];
     int count = 0;
     while (true)
     {
@@ -164,6 +169,18 @@ static void vLoRaRxTask(void *pvParameter)
                         * Leitura do acelerômetro e envio de pacote para  o transmissor;
                         */
                         mpu6050_read();
+
+                        /* Deseja enviar para o transmissor uma mensagem de confirmação
+                        * de entrega de mensagem? Sim, então envie o comando de ACK;
+                        */
+                        vTaskDelay(100 / portTICK_PERIOD_MS);
+
+                        snprintf(buf, sizeof(buf),
+                                 "{\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\"\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}",
+                                 MPU6050_Data.acce_data.acce_x, MPU6050_Data.acce_data.acce_y, MPU6050_Data.acce_data.acce_z,
+                                 MPU6050_Data.gyro_data.gyro_x, MPU6050_Data.gyro_data.gyro_y, MPU6050_Data.gyro_data.gyro_z);
+
+                        lora_data_send(protocol, buf, CMD_READ_MPU6050);
 
                         break;
                     }
@@ -241,6 +258,8 @@ static void i2c_sensor_mpu6050_init(void)
 
 static void mpu6050_read(void)
 {
+    /*!<Leitura Acc e Gyro  OLED 0.96"*/
+
     mpu6050_acce_value_t acce;
     mpu6050_gyro_value_t gyro;
 
@@ -249,24 +268,53 @@ static void mpu6050_read(void)
 
     MPU6050_Data.acce_data = acce;
     MPU6050_Data.gyro_data = gyro;
+
+    /*!< Exibe dados Display  OLED 0.96"*/
+
     char printXData[50];
     snprintf(printXData, sizeof(printXData), "aX:%.1f gX:%.1f", MPU6050_Data.acce_data.acce_x, MPU6050_Data.gyro_data.gyro_x);
     char printYData[50];
     snprintf(printYData, sizeof(printYData), "aY:%.1f gY:%.1f", MPU6050_Data.acce_data.acce_y, MPU6050_Data.gyro_data.gyro_y);
     char printZData[50];
     snprintf(printZData, sizeof(printZData), "aZ:%.1f gZ:%.1f", MPU6050_Data.acce_data.acce_z, MPU6050_Data.gyro_data.gyro_z);
+
     ssd1306_out8(3, 0, (char *)printXData, WHITE);
     ssd1306_out8(5, 0, (char *)printYData, WHITE);
     ssd1306_out8(7, 0, (char *)printZData, WHITE);
-
+    /*
     ESP_LOGI(TAG, "accX:%.2f\n", MPU6050_Data.acce_data.acce_x);
     ESP_LOGI(TAG, "accY:%.2f\n", MPU6050_Data.acce_data.acce_y);
     ESP_LOGI(TAG, "accZ:%.2f\n", MPU6050_Data.acce_data.acce_z);
     ESP_LOGI(TAG, "gyroX:%.2f\n", MPU6050_Data.gyro_data.gyro_x);
     ESP_LOGI(TAG, "gyroY:%.2f\n", MPU6050_Data.gyro_data.gyro_y);
     ESP_LOGI(TAG, "gyroZ:%.2f\n", MPU6050_Data.gyro_data.gyro_z);
+    */
 }
 
-static void lora_data_send(uint8_t *protocol, char *message)
+static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
 {
+    /**
+    * Protocolo;
+    * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+    */
+    protocol[0] = SLAVE_NODE_ADDRESS;
+    protocol[1] = MASTER_NODE_ADDRESS;
+    protocol[2] = n_command;
+    protocol[3] = strlen(message) + 1;
+
+    strcpy((char *)&protocol[4], message);
+
+    /**
+     * Calcula o CRC do pacote;
+     */
+    USHORT usCRC = usLORACRC16(protocol, 4 + protocol[3]);
+    protocol[4 + protocol[3]] = (UCHAR)(usCRC & 0xFF);
+    protocol[5 + protocol[3]] = (UCHAR)((usCRC >> 8) & 0xFF);
+
+    /**
+     * Transmite protocol via LoRa;
+     */
+    lora_send_packet(protocol, 6 + protocol[3]);
+
+    ESP_LOGI(TAG, "Dados acelerômetro transmitidos: %s", message);
 }

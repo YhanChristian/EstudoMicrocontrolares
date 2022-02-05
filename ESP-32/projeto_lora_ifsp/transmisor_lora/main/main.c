@@ -1,14 +1,14 @@
 /**
-  ******************************************************************************
-  * @Company    : Yhan Christian Souza Silva 
-  * @file       : main.c
-  * @author     : Yhan Christian Souza Silva
-  * @date       : 24/01/2022
-  * @brief      : Arquivo fonte main.c com o projeto do transmissor (MASTER) que 
-  *               envia um comando ao módulo SLAVE para receber dados do sensor
-  *               acelerômetro (MPU6050) via LoRa em uma comunicação PaP.
-  ******************************************************************************
-*/
+ ******************************************************************************
+ * @Company    : Yhan Christian Souza Silva
+ * @file       : main.c
+ * @author     : Yhan Christian Souza Silva
+ * @date       : 24/01/2022
+ * @brief      : Arquivo fonte main.c com o projeto do transmissor (MASTER) que
+ *               envia um comando ao módulo SLAVE para receber dados do sensor
+ *               acelerômetro (MPU6050) via LoRa em uma comunicação PaP.
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
 
@@ -39,7 +39,7 @@ static const char *TAG = "LoRa_Transmitter";
 const int MASTER_NODE_ADDRESS = 0;
 
 /**
- * LoRa devices (qtde de Slaves = no caso estou utilizando 1 dispositivo 
+ * LoRa devices (qtde de Slaves = no caso estou utilizando 1 dispositivo
  * slave no END 1  e o master no END 0);
  */
 #define LORA_TOTAL_NODES 1
@@ -109,22 +109,22 @@ static void vLoRaTxTask(void *pvParameter)
         protocol[3] = 0;
 
         /**
-        * Calcula o CRC do pacote;
-        */
+         * Calcula o CRC do pacote;
+         */
         USHORT usCRC = usLORACRC16(protocol, 4);
         protocol[4] = (UCHAR)(usCRC & 0xFF);
         protocol[5] = (UCHAR)((usCRC >> 8) & 0xFF);
 
         /**
-        * Transmite protocol via LoRa;
-        */
+         * Transmite protocol via LoRa;
+         */
         lora_send_packet(protocol, 6);
 
         ESP_LOGI(TAG, "Pacote Enviado para node = %d ", LORA_TOTAL_NODES);
 
         /**
-        * Chama a função que irá receber os dados do acelerômetro, enviado pelo receptor;
-        */
+         * Chama a função que irá receber os dados do acelerômetro, enviado pelo receptor;
+         */
         lora_received_data();
 
         vTaskDelay(5000 / portTICK_RATE_MS);
@@ -164,7 +164,6 @@ static void ssd1306_start(void)
 {
     ssd1306_config(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CHANNEL, OLED_PIN_RESET);
     ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
-    //ssd1306_out8(2, 0, "Node Add:", WHITE);
     ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
 }
 
@@ -186,8 +185,8 @@ static void lora_received_data(void)
             if (x >= 6 && protocol[1] == MASTER_NODE_ADDRESS)
             {
                 /**
-                   * Verifica CRC;
-                   */
+                 * Verifica CRC;
+                 */
                 USHORT usCRC = usLORACRC16(protocol, 3 + protocol[3] + 1);
                 UCHAR ucLow = (UCHAR)(usCRC & 0xFF);
                 UCHAR ucHigh = (UCHAR)((usCRC >> 8) & 0xFF);
@@ -198,7 +197,13 @@ static void lora_received_data(void)
                     switch (protocol[2])
                     {
                     case CMD_READ_MPU6050:
-                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d, Data: %s", LORA_TOTAL_NODES, (char*)&protocol[4]);
+                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d, Data: %s", LORA_TOTAL_NODES, (char *)&protocol[4]);
+                        ssd1306_clear();
+                        ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
+                        ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
+                        ssd1306_out8(3, 0, "ACK: 0", WHITE);
+                        ssd1306_out8(3, 8, "Rec.: ", WHITE);
+                        ssd1306_chr8(3, 13, LORA_TOTAL_NODES + '0', WHITE);
                         break;
                     }
                 }
@@ -206,6 +211,10 @@ static void lora_received_data(void)
                 else
                 {
                     ESP_LOGI(TAG, "CRC ERROR!");
+                    ssd1306_clear();
+                    ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
+                    ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
+                    ssd1306_out8(3, 0, "CRC Error", WHITE);
                 }
             }
         }
@@ -214,5 +223,10 @@ static void lora_received_data(void)
     else
     {
         ESP_LOGI(TAG, "timeout!");
+        ssd1306_clear();
+        ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
+        ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
+        ssd1306_out8(3, 0, "ACK: -1", WHITE);
+        ssd1306_out8(3, 8, "Timeout", WHITE);
     }
 }

@@ -1,14 +1,14 @@
 /**
-  ******************************************************************************
-  * @Company    : Yhan Christian Souza Silva 
-  * @file       : main.c
-  * @author     : Yhan Christian Souza Silva
-  * @date       : 17/01/2022
-  * @brief      : Arquivo fonte main.c com o projeto do receptor (SLAVE) que 
-  *               aguarda comando do MASTER para envio dos dados lidos por um
-  *               acelerômetro via LoRA em uma comunicação PaP.
-  ******************************************************************************
-*/
+ ******************************************************************************
+ * @Company    : Yhan Christian Souza Silva
+ * @file       : main.c
+ * @author     : Yhan Christian Souza Silva
+ * @date       : 17/01/2022
+ * @brief      : Arquivo fonte main.c com o projeto do receptor (SLAVE) que
+ *               aguarda comando do MASTER para envio dos dados lidos por um
+ *               acelerômetro via LoRA em uma comunicação PaP.
+ ******************************************************************************
+ */
 
 /* Includes ------------------------------------------------------------------*/
 
@@ -45,7 +45,7 @@ static const char *TAG = "LoRa_Receiver";
 const int MASTER_NODE_ADDRESS = 0;
 
 /**
- * ATENÇÃO: 
+ * ATENÇÃO:
  * Defina aqui o endereço deste DISPOSITIVO; 1 a 255;
  * Cada dispositivo SLAVE precisa ter endereço diferente;
  */
@@ -130,26 +130,26 @@ static void vLoRaRxTask(void *pvParameter)
         xQueueReceive(xQueue_LoRa, &count, portMAX_DELAY);
 
         /**
-       * Algum byte foi recebido?
-       * Realiza a leitura dos registradores de status do LoRa com o 
-       * objetivo de verificar se algum byte recebido foi armazenado
-       * na FIFO do rádio;
-       */
+         * Algum byte foi recebido?
+         * Realiza a leitura dos registradores de status do LoRa com o
+         * objetivo de verificar se algum byte recebido foi armazenado
+         * na FIFO do rádio;
+         */
 
         while (lora_received())
         {
 
             /**
-          * Sim, existe bytes na FIFO do rádio LoRa, portanto precisamos ler
-          * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
-          * x -> armazena a quantidade de bytes que foram populados em buf;
-          */
+             * Sim, existe bytes na FIFO do rádio LoRa, portanto precisamos ler
+             * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
+             * x -> armazena a quantidade de bytes que foram populados em buf;
+             */
             x = lora_receive_packet(protocol, sizeof(protocol));
 
             /**
-           * Protocolo;
-           * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
-           */
+             * Protocolo;
+             * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+             */
             if (x >= 6 && protocol[0] == MASTER_NODE_ADDRESS && protocol[1] == SLAVE_NODE_ADDRESS)
             {
                 /**
@@ -166,13 +166,13 @@ static void vLoRaRxTask(void *pvParameter)
                     case CMD_READ_MPU6050:
                         ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
                         /**
-                        * Leitura do acelerômetro e envio de pacote para  o transmissor;
-                        */
+                         * Leitura do acelerômetro e envio de pacote para  o transmissor;
+                         */
                         mpu6050_read();
 
                         /* Deseja enviar para o transmissor uma mensagem de confirmação
-                        * de entrega de mensagem? Sim, então envie o comando de ACK;
-                        */
+                         * de entrega de mensagem? Sim, então envie o comando de ACK;
+                         */
                         vTaskDelay(100 / portTICK_PERIOD_MS);
 
                         snprintf(buf, sizeof(buf),
@@ -227,12 +227,12 @@ static void ssd1306_start(void)
     ssd1306_config(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CHANNEL, OLED_PIN_RESET);
 
     /**
-    * Imprime usando fonte8x16;
-    * Sintaxe: ssd1306_out16( linha, coluna, ftring , fonte_color );
-    */
+     * Imprime usando fonte8x16;
+     * Sintaxe: ssd1306_out16( linha, coluna, ftring , fonte_color );
+     */
     ssd1306_out16(0, 0, "Rec. Addr: ", WHITE);
-    //ssd1306_out8(2, 0, "Node Add:", WHITE);
     ssd1306_chr16(0, 12, SLAVE_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out8(3, 0, "Waiting Command!", WHITE);
 }
 static void i2c_bus_init(void)
 {
@@ -277,7 +277,9 @@ static void mpu6050_read(void)
     snprintf(printYData, sizeof(printYData), "aY:%.1f gY:%.1f", MPU6050_Data.acce_data.acce_y, MPU6050_Data.gyro_data.gyro_y);
     char printZData[50];
     snprintf(printZData, sizeof(printZData), "aZ:%.1f gZ:%.1f", MPU6050_Data.acce_data.acce_z, MPU6050_Data.gyro_data.gyro_z);
-
+    ssd1306_clear();
+    ssd1306_out16(0, 0, "Rec. Addr: ", WHITE);
+    ssd1306_chr16(0, 12, SLAVE_NODE_ADDRESS + '0', WHITE);
     ssd1306_out8(3, 0, (char *)printXData, WHITE);
     ssd1306_out8(5, 0, (char *)printYData, WHITE);
     ssd1306_out8(7, 0, (char *)printZData, WHITE);
@@ -294,9 +296,9 @@ static void mpu6050_read(void)
 static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
 {
     /**
-    * Protocolo;
-    * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
-    */
+     * Protocolo;
+     * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+     */
     protocol[0] = SLAVE_NODE_ADDRESS;
     protocol[1] = MASTER_NODE_ADDRESS;
     protocol[2] = n_command;

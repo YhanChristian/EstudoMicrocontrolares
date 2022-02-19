@@ -13,7 +13,11 @@
         "algorithm": "c",
         "esp_wifi.h": "c",
         "semphr.h": "c",
-        "esp_spi_flash.h": "c"
+        "esp_spi_flash.h": "c",
+        "random": "c",
+        "mqtt.h": "c",
+        "esp_netif.h": "c",
+        "esp_event.h": "c"
     },
     "idf.portWin": "COM4"
 }

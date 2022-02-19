@@ -36,6 +36,9 @@
 #include "lora_crc.h"
 #include "ssd1306.h"
 #include "wifi_manager.h"
+#include "cJSON.h"
+#include "mqtt_client.h"
+
 
 /* Private define & constants ------------------------------------------------*/
 
@@ -66,14 +69,18 @@ const int MASTER_NODE_ADDRESS = 0;
 
 /* Global variables -----------------------------------------------------------*/
 
-static EventGroupHandle_t wifi_connected_event_group;
-
-const static int WIFI_CONNECTED = BIT0;
 char str_ip[16];
 
-/* Private tasks prototypes --------------------------------------------------*/
+/* FreeRTOS section - Handles and tasks prototypes ----------------------------*/
+
 static void vLoRaTxTask(void *pvParameter);
 static void vMonitoringTask(void *pvParameter);
+
+static EventGroupHandle_t wifi_connected_event_group;
+const static int WIFI_CONNECTED = BIT0;
+
+QueueHandle_t sensor_data_queue;
+SemaphoreHandle_t mqtt_connected_mutex;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -91,8 +98,13 @@ void app_main(void)
     ssd1306_start();
 
     /*!< Cria grupo de evento para sinalizar conexão WiFi */
-
     wifi_connected_event_group = xEventGroupCreate();
+
+    /*!< Cria semaforo Mutex para sinalizar enivo dados MQTT*/
+    mqtt_connected_mutex = xSemaphoreCreateMutex();
+
+    /*!< Cria fila para armazenamento dos dados lidos sensor*/
+   sensor_data_queue = xQueueCreate(10, sizeof(char*));
 
     /*!< Inicia conexão WiFi manager */
     wifi_manager_start();

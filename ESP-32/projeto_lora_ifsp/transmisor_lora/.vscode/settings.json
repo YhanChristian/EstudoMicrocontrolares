@@ -10,7 +10,10 @@
     "files.associations": {
         "ssd1306.h": "c",
         "chrono": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "esp_wifi.h": "c",
+        "semphr.h": "c",
+        "esp_spi_flash.h": "c"
     },
     "idf.portWin": "COM4"
 }

@@ -13,21 +13,29 @@
 /* Includes ------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+#include <stddef.h>
+
 #include "nvs_flash.h"
 #include "esp_spi_flash.h"
-
 #include "esp_system.h"
-#include "esp_spi_flash.h"
+#include "esp_log.h"
+#include "esp_event.h"
+
+#include <esp_wifi.h>
+#include <esp_netif.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
-
-#include "esp_log.h"
+#include "freertos/queue.h"
+#include "freertos/event_groups.h"
 
 #include "lora.h"
 #include "lora_crc.h"
 #include "ssd1306.h"
+#include "wifi_manager.h"
 
 /* Private define & constants ------------------------------------------------*/
 
@@ -56,16 +64,23 @@ const int MASTER_NODE_ADDRESS = 0;
 #define I2C_CHANNEL CONFIG_I2C_CHANNEL       /*!< default 0 */
 #define OLED_PIN_RESET CONFIG_OLED_PIN_RESET /*!< default 16 */
 
-/* Private variables ---------------------------------------------------------*/
+/* Global variables -----------------------------------------------------------*/
+
+static EventGroupHandle_t wifi_connected_event_group;
+
+const static int WIFI_CONNECTED = BIT0;
+char str_ip[16];
 
 /* Private tasks prototypes --------------------------------------------------*/
 static void vLoRaTxTask(void *pvParameter);
+static void vMonitoringTask(void *pvParameter);
 
 /* Private function prototypes -----------------------------------------------*/
 
 static void esp32_start(void);
 static void ssd1306_start(void);
 static void lora_received_data(void);
+void cb_connection_ok(void *pvParameter);
 
 void app_main(void)
 {
@@ -74,6 +89,16 @@ void app_main(void)
 
     /*!< Inicia display  OLED 0.96"*/
     ssd1306_start();
+
+    /*!< Cria grupo de evento para sinalizar conexão WiFi */
+
+    wifi_connected_event_group = xEventGroupCreate();
+
+    /*!< Inicia conexão WiFi manager */
+    wifi_manager_start();
+
+    /*!< register a callback as an example to how you can integrate your code with the wifi manager */
+    wifi_manager_set_callback(WM_EVENT_STA_GOT_IP, &cb_connection_ok);
 
     /*!< Inicia LoRa e seta frequência 915MHz*/
     lora_init();
@@ -89,6 +114,11 @@ void app_main(void)
     {
         ESP_LOGE("ERROR", "*** vLoRaTxTask error ***\n");
     }
+
+    if (xTaskCreatePinnedToCore(&vMonitoringTask, "vMonitoringTask", 2048, NULL, 1, NULL, 1) != pdTRUE)
+    {
+        ESP_LOGE("ERROR", "*** vMonitoringTask error ***\n");
+    }
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/
@@ -98,6 +128,11 @@ static void vLoRaTxTask(void *pvParameter)
     uint8_t protocol[100];
     while (true)
     {
+        /**
+         * Aguarda conexão WiFi para processar Task
+         */
+        xEventGroupWaitBits(wifi_connected_event_group, WIFI_CONNECTED, false, true, portMAX_DELAY);
+
         /**
          * Protocolo;
          * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
@@ -128,6 +163,15 @@ static void vLoRaTxTask(void *pvParameter)
         lora_received_data();
 
         vTaskDelay(5000 / portTICK_RATE_MS);
+    }
+}
+
+static void vMonitoringTask(void *pvParameter)
+{
+    for (;;)
+    {
+        ESP_LOGI(TAG, "free heap: %d", esp_get_free_heap_size());
+        vTaskDelay(10000 / portTICK_RATE_MS);
     }
 }
 
@@ -165,6 +209,8 @@ static void ssd1306_start(void)
     ssd1306_config(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CHANNEL, OLED_PIN_RESET);
     ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
     ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out8(3, 2, "Waiting WiFi", WHITE);
+    ssd1306_out8(4, 3, "Connection", WHITE);
 }
 
 static void lora_received_data(void)
@@ -201,9 +247,11 @@ static void lora_received_data(void)
                         ssd1306_clear();
                         ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
                         ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
-                        ssd1306_out8(3, 0, "ACK: 0", WHITE);
-                        ssd1306_out8(3, 8, "Rec.: ", WHITE);
-                        ssd1306_chr8(3, 13, LORA_TOTAL_NODES + '0', WHITE);
+                        ssd1306_out8(3, 0, "IP: ", WHITE);
+                        ssd1306_out8(3, 3, str_ip, WHITE);
+                        ssd1306_out8(5, 0, "ACK: 0", WHITE);
+                        ssd1306_out8(5, 8, "Rec.: ", WHITE);
+                        ssd1306_chr8(5, 13, LORA_TOTAL_NODES + '0', WHITE);
                         break;
                     }
                 }
@@ -214,7 +262,9 @@ static void lora_received_data(void)
                     ssd1306_clear();
                     ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
                     ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
-                    ssd1306_out8(3, 0, "CRC Error", WHITE);
+                    ssd1306_out8(3, 0, "IP: ", WHITE);
+                    ssd1306_out8(3, 3, str_ip, WHITE);
+                    ssd1306_out8(5, 0, "CRC Error", WHITE);
                 }
             }
         }
@@ -226,7 +276,23 @@ static void lora_received_data(void)
         ssd1306_clear();
         ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
         ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
-        ssd1306_out8(3, 0, "ACK: -1", WHITE);
-        ssd1306_out8(3, 8, "Timeout", WHITE);
+        ssd1306_out8(3, 0, "IP: ", WHITE);
+        ssd1306_out8(3, 3, str_ip, WHITE);
+        ssd1306_out8(5, 0, "ACK: -1", WHITE);
+        ssd1306_out8(5, 8, "Timeout", WHITE);
     }
+}
+
+void cb_connection_ok(void *pvParameter)
+{
+    xEventGroupSetBits(wifi_connected_event_group, WIFI_CONNECTED);
+    ip_event_got_ip_t *param = (ip_event_got_ip_t *)pvParameter;
+    /* transform IP to human readable string */
+    esp_ip4addr_ntoa(&param->ip_info.ip, str_ip, IP4ADDR_STRLEN_MAX);
+    ESP_LOGI(TAG, "I have a connection and my IP is %s!", str_ip);
+    ssd1306_clear();
+    ssd1306_out16(0, 0, "Trans. Addr:", WHITE);
+    ssd1306_chr16(0, 13, MASTER_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out8(3, 0, "IP: ", WHITE);
+    ssd1306_out8(3, 3, str_ip, WHITE);
 }

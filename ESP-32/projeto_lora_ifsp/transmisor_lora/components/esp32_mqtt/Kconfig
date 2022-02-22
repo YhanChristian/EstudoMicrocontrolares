@@ -1,0 +1,25 @@
+menu "MQTT Broker Configuration"
+
+    config BROKER_URL
+        string "Broker URL"
+        default "mqtt://broker.mqttdashboard.com"
+        help
+            URL of the broker to connect to
+
+    config BROKER_URL_FROM_STDIN
+        bool
+        default y if BROKER_URL = "FROM_MENUCONFIG"
+
+    config ESP_MQTT_USER
+        string "MQTT broker Username"
+        default "username"
+        help
+            MQTT broker login for the example to connect to.
+
+    config ESP_MQTT_PASSWORD
+        string "MQTT broker Password"
+        default "mypassword"
+        help
+            MQTT broker password for the example to use.
+
+endmenu

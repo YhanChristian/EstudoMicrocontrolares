@@ -155,7 +155,7 @@ static void vLoRaTxTask(void *pvParameter)
     uint8_t protocol[100];
     for (;;)
     {
-
+ 
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
             /**
@@ -205,8 +205,8 @@ static void vMQTT_PublishTask(void *pvParameter)
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
 
-             if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
-            //if (xQueueReceive(sensor_data_queue, &pcRecebeDados, portMAX_DELAY))
+            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
+            // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, portMAX_DELAY))
             {
                 ESP_LOGI(TAG, "Task MQTT Data: %s", pcRecebeDados);
                 esp_mqtt_client_publish(client, MQTT_TOPIC, pcRecebeDados, 0, 1, 0);

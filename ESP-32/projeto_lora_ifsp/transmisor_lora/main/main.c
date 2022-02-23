@@ -109,7 +109,7 @@ void app_main(void)
     mqtt_connected_mutex = xSemaphoreCreateMutex();
 
     /*!< Cria fila para armazenamento dos dados lidos sensor*/
-    sensor_data_queue = xQueueCreate(150, sizeof(char *));
+    sensor_data_queue = xQueueCreate(10, sizeof(char *));
 
     /*!< Inicia conexão WiFi manager */
     wifi_manager_start();
@@ -187,7 +187,7 @@ static void vLoRaTxTask(void *pvParameter)
              */
             lora_received_data();
 
-            vTaskDelay(5000 / portTICK_RATE_MS);
+            vTaskDelay(30000 / portTICK_RATE_MS);
             xSemaphoreGive(mqtt_connected_mutex);
         }
     }
@@ -205,8 +205,8 @@ static void vMQTT_PublishTask(void *pvParameter)
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
 
-            // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
-            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, (10 / portTICK_PERIOD_MS)))
+             if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
+            //if (xQueueReceive(sensor_data_queue, &pcRecebeDados, portMAX_DELAY))
             {
                 ESP_LOGI(TAG, "Task MQTT Data: %s", pcRecebeDados);
                 esp_mqtt_client_publish(client, MQTT_TOPIC, pcRecebeDados, 0, 1, 0);
@@ -307,7 +307,7 @@ static void lora_received_data(void)
                         strcpy(pcData, (char *)&protocol[4]);
 
                         /*!< Coloca na fila a string recebida via LoRa*/
-                        if (xQueueSend(sensor_data_queue, &pcData, (10 / portTICK_PERIOD_MS)) == pdPASS)
+                        if (xQueueSend(sensor_data_queue, &pcData, (100 / portTICK_RATE_MS)) == pdPASS)
                         {
                             ESP_LOGI(TAG, "Envia dados fila: %s", pcData);
                         }

@@ -177,7 +177,7 @@ static void vLoRaRxTask(void *pvParameter)
 
                         snprintf(buf, sizeof(buf),
                                  //"{\"addr\":\"%d\",\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}",
-                                 "{\"addr %d:\"{\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}" "}",
+                                 "{\"addr %d\":{\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}" "}",
                                  SLAVE_NODE_ADDRESS, MPU6050_Data.acce_data.acce_x, MPU6050_Data.acce_data.acce_y, MPU6050_Data.acce_data.acce_z,
                                  MPU6050_Data.gyro_data.gyro_x, MPU6050_Data.gyro_data.gyro_y, MPU6050_Data.gyro_data.gyro_z);
 

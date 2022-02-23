@@ -109,7 +109,7 @@ void app_main(void)
     mqtt_connected_mutex = xSemaphoreCreateMutex();
 
     /*!< Cria fila para armazenamento dos dados lidos sensor*/
-    sensor_data_queue = xQueueCreate(10, sizeof(char *));
+    sensor_data_queue = xQueueCreate(150, sizeof(char *));
 
     /*!< Inicia conexão WiFi manager */
     wifi_manager_start();
@@ -205,11 +205,12 @@ static void vMQTT_PublishTask(void *pvParameter)
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
 
-            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
-            // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, (10 / portTICK_PERIOD_MS)))
+            // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
+            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, (10 / portTICK_PERIOD_MS)))
             {
                 ESP_LOGI(TAG, "Task MQTT Data: %s", pcRecebeDados);
                 esp_mqtt_client_publish(client, MQTT_TOPIC, pcRecebeDados, 0, 1, 0);
+                free(pcRecebeDados);
             }
 
             vTaskDelay(10 / portTICK_RATE_MS);
@@ -271,8 +272,6 @@ static void lora_received_data(void)
     int x;
     int count = 0;
     uint8_t protocol[150];
-    char buffer[150];
-    char *pcData = buffer;
 
     if (xQueueReceive(xQueue_LoRa, &count, LORA_RECEIVER_TIMEOUT_MS / portTICK_PERIOD_MS) == pdTRUE)
     {
@@ -303,12 +302,14 @@ static void lora_received_data(void)
 
                         // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s\n\n", LORA_TOTAL_NODES,(char *)&protocol[4]);
 
-                        sprintf(buffer, "%s", (char *)&protocol[4]);
+                        char *pcData = malloc(strlen((char *)&protocol[4]) + 1);
+
+                        strcpy(pcData, (char *)&protocol[4]);
 
                         /*!< Coloca na fila a string recebida via LoRa*/
                         if (xQueueSend(sensor_data_queue, &pcData, (10 / portTICK_PERIOD_MS)) == pdPASS)
                         {
-                            ESP_LOGI(TAG, "Envia dados fila: %s", buffer);
+                            ESP_LOGI(TAG, "Envia dados fila: %s", pcData);
                         }
 
                         ssd1306_clear();

@@ -120,7 +120,7 @@ void app_main(void)
 static void vLoRaRxTask(void *pvParameter)
 {
     int x;
-    char buf[100];
+    char buf[150];
     uint8_t protocol[150];
     int count = 0;
     while (true)
@@ -176,8 +176,9 @@ static void vLoRaRxTask(void *pvParameter)
                         vTaskDelay(100 / portTICK_PERIOD_MS);
 
                         snprintf(buf, sizeof(buf),
-                                 "{\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\"\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}",
-                                 MPU6050_Data.acce_data.acce_x, MPU6050_Data.acce_data.acce_y, MPU6050_Data.acce_data.acce_z,
+                                 //"{\"addr\":\"%d\",\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}",
+                                 "{\"addr %d:\"{\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}" "}",
+                                 SLAVE_NODE_ADDRESS, MPU6050_Data.acce_data.acce_x, MPU6050_Data.acce_data.acce_y, MPU6050_Data.acce_data.acce_z,
                                  MPU6050_Data.gyro_data.gyro_x, MPU6050_Data.gyro_data.gyro_y, MPU6050_Data.gyro_data.gyro_z);
 
                         lora_data_send(protocol, buf, CMD_READ_MPU6050);

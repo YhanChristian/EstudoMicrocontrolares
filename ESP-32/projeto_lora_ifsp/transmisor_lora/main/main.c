@@ -77,7 +77,7 @@ static const char *MQTT_TOPIC = "ifsp/projetolora";
 
 static void vLoRaTxTask(void *pvParameter);
 static void vMQTT_PublishTask(void *pvParameter);
-static void vMonitoringTask(void *pvParameter);
+// static void vMonitoringTask(void *pvParameter);
 
 static EventGroupHandle_t wifi_connected_event_group;
 const static int WIFI_CONNECTED = BIT0;
@@ -142,10 +142,12 @@ void app_main(void)
         ESP_LOGE("ERROR", "*** vMQTT_PublishTask error ***\n");
     }
 
-    if (xTaskCreatePinnedToCore(&vMonitoringTask, "vMonitoringTask", 2048, NULL, 1, NULL, 1) != pdTRUE)
-    {
-        ESP_LOGE("ERROR", "*** vMonitoringTask error ***\n");
-    }
+    /*
+        if (xTaskCreatePinnedToCore(&vMonitoringTask, "vMonitoringTask", 2048, NULL, 1, NULL, 1) != pdTRUE)
+        {
+            ESP_LOGE("ERROR", "*** vMonitoringTask error ***\n");
+        }
+       */
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/
@@ -155,7 +157,7 @@ static void vLoRaTxTask(void *pvParameter)
     uint8_t protocol[100];
     for (;;)
     {
- 
+
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
             /**
@@ -182,12 +184,14 @@ static void vLoRaTxTask(void *pvParameter)
 
             ESP_LOGI(TAG, "Pacote Enviado para node = %d ", LORA_TOTAL_NODES);
 
+            vTaskDelay(10 / portTICK_RATE_MS);
+
             /**
              * Chama a função que irá receber os dados do acelerômetro, enviado pelo receptor;
              */
             lora_received_data();
 
-            vTaskDelay(30000 / portTICK_RATE_MS);
+            vTaskDelay(600E3 / portTICK_RATE_MS);
             xSemaphoreGive(mqtt_connected_mutex);
         }
     }
@@ -209,6 +213,7 @@ static void vMQTT_PublishTask(void *pvParameter)
             // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, portMAX_DELAY))
             {
                 ESP_LOGI(TAG, "Task MQTT Data: %s", pcRecebeDados);
+                vTaskDelay(10 / portTICK_RATE_MS);
                 esp_mqtt_client_publish(client, MQTT_TOPIC, pcRecebeDados, 0, 1, 0);
                 free(pcRecebeDados);
             }
@@ -219,6 +224,7 @@ static void vMQTT_PublishTask(void *pvParameter)
     }
 }
 
+/*
 static void vMonitoringTask(void *pvParameter)
 {
     for (;;)
@@ -228,7 +234,7 @@ static void vMonitoringTask(void *pvParameter)
         vTaskDelay(10000 / portTICK_RATE_MS);
     }
 }
-
+*/
 /* Bodies of private functions -----------------------------------------------*/
 
 static void esp32_start(void)

@@ -1,0 +1,515 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 0 ]
+"14 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+"20
+[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"505 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\flneg.c
+[v ___flneg __flneg `(d  1 e 4 0 ]
+"43 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftoa.c
+[v _ftoa ftoa `(*.4uc  1 e 1 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"242
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\strncpy.c
+[v _strncpy strncpy `(*.4uc  1 e 1 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"14 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\lcd.c
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
+"60
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+"69
+[v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
+"75
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
+"96
+[v _Lcd_Initialize Lcd_Initialize `(v  1 e 1 0 ]
+"116
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
+"132
+[v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
+"24 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"42
+[v _Inicia_Config Inicia_Config `(v  1 e 1 0 ]
+"53
+[v _Leitura_Vin Leitura_Vin `(ui  1 e 2 0 ]
+"60
+[v _Leitura_Vout Leitura_Vout `(ui  1 e 2 0 ]
+"66
+[v _Disp_Info Disp_Info `(v  1 e 1 0 ]
+"14 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\pwm.c
+[v _PWM_Initialize PWM_Initialize `(v  1 e 1 0 ]
+"23
+[v _PWM_Duty PWM_Duty `(ui  1 e 2 0 ]
+"15 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\uart.c
+[v _UART_Initialize UART_Initialize `(v  1 e 1 0 ]
+"47
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+"72
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+"82
+[v _UART_Write_String UART_Write_String `(v  1 e 1 0 ]
+"737 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f877a.h
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
+"892
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
+"906
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
+"964
+[v _RCSTA RCSTA `VEuc  1 e 1 @24 ]
+"1059
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1066
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+"1152
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+"1159
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
+"1499
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1816
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"1999
+[v _TXSTA TXSTA `VEuc  1 e 1 @152 ]
+"2080
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2087
+[v _CMCON CMCON `VEuc  1 e 1 @156 ]
+"2222
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+"2229
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
+"2452
+[v _CCP1X CCP1X `VEb  1 e 0 @189 ]
+"2455
+[v _CCP1Y CCP1Y `VEb  1 e 0 @188 ]
+"2515
+[v _CREN CREN `VEb  1 e 0 @196 ]
+"2578
+[v _GO_nDONE GO_nDONE `VEb  1 e 0 @250 ]
+"2614
+[v _OERR OERR `VEb  1 e 0 @193 ]
+"2743
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"2755
+[v _RD2 RD2 `VEb  1 e 0 @66 ]
+"2758
+[v _RD3 RD3 `VEb  1 e 0 @67 ]
+"2761
+[v _RD4 RD4 `VEb  1 e 0 @68 ]
+"2764
+[v _RD5 RD5 `VEb  1 e 0 @69 ]
+"2767
+[v _RD6 RD6 `VEb  1 e 0 @70 ]
+"2770
+[v _RD7 RD7 `VEb  1 e 0 @71 ]
+"2965
+[v _TRISC2 TRISC2 `VEb  1 e 0 @1082 ]
+"2977
+[v _TRISC6 TRISC6 `VEb  1 e 0 @1086 ]
+"2980
+[v _TRISC7 TRISC7 `VEb  1 e 0 @1087 ]
+"3016
+[v _TRMT TRMT `VEb  1 e 0 @1217 ]
+"3037
+[v _TXIF TXIF `VEb  1 e 0 @100 ]
+"358 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\doprnt.c
+[v _dpowers dpowers `DC[10]ul  1 s 40 dpowers ]
+"24 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"37
+} 0
+"60
+[v _Leitura_Vout Leitura_Vout `(ui  1 e 2 0 ]
+{
+"62
+[v Leitura_Vout@leTensaoEntrada leTensaoEntrada `ui  1 a 2 7 ]
+"64
+} 0
+"20 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\adc.c
+[v _ADC_Read ADC_Read `(ui  1 e 2 0 ]
+{
+[v ADC_Read@ch ch `uc  1 a 1 wreg ]
+[v ADC_Read@ch ch `uc  1 a 1 wreg ]
+"23
+[v ADC_Read@ch ch `uc  1 a 1 4 ]
+"33
+} 0
+"53 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\main.c
+[v _Leitura_Vin Leitura_Vin `(ui  1 e 2 0 ]
+{
+"55
+[v Leitura_Vin@leTensaoSaida leTensaoSaida `ui  1 a 2 69 ]
+"58
+} 0
+"23 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\pwm.c
+[v _PWM_Duty PWM_Duty `(ui  1 e 2 0 ]
+{
+[v PWM_Duty@duty duty `ui  1 p 2 63 ]
+"33
+} 0
+"42 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\main.c
+[v _Inicia_Config Inicia_Config `(v  1 e 1 0 ]
+{
+"51
+} 0
+"15 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\uart.c
+[v _UART_Initialize UART_Initialize `(v  1 e 1 0 ]
+{
+[v UART_Initialize@baud baud `DCui  1 p 2 63 ]
+"35
+} 0
+"14 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\pwm.c
+[v _PWM_Initialize PWM_Initialize `(v  1 e 1 0 ]
+{
+"20
+} 0
+"96 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\lcd.c
+[v _Lcd_Initialize Lcd_Initialize `(v  1 e 1 0 ]
+{
+"114
+} 0
+"69
+[v _Lcd_Clear Lcd_Clear `(v  1 e 1 0 ]
+{
+"73
+} 0
+"14 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\adc.c
+[v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
+{
+"18
+} 0
+"66 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\main.c
+[v _Disp_Info Disp_Info `(v  1 e 1 0 ]
+{
+"70
+[v Disp_Info@tensaoSaidaNovo tensaoSaidaNovo `[10]uc  1 a 10 14 ]
+[v Disp_Info@tensaoEntradaNovo tensaoEntradaNovo `[10]uc  1 a 10 4 ]
+"74
+[v Disp_Info@leituraVout leituraVout `f  1 a 4 28 ]
+"73
+[v Disp_Info@leituraVin leituraVin `f  1 a 4 24 ]
+"69
+[v Disp_Info@tensaoSaidaConvertido tensaoSaidaConvertido `*.4uc  1 a 1 33 ]
+[v Disp_Info@tensaoEntradaConvertido tensaoEntradaConvertido `*.4uc  1 a 1 32 ]
+"66
+[v Disp_Info@vin vin `ui  1 p 2 0 ]
+[v Disp_Info@vout vout `ui  1 p 2 2 ]
+"98
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\strncpy.c
+[v _strncpy strncpy `(*.4uc  1 e 1 0 ]
+{
+[v strncpy@to to `*.4uc  1 a 1 wreg ]
+"15
+[v strncpy@cp cp `*.4uc  1 a 1 5 ]
+"8
+[v strncpy@to to `*.4uc  1 a 1 wreg ]
+[v strncpy@from from `*.4DCuc  1 p 1 0 ]
+[v strncpy@size size `ui  1 p 2 1 ]
+"18
+[v strncpy@to to `*.4uc  1 a 1 4 ]
+"27
+} 0
+"6 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\ftoa.c
+[v _ftoa ftoa `(*.4uc  1 e 1 0 ]
+{
+"10
+[v ftoa@l l `ul  1 a 4 73 ]
+[v ftoa@rem rem `ul  1 a 4 69 ]
+"9
+[v ftoa@cp cp `*.4uc  1 a 1 77 ]
+"6
+[v ftoa@f f `f  1 p 4 63 ]
+[v ftoa@status status `*.4i  1 p 1 67 ]
+"8
+[v ftoa@buf buf `[17]uc  1 s 17 buf ]
+"21
+} 0
+"505 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\doprnt.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+"545
+[v sprintf@val val `ul  1 a 4 26 ]
+"517
+[v sprintf@prec prec `i  1 a 2 33 ]
+"514
+[v sprintf@width width `i  1 a 2 31 ]
+"512
+[v sprintf@c c `uc  1 a 1 35 ]
+"507
+[v sprintf@ap ap `[1]*.4v  1 a 1 25 ]
+"525
+[v sprintf@flag flag `uc  1 a 1 24 ]
+"505
+[v sprintf@sp sp `*.4uc  1 a 1 wreg ]
+[v sprintf@f f `*.24DCuc  1 p 1 10 ]
+"550
+[v sprintf@sp sp `*.4uc  1 a 1 30 ]
+"1567
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\isdigit.c
+[v _isdigit isdigit `(b  1 e 0 0 ]
+{
+[v isdigit@c c `uc  1 a 1 wreg ]
+[v isdigit@c c `uc  1 a 1 wreg ]
+"14
+[v isdigit@c c `uc  1 a 1 1 ]
+"15
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+{
+"10
+[v ___llmod@counter counter `uc  1 a 1 9 ]
+"5
+[v ___llmod@divisor divisor `ul  1 p 4 0 ]
+[v ___llmod@dividend dividend `ul  1 p 4 4 ]
+"25
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"10
+[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+"11
+[v ___lldiv@counter counter `uc  1 a 1 13 ]
+"5
+[v ___lldiv@divisor divisor `ul  1 p 4 0 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 4 ]
+"30
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+{
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 10 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 9 ]
+"10
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 0 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 8 ]
+"44
+} 0
+"43 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 62 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 61 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 52 ]
+"70
+} 0
+"242 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+{
+[v ___flsub@a a `d  1 p 4 46 ]
+[v ___flsub@b b `d  1 p 4 50 ]
+"250
+} 0
+"10
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 45 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 44 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 43 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 42 ]
+"10
+[v ___fladd@b b `d  1 p 4 26 ]
+[v ___fladd@a a `d  1 p 4 30 ]
+"237
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\flneg.c
+[v ___flneg __flneg `(d  1 e 4 0 ]
+{
+[v ___flneg@f1 f1 `d  1 p 4 0 ]
+"20
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+{
+[s S509 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+"13
+[s S514 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S517 . 4 `l 1 i 4 0 `d 1 f 4 0 `S509 1 fAsBytes 4 0 `S514 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S517  1 a 4 46 ]
+"12
+[v ___flmul@grs grs `ul  1 a 4 40 ]
+[s S586 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+"14
+[u S589 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S586 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S589  1 a 2 50 ]
+"10
+[v ___flmul@bexp bexp `uc  1 a 1 45 ]
+"11
+[v ___flmul@aexp aexp `uc  1 a 1 44 ]
+"9
+[v ___flmul@sign sign `uc  1 a 1 39 ]
+"8
+[v ___flmul@b b `d  1 p 4 26 ]
+[v ___flmul@a a `d  1 p 4 30 ]
+"205
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+{
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 6 ]
+"5
+[v __Umul8_16@product product `ui  1 a 2 4 ]
+"4
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 0 ]
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 8 ]
+"60
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+{
+[v ___flge@ff1 ff1 `d  1 p 4 0 ]
+[v ___flge@ff2 ff2 `d  1 p 4 4 ]
+"19
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.32\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+{
+"21
+[v ___fldiv@grs grs `ul  1 a 4 20 ]
+"22
+[v ___fldiv@rem rem `ul  1 a 4 13 ]
+"20
+[v ___fldiv@new_exp new_exp `i  1 a 2 18 ]
+"19
+[v ___fldiv@aexp aexp `uc  1 a 1 25 ]
+"18
+[v ___fldiv@bexp bexp `uc  1 a 1 24 ]
+"16
+[v ___fldiv@sign sign `uc  1 a 1 17 ]
+"8
+[v ___fldiv@a a `d  1 p 4 0 ]
+[v ___fldiv@b b `d  1 p 4 4 ]
+"185
+} 0
+"82 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\uart.c
+[v _UART_Write_String UART_Write_String `(v  1 e 1 0 ]
+{
+"84
+[v UART_Write_String@i i `i  1 a 2 6 ]
+"82
+[v UART_Write_String@data data `*.26uc  1 p 2 1 ]
+"88
+} 0
+"72
+[v _UART_Write UART_Write `(v  1 e 1 0 ]
+{
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 wreg ]
+[v UART_Write@data data `uc  1 a 1 0 ]
+"80
+} 0
+"132 C:\Users\Yhan Christian\Google Drive\IFSP - Pos Graduacao\2º Semestre\Sistemas de Controle\Projeto - Sistemas de Controle\projeto_sistemas_controle.X\lcd.c
+[v _Lcd_Write_String Lcd_Write_String `(v  1 e 1 0 ]
+{
+"134
+[v Lcd_Write_String@i i `i  1 a 2 10 ]
+"132
+[v Lcd_Write_String@a a `*.26uc  1 p 2 5 ]
+"139
+} 0
+"116
+[v _Lcd_Write_Char Lcd_Write_Char `(v  1 e 1 0 ]
+{
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+"118
+[v Lcd_Write_Char@y y `uc  1 a 1 3 ]
+[v Lcd_Write_Char@temp temp `uc  1 a 1 2 ]
+"116
+[v Lcd_Write_Char@a a `uc  1 a 1 wreg ]
+"119
+[v Lcd_Write_Char@a a `uc  1 a 1 4 ]
+"130
+} 0
+"75
+[v _Lcd_Set_Cursor Lcd_Set_Cursor `(v  1 e 1 0 ]
+{
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+"77
+[v Lcd_Set_Cursor@temp temp `uc  1 a 1 10 ]
+[v Lcd_Set_Cursor@y y `uc  1 a 1 9 ]
+[v Lcd_Set_Cursor@z z `uc  1 a 1 8 ]
+"75
+[v Lcd_Set_Cursor@a a `uc  1 a 1 wreg ]
+[v Lcd_Set_Cursor@b b `uc  1 p 1 4 ]
+"78
+[v Lcd_Set_Cursor@a a `uc  1 a 1 7 ]
+"94
+} 0
+"60
+[v _Lcd_Cmd Lcd_Cmd `(v  1 e 1 0 ]
+{
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+[v Lcd_Cmd@a a `uc  1 a 1 wreg ]
+"62
+[v Lcd_Cmd@a a `uc  1 a 1 3 ]
+"67
+} 0
+"14
+[v _Lcd_Port Lcd_Port `(v  1 e 1 0 ]
+{
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+[v Lcd_Port@a a `uc  1 a 1 wreg ]
+"16
+[v Lcd_Port@a a `uc  1 a 1 0 ]
+"59
+} 0

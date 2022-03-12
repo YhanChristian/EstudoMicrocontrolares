@@ -137,6 +137,8 @@ void app_main(void)
         ESP_LOGE("ERROR", "*** vLoRaTxTask error ***\n");
     }
 
+    /*!< Cria a task de  MQTT para publicar dados*/
+
     if (xTaskCreate(vMQTT_PublishTask, "vMQTT_PublishTask", configMINIMAL_STACK_SIZE + 10240, NULL, 5, NULL) != pdTRUE)
     {
         ESP_LOGE("ERROR", "*** vMQTT_PublishTask error ***\n");

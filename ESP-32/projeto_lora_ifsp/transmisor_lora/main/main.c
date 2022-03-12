@@ -132,7 +132,7 @@ void app_main(void)
     lora_enable_irq();
 
     /*!< Cria a task de transmissão LoRa*/
-    if (xTaskCreate(vLoRaTxTask, "vLoRaTxTask", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
+    if (xTaskCreate(vLoRaTxTask, "vLoRaTxTask", configMINIMAL_STACK_SIZE + 8192, NULL, 6, NULL) != pdTRUE)
     {
         ESP_LOGE("ERROR", "*** vLoRaTxTask error ***\n");
     }

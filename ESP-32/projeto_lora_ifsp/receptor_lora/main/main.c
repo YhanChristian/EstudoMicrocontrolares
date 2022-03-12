@@ -173,7 +173,7 @@ static void vLoRaRxTask(void *pvParameter)
                         /* Deseja enviar para o transmissor uma mensagem de confirmação
                          * de entrega de mensagem? Sim, então envie o comando de ACK;
                          */
-                        vTaskDelay(100 / portTICK_PERIOD_MS);
+                        vTaskDelay(10 / portTICK_PERIOD_MS);
 
                         snprintf(buf, sizeof(buf),
                                  //"{\"addr\":\"%d\",\"accX\":\"%.2f\",\"accY\":\"%.2f\",\"accZ\":\"%.2f\",\"gyroX\":\"%.2f\",\"gyroY\":\"%.2f\",\"gyroZ\":\"%.2f\"}",
@@ -284,14 +284,6 @@ static void mpu6050_read(void)
     ssd1306_out8(3, 0, (char *)printXData, WHITE);
     ssd1306_out8(5, 0, (char *)printYData, WHITE);
     ssd1306_out8(7, 0, (char *)printZData, WHITE);
-    /*
-    ESP_LOGI(TAG, "accX:%.2f\n", MPU6050_Data.acce_data.acce_x);
-    ESP_LOGI(TAG, "accY:%.2f\n", MPU6050_Data.acce_data.acce_y);
-    ESP_LOGI(TAG, "accZ:%.2f\n", MPU6050_Data.acce_data.acce_z);
-    ESP_LOGI(TAG, "gyroX:%.2f\n", MPU6050_Data.gyro_data.gyro_x);
-    ESP_LOGI(TAG, "gyroY:%.2f\n", MPU6050_Data.gyro_data.gyro_y);
-    ESP_LOGI(TAG, "gyroZ:%.2f\n", MPU6050_Data.gyro_data.gyro_z);
-    */
 }
 
 static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)

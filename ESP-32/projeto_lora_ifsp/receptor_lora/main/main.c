@@ -188,10 +188,8 @@ static void vLoRaRxTask(void *pvParameter)
                     }
                 }
             }
-            /*!< Delay entre cada leitura dos registradores de status do LoRa*/
-            //vTaskDelay(10 / portTICK_RATE_MS);
+    
         }
-
         /*!< Delay entre cada leitura dos registradores de status do LoRa*/
         // vTaskDelay(10 / portTICK_RATE_MS);
     }

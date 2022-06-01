@@ -211,9 +211,7 @@ static void vMQTT_PublishTask(void *pvParameter)
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
 
-            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)
-            // if (xQueueReceive(sensor_data_queue, &pcRecebeDados, portMAX_DELAY))
-            {
+            if (xQueueReceive(sensor_data_queue, &pcRecebeDados, 0) == pdPASS)            {
                 ESP_LOGI(TAG, "Task MQTT Data: %s", pcRecebeDados);
                 vTaskDelay(10 / portTICK_RATE_MS);
                 esp_mqtt_client_publish(client, MQTT_TOPIC, pcRecebeDados, 0, 1, 0);

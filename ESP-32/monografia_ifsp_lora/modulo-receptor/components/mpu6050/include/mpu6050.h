@@ -74,7 +74,7 @@ typedef struct {
 
 typedef struct {
     float temp;
-}mpu6050_temp_value_t;
+} mpu6050_temp_value_t;
 
 typedef void *mpu6050_handle_t;
 

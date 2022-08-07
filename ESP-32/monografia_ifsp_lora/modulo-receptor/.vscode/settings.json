@@ -12,5 +12,7 @@
     "idf.toolsPathWin": "C:\\Users\\yhan\\.espressif",
     "files.associations": {
         "semphr.h": "c"
-    }
+    },
+    "idf.flashType": "UART",
+    "idf.portWin": "COM3"
 }

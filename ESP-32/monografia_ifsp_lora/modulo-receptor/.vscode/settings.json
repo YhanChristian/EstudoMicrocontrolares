@@ -11,7 +11,11 @@
     "idf.pythonBinPathWin": "C:\\Users\\yhan\\.espressif\\python_env\\idf4.4_py3.8_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\Users\\yhan\\.espressif",
     "files.associations": {
-        "semphr.h": "c"
+        "semphr.h": "c",
+        "math.h": "c",
+        "chrono": "c",
+        "random": "c",
+        "limits": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

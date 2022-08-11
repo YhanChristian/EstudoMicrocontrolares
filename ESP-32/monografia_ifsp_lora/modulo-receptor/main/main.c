@@ -21,6 +21,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <string.h>
+#include <math.h>
 
 #include "nvs_flash.h"
 #include "esp_spi_flash.h"
@@ -53,6 +54,23 @@ const int MASTER_NODE_ADDRESS = 0;
 const int SLAVE_NODE_ADDRESS = 1;
 
 #define CMD_READ_MPU6050 1
+
+/**
+ * Define Tempo aquisição sensor.
+ */
+
+#define SAMPLES 1024
+#define SAMPLE_TIME 1000
+#define CALC_SAMPLE_TIME (float)SAMPLE_TIME / SAMPLES
+
+/**
+ * Define uso constantes math.h
+ */
+
+#define _USE_MATH_DEFINES
+
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+#define max(a, b) (((a) > (b)) ? (a) : (b))
 
 /* I2C Interface inicialization ----------------------------------------------*/
 
@@ -109,25 +127,83 @@ void app_main(void)
 
 static void vMPU6050Task(void *pvParameter)
 {
+
     for (;;)
     {
-        mpu6050_acce_value_t MPU6050_Acce_Data;
-        mpu6050_temp_value_t MPU6050_Temp_Data;
+        float vel_x = 0, vel_y = 0, vel_z = 0;
+        float vel_x_rms = 0, vel_y_rms = 0, vel_z_rms = 0;
+        float acel_x = 0, acel_y = 0, acel_z = 0, temp = 0;
+        float acel_x_rms = 0, acel_y_rms = 0, acel_z_rms = 0;
+        float acel_x_max = 0, acel_y_max = 0, acel_z_max = 0;
+        float acel_x_min = 0, acel_y_min = 0, acel_z_min = 0;
 
-        mpu6050_get_acce(mpu6050, &MPU6050_Acce_Data);
-        mpu6050_get_temp(mpu6050, &MPU6050_Temp_Data);
+
+        for (uint16_t i = 0; i < SAMPLES; i++)
+        {
+
+            mpu6050_acce_value_t MPU6050_Acce_Data;
+            mpu6050_temp_value_t MPU6050_Temp_Data;
+
+            mpu6050_get_acce(mpu6050, &MPU6050_Acce_Data);
+            mpu6050_get_temp(mpu6050, &MPU6050_Temp_Data);
+
+            acel_x_max = max(MPU6050_Acce_Data.acce_x, acel_x_max);
+            acel_y_max = max(MPU6050_Acce_Data.acce_y, acel_y_max);
+            acel_z_max = max(MPU6050_Acce_Data.acce_z, acel_z_max);
+
+            acel_x_min = min(MPU6050_Acce_Data.acce_x, acel_x_min);
+            acel_y_min = min(MPU6050_Acce_Data.acce_y, acel_y_min);
+            acel_z_min = min(MPU6050_Acce_Data.acce_z, acel_z_min);
+
+            acel_x += MPU6050_Acce_Data.acce_x;
+            acel_y += MPU6050_Acce_Data.acce_y;
+            acel_z += MPU6050_Acce_Data.acce_z;
+            temp += MPU6050_Temp_Data.temp;
+        }
+
+        acel_x = acel_x / SAMPLES;
+        acel_y = acel_y / SAMPLES;
+        acel_z = acel_z / SAMPLES;
+        temp = temp / SAMPLES;
+
+        acel_x_rms = acel_x * M_SQRT1_2;
+        acel_y_rms = acel_y * M_SQRT1_2;
+        acel_y_rms = acel_z * M_SQRT1_2;
+
+        vel_x = acel_x * CALC_SAMPLE_TIME;
+        vel_y = acel_y * CALC_SAMPLE_TIME;
+        vel_z = acel_z * CALC_SAMPLE_TIME;
+
+        vel_x_rms = vel_x * M_SQRT1_2;
+        vel_y_rms = vel_y * M_SQRT1_2;
+        vel_z_rms = vel_z * M_SQRT1_2;
+
         /*
-        char printData[150];
-        snprintf(printData, sizeof(printData), "aX:%.2f aY:%.2f aZ:%.2f t:%2.f",
-                 MPU6050_Acce_Data.acce_x, MPU6050_Acce_Data.acce_y,
-                 MPU6050_Acce_Data.acce_z, MPU6050_Temp_Data.temp);
-        */
+    char printData[150];
+    snprintf(printData, sizeof(printData), "aX:%.2f aY:%.2f aZ:%.2f t:%2.f",
+             MPU6050_Acce_Data.acce_x, MPU6050_Acce_Data.acce_y,
+             MPU6050_Acce_Data.acce_z, MPU6050_Temp_Data.temp);
+    */
 
         ESP_LOGI(TAG, "aX:%.2f aY:%.2f aZ:%.2f t:%.2f",
-                 MPU6050_Acce_Data.acce_x, MPU6050_Acce_Data.acce_y,
-                 MPU6050_Acce_Data.acce_z, MPU6050_Temp_Data.temp);
+                 acel_x, acel_y, acel_z, temp);
 
-        vTaskDelay(1000 / portTICK_RATE_MS);
+        ESP_LOGI(TAG, "aX_RMS:%.2f ay_RMS:%.2f az_RMS:%.2f",
+                 acel_x_rms, acel_y_rms, acel_z_rms);
+
+        ESP_LOGI(TAG, "aX_max:%.2f aY_max:%.2f aZ_max:%.2f",
+                 acel_x_max, acel_y_max, acel_z_max);
+
+        ESP_LOGI(TAG, "aX_min:%.2f aY_min:%.2f aZ_min:%.2f",
+                 acel_x_min, acel_y_min, acel_z_min);
+
+        ESP_LOGI(TAG, "vX:%.2f vY:%.2f vZ:%.2f",
+                 vel_x, vel_y, vel_z);
+
+       ESP_LOGI(TAG, "vx_RMS:%.2f vy_RMS:%.2f vz_RMS:%.2f",
+                 vel_x_rms, vel_y_rms, vel_z_rms);
+                 
+        vTaskDelay(SAMPLE_TIME / portTICK_RATE_MS);
     }
 }
 

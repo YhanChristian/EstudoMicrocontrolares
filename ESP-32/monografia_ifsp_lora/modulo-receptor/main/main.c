@@ -78,10 +78,9 @@ const int SLAVE_NODE_ADDRESS = 1;
 #define max(a, b) (((a) > (b)) ? (a) : (b))
 
 /**
- * Define tamanho char
+ * Define qtde de eixos (3 = x,y,z)
  */
-
-#define BUF_SIZE 150
+#define AXIS_READ 3
 
 /* I2C Interface inicialization ----------------------------------------------*/
 
@@ -103,12 +102,13 @@ mpu6050_handle_t mpu6050 = NULL;
 
 typedef struct
 {
-    char buf_acel_avg[BUF_SIZE];
-    char buf_acel_rms[BUF_SIZE];
-    char buf_acel_max[BUF_SIZE];
-    char buf_acel_min[BUF_SIZE];
-    char buf_vel_rms[BUF_SIZE];
-    char buf_info[BUF_SIZE];
+    float acel_avg[AXIS_READ];
+    float acel_rms[AXIS_READ];
+    float acel_max[AXIS_READ];
+    float acel_min[AXIS_READ];
+    float vel_rms[AXIS_READ];
+    float temp;
+
 } sensor_data_t;
 
 /* Private variables ---------------------------------------------------------*/
@@ -164,13 +164,6 @@ static void vMPU6050Task(void *pvParameter)
     sensor_data_t Sensor_Data;
     for (;;)
     {
-        float vel_x = 0, vel_y = 0, vel_z = 0;
-        float vel_x_rms = 0, vel_y_rms = 0, vel_z_rms = 0;
-        float acel_x = 0, acel_y = 0, acel_z = 0, temp = 0;
-        float acel_x_rms = 0, acel_y_rms = 0, acel_z_rms = 0;
-        float acel_x_max = 0, acel_y_max = 0, acel_z_max = 0;
-        float acel_x_min = 0, acel_y_min = 0, acel_z_min = 0;
-
         for (uint16_t i = 0; i < SAMPLES; i++)
         {
 
@@ -180,63 +173,34 @@ static void vMPU6050Task(void *pvParameter)
             mpu6050_get_acce(mpu6050, &MPU6050_Acce_Data);
             mpu6050_get_temp(mpu6050, &MPU6050_Temp_Data);
 
-            acel_x_max = max(MPU6050_Acce_Data.acce_x, acel_x_max);
-            acel_y_max = max(MPU6050_Acce_Data.acce_y, acel_y_max);
-            acel_z_max = max(MPU6050_Acce_Data.acce_z, acel_z_max);
+            Sensor_Data.acel_max[0] = max(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_max[0]);
+            Sensor_Data.acel_max[1] = max(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_max[1]);
+            Sensor_Data.acel_max[2] = max(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_max[2]);
 
-            acel_x_min = min(MPU6050_Acce_Data.acce_x, acel_x_min);
-            acel_y_min = min(MPU6050_Acce_Data.acce_y, acel_y_min);
-            acel_z_min = min(MPU6050_Acce_Data.acce_z, acel_z_min);
+            Sensor_Data.acel_min[0] = min(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_min[0]);
+            Sensor_Data.acel_min[1] = min(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_min[1]);
+            Sensor_Data.acel_min[2] = min(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_min[2]);
 
-            acel_x += MPU6050_Acce_Data.acce_x;
-            acel_y += MPU6050_Acce_Data.acce_y;
-            acel_z += MPU6050_Acce_Data.acce_z;
-            temp += MPU6050_Temp_Data.temp;
+            Sensor_Data.acel_avg[0] += MPU6050_Acce_Data.acce_x;
+            Sensor_Data.acel_avg[1] += MPU6050_Acce_Data.acce_y;
+            Sensor_Data.acel_avg[2] += MPU6050_Acce_Data.acce_z;
+            Sensor_Data.temp += MPU6050_Temp_Data.temp;
         }
 
         /*!< Calculo de acel (média), RMS, vel e vel RMS*/
 
-        acel_x = acel_x / SAMPLES;
-        acel_y = acel_y / SAMPLES;
-        acel_z = acel_z / SAMPLES;
-        temp = temp / SAMPLES;
+        Sensor_Data.acel_avg[0] = Sensor_Data.acel_avg[0] / SAMPLES;
+        Sensor_Data.acel_avg[1] = Sensor_Data.acel_avg[1] / SAMPLES;
+        Sensor_Data.acel_avg[2] = Sensor_Data.acel_avg[2] / SAMPLES;
+        Sensor_Data.temp = Sensor_Data.temp / SAMPLES;
 
-        acel_x_rms = acel_x * M_SQRT1_2;
-        acel_y_rms = acel_y * M_SQRT1_2;
-        acel_y_rms = acel_z * M_SQRT1_2;
+        Sensor_Data.acel_rms[0] = Sensor_Data.acel_avg[0] * M_SQRT1_2;
+        Sensor_Data.acel_rms[1] = Sensor_Data.acel_avg[1] * M_SQRT1_2;
+        Sensor_Data.acel_rms[2] = Sensor_Data.acel_avg[2] * M_SQRT1_2;
 
-        vel_x = acel_x * CALC_SAMPLE_TIME;
-        vel_y = acel_y * CALC_SAMPLE_TIME;
-        vel_z = acel_z * CALC_SAMPLE_TIME;
-
-        vel_x_rms = vel_x * M_SQRT1_2;
-        vel_y_rms = vel_y * M_SQRT1_2;
-        vel_z_rms = vel_z * M_SQRT1_2;
-
-        /*!<Armazena na estrutura de dados os valores*/
-
-        snprintf(Sensor_Data.buf_acel_avg, sizeof(Sensor_Data.buf_acel_avg),
-                 "aX:%.2f aY:%.2f aZ:%.2f",
-                 acel_x, acel_y, acel_z);
-
-        snprintf(Sensor_Data.buf_acel_rms, sizeof(Sensor_Data.buf_acel_rms),
-                 "aX_RMS:%.2f ay_RMS:%.2f az_RMS:%.2f",
-                 acel_x_rms, acel_y_rms, acel_z_rms);
-
-        snprintf(Sensor_Data.buf_acel_max, sizeof(Sensor_Data.buf_acel_max),
-                 "aX_max:%.2f aY_max:%.2f aZ_max:%.2f",
-                 acel_x_max, acel_y_max, acel_z_max);
-
-        snprintf(Sensor_Data.buf_acel_min, sizeof(Sensor_Data.buf_acel_min),
-                 "aX_min:%.2f aY_min:%.2f aZ_min:%.2f",
-                 acel_x_min, acel_y_min, acel_z_min);
-
-        snprintf(Sensor_Data.buf_vel_rms, sizeof(Sensor_Data.buf_vel_rms),
-                 "vx_RMS:%.2f vy_RMS:%.2f vz_RMS:%.2f",
-                 vel_x_rms, vel_y_rms, vel_z_rms);
-
-        snprintf(Sensor_Data.buf_info, sizeof(Sensor_Data.buf_info),
-                 "t:%.2f", temp);
+        Sensor_Data.vel_rms[0] = (Sensor_Data.acel_avg[0] * CALC_SAMPLE_TIME) * M_SQRT1_2;
+        Sensor_Data.vel_rms[1] = (Sensor_Data.acel_avg[1] * CALC_SAMPLE_TIME) * M_SQRT1_2;
+        Sensor_Data.vel_rms[2] = (Sensor_Data.acel_avg[2] * CALC_SAMPLE_TIME) * M_SQRT1_2;
 
         /*!< Coloca dados na fila e verifica se n houve falhas*/
 
@@ -248,17 +212,6 @@ static void vMPU6050Task(void *pvParameter)
         {
             ESP_LOGE("ERROR", "*** Erro ao inserir dados fila ***\n");
         }
-
-        /*!< Imprime dados lidos pelos sensores*/
-
-        /*
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_acel_avg);
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_acel_rms);
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_acel_max);
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_acel_min);
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_vel_rms);
-          ESP_LOGI(TAG, "%s", Sensor_Data.buf_info);
-          */
 
         vTaskDelay(SAMPLE_TIME / portTICK_RATE_MS);
     }
@@ -273,12 +226,28 @@ static void vTaskLoRa(void *pvParameter)
         /*!< Verifica  dados fila e imprime pelos sensores*/
         if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
         {
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_acel_avg);
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_acel_rms);
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_acel_max);
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_acel_min);
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_vel_rms);
-            ESP_LOGI(TAG, "%s", Sensor_Data_Received.buf_info);
+            ESP_LOGI(TAG, "aX:%.2f aY:%.2f aZ:%.2f",
+                     Sensor_Data_Received.acel_avg[0], Sensor_Data_Received.acel_avg[1],
+                     Sensor_Data_Received.acel_avg[2]);
+
+            ESP_LOGI(TAG, "aX_RMS:%.2f ay_RMS:%.2f az_RMS:%.2f",
+                     Sensor_Data_Received.acel_rms[0], Sensor_Data_Received.acel_rms[1],
+                     Sensor_Data_Received.acel_rms[2]);
+
+            ESP_LOGI(TAG, "aX_max:%.2f aY_max:%.2f aZ_max:%.2f",
+                     Sensor_Data_Received.acel_max[0], Sensor_Data_Received.acel_max[1],
+                     Sensor_Data_Received.acel_max[2]);
+
+            ESP_LOGI(TAG, "aX_min:%.2f aY_min:%.2f aZ_min:%.2f",
+                     Sensor_Data_Received.acel_min[0], Sensor_Data_Received.acel_min[1],
+                     Sensor_Data_Received.acel_min[2]);
+
+            ESP_LOGI(TAG, "vx_RMS:%.2f vy_RMS:%.2f vz_RMS:%.2f",
+                     Sensor_Data_Received.vel_rms[0], Sensor_Data_Received.vel_rms[1],
+                     Sensor_Data_Received.vel_rms[2]);
+
+            ESP_LOGI(TAG, "t:%.2f", Sensor_Data_Received.temp);
+
         }
 
         vTaskDelay(100 / portTICK_RATE_MS);

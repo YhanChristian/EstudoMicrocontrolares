@@ -15,7 +15,9 @@
         "math.h": "c",
         "chrono": "c",
         "random": "c",
-        "limits": "c"
+        "limits": "c",
+        "*.inc": "c",
+        "cstdio": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

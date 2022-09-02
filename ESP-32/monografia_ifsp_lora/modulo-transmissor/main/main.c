@@ -34,6 +34,13 @@
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
 
+#include "lora.h"
+#include "lora_crc.h"
+#include "ssd1306.h"
+#include "wifi_manager.h"
+#include "esp32_mqtt.h"
+#include "mqtt_client.h"
+
 /* Private define & constants ------------------------------------------------*/
 
 static const char *TAG = "LoRa_Transceiver";

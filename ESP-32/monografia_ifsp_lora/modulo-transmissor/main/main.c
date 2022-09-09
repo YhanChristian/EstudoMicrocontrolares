@@ -143,6 +143,7 @@ void app_main(void)
 
     /*!< Habilita CRC*/
     lora_enable_crc();
+    
     /*!< Habilita a recepção LoRa via Interrupção Externa;*/
     lora_enable_irq();
 

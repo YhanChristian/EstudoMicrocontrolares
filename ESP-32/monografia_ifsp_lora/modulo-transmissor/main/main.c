@@ -145,6 +145,20 @@ void app_main(void)
     lora_enable_crc();
     /*!< Habilita a recepção LoRa via Interrupção Externa;*/
     lora_enable_irq();
+
+    /*!<Criação de Tasks*/
+
+    /*!< Cria a task de transmissão LoRa*/
+    if (xTaskCreate(vLoRaTxTask, "vLoRaTxTask", configMINIMAL_STACK_SIZE + 8192, NULL, 6, NULL) != pdTRUE)
+    {
+        ESP_LOGE("ERROR", "*** vLoRaTxTask error ***\n");
+    }
+
+    /*!< Cria a task de  MQTT para publicar dados*/
+    if (xTaskCreate(vMQTTPublishTask, "vMQTTPublishTask", configMINIMAL_STACK_SIZE + 10240, NULL, 5, NULL) != pdTRUE)
+    {
+        ESP_LOGE("ERROR", "*** vMQTTPublishTask error ***\n");
+    }
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/

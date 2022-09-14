@@ -36,7 +36,9 @@
 #include "freertos/queue.h"
 
 #include "mpu6050.h"
+#include "ssd1306.h"
 #include "lora.h"
+#include "lora_crc.h"
 
 /* Private define & constants ------------------------------------------------*/
 
@@ -124,6 +126,7 @@ QueueHandle_t sensor_data_queue = NULL;
 /* Private function prototypes -----------------------------------------------*/
 
 static void esp32_start(void);
+static void ssd1306_start(void);
 static void i2c_bus_init(void);
 static void i2c_sensor_mpu6050_init(void);
 
@@ -133,6 +136,9 @@ void app_main(void)
 {
     /*!< Inicia ESP32 e exibe algumas informações */
     esp32_start();
+
+    /*!< Inicia display  OLED 0.96"*/
+    ssd1306_start();
 
     /*!< Inicia sensor acelerômetro MPU6050*/
     i2c_sensor_mpu6050_init();
@@ -235,6 +241,9 @@ static void vTaskLoRa(void *pvParameter)
     sensor_data_t Sensor_Data_Received;
     for (;;)
     {
+        int x;
+        uint8_t protocol[150];
+        int count = 0;
 
         if (xSemaphoreTake(sensor_data_mutex, portMAX_DELAY))
         {
@@ -298,6 +307,19 @@ static void esp32_start(void)
         err = nvs_flash_init();
     }
     ESP_ERROR_CHECK(err);
+}
+
+static void ssd1306_start(void)
+{
+    ssd1306_config(I2C_SDA_PIN, I2C_SCL_PIN, I2C_CHANNEL, OLED_PIN_RESET);
+
+    /**
+     * Imprime usando fonte8x16;
+     * Sintaxe: ssd1306_out16( linha, coluna, ftring , fonte_color );
+     */
+    ssd1306_out16(0, 0, "Rec. Addr: ", WHITE);
+    ssd1306_chr16(0, 12, SLAVE_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out8(3, 0, "Waiting Command!", WHITE);
 }
 
 static void i2c_bus_init(void)

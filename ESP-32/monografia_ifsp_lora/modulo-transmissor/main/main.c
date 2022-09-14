@@ -108,6 +108,7 @@ static void lora_received_data(void);
 void cb_connection_ok(void *pvParameter);
 void disp_connected(void);
 void disp_packages(uint32_t uiPckTransceived, uint32_t uiPckReceived);
+
 /* app_main function body ----------------------------------------------------*/
 
 void app_main(void)

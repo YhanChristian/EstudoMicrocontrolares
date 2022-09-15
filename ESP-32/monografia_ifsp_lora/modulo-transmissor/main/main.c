@@ -192,7 +192,7 @@ void app_main(void)
 static void vLoRaTxTask(void *pvParameter)
 {
     uint8_t protocol[100];
-    static uint32_t count = 0;
+    static uint16_t count = 0;
     for (;;)
     {
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
@@ -201,21 +201,25 @@ static void vLoRaTxTask(void *pvParameter)
              * Protocolo;
              * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
              */
+            ++count;
             protocol[0] = MASTER_NODE_ADDRESS;
             protocol[1] = LORA_TOTAL_NODES;
             protocol[2] = CMD_READ_MPU6050;
-            protocol[3] = ++count;
+            protocol[3] = sizeof(count);
+            protocol[4] = (UCHAR)(count & 0xFF);
+            protocol[5] = (UCHAR)((count >> 8) & 0xFF);
+
             /**
              * Calcula o CRC do pacote;
              */
-            USHORT usCRC = usLORACRC16(protocol, 4);
-            protocol[4] = (UCHAR)(usCRC & 0xFF);
-            protocol[5] = (UCHAR)((usCRC >> 8) & 0xFF);
+            USHORT usCRC = usLORACRC16(protocol, 6);
+            protocol[6] = (UCHAR)(usCRC & 0xFF);
+            protocol[7] = (UCHAR)((usCRC >> 8) & 0xFF);
 
             /**
              * Transmite protocol via LoRa;
              */
-            lora_send_packet(protocol, 6);
+            lora_send_packet(protocol, 8);
 
             ESP_LOGI(TAG, "Pacote = %d | Enviado para node = %d", count, LORA_TOTAL_NODES);
 

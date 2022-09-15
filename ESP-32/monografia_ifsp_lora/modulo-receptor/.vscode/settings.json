@@ -17,7 +17,9 @@
         "random": "c",
         "limits": "c",
         "*.inc": "c",
-        "cstdio": "c"
+        "cstdio": "c",
+        "bitset": "c",
+        "algorithm": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

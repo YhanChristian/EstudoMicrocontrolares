@@ -129,6 +129,7 @@ static void esp32_start(void);
 static void ssd1306_start(void);
 static void i2c_bus_init(void);
 static void i2c_sensor_mpu6050_init(void);
+static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command);
 
 /* app_main function body ----------------------------------------------------*/
 
@@ -142,6 +143,15 @@ void app_main(void)
 
     /*!< Inicia sensor acelerômetro MPU6050*/
     i2c_sensor_mpu6050_init();
+
+    /*!< Inicia LoRa e seta frequência 915MHz*/
+    lora_init();
+    lora_set_frequency(915E6);
+
+    /*!< Habilita CRC*/
+    lora_enable_crc();
+    /*!< Habilita a recepção LoRa via Interrupção Externa;*/
+    lora_enable_irq();
 
     /*!<Criação de Semafóro Mutex controle Tasks*/
 
@@ -239,43 +249,55 @@ static void vMPU6050Task(void *pvParameter)
 static void vTaskLoRa(void *pvParameter)
 {
     sensor_data_t Sensor_Data_Received;
+    int x;
+    char buf[150];
+    uint8_t protocol[150];
+    int count = 0;
+
     for (;;)
     {
-        int x;
-        uint8_t protocol[150];
-        int count = 0;
-
         if (xSemaphoreTake(sensor_data_mutex, portMAX_DELAY))
         {
-            /*!< Verifica  dados fila e imprime pelos sensores*/
-            if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
+            /*!< Recebe dado fila e verifica se bytes foram recebidos*/
+            xQueueReceive(xQueue_LoRa, &count, portMAX_DELAY);
+
+            while (lora_received())
             {
-                ESP_LOGI(TAG, "aX:%.2f aY:%.2f aZ:%.2f",
-                         Sensor_Data_Received.acel_avg[0], Sensor_Data_Received.acel_avg[1],
-                         Sensor_Data_Received.acel_avg[2]);
+                /**
+                 * Sim, existe bytes na FIFO do rádio LoRa, portanto precisamos ler
+                 * esses bytes; A variável buf armazenará os bytes recebidos pelo LoRa;
+                 * x -> armazena a quantidade de bytes que foram populados em buf;
+                 */
+                x = lora_receive_packet(protocol, sizeof(protocol));
 
-                ESP_LOGI(TAG, "aX_RMS:%.2f ay_RMS:%.2f az_RMS:%.2f",
-                         Sensor_Data_Received.acel_rms[0], Sensor_Data_Received.acel_rms[1],
-                         Sensor_Data_Received.acel_rms[2]);
+                if (x >= 6 && protocol[0] == MASTER_NODE_ADDRESS && protocol[1] == SLAVE_NODE_ADDRESS)
+                {
+                    /**
+                     * Verifica CRC;
+                     */
+                    USHORT usCRC = usLORACRC16(protocol, 3 + protocol[3] + 1);
+                    UCHAR ucLow = (UCHAR)(usCRC & 0xFF);
+                    UCHAR ucHigh = (UCHAR)((usCRC >> 8) & 0xFF);
 
-                ESP_LOGI(TAG, "aX_max:%.2f aY_max:%.2f aZ_max:%.2f",
-                         Sensor_Data_Received.acel_max[0], Sensor_Data_Received.acel_max[1],
-                         Sensor_Data_Received.acel_max[2]);
+                    if (ucLow == protocol[3 + protocol[3] + 1] && ucHigh == protocol[3 + protocol[3] + 2])
+                    {
+                        switch (protocol[2])
+                        {
+                        case CMD_READ_MPU6050:
+                            ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
+                            ESP_LOGI(TAG, "Transceiver package: %d", (protocol[5] << 8) | protocol[4]);
+                            break;
+                        }
+                    }
 
-                ESP_LOGI(TAG, "aX_min:%.2f aY_min:%.2f aZ_min:%.2f",
-                         Sensor_Data_Received.acel_min[0], Sensor_Data_Received.acel_min[1],
-                         Sensor_Data_Received.acel_min[2]);
-
-                ESP_LOGI(TAG, "vx_RMS:%.2f vy_RMS:%.2f vz_RMS:%.2f",
-                         Sensor_Data_Received.vel_rms[0], Sensor_Data_Received.vel_rms[1],
-                         Sensor_Data_Received.vel_rms[2]);
-
-                ESP_LOGI(TAG, "t:%.2f", Sensor_Data_Received.temp);
+                    if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
+                    {
+                        ESP_LOGI(TAG, "Dados recebidos fila");
+                    }
+                }
             }
-
             xSemaphoreGive(sensor_data_mutex);
-
-            vTaskDelay(100 / portTICK_RATE_MS);
+            vTaskDelay(10 / portTICK_RATE_MS);
         }
     }
 }
@@ -343,4 +365,8 @@ static void i2c_sensor_mpu6050_init(void)
     mpu6050 = mpu6050_create(I2C_MASTER_NUM, MPU6050_I2C_ADDRESS);
     ESP_ERROR_CHECK(mpu6050_config(mpu6050, ACCE_FS_4G, GYRO_FS_500DPS));
     ESP_ERROR_CHECK(mpu6050_wake_up(mpu6050));
+}
+
+static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
+{
 }

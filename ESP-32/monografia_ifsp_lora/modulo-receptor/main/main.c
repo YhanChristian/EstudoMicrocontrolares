@@ -130,6 +130,7 @@ static void ssd1306_start(void);
 static void i2c_bus_init(void);
 static void i2c_sensor_mpu6050_init(void);
 static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command);
+static void disp_sensor(char *msg, uint16_t uiValue);
 
 /* app_main function body ----------------------------------------------------*/
 
@@ -253,6 +254,7 @@ static void vTaskLoRa(void *pvParameter)
     char buf[150];
     uint8_t protocol[150];
     int count = 0;
+    static uint16_t uiCountPackage = 0;
 
     for (;;)
     {
@@ -284,15 +286,22 @@ static void vTaskLoRa(void *pvParameter)
                         switch (protocol[2])
                         {
                         case CMD_READ_MPU6050:
+                            uiCountPackage = (protocol[5] << 8) | protocol[4];
                             ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
-                            ESP_LOGI(TAG, "Transceiver package: %d", (protocol[5] << 8) | protocol[4]);
+                            ESP_LOGI(TAG, "Transceiver package: %d", uiCountPackage);
+
+                            // Veifica dados fila acelerômetro para transmitir via LoRa
+                            if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
+                            {
+                                char accelRMS[50];
+                                snprintf(accelRMS, sizeof(accelRMS), "%.1f %.1f %.1f %d",
+                                         Sensor_Data_Received.acel_rms[0], Sensor_Data_Received.acel_rms[1],
+                                         Sensor_Data_Received.acel_rms[2], (uint16_t)Sensor_Data_Received.temp);
+                                disp_sensor((char *)accelRMS, uiCountPackage);
+                                ESP_LOGI(TAG, "Dados recebidos fila");
+                            }
                             break;
                         }
-                    }
-
-                    if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
-                    {
-                        ESP_LOGI(TAG, "Dados recebidos fila");
                     }
                 }
             }
@@ -369,4 +378,17 @@ static void i2c_sensor_mpu6050_init(void)
 
 static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
 {
+}
+
+static void disp_sensor(char *msg, uint16_t uiValue)
+{
+    ssd1306_clear();
+    char buf[16];
+    sprintf(buf, "%d", uiValue);
+    ssd1306_out16(0, 0, "Rec. Addr: ", WHITE);
+    ssd1306_chr16(0, 11, SLAVE_NODE_ADDRESS + '0', WHITE);
+    ssd1306_out8(3, 0, "Sent Pkg.: ", WHITE);
+    ssd1306_out8(3, 10, buf, WHITE);
+    ssd1306_out8(5, 0, "Acel RMS XYZ Tmp" + 0, WHITE);
+    ssd1306_out8(6, 0, msg, WHITE);
 }

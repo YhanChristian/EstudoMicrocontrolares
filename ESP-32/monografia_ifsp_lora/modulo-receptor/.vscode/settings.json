@@ -19,7 +19,8 @@
         "*.inc": "c",
         "cstdio": "c",
         "bitset": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "*.ipp": "c"
     },
     "idf.flashType": "UART",
     "idf.portWin": "COM3"

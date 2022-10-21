@@ -66,6 +66,11 @@ const int MASTER_NODE_ADDRESS = 0;
 
 #define BIT_0 (1 << 0)
 
+/**
+ * Define qtde de eixos (3 = x,y,z)
+ */
+#define AXIS_READ 3
+
 /* I2C Interface inicialization ----------------------------------------------*/
 
 /*!< Config I²C Display OLED */
@@ -79,6 +84,20 @@ const int MASTER_NODE_ADDRESS = 0;
 #define I2C_MASTER_SDA_IO 21      /*!< gpio number for I2C master data  */
 #define I2C_MASTER_NUM I2C_NUM_1  /*!< I2C port number for master dev */
 #define I2C_MASTER_FREQ_HZ 100000 /*!< I2C master clock frequency */
+
+/* Private typedef -----------------------------------------------------------*/
+
+typedef struct __attribute__((__packed__))
+{
+    float acel_avg[AXIS_READ];
+    float acel_rms[AXIS_READ];
+    float acel_max[AXIS_READ];
+    float acel_min[AXIS_READ];
+    float vel_rms[AXIS_READ];
+    float temp;
+    uint16_t ui_count_pkg;
+
+} sensor_data_t;
 
 /* Global variables -----------------------------------------------------------*/
 
@@ -307,9 +326,14 @@ static void lora_received_data(void)
 {
     int x;
     int count = 0;
+
     uint32_t transceiverCount = 0;
     uint32_t receiverCount = 0;
     uint8_t protocol[150];
+
+    sensor_data_t Sensor_Data;
+    char *pcDataReceived = NULL;
+    char c;
 
     if (xQueueReceive(count_pkg_queue, &transceiverCount, 0) == pdPASS)
     {
@@ -322,6 +346,9 @@ static void lora_received_data(void)
         while (lora_received())
         {
             x = lora_receive_packet(protocol, sizeof(protocol));
+
+            pcDataReceived = (char *)&Sensor_Data;
+
             /**
              * Protocolo;
              * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
@@ -337,14 +364,24 @@ static void lora_received_data(void)
 
                 if (ucLow == protocol[3 + protocol[3] + 1] && ucHigh == protocol[3 + protocol[3] + 2])
                 {
-                    ESP_LOGI(TAG, "CRC OK!");
                     switch (protocol[2])
                     {
                     case CMD_READ_MPU6050:
 
                         ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d", LORA_TOTAL_NODES);
 
-                        // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s\n\n", LORA_TOTAL_NODES,(char *)&protocol[4]);
+                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d SizeData: %x", LORA_TOTAL_NODES, sizeof(protocol));
+                        // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s", LORA_TOTAL_NODES,(char *)&protocol[4]);
+
+                        //EM andamento... rotina não esta correta... verificar.
+                        for (uint8_t i = 4; i < sizeof(protocol); i++)
+                        {
+                            c = (char)protocol[i];
+                            *pcDataReceived = c;
+                            pcDataReceived++;
+                        }
+
+                        ESP_LOGI(TAG, "Contador: %d", Sensor_Data.ui_count_pkg);
 
                         ssd1306_clear();
                         disp_connected();

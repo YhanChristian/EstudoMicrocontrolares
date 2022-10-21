@@ -102,7 +102,7 @@ mpu6050_handle_t mpu6050 = NULL;
 
 /* Private typedef -----------------------------------------------------------*/
 
-typedef struct
+typedef struct __attribute__((__packed__))
 {
     float acel_avg[AXIS_READ];
     float acel_rms[AXIS_READ];
@@ -110,6 +110,7 @@ typedef struct
     float acel_min[AXIS_READ];
     float vel_rms[AXIS_READ];
     float temp;
+    uint16_t ui_count_pkg;
 
 } sensor_data_t;
 
@@ -251,10 +252,9 @@ static void vTaskLoRa(void *pvParameter)
 {
     sensor_data_t Sensor_Data_Received;
     int x;
-    char buf[150];
     uint8_t protocol[150];
     int count = 0;
-    static uint16_t uiCountPackage = 0;
+    char buf[150];
 
     for (;;)
     {
@@ -286,19 +286,28 @@ static void vTaskLoRa(void *pvParameter)
                         switch (protocol[2])
                         {
                         case CMD_READ_MPU6050:
-                            uiCountPackage = (protocol[5] << 8) | protocol[4];
+
                             ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
-                            ESP_LOGI(TAG, "Transceiver package: %d", uiCountPackage);
 
                             // Veifica dados fila acelerômetro para transmitir via LoRa
                             if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
                             {
+                                Sensor_Data_Received.ui_count_pkg = (protocol[5] << 8) | protocol[4];
+                                sprintf(buf, (char *)&Sensor_Data_Received);
+                                ESP_LOGI(TAG, "Transceiver package: %d", Sensor_Data_Received.ui_count_pkg);
+
+                                ESP_LOGI(TAG, "Size of pkg transceived: %x", sizeof(buf));
+
+                                // Transmite dados LoRa
+                                lora_data_send(protocol, buf, CMD_READ_MPU6050);
+
+                                 // Dados exibidos no display
                                 char accelRMS[50];
                                 snprintf(accelRMS, sizeof(accelRMS), "%.1f %.1f %.1f %d",
                                          Sensor_Data_Received.acel_rms[0], Sensor_Data_Received.acel_rms[1],
                                          Sensor_Data_Received.acel_rms[2], (uint16_t)Sensor_Data_Received.temp);
-                                disp_sensor((char *)accelRMS, uiCountPackage);
-                                ESP_LOGI(TAG, "Dados recebidos fila");
+
+                                disp_sensor((char *)accelRMS, Sensor_Data_Received.ui_count_pkg);
                             }
                             break;
                         }
@@ -378,6 +387,30 @@ static void i2c_sensor_mpu6050_init(void)
 
 static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
 {
+    /**
+     * Protocolo;
+     * <id_node_sender><id_node_receiver><command><payload_size><payload><crc>
+     */
+    protocol[0] = SLAVE_NODE_ADDRESS;
+    protocol[1] = MASTER_NODE_ADDRESS;
+    protocol[2] = n_command;
+    protocol[3] = strlen(message) + 1;
+
+    strcpy((char *)&protocol[4], message);
+
+    /**
+     * Calcula o CRC do pacote;
+     */
+    USHORT usCRC = usLORACRC16(protocol, 4 + protocol[3]);
+    protocol[4 + protocol[3]] = (UCHAR)(usCRC & 0xFF);
+    protocol[5 + protocol[3]] = (UCHAR)((usCRC >> 8) & 0xFF);
+
+    /**
+     * Transmite protocol via LoRa;
+     */
+    lora_send_packet(protocol, 6 + protocol[3]);
+
+    ESP_LOGI(TAG, "Dados acelerômetro transmitidos");
 }
 
 static void disp_sensor(char *msg, uint16_t uiValue)

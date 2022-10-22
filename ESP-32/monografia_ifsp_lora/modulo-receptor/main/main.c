@@ -118,8 +118,8 @@ typedef struct __attribute__((__packed__))
 
 /* FreeRTOS section - Handles and tasks prototypes ----------------------------*/
 
-static void vMPU6050Task(void *pvParameter);
-static void vTaskLoRa(void *pvParameter);
+static void vTaskReadSensor(void *pvParameter);
+static void vTaskLoRaSend(void *pvParameter);
 
 SemaphoreHandle_t sensor_data_mutex;
 QueueHandle_t sensor_data_queue = NULL;
@@ -174,20 +174,20 @@ void app_main(void)
 
     /*!<Criação de Tasks*/
 
-    if (xTaskCreate(vMPU6050Task, "vMPU6050Task", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
+    if (xTaskCreate(vTaskReadSensor, "vTaskReadSensor", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
     {
-        ESP_LOGE("ERROR", "*** vMPU6050Task error ***\n");
+        ESP_LOGE("ERROR", "*** vTaskReadSensor error ***\n");
     }
 
-    if (xTaskCreate(vTaskLoRa, "vTaskLoRa", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
+    if (xTaskCreate(vTaskLoRaSend, "vTaskLoRaSend", configMINIMAL_STACK_SIZE + 8192, NULL, 5, NULL) != pdTRUE)
     {
-        ESP_LOGE("ERROR", "*** vTaskLoRa error ***\n");
+        ESP_LOGE("ERROR", "*** vTaskLoRaSend error ***\n");
     }
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/
 
-static void vMPU6050Task(void *pvParameter)
+static void vTaskReadSensor(void *pvParameter)
 {
     sensor_data_t Sensor_Data;
     for (;;)
@@ -248,7 +248,7 @@ static void vMPU6050Task(void *pvParameter)
         }
     }
 }
-static void vTaskLoRa(void *pvParameter)
+static void vTaskLoRaSend(void *pvParameter)
 {
     sensor_data_t Sensor_Data_Received;
     int x;

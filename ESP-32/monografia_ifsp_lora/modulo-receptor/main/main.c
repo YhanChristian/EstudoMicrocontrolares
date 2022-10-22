@@ -190,72 +190,9 @@ void app_main(void)
 static void vTaskReadSensor(void *pvParameter)
 {
     sensor_data_t Sensor_Data;
-    for (;;)
-    {
-        if (xSemaphoreTake(sensor_data_mutex, portMAX_DELAY))
-        {
-            for (uint16_t i = 0; i < SAMPLES; i++)
-            {
-
-                mpu6050_acce_value_t MPU6050_Acce_Data;
-                mpu6050_temp_value_t MPU6050_Temp_Data;
-
-                mpu6050_get_acce(mpu6050, &MPU6050_Acce_Data);
-                mpu6050_get_temp(mpu6050, &MPU6050_Temp_Data);
-
-                Sensor_Data.acel_max[0] = max(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_max[0]);
-                Sensor_Data.acel_max[1] = max(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_max[1]);
-                Sensor_Data.acel_max[2] = max(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_max[2]);
-
-                Sensor_Data.acel_min[0] = min(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_min[0]);
-                Sensor_Data.acel_min[1] = min(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_min[1]);
-                Sensor_Data.acel_min[2] = min(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_min[2]);
-
-                Sensor_Data.acel_avg[0] += MPU6050_Acce_Data.acce_x;
-                Sensor_Data.acel_avg[1] += MPU6050_Acce_Data.acce_y;
-                Sensor_Data.acel_avg[2] += MPU6050_Acce_Data.acce_z;
-                Sensor_Data.temp += MPU6050_Temp_Data.temp;
-            }
-
-            /*!< Calculo de acel (média), RMS, vel e vel RMS*/
-
-            Sensor_Data.acel_avg[0] = Sensor_Data.acel_avg[0] / SAMPLES;
-            Sensor_Data.acel_avg[1] = Sensor_Data.acel_avg[1] / SAMPLES;
-            Sensor_Data.acel_avg[2] = Sensor_Data.acel_avg[2] / SAMPLES;
-            Sensor_Data.temp = Sensor_Data.temp / SAMPLES;
-
-            Sensor_Data.acel_rms[0] = Sensor_Data.acel_avg[0] * M_SQRT1_2;
-            Sensor_Data.acel_rms[1] = Sensor_Data.acel_avg[1] * M_SQRT1_2;
-            Sensor_Data.acel_rms[2] = Sensor_Data.acel_avg[2] * M_SQRT1_2;
-
-            Sensor_Data.vel_rms[0] = (Sensor_Data.acel_avg[0] * CALC_SAMPLE_TIME) * M_SQRT1_2;
-            Sensor_Data.vel_rms[1] = (Sensor_Data.acel_avg[1] * CALC_SAMPLE_TIME) * M_SQRT1_2;
-            Sensor_Data.vel_rms[2] = (Sensor_Data.acel_avg[2] * CALC_SAMPLE_TIME) * M_SQRT1_2;
-
-            /*!< Coloca dados na fila e verifica se n houve falhas*/
-
-            if (xQueueSend(sensor_data_queue, (void *)&Sensor_Data, (TickType_t)0) == pdTRUE)
-            {
-                ESP_LOGI(TAG, "%s", "Dados da struct Sensor_Data enviados fila ");
-            }
-            else
-            {
-                ESP_LOGE("ERROR", "*** Erro ao inserir dados fila ***\n");
-            }
-
-            xSemaphoreGive(sensor_data_mutex);
-            vTaskDelay(SAMPLE_TIME / portTICK_RATE_MS);
-        }
-    }
-}
-static void vTaskLoRaSend(void *pvParameter)
-{
-    sensor_data_t Sensor_Data_Received;
     int x;
     uint8_t protocol[150];
     int count = 0;
-    char buf[150];
-
     for (;;)
     {
         if (xSemaphoreTake(sensor_data_mutex, portMAX_DELAY))
@@ -271,7 +208,6 @@ static void vTaskLoRaSend(void *pvParameter)
                  * x -> armazena a quantidade de bytes que foram populados em buf;
                  */
                 x = lora_receive_packet(protocol, sizeof(protocol));
-
                 if (x >= 6 && protocol[0] == MASTER_NODE_ADDRESS && protocol[1] == SLAVE_NODE_ADDRESS)
                 {
                     /**
@@ -286,38 +222,110 @@ static void vTaskLoRaSend(void *pvParameter)
                         switch (protocol[2])
                         {
                         case CMD_READ_MPU6050:
-
                             ESP_LOGI(TAG, "DEVICE: %d. Comando CMD_READ_MPU6050 recebido ...", SLAVE_NODE_ADDRESS);
-
-                            // Veifica dados fila acelerômetro para transmitir via LoRa
-                            if (xQueueReceive(sensor_data_queue, &(Sensor_Data_Received), (TickType_t)0) == pdPASS)
+                            // Chamo função para leitura de Sensor
+                            for (uint16_t i = 0; i < SAMPLES; i++)
                             {
-                                Sensor_Data_Received.ui_count_pkg = (protocol[5] << 8) | protocol[4];
-                                sprintf(buf, (char *)&Sensor_Data_Received);
-                                ESP_LOGI(TAG, "Transceiver package: %d", Sensor_Data_Received.ui_count_pkg);
 
-                                ESP_LOGI(TAG, "Size of pkg transceived: %x", sizeof(buf));
+                                mpu6050_acce_value_t MPU6050_Acce_Data;
+                                mpu6050_temp_value_t MPU6050_Temp_Data;
 
-                                // Transmite dados LoRa
-                                lora_data_send(protocol, buf, CMD_READ_MPU6050);
+                                mpu6050_get_acce(mpu6050, &MPU6050_Acce_Data);
+                                mpu6050_get_temp(mpu6050, &MPU6050_Temp_Data);
 
-                                 // Dados exibidos no display
-                                char accelRMS[50];
-                                snprintf(accelRMS, sizeof(accelRMS), "%.1f %.1f %.1f %d",
-                                         Sensor_Data_Received.acel_rms[0], Sensor_Data_Received.acel_rms[1],
-                                         Sensor_Data_Received.acel_rms[2], (uint16_t)Sensor_Data_Received.temp);
+                                Sensor_Data.acel_max[0] = max(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_max[0]);
+                                Sensor_Data.acel_max[1] = max(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_max[1]);
+                                Sensor_Data.acel_max[2] = max(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_max[2]);
 
-                                disp_sensor((char *)accelRMS, Sensor_Data_Received.ui_count_pkg);
+                                Sensor_Data.acel_min[0] = min(MPU6050_Acce_Data.acce_x, Sensor_Data.acel_min[0]);
+                                Sensor_Data.acel_min[1] = min(MPU6050_Acce_Data.acce_y, Sensor_Data.acel_min[1]);
+                                Sensor_Data.acel_min[2] = min(MPU6050_Acce_Data.acce_z, Sensor_Data.acel_min[2]);
+
+                                Sensor_Data.acel_avg[0] += MPU6050_Acce_Data.acce_x;
+                                Sensor_Data.acel_avg[1] += MPU6050_Acce_Data.acce_y;
+                                Sensor_Data.acel_avg[2] += MPU6050_Acce_Data.acce_z;
+                                Sensor_Data.temp += MPU6050_Temp_Data.temp;
                             }
-                            break;
+
+                            /*!< Calculo de acel (média), RMS, vel e vel RMS*/
+
+                            Sensor_Data.acel_avg[0] = Sensor_Data.acel_avg[0] / SAMPLES;
+                            Sensor_Data.acel_avg[1] = Sensor_Data.acel_avg[1] / SAMPLES;
+                            Sensor_Data.acel_avg[2] = Sensor_Data.acel_avg[2] / SAMPLES;
+                            Sensor_Data.temp = Sensor_Data.temp / SAMPLES;
+
+                            Sensor_Data.acel_rms[0] = Sensor_Data.acel_avg[0] * M_SQRT1_2;
+                            Sensor_Data.acel_rms[1] = Sensor_Data.acel_avg[1] * M_SQRT1_2;
+                            Sensor_Data.acel_rms[2] = Sensor_Data.acel_avg[2] * M_SQRT1_2;
+
+                            Sensor_Data.vel_rms[0] = (Sensor_Data.acel_avg[0] * CALC_SAMPLE_TIME) * M_SQRT1_2;
+                            Sensor_Data.vel_rms[1] = (Sensor_Data.acel_avg[1] * CALC_SAMPLE_TIME) * M_SQRT1_2;
+                            Sensor_Data.vel_rms[2] = (Sensor_Data.acel_avg[2] * CALC_SAMPLE_TIME) * M_SQRT1_2;
+
+                            /*!<Insere o número do pacote no conjunto de dados
+                             */
+                            Sensor_Data.ui_count_pkg = (protocol[5] << 8) | protocol[4];
+
+                            /*!< Coloca dados na fila e verifica se n houve falhas*/
+                            if (xQueueSend(sensor_data_queue, (void *)&Sensor_Data, (TickType_t)0) == pdTRUE)
+                            {
+                                ESP_LOGI(TAG, "%s", "Dados da struct Sensor_Data enviados fila ");
+                            }
+                            else
+                            {
+                                ESP_LOGE("ERROR", "*** Erro ao inserir dados fila ***\n");
+                            }
                         }
                     }
                 }
             }
             xSemaphoreGive(sensor_data_mutex);
-            vTaskDelay(10 / portTICK_RATE_MS);
+            vTaskDelay(SAMPLE_TIME / portTICK_RATE_MS);
         }
     }
+}
+
+static void vTaskLoRaSend(void *pvParameter)
+{
+    sensor_data_t Sensor_Data;
+    uint8_t protocol[150];
+    char buf[150];
+    for (;;)
+    {
+        if (xSemaphoreTake(sensor_data_mutex, portMAX_DELAY))
+        {
+
+            // Veifica dados fila acelerômetro para transmitir via LoRa
+            if (xQueueReceive(sensor_data_queue, &(Sensor_Data), (TickType_t)0) == pdPASS)
+            {
+
+                // Formata dados formato Json para transmissão ACEL RMS, VEL RMS, TEMP e Pck
+
+                snprintf(buf, sizeof(buf), "{\"addr %d\":{\"aX\":\"%.2f\",\"aY\":\"%.2f\",\"aZ\":\"%.2f\",\"amX\":\"%.2f\",\"amY\":\"%.2f\",\"amZ\":\"%.2f\",\"vX\":\"%.2f\",\"vY\":\"%.2f\",\"vZ\":\"%.2f\",\"t\":\"%.2f\",\"n\":\"%d\"}"
+                                           "}",
+                         SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
+                         Sensor_Data.vel_rms[0], Sensor_Data.vel_rms[1], Sensor_Data.vel_rms[2], Sensor_Data.temp, Sensor_Data.ui_count_pkg);
+
+                ESP_LOGI(TAG, "Transceiver package: %d", Sensor_Data.ui_count_pkg);
+
+                ESP_LOGI(TAG, "Size of pkg transceived: %x", sizeof(buf));
+
+                // Transmite dados LoRa
+                lora_data_send(protocol, buf, CMD_READ_MPU6050);
+
+                // Dados exibidos no display
+
+                char accelRMS[50];
+                snprintf(accelRMS, sizeof(accelRMS), "%.1f %.1f %.1f %d",
+                         Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1],
+                         Sensor_Data.acel_rms[2], (uint16_t)Sensor_Data.temp);
+
+                disp_sensor((char *)accelRMS, Sensor_Data.ui_count_pkg);
+            }
+        }
+    }
+    xSemaphoreGive(sensor_data_mutex);
+    vTaskDelay(10 / portTICK_RATE_MS);
 }
 
 /* Bodies of private functions -----------------------------------------------*/

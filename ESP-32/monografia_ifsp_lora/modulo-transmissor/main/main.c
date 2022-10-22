@@ -60,16 +60,11 @@ const int MASTER_NODE_ADDRESS = 0;
  */
 #define LORA_TOTAL_NODES 1
 
-#define LORA_RECEIVER_TIMEOUT_MS 5000
+#define LORA_RECEIVER_TIMEOUT_MS 10E3
 
 #define CMD_READ_MPU6050 1
 
 #define BIT_0 (1 << 0)
-
-/**
- * Define qtde de eixos (3 = x,y,z)
- */
-#define AXIS_READ 3
 
 /* I2C Interface inicialization ----------------------------------------------*/
 
@@ -84,20 +79,6 @@ const int MASTER_NODE_ADDRESS = 0;
 #define I2C_MASTER_SDA_IO 21      /*!< gpio number for I2C master data  */
 #define I2C_MASTER_NUM I2C_NUM_1  /*!< I2C port number for master dev */
 #define I2C_MASTER_FREQ_HZ 100000 /*!< I2C master clock frequency */
-
-/* Private typedef -----------------------------------------------------------*/
-
-typedef struct __attribute__((__packed__))
-{
-    float acel_avg[AXIS_READ];
-    float acel_rms[AXIS_READ];
-    float acel_max[AXIS_READ];
-    float acel_min[AXIS_READ];
-    float vel_rms[AXIS_READ];
-    float temp;
-    uint16_t ui_count_pkg;
-
-} sensor_data_t;
 
 /* Global variables -----------------------------------------------------------*/
 
@@ -143,8 +124,7 @@ void app_main(void)
     if (wifi_connected_event_group == NULL)
     {
         ESP_LOGE("ERROR", "*** wifi_connected_event_group Create error ***\n");
-        while (true)
-            ;
+        while (true);
     }
 
     /*!< Cria semaforo Mutex para sinalizar envio dados MQTT*/
@@ -273,16 +253,27 @@ static void vMQTTPublishTask(void *pvParameter)
     /*!< Inicio MQTT configurando Broker, User, ETC*/
     mqtt_app_start();
 
+    char *pcDataReceived;
+
     for (;;)
     {
         if (xSemaphoreTake(mqtt_connected_mutex, portMAX_DELAY))
         {
-            /* Em desenvolvimento função */
+
+            if (xQueueReceive(sensor_data_queue, &pcDataReceived, 0) == pdPASS)
+            {
+                //ESP_LOGI(TAG, "Task MQTT Data: %s", pcDataReceived);
+                vTaskDelay(10 / portTICK_RATE_MS);
+                // esp_mqtt_client_publish(client, MQTT_TOPIC, pcDataReceived, 0, 1, 0);
+                free(pcDataReceived);
+            }
+
+            xSemaphoreGive(mqtt_connected_mutex);
+            vTaskDelay(10 / portTICK_RATE_MS);
         }
-        xSemaphoreGive(mqtt_connected_mutex);
-        vTaskDelay(10 / portTICK_RATE_MS);
     }
 }
+
 
 /* Bodies of private functions -----------------------------------------------*/
 
@@ -331,13 +322,9 @@ static void lora_received_data(void)
     uint32_t receiverCount = 0;
     uint8_t protocol[150];
 
-    sensor_data_t Sensor_Data;
-    char *pcDataReceived = NULL;
-    char c;
-
     if (xQueueReceive(count_pkg_queue, &transceiverCount, 0) == pdPASS)
     {
-        ESP_LOGI(TAG, "Pacotes enviado Transceiver: %d", transceiverCount);
+        ESP_LOGI(TAG, "Pacote enviado Transceiver: %d", transceiverCount);
     }
 
     if (xQueueReceive(xQueue_LoRa, &count, LORA_RECEIVER_TIMEOUT_MS / portTICK_PERIOD_MS) == pdTRUE)
@@ -346,8 +333,6 @@ static void lora_received_data(void)
         while (lora_received())
         {
             x = lora_receive_packet(protocol, sizeof(protocol));
-
-            pcDataReceived = (char *)&Sensor_Data;
 
             /**
              * Protocolo;
@@ -371,17 +356,18 @@ static void lora_received_data(void)
                         ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d", LORA_TOTAL_NODES);
 
                         ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d SizeData: %x", LORA_TOTAL_NODES, sizeof(protocol));
-                        // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s", LORA_TOTAL_NODES,(char *)&protocol[4]);
+                        // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s", LORA_TOTAL_NODES, (char *)&protocol[4]);
 
-                        //EM andamento... rotina não esta correta... verificar.
-                        for (uint8_t i = 4; i < sizeof(protocol); i++)
+                        char *pcDataReceived = malloc(strlen((char *)&protocol[4]) + 1);
+                        strcpy(pcDataReceived, (char *)&protocol[4]);
+
+                        // ESP_LOGI(TAG, "Contador: %d", Sensor_Data.ui_count_pkg);
+
+                        /*!< Coloca na fila a string recebida via LoRa*/
+                        if (xQueueSend(sensor_data_queue, &pcDataReceived, (100 / portTICK_RATE_MS)) == pdPASS)
                         {
-                            c = (char)protocol[i];
-                            *pcDataReceived = c;
-                            pcDataReceived++;
+                            ESP_LOGI(TAG, "Envia dados fila: %s", pcDataReceived);
                         }
-
-                        ESP_LOGI(TAG, "Contador: %d", Sensor_Data.ui_count_pkg);
 
                         ssd1306_clear();
                         disp_connected();

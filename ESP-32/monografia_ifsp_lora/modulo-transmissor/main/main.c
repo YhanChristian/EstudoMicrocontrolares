@@ -190,7 +190,7 @@ void app_main(void)
 
 static void vLoRaTxTask(void *pvParameter)
 {
-    uint8_t protocol[100];
+    uint8_t protocol[160];
     static uint16_t count = 0;
     for (;;)
     {
@@ -320,7 +320,7 @@ static void lora_received_data(void)
 
     uint32_t transceiverCount = 0;
     uint32_t receiverCount = 0;
-    uint8_t protocol[150];
+    uint8_t protocol[160];
 
     if (xQueueReceive(count_pkg_queue, &transceiverCount, 0) == pdPASS)
     {
@@ -349,6 +349,7 @@ static void lora_received_data(void)
 
                 if (ucLow == protocol[3 + protocol[3] + 1] && ucHigh == protocol[3 + protocol[3] + 2])
                 {
+                    ESP_LOGI(TAG, "CRC OK!");
                     switch (protocol[2])
                     {
                     case CMD_READ_MPU6050:

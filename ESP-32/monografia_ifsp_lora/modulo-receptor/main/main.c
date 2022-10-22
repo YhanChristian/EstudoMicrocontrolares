@@ -252,8 +252,8 @@ static void vTaskLoRaSend(void *pvParameter)
     sensor_data_t Sensor_Data;
     int x;
     int count = 0;
-    uint8_t protocol[150];
-    char buf[150];
+    uint8_t protocol[160];
+    char buf[160];
 
     for (;;)
     {
@@ -270,6 +270,7 @@ static void vTaskLoRaSend(void *pvParameter)
                  * x -> armazena a quantidade de bytes que foram populados em buf;
                  */
                 x = lora_receive_packet(protocol, sizeof(protocol));
+
                 if (x >= 6 && protocol[0] == MASTER_NODE_ADDRESS && protocol[1] == SLAVE_NODE_ADDRESS)
                 {
                     /**
@@ -297,10 +298,8 @@ static void vTaskLoRaSend(void *pvParameter)
                                          SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
                                          Sensor_Data.vel_rms[0], Sensor_Data.vel_rms[1], Sensor_Data.vel_rms[2], Sensor_Data.temp, Sensor_Data.ui_count_pkg);
 
-                                ESP_LOGI(TAG, "Size of pkg transceived: %x", sizeof(buf));
-
-                                // Transmite dados LoRa
-                                lora_data_send(protocol, buf, CMD_READ_MPU6050);
+                                //ESP_LOGI(TAG, "Size of pkg transceived: %x", sizeof(buf));
+                                // ESP_LOGI(TAG, "buf data: %s", buf);
 
                                 // Dados exibidos no display
                                 char accelRMS[50];
@@ -309,6 +308,9 @@ static void vTaskLoRaSend(void *pvParameter)
                                          Sensor_Data.acel_rms[2], (uint16_t)Sensor_Data.temp);
 
                                 disp_sensor((char *)accelRMS, Sensor_Data.ui_count_pkg);
+
+                                // Transmite dados LoRa
+                                lora_data_send(protocol, buf, CMD_READ_MPU6050);
                             }
                             break;
                         }
@@ -410,7 +412,7 @@ static void lora_data_send(uint8_t *protocol, char *message, uint8_t n_command)
      */
     lora_send_packet(protocol, 6 + protocol[3]);
 
-    ESP_LOGI(TAG, "Dados acelerômetro transmitidos");
+    ESP_LOGI(TAG, "Dados acelerômetro transmitidos: %s", message);
 }
 
 static void disp_sensor(char *msg, uint16_t uiValue)

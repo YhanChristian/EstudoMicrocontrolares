@@ -262,9 +262,9 @@ static void vMQTTPublishTask(void *pvParameter)
 
             if (xQueueReceive(sensor_data_queue, &pcDataReceived, 0) == pdPASS)
             {
-                //ESP_LOGI(TAG, "Task MQTT Data: %s", pcDataReceived);
+                ESP_LOGI(TAG, "Task MQTT Data: %s", pcDataReceived);
                 vTaskDelay(10 / portTICK_RATE_MS);
-                // esp_mqtt_client_publish(client, MQTT_TOPIC, pcDataReceived, 0, 1, 0);
+                esp_mqtt_client_publish(client, MQTT_TOPIC, pcDataReceived, 0, 1, 0);
                 free(pcDataReceived);
             }
 
@@ -361,14 +361,17 @@ static void lora_received_data(void)
 
                         char *pcDataReceived = malloc(strlen((char *)&protocol[4]) + 1);
                         strcpy(pcDataReceived, (char *)&protocol[4]);
-
+                         
                         // ESP_LOGI(TAG, "Contador: %d", Sensor_Data.ui_count_pkg);
 
                         /*!< Coloca na fila a string recebida via LoRa*/
                         if (xQueueSend(sensor_data_queue, &pcDataReceived, (100 / portTICK_RATE_MS)) == pdPASS)
                         {
-                            ESP_LOGI(TAG, "Envia dados fila: %s", pcDataReceived);
+                            ESP_LOGI(TAG, "Dados enviados fila");
                         }
+
+                        //Atualizo o valor de receiverCount com o valor transceiverCount
+                        receiverCount = transceiverCount;
 
                         ssd1306_clear();
                         disp_connected();

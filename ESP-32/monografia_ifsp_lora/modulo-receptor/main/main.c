@@ -298,7 +298,7 @@ static void vTaskLoRaSend(void *pvParameter)
                                            SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
                                            Sensor_Data.vel_rms[0], Sensor_Data.vel_rms[1], Sensor_Data.vel_rms[2], Sensor_Data.temp, Sensor_Data.ui_count_pkg); */
 
-                                snprintf(buf, sizeof(buf), "{\"addr %d\",\"aX\":\"%.2f\",\"aY\":\"%.2f\",\"aZ\":\"%.2f\",\"amX\":\"%.2f\",\"amY\":\"%.2f\",\"amZ\":\"%.2f\",\"vX\":\"%.2f\",\"vY\":\"%.2f\",\"vZ\":\"%.2f\",\"t\":\"%.2f\",\"n\":\"%d\"}",
+                                snprintf(buf, sizeof(buf), "{\"addr\":\"%d\",\"aX\":\"%.2f\",\"aY\":\"%.2f\",\"aZ\":\"%.2f\",\"amX\":\"%.2f\",\"amY\":\"%.2f\",\"amZ\":\"%.2f\",\"vX\":\"%.2f\",\"vY\":\"%.2f\",\"vZ\":\"%.2f\",\"t\":\"%.2f\",\"n\":\"%d\"}",
                                          SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
                                          Sensor_Data.vel_rms[0], Sensor_Data.vel_rms[1], Sensor_Data.vel_rms[2], Sensor_Data.temp, Sensor_Data.ui_count_pkg);
 

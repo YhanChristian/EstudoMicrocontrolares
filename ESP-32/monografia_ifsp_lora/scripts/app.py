@@ -10,10 +10,10 @@ from datetime import datetime
 
 # Conexão - Mosquitto MQTT
 
-server = "localhost"
+server = "23.20.108.171" #localhost
 port = 1883
-username = ""
-password = ""
+username = "admin"
+password = "root"
 
 # Coexão - Banco de dados MySQL
 sql_user = "root"
@@ -51,9 +51,11 @@ def on_message(client, obj, msg):
     )
 
     # Conexão com o banco de dados Mysql
-    conn = sql.connect(user=sql_user, password=sql_pass, sql_database=sql_database)
+    conn = sql.connect(user=sql_user, password=sql_pass, database=sql_database, auth_plugin='mysql_native_password')
     cursor = conn.cursor()
-    query = ""
+    query = ("INSERT INTO tb_sensor_data"
+            "(id_receiver, a_rms_x, a_rms_y, a_rms_z,a_max_x, a_max_y, a_max_z,v_rms_x, v_rms_y, v_rms_z, t, n, data)"
+            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
 	
     # Carrega e executa a query.
     cursor.execute(query, data)

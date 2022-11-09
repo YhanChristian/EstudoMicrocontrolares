@@ -243,7 +243,7 @@ static void vLoRaTxTask(void *pvParameter)
             lora_received_data();
 
             xSemaphoreGive(mqtt_connected_mutex);
-            vTaskDelay(60E3 / portTICK_RATE_MS);
+            vTaskDelay(600E3 / portTICK_RATE_MS);
         }
     }
 }

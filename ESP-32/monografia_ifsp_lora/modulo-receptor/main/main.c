@@ -164,7 +164,7 @@ void app_main(void)
         ESP_LOGE("ERROR", "*** sensor_data_mutex Create error ***\n");
     }
 
-    /*!<Criação de Fila para armezar dados da struct*/
+    /*!<Criação de Fila para armazenar dados da struct*/
     sensor_data_queue = xQueueCreate(10, sizeof(sensor_data_t));
 
     if (sensor_data_queue == NULL)
@@ -186,6 +186,7 @@ void app_main(void)
 }
 
 /* Bodies of private tasks ---------------------------------------------------*/
+
 
 static void vTaskReadSensor(void *pvParameter)
 {
@@ -286,17 +287,13 @@ static void vTaskLoRaSend(void *pvParameter)
                         {
                         case CMD_READ_MPU6050:
 
-                            // Veifica dados fila acelerômetro para transmitir via LoRa
+                            // Verifica dados fila acelerômetro para transmitir via LoRa
                             if (xQueueReceive(sensor_data_queue, &(Sensor_Data), (TickType_t)0) == pdPASS)
                             {
                                 Sensor_Data.ui_count_pkg = (protocol[5] << 8) | protocol[4];
                                 ESP_LOGI(TAG, "Transceiver package: %d", Sensor_Data.ui_count_pkg);
 
                                 // Formata dados formato Json para transmissão ACEL RMS, VEL RMS, TEMP e Pck
-                                /*  snprintf(buf, sizeof(buf), "{\"addr %d\":{\"aX\":\"%.2f\",\"aY\":\"%.2f\",\"aZ\":\"%.2f\",\"amX\":\"%.2f\",\"amY\":\"%.2f\",\"amZ\":\"%.2f\",\"vX\":\"%.2f\",\"vY\":\"%.2f\",\"vZ\":\"%.2f\",\"t\":\"%.2f\",\"n\":\"%d\"}"
-                                                             "}",
-                                           SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
-                                           Sensor_Data.vel_rms[0], Sensor_Data.vel_rms[1], Sensor_Data.vel_rms[2], Sensor_Data.temp, Sensor_Data.ui_count_pkg); */
 
                                 snprintf(buf, sizeof(buf), "{\"addr\":\"%d\",\"aX\":\"%.2f\",\"aY\":\"%.2f\",\"aZ\":\"%.2f\",\"amX\":\"%.2f\",\"amY\":\"%.2f\",\"amZ\":\"%.2f\",\"vX\":\"%.2f\",\"vY\":\"%.2f\",\"vZ\":\"%.2f\",\"t\":\"%.2f\",\"n\":\"%d\"}",
                                          SLAVE_NODE_ADDRESS, Sensor_Data.acel_rms[0], Sensor_Data.acel_rms[1], Sensor_Data.acel_rms[2], Sensor_Data.acel_max[0], Sensor_Data.acel_max[1], Sensor_Data.acel_max[2],
@@ -323,6 +320,7 @@ static void vTaskLoRaSend(void *pvParameter)
         }
     }
 }
+
 /* Bodies of private functions -----------------------------------------------*/
 
 static void esp32_start(void)

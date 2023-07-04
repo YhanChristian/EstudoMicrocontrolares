@@ -6,7 +6,8 @@ Atividade realizada como requisito parcial para obter aprovação na matéria de
 
 A arquitetura da solução pode ser observada conforme imagem abaixo:
 
-![artigo-IoT (1)](https://github.com/YhanChristian/EstudoMicrocontrolares/assets/11355408/27f44ed6-efee-4e89-bf42-d126b58b37bc)
+![artigo-IoT](https://github.com/YhanChristian/EstudoMicrocontrolares/assets/11355408/a7406616-f65a-4d79-ae6a-5c6d2fccfe47)
+
 
 Os códigos fontes são separados em 2 pastas:
 - smart-cities: projeto realizado com a placa de desenvolvimento Franzininho WiFi utilizando PlatformIO;

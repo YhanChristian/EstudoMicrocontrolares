@@ -32,3 +32,5 @@ Os códigos fontes são separados em 3 pastas:
 - transmissor: código fonte do Módulo Transmissor;
 - receptor: código fonte do Módulo Receptor;
 - script: script Python para inserção dos dados no banco MySQL
+
+O documento de monografia esta disponível, arquivo Monografia.pdf

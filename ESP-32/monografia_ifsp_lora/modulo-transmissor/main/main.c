@@ -356,7 +356,7 @@ static void lora_received_data(void)
 
                         ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d", LORA_TOTAL_NODES);
 
-                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d SizeData: %x", LORA_TOTAL_NODES, sizeof(protocol));
+                        ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d SizeData: %02d", LORA_TOTAL_NODES, sizeof(protocol));
                         // ESP_LOGI(TAG, "Dados recebidos MPU6050 - Receiver: %d Data: %s", LORA_TOTAL_NODES, (char *)&protocol[4]);
 
                         char *pcDataReceived = malloc(strlen((char *)&protocol[4]) + 1);

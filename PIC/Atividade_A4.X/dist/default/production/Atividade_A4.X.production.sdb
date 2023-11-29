@@ -1,0 +1,915 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4520 ]
+[d frameptr 4065 ]
+"23 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+[e E2567 . `ui
+ADC_OK 0
+ADC_ERROR 2000
+ADC_INV_PARAM 2001
+ADC_MAX_ERRORS 2002
+]
+"31 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+[e E2567 . `ui
+PWM_OK 0
+PWM_ERROR 3000
+PWM_INV_PARAM 3001
+PWM_MAX_ERRORS 3002
+]
+"46 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+[e E2567 . `uc
+GPIO_LED_0 0
+GPIO_LED_1 1
+GPIO_LED_2 2
+GPIO_LED_3 3
+GPIO_LED_4 4
+GPIO_LED_5 5
+GPIO_LED_6 6
+GPIO_LED_7 7
+MAX_LEDS 8
+]
+"58
+[e E2578 . `ui
+GPIO_OK 0
+GPIO_ERROR 1000
+GPIO_INV_PARAM 1001
+MAX_GPIO_ERRORS 1002
+]
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+[v _iConfigADC iConfigADC `(i  1 e 2 0 ]
+"43
+[v _iAnalogRead iAnalogRead `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+[v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _pad pad `(i  1 s 2 pad ]
+"506
+[v _efgtoa efgtoa `(i  1 s 2 efgtoa ]
+"1007
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+"1520
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+[v ___flneg __flneg `(d  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+[v _floorf floorf `(f  1 e 4 0 ]
+"43 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
+[v _labs labs `(l  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+[v _memcpy memcpy `(*.39v  1 e 2 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+[v _memset memset `(*.39v  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"13 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+[v _snprintf snprintf `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+[v _strcpy strcpy `(*.39uc  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+[v _ConfigTimerZeroISR ConfigTimerZeroISR `(v  1 e 1 0 ]
+"18 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+[v _LcdOut LcdOut `(v  1 e 1 0 ]
+"41
+[v _LcdCmd LcdCmd `(v  1 e 1 0 ]
+"50
+[v _LcdInit LcdInit `(v  1 e 1 0 ]
+"79
+[v _LcdClear LcdClear `(v  1 e 1 0 ]
+"84
+[v _LcdSetCursor LcdSetCursor `(v  1 e 1 0 ]
+"101
+[v _LcdPutChar LcdPutChar `(v  1 e 1 0 ]
+"116
+[v _LcdPutStr LcdPutStr `(v  1 e 1 0 ]
+"26 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _isr isr `IIH(v  1 e 1 0 ]
+"44
+[v _fGetVoltage fGetVoltage `(f  1 e 4 0 ]
+"48
+[v _fGetPercentDuty fGetPercentDuty `(f  1 e 4 0 ]
+"53
+[v _MsgInicialLcd MsgInicialLcd `(v  1 e 1 0 ]
+"77
+[v _DispSystemParam DispSystemParam `(v  1 e 1 0 ]
+"99
+[v _SystemControl SystemControl `(v  1 e 1 0 ]
+"138
+[v _setup setup `(v  1 e 1 0 ]
+"170
+[v _main main `(v  1 e 1 0 ]
+"18 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+[v _pinMode pinMode `(v  1 e 1 0 ]
+"28
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+"38
+[v _digitalRead digitalRead `(a  1 e 1 0 ]
+"43
+[v _configOutputs configOutputs `(v  1 e 1 0 ]
+"55
+[v _setLedsOn setLedsOn `(i  1 e 2 0 ]
+"71
+[v _changeBuzzerState changeBuzzerState `(v  1 e 1 0 ]
+"75
+[v _readBuzzerState readBuzzerState `(a  1 e 1 0 ]
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+[v _iConfigPWM iConfigPWM `(i  1 e 2 0 ]
+"49
+[v _iPWMSetDuty iPWMSetDuty `(i  1 e 2 0 ]
+"451 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4520.h
+[v _PORTC PORTC `VEuc  1 e 1 @3970 ]
+[s S336 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"670
+[s S345 . 1 `uc 1 PSP0 1 0 :1:0 
+`uc 1 PSP1 1 0 :1:1 
+`uc 1 PSP2 1 0 :1:2 
+`uc 1 PSP3 1 0 :1:3 
+`uc 1 PSP4 1 0 :1:4 
+`uc 1 PSP5 1 0 :1:5 
+`uc 1 PSP6 1 0 :1:6 
+`uc 1 PSP7 1 0 :1:7 
+]
+[s S354 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 P1B 1 0 :1:5 
+`uc 1 P1C 1 0 :1:6 
+`uc 1 P1D 1 0 :1:7 
+]
+[s S359 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 SS2 1 0 :1:7 
+]
+[u S362 . 1 `S336 1 . 1 0 `S345 1 . 1 0 `S354 1 . 1 0 `S359 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES362  1 e 1 @3971 ]
+[s S394 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"833
+[s S399 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 MCLR 1 0 :1:3 
+]
+[s S404 . 1 `uc 1 NOT_RD 1 0 :1:0 
+]
+[s S406 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_WR 1 0 :1:1 
+]
+[s S409 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_CS 1 0 :1:2 
+]
+[s S412 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_MCLR 1 0 :1:3 
+]
+[s S415 . 1 `uc 1 nRD 1 0 :1:0 
+`uc 1 nWR 1 0 :1:1 
+`uc 1 nCS 1 0 :1:2 
+`uc 1 nMCLR 1 0 :1:3 
+]
+[s S420 . 1 `uc 1 AN5 1 0 :1:0 
+`uc 1 AN6 1 0 :1:1 
+`uc 1 AN7 1 0 :1:2 
+`uc 1 VPP 1 0 :1:3 
+]
+[s S425 . 1 `uc 1 PD2 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+`uc 1 CCP10 1 0 :1:2 
+`uc 1 CCP9E 1 0 :1:3 
+]
+[s S430 . 1 `uc 1 RDE 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+`uc 1 PB2 1 0 :1:2 
+`uc 1 PC3E 1 0 :1:3 
+]
+[u S435 . 1 `S394 1 . 1 0 `S399 1 . 1 0 `S404 1 . 1 0 `S406 1 . 1 0 `S409 1 . 1 0 `S412 1 . 1 0 `S415 1 . 1 0 `S420 1 . 1 0 `S425 1 . 1 0 `S430 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES435  1 e 1 @3972 ]
+"1090
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+"1202
+[v _LATC LATC `VEuc  1 e 1 @3979 ]
+"1478
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1700
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1922
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2144
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2366
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"4402
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @4026 ]
+"4488
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @4027 ]
+"4502
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
+"4606
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"4620
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"4691
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"4776
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"4902
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"4909
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"5316
+[v _T2CON T2CON `VEuc  1 e 1 @4042 ]
+[s S242 . 1 `uc 1 T2CKPS 1 0 :2:0 
+`uc 1 TMR2ON 1 0 :1:2 
+`uc 1 T2OUTPS 1 0 :4:3 
+]
+"5344
+[s S246 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+`uc 1 T2CKPS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 T2OUTPS0 1 0 :1:3 
+`uc 1 T2OUTPS1 1 0 :1:4 
+`uc 1 T2OUTPS2 1 0 :1:5 
+`uc 1 T2OUTPS3 1 0 :1:6 
+]
+[s S254 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 TOUTPS0 1 0 :1:3 
+`uc 1 TOUTPS1 1 0 :1:4 
+`uc 1 TOUTPS2 1 0 :1:5 
+`uc 1 TOUTPS3 1 0 :1:6 
+]
+[u S260 . 1 `S242 1 . 1 0 `S246 1 . 1 0 `S254 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES260  1 e 1 @4042 ]
+"5414
+[v _PR2 PR2 `VEuc  1 e 1 @4043 ]
+"5524
+[v _TMR2 TMR2 `VEuc  1 e 1 @4044 ]
+"6169
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"6259
+[v _TMR0L TMR0L `VEuc  1 e 1 @4054 ]
+"6266
+[v _TMR0H TMR0H `VEuc  1 e 1 @4055 ]
+[s S27 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"6725
+[s S36 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S45 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S49 . 1 `S27 1 . 1 0 `S36 1 . 1 0 `S45 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES49  1 e 1 @4082 ]
+"7083
+[v _ADON ADON `VEb  1 e 0 @32272 ]
+"7440
+[v _GO_nDONE GO_nDONE `VEb  1 e 0 @32273 ]
+"99 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"100
+[v _flags flags `uc  1 s 1 flags ]
+"125
+[v _dbuf dbuf `[80]uc  1 s 80 dbuf ]
+"129
+[v _nout nout `i  1 s 2 nout ]
+"3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\errno.c
+[v _errno errno `i  1 e 2 0 ]
+[s S24 . 3 `i 1 iContador 2 0 `a 1 fTimerOverflow 1 2 ]
+"20 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _gstTimer1Seg gstTimer1Seg `S24  1 e 3 0 ]
+"170
+[v _main main `(v  1 e 1 0 ]
+{
+"183
+} 0
+"138
+[v _setup setup `(v  1 e 1 0 ]
+{
+"141
+[v setup@fInitPwmDuty fInitPwmDuty `f  1 a 4 120 ]
+[v setup@fInitVoltage fInitVoltage `f  1 a 4 116 ]
+"167
+} 0
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+[v _iConfigPWM iConfigPWM `(i  1 e 2 0 ]
+{
+[v iConfigPWM@iNumPin iNumPin `i  1 p 2 0 ]
+"47
+} 0
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+[v _iConfigADC iConfigADC `(i  1 e 2 0 ]
+{
+[v iConfigADC@iNumChannels iNumChannels `i  1 p 2 0 ]
+"41
+} 0
+"43 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+[v _configOutputs configOutputs `(v  1 e 1 0 ]
+{
+"44
+[v configOutputs@i i `i  1 a 2 7 ]
+"53
+} 0
+"18
+[v _pinMode pinMode `(v  1 e 1 0 ]
+{
+[v pinMode@pcTris pcTris `*.39VEuc  1 p 2 0 ]
+[v pinMode@uiPin uiPin `uc  1 p 1 2 ]
+[v pinMode@fMode fMode `a  1 p 1 3 ]
+"26
+} 0
+"53 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _MsgInicialLcd MsgInicialLcd `(v  1 e 1 0 ]
+{
+"75
+} 0
+"50 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+[v _LcdInit LcdInit `(v  1 e 1 0 ]
+{
+"77
+} 0
+"79
+[v _LcdClear LcdClear `(v  1 e 1 0 ]
+{
+"82
+} 0
+"19 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+[v _ConfigTimerZeroISR ConfigTimerZeroISR `(v  1 e 1 0 ]
+{
+"43
+} 0
+"99 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _SystemControl SystemControl `(v  1 e 1 0 ]
+{
+"101
+[v SystemControl@fPercentDuty fPercentDuty `f  1 a 4 115 ]
+[v SystemControl@fVoltage fVoltage `f  1 a 4 111 ]
+"100
+[v SystemControl@iValue iValue `i  1 a 2 123 ]
+[v SystemControl@iResult iResult `i  1 a 2 121 ]
+"135
+} 0
+"55 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+[v _setLedsOn setLedsOn `(i  1 e 2 0 ]
+{
+[v setLedsOn@uiNumLeds uiNumLeds `uc  1 a 1 wreg ]
+"56
+[v setLedsOn@i i `i  1 a 2 11 ]
+"55
+[v setLedsOn@uiNumLeds uiNumLeds `uc  1 a 1 wreg ]
+[v setLedsOn@uiNumLeds uiNumLeds `uc  1 a 1 10 ]
+"69
+} 0
+"75
+[v _readBuzzerState readBuzzerState `(a  1 e 1 0 ]
+{
+"77
+} 0
+"38
+[v _digitalRead digitalRead `(a  1 e 1 0 ]
+{
+[v digitalRead@pcPort pcPort `*.39VEuc  1 p 2 0 ]
+[v digitalRead@uiPin uiPin `uc  1 p 1 2 ]
+"40
+} 0
+"49 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+[v _iPWMSetDuty iPWMSetDuty `(i  1 e 2 0 ]
+{
+[v iPWMSetDuty@iNumPin iNumPin `i  1 p 2 74 ]
+[v iPWMSetDuty@iDuty iDuty `i  1 p 2 76 ]
+"71
+} 0
+"43 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+[v _iAnalogRead iAnalogRead `(i  1 e 2 0 ]
+{
+[v iAnalogRead@iChannel iChannel `i  1 p 2 0 ]
+"57
+} 0
+"44 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _fGetVoltage fGetVoltage `(f  1 e 4 0 ]
+{
+[v fGetVoltage@iValue iValue `i  1 p 2 64 ]
+"46
+} 0
+"48
+[v _fGetPercentDuty fGetPercentDuty `(f  1 e 4 0 ]
+{
+[v fGetPercentDuty@iValue iValue `i  1 p 2 64 ]
+"50
+} 0
+"10 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+{
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 10 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 9 ]
+"10
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 0 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 8 ]
+"44
+} 0
+"71 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+[v _changeBuzzerState changeBuzzerState `(v  1 e 1 0 ]
+{
+[v changeBuzzerState@fState fState `a  1 a 1 wreg ]
+[v changeBuzzerState@fState fState `a  1 a 1 wreg ]
+[v changeBuzzerState@fState fState `a  1 a 1 7 ]
+"73
+} 0
+"28
+[v _digitalWrite digitalWrite `(v  1 e 1 0 ]
+{
+[v digitalWrite@pcLat pcLat `*.39VEuc  1 p 2 0 ]
+[v digitalWrite@uiPin uiPin `uc  1 p 1 2 ]
+[v digitalWrite@fState fState `a  1 p 1 3 ]
+"36
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+"41
+} 0
+"77 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _DispSystemParam DispSystemParam `(v  1 e 1 0 ]
+{
+"79
+[v DispSystemParam@szPercentDutyDisp szPercentDutyDisp `[16]uc  1 a 16 95 ]
+"78
+[v DispSystemParam@szAdcVoltageDisp szAdcVoltageDisp `[16]uc  1 a 16 79 ]
+"77
+[v DispSystemParam@fAdcVoltage fAdcVoltage `f  1 p 4 71 ]
+[v DispSystemParam@fPercentDuty fPercentDuty `f  1 p 4 75 ]
+"97
+} 0
+"13 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+[v _snprintf snprintf `(i  1 e 2 0 ]
+{
+[u S1009 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+"17
+[s S1012 _IO_FILE 11 `S1009 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v snprintf@f f `S1012  1 a 11 60 ]
+"15
+[v snprintf@cnt cnt `i  1 a 2 58 ]
+"16
+[v snprintf@ap ap `[1]*.39v  1 a 2 56 ]
+"13
+[v snprintf@s s `*.39uc  1 p 2 44 ]
+[v snprintf@n n `ui  1 p 2 46 ]
+[v snprintf@fmt fmt `*.25Cuc  1 p 2 48 ]
+"39
+} 0
+"1520 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1523
+[v vfprintf@cfmt cfmt `*.25uc  1 a 2 111 ]
+[s S1047 _IO_FILE 0 ]
+"1520
+[v vfprintf@fp fp `*.39S1047  1 p 2 105 ]
+[v vfprintf@fmt fmt `*.25Cuc  1 p 2 107 ]
+[v vfprintf@ap ap `*.39*.39v  1 p 2 109 ]
+"1543
+} 0
+"1007
+[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
+{
+[u S1096 . 8 `o 1 ll 8 0 `uo 1 llu 8 0 `*.2v 1 vp 3 0 `d 1 f 4 0 ]
+"1016
+[v vfpfcnvrt@convarg convarg `S1096  1 a 8 94 ]
+"1009
+[v vfpfcnvrt@cp cp `*.25uc  1 a 2 103 ]
+[v vfpfcnvrt@c c `uc  1 a 1 102 ]
+[s S1047 _IO_FILE 0 ]
+"1007
+[v vfpfcnvrt@fp fp `*.39S1047  1 p 2 85 ]
+[v vfpfcnvrt@fmt fmt `*.39*.25uc  1 p 2 87 ]
+[v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 89 ]
+"1517
+} 0
+"506
+[v _efgtoa efgtoa `(i  1 s 2 efgtoa ]
+{
+[u S1065 flui 4 `d 1 f 4 0 `l 1 u 4 0 ]
+"511
+[v efgtoa@u u `S1065  1 a 4 40 ]
+[v efgtoa@g g `S1065  1 a 4 36 ]
+"510
+[v efgtoa@l l `d  1 a 4 29 ]
+[v efgtoa@h h `d  1 a 4 25 ]
+"511
+[v efgtoa@ou ou `S1065  1 a 4 19 ]
+"509
+[v efgtoa@n n `i  1 a 2 34 ]
+[v efgtoa@i i `i  1 a 2 23 ]
+[v efgtoa@w w `i  1 a 2 17 ]
+[v efgtoa@e e `i  1 a 2 15 ]
+[v efgtoa@m m `i  1 a 2 13 ]
+[v efgtoa@d d `i  1 a 2 11 ]
+[v efgtoa@t t `i  1 a 2 4 ]
+[v efgtoa@p p `i  1 a 2 2 ]
+[v efgtoa@ne ne `i  1 a 2 0 ]
+"508
+[v efgtoa@sign sign `uc  1 a 1 33 ]
+[v efgtoa@nmode nmode `uc  1 a 1 10 ]
+[v efgtoa@mode mode `uc  1 a 1 9 ]
+[v efgtoa@pp pp `uc  1 a 1 8 ]
+[s S1047 _IO_FILE 0 ]
+"506
+[v efgtoa@fp fp `*.39S1047  1 p 2 76 ]
+[v efgtoa@f f `d  1 p 4 78 ]
+[v efgtoa@c c `uc  1 p 1 82 ]
+"787
+} 0
+"3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+[v _strcpy strcpy `(*.39uc  1 e 2 0 ]
+{
+"6
+[v strcpy@d d `*.39uc  1 a 2 6 ]
+"5
+[v strcpy@s s `*.25Cuc  1 a 2 4 ]
+"3
+[v strcpy@dest dest `*.39uc  1 p 2 0 ]
+[v strcpy@src src `*.25Cuc  1 p 2 2 ]
+"9
+} 0
+"133 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+[v _pad pad `(i  1 s 2 pad ]
+{
+"135
+[v pad@w w `i  1 a 2 25 ]
+[v pad@i i `i  1 a 2 23 ]
+[s S1047 _IO_FILE 0 ]
+"133
+[v pad@fp fp `*.39S1047  1 p 2 16 ]
+[v pad@buf buf `*.39uc  1 p 2 18 ]
+[v pad@p p `i  1 p 2 20 ]
+"164
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+{
+"7
+[v strlen@a a `*.39Cuc  1 a 2 2 ]
+"5
+[v strlen@s s `*.39Cuc  1 p 2 0 ]
+"12
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+{
+"11
+[v fputs@i i `i  1 a 2 14 ]
+"10
+[v fputs@c c `uc  1 a 1 13 ]
+"8
+[v fputs@s s `*.39Cuc  1 p 2 9 ]
+[u S1009 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1012 _IO_FILE 11 `S1009 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputs@fp fp `*.39S1012  1 p 2 11 ]
+"19
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 0 ]
+[u S1009 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S1012 _IO_FILE 11 `S1009 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S1012  1 p 2 2 ]
+"24
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+"9
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+[v _memcpy memcpy `(*.39v  1 e 2 0 ]
+{
+"8
+[v memcpy@s s `*.39Cuc  1 a 2 8 ]
+"7
+[v memcpy@d d `*.39uc  1 a 2 6 ]
+"9
+[v memcpy@tmp tmp `uc  1 a 1 10 ]
+"4
+[v memcpy@d1 d1 `*.39v  1 p 2 0 ]
+[v memcpy@s1 s1 `*.39Cv  1 p 2 2 ]
+[v memcpy@n n `ui  1 p 2 4 ]
+"18
+} 0
+"1 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
+[v _labs labs `(l  1 e 4 0 ]
+{
+[v labs@a a `l  1 p 4 0 ]
+"4
+} 0
+"3 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+[v _floorf floorf `(f  1 e 4 0 ]
+{
+[u S1184 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+"5
+[v floorf@u u `S1184  1 a 4 55 ]
+"7
+[v floorf@m m `ul  1 a 4 49 ]
+"6
+[v floorf@e e `i  1 a 2 53 ]
+"3
+[v floorf@x x `f  1 p 4 39 ]
+"4
+[v floorf@F526 F526 `S1184  1 s 4 F526 ]
+"27
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+[v ___fpclassifyf __fpclassifyf `(i  1 e 2 0 ]
+{
+[u S1184 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+"6
+[v ___fpclassifyf@u u `S1184  1 a 4 10 ]
+"7
+[v ___fpclassifyf@e e `i  1 a 2 8 ]
+"4
+[v ___fpclassifyf@x x `f  1 p 4 0 ]
+"5
+[v ___fpclassifyf@F465 F465 `S1184  1 s 4 F465 ]
+"11
+} 0
+"43 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 73 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 72 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 64 ]
+"70
+} 0
+"245 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+{
+[v ___flsub@b b `d  1 p 4 64 ]
+[v ___flsub@a a `d  1 p 4 68 ]
+"250
+} 0
+"10
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 15 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 14 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 13 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 12 ]
+"10
+[v ___fladd@b b `d  1 p 4 0 ]
+[v ___fladd@a a `d  1 p 4 4 ]
+"237
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+[v ___flneg __flneg `(d  1 e 4 0 ]
+{
+[v ___flneg@f1 f1 `d  1 p 4 0 ]
+"20
+} 0
+"8 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+{
+[s S867 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+"13
+[s S872 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S875 . 4 `l 1 i 4 0 `d 1 f 4 0 `S867 1 fAsBytes 4 0 `S872 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S875  1 a 4 58 ]
+"12
+[v ___flmul@grs grs `ul  1 a 4 52 ]
+[s S943 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+"14
+[u S946 . 2 `s 1 i 2 0 `us 1 n 2 0 `S943 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S946  1 a 2 62 ]
+"10
+[v ___flmul@bexp bexp `uc  1 a 1 57 ]
+"11
+[v ___flmul@aexp aexp `uc  1 a 1 56 ]
+"9
+[v ___flmul@sign sign `uc  1 a 1 51 ]
+"8
+[v ___flmul@b b `d  1 p 4 39 ]
+[v ___flmul@a a `d  1 p 4 43 ]
+"205
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+{
+[v ___flge@ff1 ff1 `d  1 p 4 64 ]
+[v ___flge@ff2 ff2 `d  1 p 4 68 ]
+"19
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+{
+[v ___fleq@ff1 ff1 `d  1 p 4 0 ]
+[v ___fleq@ff2 ff2 `d  1 p 4 4 ]
+"12
+} 0
+"11 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+{
+"21
+[v ___fldiv@grs grs `ul  1 a 4 33 ]
+"22
+[v ___fldiv@rem rem `ul  1 a 4 26 ]
+"20
+[v ___fldiv@new_exp new_exp `s  1 a 2 31 ]
+"19
+[v ___fldiv@aexp aexp `uc  1 a 1 38 ]
+"18
+[v ___fldiv@bexp bexp `uc  1 a 1 37 ]
+"16
+[v ___fldiv@sign sign `uc  1 a 1 30 ]
+"11
+[v ___fldiv@b b `d  1 p 4 14 ]
+[v ___fldiv@a a `d  1 p 4 18 ]
+"185
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+[v _atoi atoi `(i  1 e 2 0 ]
+{
+"6
+[v atoi@n n `i  1 a 2 13 ]
+[v atoi@neg neg `i  1 a 2 11 ]
+"4
+[v atoi@s s `*.25Cuc  1 p 2 6 ]
+"16
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+[v _isspace isspace `(i  1 e 2 0 ]
+{
+[v isspace@c c `i  1 p 2 0 ]
+"8
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+[v _isdigit isdigit `(i  1 e 2 0 ]
+{
+[v isdigit@c c `i  1 p 2 0 ]
+"8
+} 0
+"15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 4 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 0 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 2 ]
+"53
+} 0
+"4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+[v _memset memset `(*.39v  1 e 2 0 ]
+{
+"6
+[v memset@s s `*.39uc  1 a 2 10 ]
+"7
+[v memset@k k `ui  1 a 2 8 ]
+"4
+[v memset@dest dest `*.39v  1 p 2 0 ]
+[v memset@c c `i  1 p 2 2 ]
+[v memset@n n `ui  1 p 2 4 ]
+"90
+} 0
+"84 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+[v _LcdSetCursor LcdSetCursor `(v  1 e 1 0 ]
+{
+[v LcdSetCursor@x x `uc  1 a 1 wreg ]
+"85
+[v LcdSetCursor@temp temp `uc  1 a 1 7 ]
+[v LcdSetCursor@j j `uc  1 a 1 6 ]
+[v LcdSetCursor@k k `uc  1 a 1 5 ]
+"84
+[v LcdSetCursor@x x `uc  1 a 1 wreg ]
+[v LcdSetCursor@y y `uc  1 p 1 3 ]
+"86
+[v LcdSetCursor@x x `uc  1 a 1 4 ]
+"99
+} 0
+"41
+[v _LcdCmd LcdCmd `(v  1 e 1 0 ]
+{
+[v LcdCmd@c c `uc  1 a 1 wreg ]
+[v LcdCmd@c c `uc  1 a 1 wreg ]
+[v LcdCmd@c c `uc  1 a 1 2 ]
+"47
+} 0
+"116
+[v _LcdPutStr LcdPutStr `(v  1 e 1 0 ]
+{
+"117
+[v LcdPutStr@i i `i  1 a 2 8 ]
+"116
+[v LcdPutStr@str str `*.35uc  1 p 2 4 ]
+"121
+} 0
+"101
+[v _LcdPutChar LcdPutChar `(v  1 e 1 0 ]
+{
+[v LcdPutChar@c c `uc  1 a 1 wreg ]
+"102
+[v LcdPutChar@y y `uc  1 a 1 2 ]
+[v LcdPutChar@temp temp `uc  1 a 1 1 ]
+"101
+[v LcdPutChar@c c `uc  1 a 1 wreg ]
+"103
+[v LcdPutChar@c c `uc  1 a 1 3 ]
+"114
+} 0
+"18
+[v _LcdOut LcdOut `(v  1 e 1 0 ]
+{
+[v LcdOut@c c `uc  1 a 1 wreg ]
+[v LcdOut@c c `uc  1 a 1 wreg ]
+[v LcdOut@c c `uc  1 a 1 0 ]
+"39
+} 0
+"26 G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+[v _isr isr `IIH(v  1 e 1 0 ]
+{
+"41
+} 0

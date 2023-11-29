@@ -1,0 +1,1826 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta> <reloc>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+idloc IDLOC 5 200000 200000 8 1 1
+init CODE 0 E E 4 1 2
+reset_vec CODE 0 0 0 4 1 2
+config CONFIG 4 300000 300000 E 1 1
+$dist/default/production\Atividade_A4.X.production.o
+cinit CODE 0 3B5A 3B5A 24 1 2
+idloc IDLOC 5 200000 200000 8 1 1
+intcode_body CODE 0 386E 386E 56 1 2
+text0 CODE 0 3BDC 3BDC 10 1 2
+text1 CODE 0 34EA 34EA 6A 1 2
+text2 CODE 0 320A 320A 82 1 2
+text3 CODE 0 330E 330E 7E 1 2
+text4 CODE 0 328C 328C 82 1 2
+text5 CODE 0 3620 3620 64 1 2
+text6 CODE 0 3060 3060 92 1 2
+text7 CODE 0 338C 338C 7A 1 2
+text8 CODE 0 3BEC 3BEC E 1 2
+text9 CODE 0 3BB6 3BB6 14 1 2
+text10 CODE 0 25B8 25B8 154 1 2
+text11 CODE 0 3684 3684 64 1 2
+text12 CODE 0 3BCA 3BCA 12 1 2
+text13 CODE 0 3A24 3A24 3E 1 2
+text14 CODE 0 2B6A 2B6A FE 1 2
+text15 CODE 0 36E8 36E8 64 1 2
+text16 CODE 0 3406 3406 72 1 2
+text17 CODE 0 3478 3478 72 1 2
+text18 CODE 0 228E 228E 1B4 1 2
+text19 CODE 0 3B9E 3B9E 18 1 2
+text20 CODE 0 374C 374C 64 1 2
+text21 CODE 0 2E30 2E30 C4 1 2
+text22 CODE 0 2EF4 2EF4 C2 1 2
+text23 CODE 0 2856 2856 10A 1 2
+text24 CODE 0 37B0 37B0 62 1 2
+text25 CODE 0 1CF6 1CF6 386 1 2
+text26 CODE 0 664 664 A0E 1 2
+text27 CODE 0 39E4 39E4 40 1 2
+text28 CODE 0 30F2 30F2 92 1 2
+text29 CODE 0 3AD2 3AD2 36 1 2
+text30 CODE 0 39A0 39A0 44 1 2
+text31 CODE 0 2D66 2D66 CA 1 2
+text32 CODE 0 3BFA 3BFA 2 1 2
+text33 CODE 0 38C4 38C4 50 1 2
+text34 CODE 0 3554 3554 66 1 2
+text35 CODE 0 207C 207C 212 1 2
+text36 CODE 0 2C68 2C68 FE 1 2
+text37 CODE 0 2960 2960 106 1 2
+text38 CODE 0 3914 3914 46 1 2
+text39 CODE 0 1072 1072 4C0 1 2
+text40 CODE 0 3A62 3A62 38 1 2
+text41 CODE 0 1532 1532 42A 1 2
+text42 CODE 0 2A66 2A66 104 1 2
+text43 CODE 0 2FB6 2FB6 AA 1 2
+text44 CODE 0 195C 195C 39A 1 2
+text45 CODE 0 270C 270C 14A 1 2
+text46 CODE 0 395A 395A 46 1 2
+text47 CODE 0 3B08 3B08 2C 1 2
+text48 CODE 0 3B34 3B34 26 1 2
+text49 CODE 0 2442 2442 176 1 2
+text50 CODE 0 35BA 35BA 66 1 2
+text51 CODE 0 3B7E 3B7E 20 1 2
+text52 CODE 0 3184 3184 86 1 2
+text53 CODE 0 3A9A 3A9A 38 1 2
+text54 CODE 0 3812 3812 5C 1 2
+cstackCOMRAM COMRAM 1 1 1 7C 1 1
+cstackBANK0 BANK0 1 80 80 7D 1 1
+temp COMRAM 1 7E 7E 1 1 1
+bssBANK0 BANK0 1 FD FD 3 1 1
+bssBANK1 BANK1 1 100 100 60 1 1
+intcode CODE 0 8 8 6 1 2
+smallconst SMALLCONST 0 600 600 64 1 2
+bssCOMRAM COMRAM 1 7D 7D 1 1 1
+config CONFIG 4 300000 300000 E 1 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 160-5FF 1
+SFR F80-FFF 1
+BANK1 160-1FF 1
+BANK2 200-2FF 1
+BANK3 300-3FF 1
+BANK4 400-4FF 1
+BANK5 500-5FF 1
+CONST 4-7 1
+CONST 12-5FF 1
+CONST 3BFC-7FFF 1
+SMALLCONST 3BFC-7FFF 1
+CODE 4-7 1
+CODE 12-5FF 1
+CODE 3BFC-7FFF 1
+BIGRAM 7F-7F 1
+BIGRAM 160-5FF 1
+BIGSFR F80-FFF 1
+COMRAM 7F-7F 1
+EEDATA F00000-F000FF 1
+MEDIUMCONST 3BFC-7FFF 1
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$dist/default/production\Atividade_A4.X.production.o
+8 intcode CODE >15173:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+8 intcode CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+386E intcode_body CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3870 intcode_body CODE >27:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+387E intcode_body CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3882 intcode_body CODE >30:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3886 intcode_body CODE >33:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+388C intcode_body CODE >34:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+38A0 intcode_body CODE >35:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+38B6 intcode_body CODE >36:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+38BE intcode_body CODE >39:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+38C0 intcode_body CODE >41:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3812 text54 CODE >18:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3814 text54 CODE >19:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3822 text54 CODE >20:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3824 text54 CODE >21:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3828 text54 CODE >22:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+382A text54 CODE >24:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3838 text54 CODE >25:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+383A text54 CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+383E text54 CODE >27:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3840 text54 CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+384E text54 CODE >30:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3850 text54 CODE >31:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3854 text54 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3856 text54 CODE >34:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3864 text54 CODE >35:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3866 text54 CODE >36:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+386A text54 CODE >37:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+386C text54 CODE >39:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3A9A text53 CODE >101:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3A9C text53 CODE >103:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AA2 text53 CODE >104:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AA8 text53 CODE >105:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AAA text53 CODE >106:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AB2 text53 CODE >107:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AB4 text53 CODE >108:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3ABC text53 CODE >109:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3ABE text53 CODE >110:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AC4 text53 CODE >111:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AC6 text53 CODE >112:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3ACE text53 CODE >113:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3AD0 text53 CODE >114:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3184 text52 CODE >116:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3184 text52 CODE >117:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+318C text52 CODE >118:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3198 text52 CODE >119:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+31C8 text52 CODE >120:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3208 text52 CODE >121:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B7E text51 CODE >41:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B80 text51 CODE >42:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B82 text51 CODE >43:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B88 text51 CODE >44:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B8A text51 CODE >45:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B9A text51 CODE >46:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3B9C text51 CODE >47:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35BA text50 CODE >84:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35BC text50 CODE >86:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35CC text50 CODE >87:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35D2 text50 CODE >88:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35D8 text50 CODE >89:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35DE text50 CODE >90:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35E4 text50 CODE >91:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+35EA text50 CODE >92:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3600 text50 CODE >93:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3606 text50 CODE >94:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+360C text50 CODE >95:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3612 text50 CODE >96:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3618 text50 CODE >97:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+361E text50 CODE >99:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+2442 text49 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2442 text49 CODE >6:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+244A text49 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2460 text49 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+246C text49 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2488 text49 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+24A2 text49 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+24B2 text49 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+24C2 text49 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+24DE text49 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+24FA text49 CODE >21:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2514 text49 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2524 text49 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2540 text49 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+255A text49 CODE >31:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2572 text49 CODE >32:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+257A text49 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+2582 text49 CODE >34:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+258A text49 CODE >86:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+25B6 text49 CODE >90:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memset.c
+3B34 text48 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B34 text48 CODE >37:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B40 text48 CODE >38:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B48 text48 CODE >39:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B50 text48 CODE >52:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B58 text48 CODE >53:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul16.c
+3B08 text47 CODE >5:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+3B08 text47 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+3B32 text47 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isdigit.c
+395A text46 CODE >5:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+395A text46 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+399E text46 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\isspace.c
+270C text45 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+270C text45 CODE >6:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+271C text45 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+2774 text45 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+277C text45 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+2780 text45 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+2798 text45 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+27A6 text45 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+27AE text45 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+27B8 text45 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+27EE text45 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+281E text45 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+2854 text45 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\atoi.c
+195C text44 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+195C text44 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1962 text44 CODE >27:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1968 text44 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1976 text44 CODE >29:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1978 text44 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1988 text44 CODE >35:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1998 text44 CODE >37:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19A8 text44 CODE >40:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19AA text44 CODE >42:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19AE text44 CODE >43:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19B2 text44 CODE >46:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19C2 text44 CODE >49:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19C8 text44 CODE >50:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19CE text44 CODE >51:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19DC text44 CODE >52:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19DE text44 CODE >56:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19EE text44 CODE >58:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+19FE text44 CODE >60:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A0E text44 CODE >63:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A10 text44 CODE >65:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A14 text44 CODE >66:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A18 text44 CODE >69:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A28 text44 CODE >75:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A3E text44 CODE >76:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A4E text44 CODE >77:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A56 text44 CODE >78:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A5A text44 CODE >79:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A6E text44 CODE >83:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A7E text44 CODE >84:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A7E text44 CODE >85:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1A92 text44 CODE >89:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1AAC text44 CODE >92:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1ABC text44 CODE >93:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1ACC text44 CODE >94:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1ADC text44 CODE >96:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1AE0 text44 CODE >97:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1AE4 text44 CODE >100:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1AF4 text44 CODE >101:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1AFE text44 CODE >102:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B08 text44 CODE >103:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B16 text44 CODE >104:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B18 text44 CODE >105:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B18 text44 CODE >106:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B22 text44 CODE >112:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B40 text44 CODE >115:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B42 text44 CODE >116:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B52 text44 CODE >118:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B54 text44 CODE >97:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B54 text44 CODE >119:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B64 text44 CODE >122:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B7A text44 CODE >123:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B80 text44 CODE >128:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B8A text44 CODE >129:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B98 text44 CODE >130:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B9A text44 CODE >131:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1B9A text44 CODE >132:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BA4 text44 CODE >133:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BAA text44 CODE >127:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BB8 text44 CODE >139:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BBC text44 CODE >140:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BCA text44 CODE >141:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BF8 text44 CODE >142:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1BFC text44 CODE >143:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C00 text44 CODE >144:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C00 text44 CODE >145:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C12 text44 CODE >149:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C12 text44 CODE >150:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C22 text44 CODE >151:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C2E text44 CODE >152:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C3C text44 CODE >153:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C66 text44 CODE >154:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C6A text44 CODE >159:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C84 text44 CODE >160:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C8A text44 CODE >161:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1C9A text44 CODE >165:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CB4 text44 CODE >166:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CBC text44 CODE >167:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CCC text44 CODE >169:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CD0 text44 CODE >173:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CD4 text44 CODE >175:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CE2 text44 CODE >176:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CE4 text44 CODE >177:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CE8 text44 CODE >180:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CEA text44 CODE >182:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+1CF4 text44 CODE >185:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcdiv.c
+2FB6 text43 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+2FB6 text43 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+2FE4 text43 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+2FF4 text43 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+3022 text43 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+3032 text43 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+305E text43 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
+2A66 text42 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2A66 text42 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2A94 text42 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2AA4 text42 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2AD2 text42 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2AE2 text42 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2AF0 text42 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B02 text42 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B10 text42 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B22 text42 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B32 text42 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B42 text42 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+2B68 text42 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flge.c
+1532 text41 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1532 text41 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1538 text41 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+153E text41 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+154C text41 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+154E text41 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+155E text41 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+156E text41 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+157E text41 CODE >31:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1580 text41 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1584 text41 CODE >36:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1594 text41 CODE >39:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+159A text41 CODE >40:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15A0 text41 CODE >41:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15AE text41 CODE >42:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15B0 text41 CODE >45:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15C0 text41 CODE >48:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15D0 text41 CODE >50:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15E0 text41 CODE >53:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15E2 text41 CODE >54:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15E6 text41 CODE >57:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15F6 text41 CODE >58:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+15F6 text41 CODE >65:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1616 text41 CODE >66:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+162A text41 CODE >95:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1636 text41 CODE >96:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1640 text41 CODE >97:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+164A text41 CODE >98:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1656 text41 CODE >99:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1662 text41 CODE >100:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+166E text41 CODE >101:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+167A text41 CODE >102:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1686 text41 CODE >103:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1692 text41 CODE >104:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16A0 text41 CODE >105:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16AC text41 CODE >106:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16BC text41 CODE >107:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16C8 text41 CODE >108:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16D8 text41 CODE >109:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16E6 text41 CODE >110:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+16F2 text41 CODE >111:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1702 text41 CODE >112:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+170E text41 CODE >113:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+171E text41 CODE >114:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+172A text41 CODE >115:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+173A text41 CODE >116:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1746 text41 CODE >117:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1770 text41 CODE >145:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17A6 text41 CODE >146:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17B4 text41 CODE >149:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17CE text41 CODE >152:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17D2 text41 CODE >153:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17DC text41 CODE >154:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17EA text41 CODE >155:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17EC text41 CODE >156:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17EC text41 CODE >157:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17F6 text41 CODE >158:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+17FC text41 CODE >152:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+180A text41 CODE >163:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+180E text41 CODE >164:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+181C text41 CODE >165:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+184A text41 CODE >166:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+184E text41 CODE >167:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1852 text41 CODE >168:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1852 text41 CODE >169:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1864 text41 CODE >173:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1864 text41 CODE >174:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1874 text41 CODE >175:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1880 text41 CODE >176:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+188E text41 CODE >177:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+18B8 text41 CODE >178:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+18BC text41 CODE >183:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+18D6 text41 CODE >184:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+18E6 text41 CODE >185:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+18EA text41 CODE >187:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1904 text41 CODE >188:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1914 text41 CODE >190:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1918 text41 CODE >191:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+191C text41 CODE >192:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+191C text41 CODE >194:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1920 text41 CODE >195:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1930 text41 CODE >196:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+193E text41 CODE >197:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1940 text41 CODE >199:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+1946 text41 CODE >201:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+194A text41 CODE >203:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+195A text41 CODE >205:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcmul.c
+3A62 text40 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+3A62 text40 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+3A78 text40 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+3A88 text40 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+3A98 text40 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\flneg.c
+1072 text39 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1072 text39 CODE >21:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1078 text39 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+107E text39 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+108C text39 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+108E text39 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+109E text39 CODE >30:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10AE text39 CODE >32:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10BE text39 CODE >35:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10C0 text39 CODE >37:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10C4 text39 CODE >38:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10C8 text39 CODE >41:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10D8 text39 CODE >44:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10DE text39 CODE >46:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10F0 text39 CODE >47:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10F2 text39 CODE >49:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+10F8 text39 CODE >50:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1106 text39 CODE >51:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1108 text39 CODE >55:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1118 text39 CODE >57:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1128 text39 CODE >59:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1138 text39 CODE >62:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+113A text39 CODE >64:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+113E text39 CODE >65:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1142 text39 CODE >68:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1152 text39 CODE >75:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1164 text39 CODE >77:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1172 text39 CODE >78:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1176 text39 CODE >81:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+117A text39 CODE >82:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+117E text39 CODE >83:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1182 text39 CODE >84:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1186 text39 CODE >85:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+118A text39 CODE >86:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+118E text39 CODE >87:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1192 text39 CODE >88:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1196 text39 CODE >89:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+119A text39 CODE >90:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+119E text39 CODE >91:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11A2 text39 CODE >92:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11A6 text39 CODE >93:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11AA text39 CODE >94:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11AE text39 CODE >95:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11B2 text39 CODE >98:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11B6 text39 CODE >100:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11E0 text39 CODE >101:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+11FC text39 CODE >102:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+120C text39 CODE >103:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1210 text39 CODE >104:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1214 text39 CODE >106:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1214 text39 CODE >109:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1222 text39 CODE >110:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+122A text39 CODE >111:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+122E text39 CODE >113:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1232 text39 CODE >115:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1240 text39 CODE >116:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1242 text39 CODE >118:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+124C text39 CODE >119:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+124E text39 CODE >106:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+124E text39 CODE >120:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1260 text39 CODE >121:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1260 text39 CODE >124:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+126E text39 CODE >127:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+127E text39 CODE >128:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1292 text39 CODE >132:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12A2 text39 CODE >134:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12B0 text39 CODE >135:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12BE text39 CODE >136:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12C6 text39 CODE >137:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12CA text39 CODE >139:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12CE text39 CODE >141:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12DC text39 CODE >142:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12DE text39 CODE >144:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12E8 text39 CODE >145:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+12EE text39 CODE >153:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1314 text39 CODE >154:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1344 text39 CODE >155:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1348 text39 CODE >156:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+134A text39 CODE >157:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+135A text39 CODE >158:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+136A text39 CODE >162:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+137A text39 CODE >163:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+137A text39 CODE >166:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13A0 text39 CODE >167:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13B4 text39 CODE >172:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13BE text39 CODE >173:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13CC text39 CODE >174:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13CE text39 CODE >176:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13DC text39 CODE >177:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13E0 text39 CODE >178:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13E4 text39 CODE >180:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13E8 text39 CODE >182:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13F8 text39 CODE >183:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+13FA text39 CODE >171:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1408 text39 CODE >192:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+140C text39 CODE >193:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+141A text39 CODE >194:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1430 text39 CODE >195:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1434 text39 CODE >196:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1438 text39 CODE >197:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1438 text39 CODE >198:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+144A text39 CODE >202:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+144A text39 CODE >203:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+145A text39 CODE >204:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1466 text39 CODE >205:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1474 text39 CODE >206:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+149E text39 CODE >207:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14AE text39 CODE >208:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14B0 text39 CODE >215:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14D0 text39 CODE >216:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14E0 text39 CODE >218:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14F0 text39 CODE >219:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+14F4 text39 CODE >225:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1502 text39 CODE >226:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1504 text39 CODE >227:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1508 text39 CODE >230:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+150A text39 CODE >232:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1510 text39 CODE >233:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+151E text39 CODE >234:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1520 text39 CODE >236:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+1530 text39 CODE >237:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+3914 text38 CODE >245:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+3914 text38 CODE >248:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+3924 text38 CODE >249:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+3958 text38 CODE >250:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\sprcadd.c
+2960 text37 CODE >43:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2960 text37 CODE >47:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2976 text37 CODE >48:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+298A text37 CODE >49:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29B4 text37 CODE >50:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29B6 text37 CODE >51:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29C6 text37 CODE >52:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29CA text37 CODE >53:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29D8 text37 CODE >54:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+29F0 text37 CODE >57:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A04 text37 CODE >60:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A18 text37 CODE >63:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A22 text37 CODE >64:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A24 text37 CODE >62:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A34 text37 CODE >67:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A44 text37 CODE >68:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A54 text37 CODE >69:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2A64 text37 CODE >70:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fltol.c
+2C68 text36 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2C68 text36 CODE >6:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2C88 text36 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2CB4 text36 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2D06 text36 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2D5C text36 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+2D64 text36 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__fpclassifyf.c
+207C text35 CODE >3:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+207C text35 CODE >5:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+209C text35 CODE >6:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+20D6 text35 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+20F2 text35 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2106 text35 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2114 text35 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2152 text35 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2184 text35 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+21C0 text35 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+21D0 text35 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+21F0 text35 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+21F4 text35 CODE >21:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2230 text35 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+2244 text35 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+226C text35 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+227C text35 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+228C text35 CODE >27:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\floorf.c
+3554 text34 CODE >1:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
+3554 text34 CODE >3:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
+35B8 text34 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\labs.c
+38C4 text33 CODE >4:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38C4 text33 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38CC text33 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38D4 text33 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38D8 text33 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38E8 text33 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+38F8 text33 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+3912 text33 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\memcpy.c
+3BFA text32 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+3BFA text32 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\putch.c
+2D66 text31 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2D66 text31 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2D8A text31 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2D90 text31 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2D94 text31 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2DE8 text31 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2E1C text31 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+2E2E text31 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputc.c
+39A0 text30 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39A0 text30 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39A8 text30 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39AC text30 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39BE text30 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39C2 text30 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+39E2 text30 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_fputs.c
+3AD2 text29 CODE >5:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3AD2 text29 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3ADA text29 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3ADE text29 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3AE2 text29 CODE >8:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3AFA text29 CODE >11:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+3B06 text29 CODE >12:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strlen.c
+30F2 text28 CODE >133:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+30F2 text28 CODE >145:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3114 text28 CODE >146:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+311C text28 CODE >147:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3120 text28 CODE >148:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3134 text28 CODE >149:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3138 text28 CODE >147:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3156 text28 CODE >156:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+316A text28 CODE >162:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3182 text28 CODE >164:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+39E4 text27 CODE >3:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+39E4 text27 CODE >5:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+39EC text27 CODE >6:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+39F4 text27 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+3A22 text27 CODE >9:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\strcpy.c
+664 text26 CODE >506:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+664 text26 CODE >514:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+66A text26 CODE >515:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+67A text26 CODE >516:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+688 text26 CODE >517:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+68C text26 CODE >518:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+6B0 text26 CODE >522:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+6BA text26 CODE >523:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+6C2 text26 CODE >524:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+6D2 text26 CODE >529:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+6FA text26 CODE >538:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+720 text26 CODE >539:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+732 text26 CODE >540:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+736 text26 CODE >541:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+73C text26 CODE >542:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+744 text26 CODE >551:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+75C text26 CODE >553:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+766 text26 CODE >554:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+78E text26 CODE >556:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7B4 text26 CODE >557:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7C6 text26 CODE >558:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7CA text26 CODE >559:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7D0 text26 CODE >560:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7D8 text26 CODE >569:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+7F4 text26 CODE >576:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+806 text26 CODE >577:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+80E text26 CODE >578:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+844 text26 CODE >579:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+844 text26 CODE >580:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+854 text26 CODE >581:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+85A text26 CODE >579:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+8FE text26 CODE >583:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+93C text26 CODE >584:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+94C text26 CODE >585:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+950 text26 CODE >588:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+984 text26 CODE >589:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+98C text26 CODE >590:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+9CC text26 CODE >587:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+9FE text26 CODE >596:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+9FE text26 CODE >602:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A02 text26 CODE >604:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A06 text26 CODE >615:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A2C text26 CODE >630:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A34 text26 CODE >635:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A3A text26 CODE >640:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A4C text26 CODE >641:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A5A text26 CODE >642:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A6A text26 CODE >643:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A72 text26 CODE >645:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A84 text26 CODE >646:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A8C text26 CODE >652:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+A94 text26 CODE >653:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+AA4 text26 CODE >654:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+AB4 text26 CODE >655:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+AB8 text26 CODE >656:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+B00 text26 CODE >657:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+B1C text26 CODE >658:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+B74 text26 CODE >659:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+BA8 text26 CODE >660:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+BAE text26 CODE >655:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+BCC text26 CODE >664:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C00 text26 CODE >665:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C32 text26 CODE >666:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C44 text26 CODE >667:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C48 text26 CODE >669:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C8A text26 CODE >670:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+C9A text26 CODE >675:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+CCE text26 CODE >677:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D24 text26 CODE >678:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D2A text26 CODE >679:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D5E text26 CODE >681:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D72 text26 CODE >683:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D76 text26 CODE >689:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D86 text26 CODE >693:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D8E text26 CODE >695:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D94 text26 CODE >696:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+D9C text26 CODE >697:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+DA4 text26 CODE >698:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+DA8 text26 CODE >699:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+DF0 text26 CODE >700:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+E4A text26 CODE >712:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+E6A text26 CODE >713:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+E7E text26 CODE >714:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+E84 text26 CODE >715:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+E8C text26 CODE >718:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+EA0 text26 CODE >719:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+EA6 text26 CODE >720:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+EAC text26 CODE >717:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+EBE text26 CODE >722:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+ED4 text26 CODE >723:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+EDA text26 CODE >725:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+F32 text26 CODE >726:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+F66 text26 CODE >727:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+F6E text26 CODE >728:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+F72 text26 CODE >698:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+FAC text26 CODE >735:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+FB4 text26 CODE >736:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+FC4 text26 CODE >767:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+FF4 text26 CODE >768:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1002 text26 CODE >769:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+101A text26 CODE >780:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+102A text26 CODE >781:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1040 text26 CODE >783:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1048 text26 CODE >786:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1070 text26 CODE >787:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1CF6 text25 CODE >1007:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1CF6 text25 CODE >1019:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D1A text25 CODE >1020:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D28 text25 CODE >1022:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D36 text25 CODE >1023:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D3A text25 CODE >1091:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D5E text25 CODE >1092:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D66 text25 CODE >1093:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D74 text25 CODE >1094:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1D98 text25 CODE >1095:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1DA6 text25 CODE >1096:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1DCE text25 CODE >1097:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1DD2 text25 CODE >1098:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1DEE text25 CODE >1099:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1DF2 text25 CODE >1100:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E00 text25 CODE >1099:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E38 text25 CODE >1392:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E48 text25 CODE >1393:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E56 text25 CODE >1394:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E5A text25 CODE >1398:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E5E text25 CODE >1399:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E62 text25 CODE >1424:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E66 text25 CODE >1425:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E6A text25 CODE >1427:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E6E text25 CODE >1428:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E72 text25 CODE >1429:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E7C text25 CODE >1429:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E8A text25 CODE >1429:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E92 text25 CODE >1429:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1E9A text25 CODE >1429:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1EA4 text25 CODE >1431:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1EC4 text25 CODE >1459:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1EF4 text25 CODE >1460:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1EF8 text25 CODE >1462:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F28 text25 CODE >1463:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F2C text25 CODE >1464:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F36 text25 CODE >1464:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F44 text25 CODE >1464:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F4C text25 CODE >1464:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F56 text25 CODE >1465:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F72 text25 CODE >1466:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1F76 text25 CODE >1493:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1FAC text25 CODE >1495:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1FC0 text25 CODE >1495:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1FCE text25 CODE >1495:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1FD8 text25 CODE >1501:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+1FFC text25 CODE >1502:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+200A text25 CODE >1503:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+201E text25 CODE >1504:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+202A text25 CODE >1509:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+2038 text25 CODE >1510:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+2044 text25 CODE >1514:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+2068 text25 CODE >1515:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+207A text25 CODE >1517:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37B0 text24 CODE >1520:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37B0 text24 CODE >1525:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37B8 text24 CODE >1527:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37C2 text24 CODE >1529:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37C6 text24 CODE >1531:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+37EC text24 CODE >1529:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3808 text24 CODE >1536:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+3810 text24 CODE >1543:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\doprnt.c
+2856 text23 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+2856 text23 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+286A text23 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+2878 text23 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+2880 text23 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+2888 text23 CODE >25:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+289E text23 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28AA text23 CODE >27:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28B2 text23 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28B6 text23 CODE >30:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28BE text23 CODE >31:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28C6 text23 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+28EA text23 CODE >34:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+290C text23 CODE >35:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+295E text23 CODE >39:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\nf_snprintf.c
+2EF4 text22 CODE >77:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2EF4 text22 CODE >82:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F10 text22 CODE >83:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F2C text22 CODE >86:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F5A text22 CODE >88:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F88 text22 CODE >92:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F92 text22 CODE >93:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2F9E text22 CODE >94:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2FA8 text22 CODE >95:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2FB4 text22 CODE >97:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2E30 text21 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E30 text21 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E34 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E42 text21 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E4A text21 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E4E text21 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E5C text21 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E64 text21 CODE >20:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E68 text21 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E70 text21 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E82 text21 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E86 text21 CODE >25:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E8A text21 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E90 text21 CODE >27:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2E92 text21 CODE >25:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EA0 text21 CODE >30:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EA6 text21 CODE >31:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EBC text21 CODE >32:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EC4 text21 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EC6 text21 CODE >35:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2ECC text21 CODE >36:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2ED2 text21 CODE >38:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EE2 text21 CODE >39:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EEA text21 CODE >40:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+2EF2 text21 CODE >41:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\awdiv.c
+374C text20 CODE >28:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+374C text20 CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+375C text20 CODE >31:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3780 text20 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3784 text20 CODE >34:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+37AE text20 CODE >36:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3B9E text19 CODE >71:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3BA0 text19 CODE >72:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3BB4 text19 CODE >73:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+228E text18 CODE >10:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2290 text18 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+22AE text18 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+22E0 text18 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+22E4 text18 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+22E4 text18 CODE >19:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+22F4 text18 CODE >21:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+230A text18 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+231E text18 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2322 text18 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2326 text18 CODE >25:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2328 text18 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2332 text18 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2364 text18 CODE >29:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2366 text18 CODE >30:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2372 text18 CODE >31:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+237C text18 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+237C text18 CODE >32:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23AE text18 CODE >34:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23B0 text18 CODE >35:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23BA text18 CODE >33:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23D8 text18 CODE >37:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23E6 text18 CODE >38:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23E8 text18 CODE >39:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+23EC text18 CODE >40:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2410 text18 CODE >41:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+242E text18 CODE >42:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2430 text18 CODE >43:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+2440 text18 CODE >44:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\xxtofl.c
+3478 text17 CODE >48:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3478 text17 CODE >49:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+34E8 text17 CODE >50:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3406 text16 CODE >44:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3406 text16 CODE >45:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3476 text16 CODE >46:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+36E8 text15 CODE >43:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+36E8 text15 CODE >45:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3712 text15 CODE >46:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+371E text15 CODE >49:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3724 text15 CODE >52:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3726 text15 CODE >54:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3726 text15 CODE >55:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3734 text15 CODE >56:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+374A text15 CODE >57:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+2B6A text14 CODE >49:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2B6A text14 CODE >53:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2B82 text14 CODE >55:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2BFE text14 CODE >57:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C02 text14 CODE >59:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C0A text14 CODE >60:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C0E text14 CODE >62:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C16 text14 CODE >63:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C1A text14 CODE >65:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C26 text14 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C32 text14 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C40 text14 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C48 text14 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C52 text14 CODE >68:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C5E text14 CODE >70:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+2C66 text14 CODE >71:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3A24 text13 CODE >38:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3A24 text13 CODE >39:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3A60 text13 CODE >40:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3BCA text12 CODE >75:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3BCA text12 CODE >76:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3BDA text12 CODE >77:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3684 text11 CODE >55:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3686 text11 CODE >56:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3686 text11 CODE >57:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+369A text11 CODE >61:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+369E text11 CODE >64:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+36AA text11 CODE >65:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+36BE text11 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+36E6 text11 CODE >69:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+25B8 text10 CODE >99:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+25B8 text10 CODE >102:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+25C2 text10 CODE >103:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+25D2 text10 CODE >105:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+25E2 text10 CODE >107:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+25F6 text10 CODE >110:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+260A text10 CODE >116:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2626 text10 CODE >117:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2648 text10 CODE >119:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+264E text10 CODE >122:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+26A8 text10 CODE >125:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+26C4 text10 CODE >128:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+26E0 text10 CODE >131:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+2704 text10 CODE >133:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+270A text10 CODE >135:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3BB6 text9 CODE >19:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BB6 text9 CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BBA text9 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BBE text9 CODE >33:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BC2 text9 CODE >36:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BC4 text9 CODE >39:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BC6 text9 CODE >42:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BC8 text9 CODE >43:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\interrupts.c
+3BEC text8 CODE >79:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3BEC text8 CODE >80:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3BF2 text8 CODE >81:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3BF8 text8 CODE >82:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+338C text7 CODE >50:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+338C text7 CODE >52:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3390 text7 CODE >55:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3394 text7 CODE >58:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+339A text7 CODE >61:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33A8 text7 CODE >63:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33AE text7 CODE >64:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33BE text7 CODE >65:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33C4 text7 CODE >66:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33D4 text7 CODE >67:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33DA text7 CODE >70:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33E0 text7 CODE >71:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33E6 text7 CODE >72:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33EC text7 CODE >73:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33F2 text7 CODE >74:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33F8 text7 CODE >75:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+33FE text7 CODE >76:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3404 text7 CODE >77:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\lcd.c
+3060 text6 CODE >53:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3060 text6 CODE >55:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3064 text6 CODE >57:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+306E text6 CODE >58:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+307A text6 CODE >59:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3084 text6 CODE >60:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3090 text6 CODE >61:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30A6 text6 CODE >64:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30AA text6 CODE >67:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30B4 text6 CODE >68:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30C0 text6 CODE >69:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30CA text6 CODE >70:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30D6 text6 CODE >71:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30EC text6 CODE >74:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+30F0 text6 CODE >75:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3620 text5 CODE >18:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3620 text5 CODE >19:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3630 text5 CODE >21:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+365A text5 CODE >22:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+365E text5 CODE >24:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3682 text5 CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+328C text4 CODE >43:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+328C text4 CODE >44:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+3294 text4 CODE >46:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+329C text4 CODE >47:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+32B0 text4 CODE >48:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+32C4 text4 CODE >49:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+32E4 text4 CODE >51:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+32F8 text4 CODE >52:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+330C text4 CODE >53:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\outputs.c
+330E text3 CODE >19:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+330E text3 CODE >22:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3344 text3 CODE >23:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3350 text3 CODE >24:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3350 text3 CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3352 text3 CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3360 text3 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+337E text3 CODE >38:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+3382 text3 CODE >40:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+338A text3 CODE >41:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\adc.c
+320A text2 CODE >19:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+320A text2 CODE >23:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+320E text2 CODE >25:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3212 text2 CODE >26:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3216 text2 CODE >28:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+321A text2 CODE >29:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+321E text2 CODE >31:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+322A text2 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3236 text2 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3244 text2 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+324C text2 CODE >32:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3256 text2 CODE >36:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+325A text2 CODE >39:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3278 text2 CODE >42:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+327C text2 CODE >43:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3280 text2 CODE >44:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+3282 text2 CODE >46:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+328A text2 CODE >47:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\pwm.c
+34EA text1 CODE >138:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+34EA text1 CODE >140:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+34EA text1 CODE >142:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+350A text1 CODE >145:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+350E text1 CODE >148:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+351A text1 CODE >154:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3526 text1 CODE >160:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+352A text1 CODE >163:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+354E text1 CODE >166:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3552 text1 CODE >167:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3BDC text0 CODE >170:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3BDC text0 CODE >173:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3BE0 text0 CODE >176:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3BE0 text0 CODE >181:G:\Meu Drive\Mestrado\UNIFESP - Aulas Especiais\Sistemas Embarcados\Atividades Práticas\Atividade_A4.X\main.c
+3B5A cinit CODE >2077:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B5A cinit CODE >2079:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B5A cinit CODE >2082:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B5A cinit CODE >2117:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B5E cinit CODE >2118:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B60 cinit CODE >2119:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B60 cinit CODE >2120:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B62 cinit CODE >2121:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B64 cinit CODE >2122:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B66 cinit CODE >2125:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B68 cinit CODE >2126:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B6A cinit CODE >2127:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B6C cinit CODE >2128:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B6E cinit CODE >2131:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B70 cinit CODE >2137:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B70 cinit CODE >2139:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B72 cinit CODE >2140:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B74 cinit CODE >2142:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B76 cinit CODE >2143:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B78 cinit CODE >2144:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+3B7A cinit CODE >2145:C:\Users\yhan\AppData\Local\Temp\xcAs33k.s
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___awdiv@counter 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+SystemControl@fVoltage EF 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+___fpclassifyf@e 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fpclassifyf@u B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fpclassifyf@x 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\Atividade_A4.X.production.o
+iAnalogRead@iChannel 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_LcdClear 3BEC 0 CODE 0 text8 dist/default/production\Atividade_A4.X.production.o
+__Hspace_0 3BFC 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hspace_1 160 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hspace_2 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hspace_4 60000E 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+SystemControl@iResult F9 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+_ConfigTimerZeroISR 3BB6 0 CODE 0 text9 dist/default/production\Atividade_A4.X.production.o
+__Hibigdata 0 0 CODE 0 ibigdata dist/default/production\Atividade_A4.X.production.o
+_iConfigADC 330E 0 CODE 0 text3 dist/default/production\Atividade_A4.X.production.o
+_iConfigPWM 320A 0 CODE 0 text2 dist/default/production\Atividade_A4.X.production.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+?_fGetPercentDuty 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_iPWMSetDuty 2B6A 0 CODE 0 text14 dist/default/production\Atividade_A4.X.production.o
+__Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdClear 3BFA 0 CODE 0 text8 dist/default/production\Atividade_A4.X.production.o
+labs@a 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdCmd 3B9E 0 CODE 0 text51 dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdOut 386E 0 CODE 0 text54 dist/default/production\Atividade_A4.X.production.o
+?_pad 11 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_fGetPercentDuty 34EA 0 CODE 0 text17 dist/default/production\Atividade_A4.X.production.o
+?_vfprintf 6A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lsmallconst 600 0 SMALLCONST 0 smallconst dist/default/production\Atividade_A4.X.production.o
+_ADON 7E10 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_LATB F8A 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_LATC F8B 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TMR2 FCC 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+_atoi 270C 0 CODE 0 text45 dist/default/production\Atividade_A4.X.production.o
+_dbuf 110 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+_labs 3554 0 CODE 0 text34 dist/default/production\Atividade_A4.X.production.o
+_main 3BDC 0 CODE 0 text0 dist/default/production\Atividade_A4.X.production.o
+_nout 108 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+_prec 10C 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+btemp 7E 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+pad@i 18 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+pad@p 15 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+pad@w 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+start E 0 CODE 0 init C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+digitalRead@uiPin 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@aexp 39 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@bexp 3A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@prod 3B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@sign 34 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@temp 3F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_LcdSetCursor 35BA 0 CODE 0 text50 dist/default/production\Atividade_A4.X.production.o
+__HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\Atividade_A4.X.production.o
+setLedsOn@uiNumLeds B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+pad@fp 11 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_fGetVoltage 3478 0 CODE 0 text16 dist/default/production\Atividade_A4.X.production.o
+?___wmul 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+digitalRead@pcPort 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+efgtoa@fp 4D 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+efgtoa@ne 80 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@ou 93 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@pp 88 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+_LcdPutChar 3A9A 0 CODE 0 text53 dist/default/production\Atividade_A4.X.production.o
+__Hpowerup E 0 CODE 0 powerup dist/default/production\Atividade_A4.X.production.o
+__end_of_vfpfcnvrt 207C 0 CODE 0 text25 dist/default/production\Atividade_A4.X.production.o
+ttemp5 7F 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+ttemp6 82 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+ttemp7 86 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+__accesstop 80 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+intlevel0 0 0 CODE 0 text C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+intlevel1 0 0 CODE 0 text C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+intlevel2 0 0 CODE 0 text C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+intlevel3 0 0 CODE 0 text C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+floorf@e 36 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+floorf@m 32 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+floorf@u 38 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+floorf@x 28 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_efgtoa 4D 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\Atividade_A4.X.production.o
+wtemp8 7F 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+?_floorf 28 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdSetCursor@j 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdSetCursor@k 6 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdSetCursor@x 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdSetCursor@y 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hifardata 0 0 CODE 0 ifardata dist/default/production\Atividade_A4.X.production.o
+__end_of_iConfigADC 338C 0 CODE 0 text3 dist/default/production\Atividade_A4.X.production.o
+__end_of_iConfigPWM 328C 0 CODE 0 text2 dist/default/production\Atividade_A4.X.production.o
+_gstTimer1Seg FD 0 BANK0 1 bssBANK0 dist/default/production\Atividade_A4.X.production.o
+___awdiv@sign 6 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_fGetPercentDuty 3478 0 CODE 0 text17 dist/default/production\Atividade_A4.X.production.o
+__Hclrtext 0 0 ABS 0 clrtext dist/default/production\Atividade_A4.X.production.o
+_vfpfcnvrt 1CF6 0 CODE 0 text25 dist/default/production\Atividade_A4.X.production.o
+setup@fInitVoltage 75 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___wmul@multiplicand 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_ADCON0 FC2 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_ADCON1 FC1 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_ADCON2 FC0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_ADRESH FC4 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_ADRESL FC3 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+___awdiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+__end_of_readBuzzerState 3BDC 0 CODE 0 text12 dist/default/production\Atividade_A4.X.production.o
+_CCPR1L FBE 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_CCPR2L FBB 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\Atividade_A4.X.production.o
+__end_of___fleq 3060 0 CODE 0 text43 dist/default/production\Atividade_A4.X.production.o
+__end_of___flge 2B6A 0 CODE 0 text42 dist/default/production\Atividade_A4.X.production.o
+__end_of___wmul 3B5A 0 CODE 0 text48 dist/default/production\Atividade_A4.X.production.o
+iPWMSetDuty@iNumPin 4B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+configOutputs@i 8 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdSetCursor 3620 0 CODE 0 text50 dist/default/production\Atividade_A4.X.production.o
+__end_of_digitalRead 3A62 0 CODE 0 text13 dist/default/production\Atividade_A4.X.production.o
+__Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdPutChar 3AD2 0 CODE 0 text53 dist/default/production\Atividade_A4.X.production.o
+iConfigPWM@iNumPin 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@aexp 27 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@bexp 26 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@sign 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\Atividade_A4.X.production.o
+__Hintcodelo E 0 CODE 0 intcodelo dist/default/production\Atividade_A4.X.production.o
+___awdiv@divisor 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of___awdiv 2EF4 0 CODE 0 text21 dist/default/production\Atividade_A4.X.production.o
+DispSystemParam@fPercentDuty CB 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+__end_of___fladd 1532 0 CODE 0 text39 dist/default/production\Atividade_A4.X.production.o
+__end_of___fldiv 1CF6 0 CODE 0 text44 dist/default/production\Atividade_A4.X.production.o
+__end_of___flmul 195C 0 CODE 0 text41 dist/default/production\Atividade_A4.X.production.o
+__end_of___flneg 3A9A 0 CODE 0 text40 dist/default/production\Atividade_A4.X.production.o
+__end_of___flsub 395A 0 CODE 0 text38 dist/default/production\Atividade_A4.X.production.o
+__end_of___fltol 2A66 0 CODE 0 text37 dist/default/production\Atividade_A4.X.production.o
+?___fpclassifyf 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_strlen 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_efgtoa 1072 0 CODE 0 text26 dist/default/production\Atividade_A4.X.production.o
+__end_of_floorf 228E 0 CODE 0 text35 dist/default/production\Atividade_A4.X.production.o
+___fladd@a 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fladd@b 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@a 13 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@b F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_fGetVoltage 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@a 2C 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flmul@b 28 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flsub@a 45 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flsub@b 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_LcdCmd 3B7E 0 CODE 0 text51 dist/default/production\Atividade_A4.X.production.o
+_LcdOut 3812 0 CODE 0 text54 dist/default/production\Atividade_A4.X.production.o
+memcpy@tmp B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lintcodelo E 0 CODE 0 intcodelo dist/default/production\Atividade_A4.X.production.o
+start_initialization 3B5A 0 CODE 0 cinit dist/default/production\Atividade_A4.X.production.o
+_readBuzzerState 3BCA 0 CODE 0 text12 dist/default/production\Atividade_A4.X.production.o
+LcdCmd@c 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_iAnalogRead 36E8 0 CODE 0 text15 dist/default/production\Atividade_A4.X.production.o
+LcdOut@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\Atividade_A4.X.production.o
+_digitalWrite 374C 0 CODE 0 text20 dist/default/production\Atividade_A4.X.production.o
+efgtoa@c 53 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+efgtoa@d 8B 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@e 8F 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@f 4F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+efgtoa@g A4 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@h 99 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@i 97 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@l 9D 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@m 8D 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@n A2 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@p 82 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@t 84 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@u A8 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@w 91 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+snprintf@ap B8 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+___rparam_used 1 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+snprintf@cnt BA 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+snprintf@fmt B0 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@mode 89 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+efgtoa@sign A1 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+_GO_nDONE 7E11 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__end_of_memcpy 3914 0 CODE 0 text33 dist/default/production\Atividade_A4.X.production.o
+__end_of_memset 25B8 0 CODE 0 text49 dist/default/production\Atividade_A4.X.production.o
+__pcstackBANK0 80 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+isa$xinst 0 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+iConfigADC@iNumChannels 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_SystemControl 25B8 0 CODE 0 text10 dist/default/production\Atividade_A4.X.production.o
+fputc@fp 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+fputs@fp C 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hbank0 0 0 ABS 0 bank0 dist/default/production\Atividade_A4.X.production.o
+__Hbank1 0 0 ABS 0 bank1 dist/default/production\Atividade_A4.X.production.o
+__Hbank2 0 0 ABS 0 bank2 dist/default/production\Atividade_A4.X.production.o
+__Hbank3 0 0 ABS 0 bank3 dist/default/production\Atividade_A4.X.production.o
+__Hbank4 0 0 ABS 0 bank4 dist/default/production\Atividade_A4.X.production.o
+__Hbank5 0 0 ABS 0 bank5 dist/default/production\Atividade_A4.X.production.o
+__Hcinit 0 0 ABS 0 cinit dist/default/production\Atividade_A4.X.production.o
+__Hconst 0 0 CONST 0 const dist/default/production\Atividade_A4.X.production.o
+__end_of_strcpy 3A24 0 CODE 0 text27 dist/default/production\Atividade_A4.X.production.o
+__end_of_strlen 3B08 0 CODE 0 text29 dist/default/production\Atividade_A4.X.production.o
+__Hidata 0 0 CODE 0 idata dist/default/production\Atividade_A4.X.production.o
+__Hidloc 200008 0 IDLOC 5 idloc dist/default/production\Atividade_A4.X.production.o
+__Hnvbit 0 0 COMRAM 1 nvbit dist/default/production\Atividade_A4.X.production.o
+__Hparam 0 0 COMRAM 1 rparam dist/default/production\Atividade_A4.X.production.o
+__Hrdata 0 0 COMRAM 1 rdata dist/default/production\Atividade_A4.X.production.o
+__Hstack 0 0 STACK 2 stack dist/default/production\Atividade_A4.X.production.o
+__Htext0 0 0 ABS 0 text0 dist/default/production\Atividade_A4.X.production.o
+__Htext1 0 0 ABS 0 text1 dist/default/production\Atividade_A4.X.production.o
+__Htext2 0 0 ABS 0 text2 dist/default/production\Atividade_A4.X.production.o
+__Htext3 0 0 ABS 0 text3 dist/default/production\Atividade_A4.X.production.o
+__Htext4 0 0 ABS 0 text4 dist/default/production\Atividade_A4.X.production.o
+__Htext5 0 0 ABS 0 text5 dist/default/production\Atividade_A4.X.production.o
+__Htext6 0 0 ABS 0 text6 dist/default/production\Atividade_A4.X.production.o
+__Htext7 0 0 ABS 0 text7 dist/default/production\Atividade_A4.X.production.o
+__Htext8 0 0 ABS 0 text8 dist/default/production\Atividade_A4.X.production.o
+__Htext9 0 0 ABS 0 text9 dist/default/production\Atividade_A4.X.production.o
+_MsgInicialLcd 3060 0 CODE 0 text6 dist/default/production\Atividade_A4.X.production.o
+__Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\Atividade_A4.X.production.o
+__Hbigram 0 0 ABS 0 bigram dist/default/production\Atividade_A4.X.production.o
+__Hbigsfr 0 0 ABS 0 bigsfr dist/default/production\Atividade_A4.X.production.o
+__smallconst 600 0 SMALLCONST 0 smallconst C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+___xxtofl@arg B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___xxtofl@exp A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___xxtofl@val 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+efgtoa@nmode 8A 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+pinMode@pcTris 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hcomram 0 0 ABS 0 comram dist/default/production\Atividade_A4.X.production.o
+__Hconfig 30000E 0 CONFIG 4 config dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdPutStr 320A 0 CODE 0 text52 dist/default/production\Atividade_A4.X.production.o
+__end_of_iPWMSetDuty 2C68 0 CODE 0 text14 dist/default/production\Atividade_A4.X.production.o
+_snprintf 2856 0 CODE 0 text23 dist/default/production\Atividade_A4.X.production.o
+__Lbank0 0 0 ABS 0 bank0 dist/default/production\Atividade_A4.X.production.o
+__Lbank1 0 0 ABS 0 bank1 dist/default/production\Atividade_A4.X.production.o
+__Lbank2 0 0 ABS 0 bank2 dist/default/production\Atividade_A4.X.production.o
+__Lbank3 0 0 ABS 0 bank3 dist/default/production\Atividade_A4.X.production.o
+__Lbank4 0 0 ABS 0 bank4 dist/default/production\Atividade_A4.X.production.o
+__Lbank5 0 0 ABS 0 bank5 dist/default/production\Atividade_A4.X.production.o
+__end_of_isdigit 3B34 0 CODE 0 text47 dist/default/production\Atividade_A4.X.production.o
+__Lcinit 0 0 ABS 0 cinit dist/default/production\Atividade_A4.X.production.o
+__Lconst 0 0 CONST 0 const dist/default/production\Atividade_A4.X.production.o
+__Lidata 0 0 CODE 0 idata dist/default/production\Atividade_A4.X.production.o
+__Lidloc 0 0 IDLOC 5 idloc dist/default/production\Atividade_A4.X.production.o
+__Lnvbit 0 0 COMRAM 1 nvbit dist/default/production\Atividade_A4.X.production.o
+__Lparam 0 0 COMRAM 1 rparam dist/default/production\Atividade_A4.X.production.o
+__end_of_isspace 39A0 0 CODE 0 text46 dist/default/production\Atividade_A4.X.production.o
+__Lrdata 0 0 COMRAM 1 rdata dist/default/production\Atividade_A4.X.production.o
+__Lstack 0 0 STACK 2 stack dist/default/production\Atividade_A4.X.production.o
+__Ltext0 0 0 ABS 0 text0 dist/default/production\Atividade_A4.X.production.o
+__Ltext1 0 0 ABS 0 text1 dist/default/production\Atividade_A4.X.production.o
+__Ltext2 0 0 ABS 0 text2 dist/default/production\Atividade_A4.X.production.o
+__Ltext3 0 0 ABS 0 text3 dist/default/production\Atividade_A4.X.production.o
+__Ltext4 0 0 ABS 0 text4 dist/default/production\Atividade_A4.X.production.o
+__Ltext5 0 0 ABS 0 text5 dist/default/production\Atividade_A4.X.production.o
+__Ltext6 0 0 ABS 0 text6 dist/default/production\Atividade_A4.X.production.o
+__Ltext7 0 0 ABS 0 text7 dist/default/production\Atividade_A4.X.production.o
+__Ltext8 0 0 ABS 0 text8 dist/default/production\Atividade_A4.X.production.o
+__Ltext9 0 0 ABS 0 text9 dist/default/production\Atividade_A4.X.production.o
+setup@fInitPwmDuty 79 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hfarbss 0 0 FARRAM 0 farbss dist/default/production\Atividade_A4.X.production.o
+___flmul@grs 35 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\Atividade_A4.X.production.o
+LcdSetCursor@temp 8 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_pinMode 3684 0 CODE 0 text5 dist/default/production\Atividade_A4.X.production.o
+_PORTDbits F83 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_PORTEbits F84 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__end_of_snprintf 2960 0 CODE 0 text23 dist/default/production\Atividade_A4.X.production.o
+memcpy@d1 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memcpy@s1 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_INTCONbits FF2 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Habs1 0 0 ABS 0 abs1 dist/default/production\Atividade_A4.X.production.o
+__Hdata 0 0 ABS 0 data dist/default/production\Atividade_A4.X.production.o
+__Hheap 0 0 HEAP 7 heap dist/default/production\Atividade_A4.X.production.o
+__Hinit 12 0 CODE 0 init dist/default/production\Atividade_A4.X.production.o
+__Hrbit 0 0 COMRAM 1 rbit dist/default/production\Atividade_A4.X.production.o
+__Hrbss 0 0 COMRAM 1 rbss dist/default/production\Atividade_A4.X.production.o
+__Htemp 7F 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+__Htext 0 0 ABS 0 text dist/default/production\Atividade_A4.X.production.o
+__Labs1 0 0 ABS 0 abs1 dist/default/production\Atividade_A4.X.production.o
+__Ldata 0 0 ABS 0 data dist/default/production\Atividade_A4.X.production.o
+__Lheap 0 0 HEAP 7 heap dist/default/production\Atividade_A4.X.production.o
+__Linit E 0 CODE 0 init dist/default/production\Atividade_A4.X.production.o
+__Lrbit 0 0 COMRAM 1 rbit dist/default/production\Atividade_A4.X.production.o
+__Lrbss 0 0 COMRAM 1 rbss dist/default/production\Atividade_A4.X.production.o
+__Ltemp 7E 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+__Ltext 0 0 ABS 0 text dist/default/production\Atividade_A4.X.production.o
+memcpy@d 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memcpy@n 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memcpy@s 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memset@dest 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memset@c 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memset@k 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memset@n 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+memset@s B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fleq 2FB6 0 CODE 0 text43 dist/default/production\Atividade_A4.X.production.o
+___flge 2A66 0 CODE 0 text42 dist/default/production\Atividade_A4.X.production.o
+___wmul 3B34 0 CODE 0 text48 dist/default/production\Atividade_A4.X.production.o
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+int$flags 7E 0 COMRAM 1 temp dist/default/production\Atividade_A4.X.production.o
+__HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+isspace@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hintret 0 0 ABS 0 intret dist/default/production\Atividade_A4.X.production.o
+__Hirdata 0 0 CODE 0 irdata dist/default/production\Atividade_A4.X.production.o
+_PR2 FCB 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__S0 3BFC 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__S1 160 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__S4 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__S5 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_isr 8 0 CODE 0 intcode dist/default/production\Atividade_A4.X.production.o
+_pad 30F2 0 CODE 0 text28 dist/default/production\Atividade_A4.X.production.o
+_LcdPutStr 3184 0 CODE 0 text52 dist/default/production\Atividade_A4.X.production.o
+__end_of_digitalWrite 37B0 0 CODE 0 text20 dist/default/production\Atividade_A4.X.production.o
+?_iConfigADC 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_iConfigPWM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+DispSystemParam@fAdcVoltage C7 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+pinMode@fMode 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fpclassifyf 2C68 0 CODE 0 text36 dist/default/production\Atividade_A4.X.production.o
+__Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\Atividade_A4.X.production.o
+pinMode@uiPin 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_efgtoa 664 0 CODE 0 text26 dist/default/production\Atividade_A4.X.production.o
+__Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\Atividade_A4.X.production.o
+_SystemControl$198 F7 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+___xxtofl 228E 0 CODE 0 text18 dist/default/production\Atividade_A4.X.production.o
+_floorf 207C 0 CODE 0 text35 dist/default/production\Atividade_A4.X.production.o
+__end_of_isr 38C4 0 CODE 0 intcode_body dist/default/production\Atividade_A4.X.production.o
+__end_of_pad 3184 0 CODE 0 text28 dist/default/production\Atividade_A4.X.production.o
+int_func 386E 0 CODE 0 intcode_body dist/default/production\Atividade_A4.X.production.o
+__Lintentry 0 0 ABS 0 intentry dist/default/production\Atividade_A4.X.production.o
+_configOutputs 328C 0 CODE 0 text4 dist/default/production\Atividade_A4.X.production.o
+DispSystemParam@szPercentDutyDisp DF 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+strcpy@d 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+strcpy@s 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hramtop 600 0 RAM 0 ramtop dist/default/production\Atividade_A4.X.production.o
+strlen@a 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+strlen@s 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hrparam 0 0 COMRAM 1 rparam dist/default/production\Atividade_A4.X.production.o
+__end_of___xxtofl 2442 0 CODE 0 text18 dist/default/production\Atividade_A4.X.production.o
+__activetblptr 2 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__end_of_LcdInit 3406 0 CODE 0 text7 dist/default/production\Atividade_A4.X.production.o
+__Hstruct 0 0 COMRAM 1 struct dist/default/production\Atividade_A4.X.production.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\Atividade_A4.X.production.o
+__LbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+__Htext10 0 0 ABS 0 text10 dist/default/production\Atividade_A4.X.production.o
+__Htext11 0 0 ABS 0 text11 dist/default/production\Atividade_A4.X.production.o
+__Htext12 0 0 ABS 0 text12 dist/default/production\Atividade_A4.X.production.o
+__Htext13 0 0 ABS 0 text13 dist/default/production\Atividade_A4.X.production.o
+__Htext14 0 0 ABS 0 text14 dist/default/production\Atividade_A4.X.production.o
+__Htext15 0 0 ABS 0 text15 dist/default/production\Atividade_A4.X.production.o
+__Htext16 0 0 ABS 0 text16 dist/default/production\Atividade_A4.X.production.o
+__Htext17 0 0 ABS 0 text17 dist/default/production\Atividade_A4.X.production.o
+__Htext18 0 0 ABS 0 text18 dist/default/production\Atividade_A4.X.production.o
+__Htext19 0 0 ABS 0 text19 dist/default/production\Atividade_A4.X.production.o
+__Htext20 0 0 ABS 0 text20 dist/default/production\Atividade_A4.X.production.o
+__Htext21 0 0 ABS 0 text21 dist/default/production\Atividade_A4.X.production.o
+__Htext22 0 0 ABS 0 text22 dist/default/production\Atividade_A4.X.production.o
+__Htext23 0 0 ABS 0 text23 dist/default/production\Atividade_A4.X.production.o
+__Htext24 0 0 ABS 0 text24 dist/default/production\Atividade_A4.X.production.o
+__Htext25 0 0 ABS 0 text25 dist/default/production\Atividade_A4.X.production.o
+__Htext26 0 0 ABS 0 text26 dist/default/production\Atividade_A4.X.production.o
+__Htext27 0 0 ABS 0 text27 dist/default/production\Atividade_A4.X.production.o
+__Htext28 0 0 ABS 0 text28 dist/default/production\Atividade_A4.X.production.o
+__Htext29 0 0 ABS 0 text29 dist/default/production\Atividade_A4.X.production.o
+__Htext30 0 0 ABS 0 text30 dist/default/production\Atividade_A4.X.production.o
+__Htext31 0 0 ABS 0 text31 dist/default/production\Atividade_A4.X.production.o
+__Htext32 0 0 ABS 0 text32 dist/default/production\Atividade_A4.X.production.o
+__Htext33 0 0 ABS 0 text33 dist/default/production\Atividade_A4.X.production.o
+__Htext34 0 0 ABS 0 text34 dist/default/production\Atividade_A4.X.production.o
+__Htext35 0 0 ABS 0 text35 dist/default/production\Atividade_A4.X.production.o
+__Htext36 0 0 ABS 0 text36 dist/default/production\Atividade_A4.X.production.o
+__Htext37 0 0 ABS 0 text37 dist/default/production\Atividade_A4.X.production.o
+__Htext38 0 0 ABS 0 text38 dist/default/production\Atividade_A4.X.production.o
+__Htext39 0 0 ABS 0 text39 dist/default/production\Atividade_A4.X.production.o
+__Htext40 0 0 ABS 0 text40 dist/default/production\Atividade_A4.X.production.o
+__Htext41 0 0 ABS 0 text41 dist/default/production\Atividade_A4.X.production.o
+__Htext42 0 0 ABS 0 text42 dist/default/production\Atividade_A4.X.production.o
+__Htext43 0 0 ABS 0 text43 dist/default/production\Atividade_A4.X.production.o
+__Htext44 0 0 ABS 0 text44 dist/default/production\Atividade_A4.X.production.o
+__Htext45 0 0 ABS 0 text45 dist/default/production\Atividade_A4.X.production.o
+__Htext46 0 0 ABS 0 text46 dist/default/production\Atividade_A4.X.production.o
+__Htext47 0 0 ABS 0 text47 dist/default/production\Atividade_A4.X.production.o
+__Htext48 0 0 ABS 0 text48 dist/default/production\Atividade_A4.X.production.o
+__Htext49 0 0 ABS 0 text49 dist/default/production\Atividade_A4.X.production.o
+__Htext50 0 0 ABS 0 text50 dist/default/production\Atividade_A4.X.production.o
+__Htext51 0 0 ABS 0 text51 dist/default/production\Atividade_A4.X.production.o
+__Htext52 0 0 ABS 0 text52 dist/default/production\Atividade_A4.X.production.o
+__Htext53 0 0 ABS 0 text53 dist/default/production\Atividade_A4.X.production.o
+__Htext54 0 0 ABS 0 text54 dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@fmt 58 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_memcpy 38C4 0 CODE 0 text33 dist/default/production\Atividade_A4.X.production.o
+_memset 2442 0 CODE 0 text49 dist/default/production\Atividade_A4.X.production.o
+pad@buf 13 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fladd@signs D 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__ptext10 25B8 0 CODE 0 text10 dist/default/production\Atividade_A4.X.production.o
+__ptext11 3684 0 CODE 0 text11 dist/default/production\Atividade_A4.X.production.o
+__ptext12 3BCA 0 CODE 0 text12 dist/default/production\Atividade_A4.X.production.o
+__ptext13 3A24 0 CODE 0 text13 dist/default/production\Atividade_A4.X.production.o
+__ptext14 2B6A 0 CODE 0 text14 dist/default/production\Atividade_A4.X.production.o
+__ptext15 36E8 0 CODE 0 text15 dist/default/production\Atividade_A4.X.production.o
+__ptext16 3406 0 CODE 0 text16 dist/default/production\Atividade_A4.X.production.o
+__ptext17 3478 0 CODE 0 text17 dist/default/production\Atividade_A4.X.production.o
+__ptext18 228E 0 CODE 0 text18 dist/default/production\Atividade_A4.X.production.o
+__ptext19 3B9E 0 CODE 0 text19 dist/default/production\Atividade_A4.X.production.o
+__ptext20 374C 0 CODE 0 text20 dist/default/production\Atividade_A4.X.production.o
+__ptext21 2E30 0 CODE 0 text21 dist/default/production\Atividade_A4.X.production.o
+__ptext22 2EF4 0 CODE 0 text22 dist/default/production\Atividade_A4.X.production.o
+__ptext23 2856 0 CODE 0 text23 dist/default/production\Atividade_A4.X.production.o
+__ptext24 37B0 0 CODE 0 text24 dist/default/production\Atividade_A4.X.production.o
+__ptext25 1CF6 0 CODE 0 text25 dist/default/production\Atividade_A4.X.production.o
+__ptext26 664 0 CODE 0 text26 dist/default/production\Atividade_A4.X.production.o
+__ptext27 39E4 0 CODE 0 text27 dist/default/production\Atividade_A4.X.production.o
+__ptext28 30F2 0 CODE 0 text28 dist/default/production\Atividade_A4.X.production.o
+__ptext29 3AD2 0 CODE 0 text29 dist/default/production\Atividade_A4.X.production.o
+__ptext30 39A0 0 CODE 0 text30 dist/default/production\Atividade_A4.X.production.o
+__ptext31 2D66 0 CODE 0 text31 dist/default/production\Atividade_A4.X.production.o
+__ptext32 3BFA 0 CODE 0 text32 dist/default/production\Atividade_A4.X.production.o
+__ptext33 38C4 0 CODE 0 text33 dist/default/production\Atividade_A4.X.production.o
+__ptext34 3554 0 CODE 0 text34 dist/default/production\Atividade_A4.X.production.o
+__ptext35 207C 0 CODE 0 text35 dist/default/production\Atividade_A4.X.production.o
+__ptext36 2C68 0 CODE 0 text36 dist/default/production\Atividade_A4.X.production.o
+__ptext37 2960 0 CODE 0 text37 dist/default/production\Atividade_A4.X.production.o
+__ptext38 3914 0 CODE 0 text38 dist/default/production\Atividade_A4.X.production.o
+__ptext39 1072 0 CODE 0 text39 dist/default/production\Atividade_A4.X.production.o
+__ptext40 3A62 0 CODE 0 text40 dist/default/production\Atividade_A4.X.production.o
+__ptext41 1532 0 CODE 0 text41 dist/default/production\Atividade_A4.X.production.o
+__ptext42 2A66 0 CODE 0 text42 dist/default/production\Atividade_A4.X.production.o
+__ptext43 2FB6 0 CODE 0 text43 dist/default/production\Atividade_A4.X.production.o
+__ptext44 195C 0 CODE 0 text44 dist/default/production\Atividade_A4.X.production.o
+__ptext45 270C 0 CODE 0 text45 dist/default/production\Atividade_A4.X.production.o
+__ptext46 395A 0 CODE 0 text46 dist/default/production\Atividade_A4.X.production.o
+__ptext47 3B08 0 CODE 0 text47 dist/default/production\Atividade_A4.X.production.o
+__ptext48 3B34 0 CODE 0 text48 dist/default/production\Atividade_A4.X.production.o
+__ptext49 2442 0 CODE 0 text49 dist/default/production\Atividade_A4.X.production.o
+__ptext50 35BA 0 CODE 0 text50 dist/default/production\Atividade_A4.X.production.o
+__ptext51 3B7E 0 CODE 0 text51 dist/default/production\Atividade_A4.X.production.o
+__ptext52 3184 0 CODE 0 text52 dist/default/production\Atividade_A4.X.production.o
+__ptext53 3A9A 0 CODE 0 text53 dist/default/production\Atividade_A4.X.production.o
+__ptext54 3812 0 CODE 0 text54 dist/default/production\Atividade_A4.X.production.o
+LcdPutStr@str 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___awdiv 2E30 0 CODE 0 text21 dist/default/production\Atividade_A4.X.production.o
+___fladd 1072 0 CODE 0 text39 dist/default/production\Atividade_A4.X.production.o
+___fldiv 195C 0 CODE 0 text44 dist/default/production\Atividade_A4.X.production.o
+___flmul 1532 0 CODE 0 text41 dist/default/production\Atividade_A4.X.production.o
+___flneg 3A62 0 CODE 0 text40 dist/default/production\Atividade_A4.X.production.o
+___flsub 3914 0 CODE 0 text38 dist/default/production\Atividade_A4.X.production.o
+___fltol 2960 0 CODE 0 text37 dist/default/production\Atividade_A4.X.production.o
+__pintcode_body 386E 0 CODE 0 intcode_body dist/default/production\Atividade_A4.X.production.o
+__Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\Atividade_A4.X.production.o
+__Lbigram 0 0 ABS 0 bigram dist/default/production\Atividade_A4.X.production.o
+__Lbigsfr 0 0 ABS 0 bigsfr dist/default/production\Atividade_A4.X.production.o
+__end_of_changeBuzzerState 3BB6 0 CODE 0 text19 dist/default/production\Atividade_A4.X.production.o
+?_atoi 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_labs 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lcomram 0 0 ABS 0 comram dist/default/production\Atividade_A4.X.production.o
+__Lconfig 0 0 CONFIG 4 config dist/default/production\Atividade_A4.X.production.o
+___wmul@multiplier 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@grs 22 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fldiv@rem 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_iPWMSetDuty 4B 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lfarbss 0 0 FARRAM 0 farbss dist/default/production\Atividade_A4.X.production.o
+setLedsOn@i C 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+iPWMSetDuty@iDuty 4D 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_strcpy 39E4 0 CODE 0 text27 dist/default/production\Atividade_A4.X.production.o
+_strlen 3AD2 0 CODE 0 text29 dist/default/production\Atividade_A4.X.production.o
+__Lfardata 0 0 FARRAM 0 fardata dist/default/production\Atividade_A4.X.production.o
+isa$std 1 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+__end_of_SystemControl 270C 0 CODE 0 text10 dist/default/production\Atividade_A4.X.production.o
+___fldiv@new_exp 20 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdPutStr@i 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+stackhi 0 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+stacklo 0 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+_fGetVoltage 3406 0 CODE 0 text16 dist/default/production\Atividade_A4.X.production.o
+__Lintcode 8 0 CODE 0 intcode dist/default/production\Atividade_A4.X.production.o
+__Lintret 0 0 ABS 0 intret dist/default/production\Atividade_A4.X.production.o
+fGetPercentDuty@iValue 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lirdata 0 0 CODE 0 irdata dist/default/production\Atividade_A4.X.production.o
+___fladd@grs 10 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_snprintf AC 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+__end_of_MsgInicialLcd 30F2 0 CODE 0 text6 dist/default/production\Atividade_A4.X.production.o
+strcpy@dest 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fleq@ff1 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fleq@ff2 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_vfpfcnvrt 56 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Lspace_0 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Lspace_1 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Lspace_2 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Lspace_4 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__pbssCOMRAM 7D 0 COMRAM 1 bssCOMRAM dist/default/production\Atividade_A4.X.production.o
+snprintf@f BC 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+snprintf@n AE 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+snprintf@s AC 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+___flge@ff1 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flge@ff2 45 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@convarg 5F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fltol@exp1 4A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_iAnalogRead 374C 0 CODE 0 text15 dist/default/production\Atividade_A4.X.production.o
+end_of_initialization 3B70 0 CODE 0 cinit dist/default/production\Atividade_A4.X.production.o
+__Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\Atividade_A4.X.production.o
+__Hintentry 0 0 ABS 0 intentry dist/default/production\Atividade_A4.X.production.o
+fputc@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+fputs@c E 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+fputs@i F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+fputs@s A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___awdiv@quotient 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___awdiv 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___fladd 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___fldiv F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___flmul 28 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___flneg 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___flsub 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?___fltol 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfprintf@fmt 6C 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hreset_vec 4 0 CODE 0 reset_vec dist/default/production\Atividade_A4.X.production.o
+LcdPutChar@temp 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\Atividade_A4.X.production.o
+__HbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+__Lramtop 600 0 RAM 0 ramtop dist/default/production\Atividade_A4.X.production.o
+__Lrparam 0 0 COMRAM 1 rparam dist/default/production\Atividade_A4.X.production.o
+changeBuzzerState@fState 8 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__pcinit 3B5A 0 CODE 0 cinit dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@ap 5A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@cp 68 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@fp 56 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___flneg@f1 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__ptext0 3BDC 0 CODE 0 text0 dist/default/production\Atividade_A4.X.production.o
+__ptext1 34EA 0 CODE 0 text1 dist/default/production\Atividade_A4.X.production.o
+__ptext2 320A 0 CODE 0 text2 dist/default/production\Atividade_A4.X.production.o
+__ptext3 330E 0 CODE 0 text3 dist/default/production\Atividade_A4.X.production.o
+__ptext4 328C 0 CODE 0 text4 dist/default/production\Atividade_A4.X.production.o
+__ptext5 3620 0 CODE 0 text5 dist/default/production\Atividade_A4.X.production.o
+__ptext6 3060 0 CODE 0 text6 dist/default/production\Atividade_A4.X.production.o
+__ptext7 338C 0 CODE 0 text7 dist/default/production\Atividade_A4.X.production.o
+__ptext8 3BEC 0 CODE 0 text8 dist/default/production\Atividade_A4.X.production.o
+__ptext9 3BB6 0 CODE 0 text9 dist/default/production\Atividade_A4.X.production.o
+__Lstruct 0 0 COMRAM 1 struct dist/default/production\Atividade_A4.X.production.o
+vfprintf@ap 6E 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfprintf@fp 6A 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+vfprintf@cfmt 70 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Ltext10 0 0 ABS 0 text10 dist/default/production\Atividade_A4.X.production.o
+__Ltext11 0 0 ABS 0 text11 dist/default/production\Atividade_A4.X.production.o
+__Ltext12 0 0 ABS 0 text12 dist/default/production\Atividade_A4.X.production.o
+__Ltext13 0 0 ABS 0 text13 dist/default/production\Atividade_A4.X.production.o
+__Ltext14 0 0 ABS 0 text14 dist/default/production\Atividade_A4.X.production.o
+__Ltext15 0 0 ABS 0 text15 dist/default/production\Atividade_A4.X.production.o
+__Ltext16 0 0 ABS 0 text16 dist/default/production\Atividade_A4.X.production.o
+__Ltext17 0 0 ABS 0 text17 dist/default/production\Atividade_A4.X.production.o
+__Ltext18 0 0 ABS 0 text18 dist/default/production\Atividade_A4.X.production.o
+__Ltext19 0 0 ABS 0 text19 dist/default/production\Atividade_A4.X.production.o
+__Ltext20 0 0 ABS 0 text20 dist/default/production\Atividade_A4.X.production.o
+__Ltext21 0 0 ABS 0 text21 dist/default/production\Atividade_A4.X.production.o
+__Ltext22 0 0 ABS 0 text22 dist/default/production\Atividade_A4.X.production.o
+__Ltext23 0 0 ABS 0 text23 dist/default/production\Atividade_A4.X.production.o
+__Ltext24 0 0 ABS 0 text24 dist/default/production\Atividade_A4.X.production.o
+__Ltext25 0 0 ABS 0 text25 dist/default/production\Atividade_A4.X.production.o
+__Ltext26 0 0 ABS 0 text26 dist/default/production\Atividade_A4.X.production.o
+__Ltext27 0 0 ABS 0 text27 dist/default/production\Atividade_A4.X.production.o
+__Ltext28 0 0 ABS 0 text28 dist/default/production\Atividade_A4.X.production.o
+__Ltext29 0 0 ABS 0 text29 dist/default/production\Atividade_A4.X.production.o
+__Ltext30 0 0 ABS 0 text30 dist/default/production\Atividade_A4.X.production.o
+__Ltext31 0 0 ABS 0 text31 dist/default/production\Atividade_A4.X.production.o
+__Ltext32 0 0 ABS 0 text32 dist/default/production\Atividade_A4.X.production.o
+__Ltext33 0 0 ABS 0 text33 dist/default/production\Atividade_A4.X.production.o
+__Ltext34 0 0 ABS 0 text34 dist/default/production\Atividade_A4.X.production.o
+__Ltext35 0 0 ABS 0 text35 dist/default/production\Atividade_A4.X.production.o
+__Ltext36 0 0 ABS 0 text36 dist/default/production\Atividade_A4.X.production.o
+__Ltext37 0 0 ABS 0 text37 dist/default/production\Atividade_A4.X.production.o
+__Ltext38 0 0 ABS 0 text38 dist/default/production\Atividade_A4.X.production.o
+__Ltext39 0 0 ABS 0 text39 dist/default/production\Atividade_A4.X.production.o
+__Ltext40 0 0 ABS 0 text40 dist/default/production\Atividade_A4.X.production.o
+__Ltext41 0 0 ABS 0 text41 dist/default/production\Atividade_A4.X.production.o
+__Ltext42 0 0 ABS 0 text42 dist/default/production\Atividade_A4.X.production.o
+__Ltext43 0 0 ABS 0 text43 dist/default/production\Atividade_A4.X.production.o
+__Ltext44 0 0 ABS 0 text44 dist/default/production\Atividade_A4.X.production.o
+__Ltext45 0 0 ABS 0 text45 dist/default/production\Atividade_A4.X.production.o
+__Ltext46 0 0 ABS 0 text46 dist/default/production\Atividade_A4.X.production.o
+__Ltext47 0 0 ABS 0 text47 dist/default/production\Atividade_A4.X.production.o
+__Ltext48 0 0 ABS 0 text48 dist/default/production\Atividade_A4.X.production.o
+__Ltext49 0 0 ABS 0 text49 dist/default/production\Atividade_A4.X.production.o
+__Ltext50 0 0 ABS 0 text50 dist/default/production\Atividade_A4.X.production.o
+__Ltext51 0 0 ABS 0 text51 dist/default/production\Atividade_A4.X.production.o
+__Ltext52 0 0 ABS 0 text52 dist/default/production\Atividade_A4.X.production.o
+__Ltext53 0 0 ABS 0 text53 dist/default/production\Atividade_A4.X.production.o
+__Ltext54 0 0 ABS 0 text54 dist/default/production\Atividade_A4.X.production.o
+__ramtop 600 0 RAM 0 ramtop C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+__end_of_setLedsOn 36E8 0 CODE 0 text11 dist/default/production\Atividade_A4.X.production.o
+DispSystemParam@szAdcVoltageDisp CF 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+_vfprintf 37B0 0 CODE 0 text24 dist/default/production\Atividade_A4.X.production.o
+__Lpowerup E 0 CODE 0 powerup dist/default/production\Atividade_A4.X.production.o
+?___xxtofl 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\Atividade_A4.X.production.o
+__end_of___fpclassifyf 2D66 0 CODE 0 text36 dist/default/production\Atividade_A4.X.production.o
+SystemControl@fPercentDuty F3 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+_isdigit 3B08 0 CODE 0 text47 dist/default/production\Atividade_A4.X.production.o
+___fladd@aexp E 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fladd@bexp F 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fltol@sign1 49 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_isspace 395A 0 CODE 0 text46 dist/default/production\Atividade_A4.X.production.o
+__psmallconst 600 0 SMALLCONST 0 smallconst dist/default/production\Atividade_A4.X.production.o
+_changeBuzzerState 3B9E 0 CODE 0 text19 dist/default/production\Atividade_A4.X.production.o
+__end_of_DispSystemParam 2FB6 0 CODE 0 text22 dist/default/production\Atividade_A4.X.production.o
+__Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\Atividade_A4.X.production.o
+_pinMode 3620 0 CODE 0 text5 dist/default/production\Atividade_A4.X.production.o
+digitalWrite@fState 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_vfprintf 3812 0 CODE 0 text24 dist/default/production\Atividade_A4.X.production.o
+_digitalRead 3A24 0 CODE 0 text13 dist/default/production\Atividade_A4.X.production.o
+___heap_hi 0 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+___heap_lo 0 0 ABS 0 - C:\Users\yhan\AppData\Local\Temp\xcAs33k.o
+___fltol@f1 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_configOutputs 330E 0 CODE 0 text4 dist/default/production\Atividade_A4.X.production.o
+___param_bank 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\Atividade_A4.X.production.o
+strcpy@src 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of__initialization 3B70 0 CODE 0 cinit dist/default/production\Atividade_A4.X.production.o
+__Libigdata 0 0 CODE 0 ibigdata dist/default/production\Atividade_A4.X.production.o
+_setLedsOn 3684 0 CODE 0 text11 dist/default/production\Atividade_A4.X.production.o
+SystemControl@iValue FB 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+__Lclrtext 0 0 ABS 0 clrtext dist/default/production\Atividade_A4.X.production.o
+_isspace$1235 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+___fpclassifyf@F465 104 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+vfpfcnvrt@c 67 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_atoi 2856 0 CODE 0 text45 dist/default/production\Atividade_A4.X.production.o
+__end_of_labs 35BA 0 CODE 0 text34 dist/default/production\Atividade_A4.X.production.o
+__end_of_main 3BEC 0 CODE 0 text0 dist/default/production\Atividade_A4.X.production.o
+__pintcode 8 0 CODE 0 intcode dist/default/production\Atividade_A4.X.production.o
+isdigit@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__end_of_fputc 2E30 0 CODE 0 text31 dist/default/production\Atividade_A4.X.production.o
+__end_of_fputs 39E4 0 CODE 0 text30 dist/default/production\Atividade_A4.X.production.o
+_PORTC F82 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_T0CON FD5 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_T2CON FCA 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TMR0H FD7 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TMR0L FD6 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TRISA F92 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TRISB F93 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TRISC F94 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TRISD F95 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_TRISE F96 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__end_of_putch 3BFC 0 CODE 0 text32 dist/default/production\Atividade_A4.X.production.o
+__end_of_setup 3554 0 CODE 0 text1 dist/default/production\Atividade_A4.X.production.o
+__HRAM 0 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hbss 0 0 RAM 1 bss dist/default/production\Atividade_A4.X.production.o
+__Hram 0 0 ABS 0 ram dist/default/production\Atividade_A4.X.production.o
+__Hsfr 0 0 ABS 0 sfr dist/default/production\Atividade_A4.X.production.o
+__LRAM 1 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Lbss 0 0 RAM 1 bss dist/default/production\Atividade_A4.X.production.o
+__Lram 0 0 ABS 0 ram dist/default/production\Atividade_A4.X.production.o
+__Lsfr 0 0 ABS 0 sfr dist/default/production\Atividade_A4.X.production.o
+atoi@neg C 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_errno 10E 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+_flags 7D 0 COMRAM 1 bssCOMRAM dist/default/production\Atividade_A4.X.production.o
+_fputc 2D66 0 CODE 0 text31 dist/default/production\Atividade_A4.X.production.o
+_fputs 39A0 0 CODE 0 text30 dist/default/production\Atividade_A4.X.production.o
+_putch 3BFA 0 CODE 0 text32 dist/default/production\Atividade_A4.X.production.o
+_setup 34EA 0 CODE 0 text1 dist/default/production\Atividade_A4.X.production.o
+_efgtoa$1156 86 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+LcdPutChar@c 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+LcdPutChar@y 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_width 10A 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+_DispSystemParam 2EF4 0 CODE 0 text22 dist/default/production\Atividade_A4.X.production.o
+__end_of_ConfigTimerZeroISR 3BCA 0 CODE 0 text9 dist/default/production\Atividade_A4.X.production.o
+floorf@F526 100 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+?_isdigit 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_CCP1CON FBD 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+_CCP2CON FBA 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+?_iAnalogRead 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+?_isspace 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+_LcdInit 338C 0 CODE 0 text7 dist/default/production\Atividade_A4.X.production.o
+atoi@n E 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+atoi@s 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__initialization 3B5A 0 CODE 0 cinit dist/default/production\Atividade_A4.X.production.o
+___xxtofl@sign 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__pbssBANK0 FD 0 BANK0 1 bssBANK0 dist/default/production\Atividade_A4.X.production.o
+__pbssBANK1 100 0 BANK1 1 bssBANK1 dist/default/production\Atividade_A4.X.production.o
+_T2CONbits FCA 0 ABS 0 - dist/default/production\Atividade_A4.X.production.o
+__Hfardata 0 0 FARRAM 0 fardata dist/default/production\Atividade_A4.X.production.o
+___wmul@product 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+__Hsmallconst 664 0 SMALLCONST 0 smallconst dist/default/production\Atividade_A4.X.production.o
+__Lifardata 0 0 CODE 0 ifardata dist/default/production\Atividade_A4.X.production.o
+_snprintf$1046 B6 0 BANK0 1 cstackBANK0 dist/default/production\Atividade_A4.X.production.o
+__Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\Atividade_A4.X.production.o
+__Hintcode E 0 CODE 0 intcode dist/default/production\Atividade_A4.X.production.o
+digitalWrite@pcLat 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+fGetVoltage@iValue 41 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+digitalWrite@uiPin 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Atividade_A4.X.production.o
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+text26 0 664 664 3598 1
+cstackCOMRAM 1 1 1 7E 1
+cstackBANK0 1 80 80 80 1
+reset_vec 0 0 0 4 1
+bssBANK1 1 100 100 60 1
+intcode 0 8 8 A 1
+smallconst 0 600 600 64 1
+# %NOTES Section
+# This section contains data of all the note-psects.  The beginning of the section
+# is indicated by %NOTES. The first line indicates the name and decimal
+# byte-length of the first note-psect, e.g.
+#   $codecov_info_hdr 16
+# Each line that follows contains the byte-data of the psect in hexadecimal as a
+# space-separated list. These lines are limited to 16 bytes of data.
+%NOTES
